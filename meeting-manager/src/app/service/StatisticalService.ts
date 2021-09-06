@@ -8,12 +8,12 @@ import {StatisticByRoom} from '../model/dto/StatisticByRoom';
   providedIn: 'root'
 })
 export class StatisticalService {
-  private readonly API_URL = 'http://localhost:3000/statisticals';
+  private readonly API_URL = 'http://localhost:8080/statistical';
   constructor(private httpClient: HttpClient) {
   }
   public statisticByDate(statistic: StatisticByDate): Observable<OrderMeeting[]>{
-    console.log(this.API_URL + '/statistic-by-date');
-    return this.httpClient.put<OrderMeeting[]>(this.API_URL + '/statistic-by-date', statistic);
+    console.log(this.API_URL + '/statisticByDate');
+    return this.httpClient.put<OrderMeeting[]>(this.API_URL + '/statisticByDate', statistic);
   }
   public statisticByRoom(statistic: StatisticByRoom): Observable<OrderMeeting[]>{
     return this.httpClient.put<OrderMeeting[]>(this.API_URL + '/statistic-by-room', statistic);

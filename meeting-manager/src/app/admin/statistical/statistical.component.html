@@ -2,52 +2,56 @@
   <p class="row justify-content-center" style="margin-top: 20px; font-size: 40px">Thống kê</p>
   <div style="display: flex">
 
+
     <div id="findByDate" class="d-flex justify-content-start flex-column rounded p-3 col-5">
-      <div style="height: 230px">
-        <form [formGroup]="statisticByDateForm" (ngSubmit)="onSubmitDateForm(statisticByDateForm)">
+      <form [formGroup]="statisticByDateForm" (ngSubmit)="onSubmitDateForm(statisticByDateForm)">
+
+        <div style="height: 260px">
+
           <legend>Theo thời gian</legend>
           <div class="input-group ">
             <label class="input-group-text" for="startDate">Từ ngày</label>
-            <input formControlName="dateCheckin" class="form-control" id="startDate" name="date" placeholder="DD/MM/YYYY" type="date"/>
+            <input formControlName="dateCheckin" class="form-control" id="startDate" name="date"
+                   placeholder="DD/MM/YYYY" type="date"/>
           </div>
           <br>
           <div class="input-group ">
             <label class="input-group-text" for="endDate">
               Đến
             </label>
-            <input formControlName="dateCheckout" class="form-control" id="endDate" name="endDate" placeholder="DD/MM/YYYY" type="date"/>
-
+            <input formControlName="dateCheckout" class="form-control" id="endDate" name="endDate"
+                   placeholder="DD/MM/YYYY" type="date"/>
           </div>
-        </form>
-      </div>
-      <div>
-        <button class="btn btn-primary" type="submit">Thống kê</button>
-      </div>
+
+          <button style="margin-top: 75px" class="btn btn-primary" type="submit">Thống kê</button>
+
+        </div>
+
+    </form>
+
     </div>
+
     <div class="col-2"></div>
 
     <div id="findByRoom" class="d-flex justify-content-start flex-column rounded p-3 col-5 ">
-      <div style="height: 230px">
-        <form [formGroup]="statisticByRoomForm" (ngSubmit)="onSubmitRoomForm(statisticByRoomForm)">
+      <form [formGroup]="statisticByRoomForm" (ngSubmit)="onSubmitRoomForm(statisticByRoomForm)">
+
+      <div style="height: 260px">
           <legend>Theo phòng</legend>
 
           <div class="input-group mb-3">
             <label class="input-group-text" for="inputGroupSelect01">Chọn loại phòng</label>
 
             <select formControlName="typeMeetingRoom" class="custom-select" id="inputGroupSelect01">
-              <option selected>Chọn loại phòng</option>
-              <option *ngFor="let type of typesMeetingRoom" [value]="type.name"></option>
+              <option *ngFor="let type of typesMeetingRoom" [value]="type.id" >{{type.name}}</option>
             </select>
           </div>
 
           <div class="input-group mb-3">
             <label class="input-group-text" for="inputGroupSelect02">Chọn
               phòng</label>
-
-            <select class="custom-select" id="inputGroupSelect02">
-              <option selected>Chọn phòng</option>
-              <option *ngFor="let name of meetingRooms" [value]="name.name" ></option>
-
+            <select formControlName="nameRoom" class="custom-select" id="inputGroupSelect02">
+              <option *ngFor="let meetingRoom of meetingRooms" [value]="meetingRoom.id" >{{meetingRoom.name}}</option>
             </select>
           </div>
 
@@ -56,7 +60,7 @@
             <label class="input-group-text" for="inputGroupSelect03">Thống kê
               theo</label>
 
-            <select class="custom-select" id="inputGroupSelect03">
+            <select formControlName="month" class="custom-select" id="inputGroupSelect03">
               <option selected>Tháng</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -72,25 +76,27 @@
               <option value="12">12</option>
             </select>
           </div>
-        </form>
+
+        <button style="margin-top: 10px" class="btn btn-primary" type="submit">Thống kê</button>
+
       </div>
-      <div>
-        <button class="btn btn-primary" type="submit">Thống kê</button>
-      </div>
+
+      </form>
+
     </div>
   </div>
 </div>
 <div id="result" class="p-3">
   <h4>Kết quả</h4>
-<!--  <div class="row">-->
-<!--    <div class="col-lg-4">-->
-<!--    <label >Tên phòng : 6A</label>-->
-<!--    </div>-->
-<!--    <div class="col-lg-6 d-inline" >-->
-<!--    <label class="d-inline" >Tổng số lần sử dụng : {{totalsOfUses}}</label>-->
-<!--    <label style="margin-left: 15px">Hiệu suất : {{performance}}%</label>-->
-<!--    </div>-->
-<!--  </div>-->
+  <!--  <div class="row">-->
+  <!--    <div class="col-lg-4">-->
+  <!--    <label >Tên phòng : 6A</label>-->
+  <!--    </div>-->
+  <!--    <div class="col-lg-6 d-inline" >-->
+  <!--    <label class="d-inline" >Tổng số lần sử dụng : {{totalsOfUses}}</label>-->
+  <!--    <label style="margin-left: 15px">Hiệu suất : {{performance}}%</label>-->
+  <!--    </div>-->
+  <!--  </div>-->
   <div class="table-responsive">
     <table class="table table-hover">
       <thead class="thead-dark">
@@ -107,7 +113,7 @@
       </thead>
       <tbody class="table-active">
       <tr *ngFor="let obj of statistics | paginate: {itemsPerPage:15, currentPage: page};">
-        <th scope="row">{{obj.id}}</th>
+        <td scope="row">{{obj.id}}</td>
         <td>{{obj.account.fullname}}</td>
         <td>{{obj.timeStart}}</td>
         <td>{{obj.timeEnd}}</td>
@@ -123,30 +129,31 @@
       <pagination-controls (pageChange)="page = $event" class="text-center"></pagination-controls>
     </div>
   </div>
-
-  <div id="chartStatistical">
-    <div class="float-left">
-      <ejs-chart [primaryXAxis]='xAxisPerformance' [primaryYAxis]='yAxisPerformance' [title]="performanceChartTitle"
-                 [legendSettings]='legend' [tooltip]='toolTipSettings'>
-        <e-series-collection>
-          <e-series type="Line" [dataSource]="performanceDataChart" xName="Month" yName="Performance"
-                    [marker]="markerSettings" name="Chart showing booking performance by month">
-          </e-series>
-        </e-series-collection>
-      </ejs-chart>
-    </div>
-
-    <div class="float-right">
-      <ejs-chart [primaryXAxis]='xAxisTotalsOfUses' [primaryYAxis]="yAxisTotalsOfUses"
-      [title]="usesChartTitle">
-        <e-series-collection>
-          <e-series type="Column" fill="#4472c4" [dataSource]="usesDataChart"
-          xName='Name' yName="Totals Of Uses">
-          </e-series>
-        </e-series-collection>
-
-      </ejs-chart>
-    </div>
-  </div>
 </div>
 <br>
+<div id="chartStatistical" class="container-fluid">
+  <div class="row justify-content-center">
+  <div>
+    <ejs-chart [primaryXAxis]='xAxisPerformance' [primaryYAxis]='yAxisPerformance' [title]="performanceChartTitle"
+               [legendSettings]='legend' [tooltip]='toolTipSettings'>
+      <e-series-collection>
+        <e-series type="Line" [dataSource]="performanceDataChart" xName="Name Room" yName="Performance"
+                  [marker]="markerSettings" name="Chart showing booking performance by month">
+        </e-series>
+      </e-series-collection>
+    </ejs-chart>
+  </div>
+
+  <div>
+    <ejs-chart [primaryXAxis]='xAxisTotalsOfUses' [primaryYAxis]="yAxisTotalsOfUses"
+               [title]="usesChartTitle" [legendSettings]='legend' [tooltip]='toolTipSettings'>
+      <e-series-collection>
+        <e-series type="Column" fill="#4472c4" [dataSource]="usesDataChart"
+                  xName='Name Room' yName="Totals Of Uses" [marker]="markerSettings" name="Chart showing booking performance by room">
+        </e-series>
+      </e-series-collection>
+
+    </ejs-chart>
+  </div>
+  </div>
+</div>

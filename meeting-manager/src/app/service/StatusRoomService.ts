@@ -6,7 +6,7 @@ import {Injectable} from '@angular/core';
   providedIn: 'root'
 })
 export class StatusRoomService {
-  private readonly API_URL = 'http://localhost:3000/status-room';
+  private readonly API_URL = 'http://localhost:8080/listRoomStatus';
   constructor(private httpClient: HttpClient) {
   }
   public getStatusRoom(): Observable<RoomStatus[]>{

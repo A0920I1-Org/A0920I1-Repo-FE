@@ -6,7 +6,7 @@ import {Injectable} from '@angular/core';
   providedIn: 'root'
 })
 export class TypeMeetingRoomService {
-  private readonly API_URL = 'http://localhost:3000/types-meeting-room';
+  private readonly API_URL = 'http://localhost:8080/listTypeMeetingRoom';
   constructor(private httpClient: HttpClient) {
   }
   public getTypesMeetingRoom(): Observable<TypeMeetingRoom[]>{
