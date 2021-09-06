@@ -5,10 +5,7 @@ import {StatusRoomService} from '../../../../service/StatusRoomService';
 import {FormControl, FormGroup} from '@angular/forms';
 import {TypeMeetingRoom} from '../../../../model/entity/TypeMeetingRoom';
 import {RoomStatus} from '../../../../model/entity/RoomStatus';
-import {Router} from '@angular/router';
 import {OrderMeeting} from '../../../../model/entity/OrderMeeting';
-import {MatDialog} from '@angular/material/dialog';
-import {DialogUnsubcribeComponent} from '../delete-meeting/dialog-unsubcribe/dialog-unsubcribe.component';
 
 @Component({
   selector: 'app-register-meeting',
@@ -26,9 +23,7 @@ export class RegisterMeetingComponent implements OnInit {
   constructor(
     private registerHistoryService: RegisterHistoryService,
     private typeMeetingRoomService: TypeMeetingRoomService,
-    private statusRoomService: StatusRoomService,
-    // private router: Router,
-    private dialog: MatDialog
+    private statusRoomService: StatusRoomService
   ) {
     this.typeMeetingRoomService.getTypesMeetingRoom().subscribe(
       (data) => {
@@ -38,11 +33,6 @@ export class RegisterMeetingComponent implements OnInit {
     this.statusRoomService.getStatusRoom().subscribe(
       (data) => {
         this.statusRoom = data;
-      }
-    );
-    this.registerHistoryService.getRegisterHistory().subscribe(
-      (data) => {
-        this.registerHistory = data;
       }
     );
   }
@@ -56,27 +46,22 @@ export class RegisterMeetingComponent implements OnInit {
       typeMeetingRoom : new FormControl(null),
       createAt : new FormControl(null)
     });
-  }
-
-  onSubmit(findRegisterHistory: FormGroup) {
-    this.registerHistoryService.searchRegistration(findRegisterHistory.value).subscribe(
-    (data) => {
-      this.registerHistory = data;
-    }
+    // đưa tham số account id vào getRegisterHistory
+    this.registerHistoryService.getRegisterHistory().subscribe(
+      (data) => {
+        console.log(data);
+        this.registerHistory = data;
+      }
     );
   }
 
-  openDialogUnsubcire(id: number) {
-    const dialogRef = this.dialog.open(DialogUnsubcribeComponent, {
-      data : {
-        id
-      },
-      width: '400px'
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-      this.ngOnInit();
-    });
+  onSubmit(findRegisterHistory: FormGroup) {
+    console.log(findRegisterHistory.value);
+    this.registerHistoryService.searchRegistration(findRegisterHistory.value, '1').subscribe(
+    (data) => {
+      console.log(data);
+      this.registerHistory = data;
+    }
+    );
   }
 }

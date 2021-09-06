@@ -27,7 +27,7 @@
       <label class="input-group-text" for="inputGroupSelect01">Trạng thái</label>
       <select formControlName="statusRoom" class="custom-select" id="inputGroupSelect01">
         <option selected>Chọn</option>
-        <option *ngFor="let status of statusRoom" [value]="status.name"></option>
+        <option *ngFor="let status of statusRoom" [value]="status.id">{{status.name}}</option>
       </select>
     </div>
 
@@ -35,7 +35,7 @@
       <label class="input-group-text" for="inputGroupSelect02">Loại phòng họp</label>
       <select formControlName="typeMeetingRoom" class="custom-select" id="inputGroupSelect02">
         <option selected>Chọn loại phòng</option>
-        <option *ngFor="let type of typesMeetingRoom" [value]="type.name"></option>
+        <option *ngFor="let type of typesMeetingRoom" [value]="type.id">{{type.name}}</option>
       </select>
     </div>
 
@@ -72,7 +72,7 @@
       </thead>
       <tbody class="table-active">
       <tr *ngFor="let register of registerHistory | paginate: {itemsPerPage:15, currentPage: page};">
-        <th scope="row">1</th>
+        <th scope="row">{{register.id}}</th>
         <td>{{register.meetingRoom.name}}</td>
         <td>{{register.description}}</td>
         <td>{{register.timeStart}}</td>
@@ -80,10 +80,10 @@
         <td>{{register.dateCheckin}}</td>
         <td>{{register.dateCheckout}}</td>
         <td>{{register.meetingRoom.typeMeetingRoom.name}}</td>
-        <td>{{register.createAt}}</td>
+        <td>{{register.createDate}}</td>
         <td>{{register.meetingRoom.roomStatus.name}}</td>
         <td>
-          <button (click)="openDialogUnsubcire(register.id)" class="btn btn-danger">Huỷ đăng kí</button>
+          <button [routerLink]="['/deleteRegisterMeeting/', register.id]" class="btn btn-danger">Huỷ đăng kí</button>
         </td>
       </tr>
 

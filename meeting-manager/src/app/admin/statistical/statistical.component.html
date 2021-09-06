@@ -42,7 +42,7 @@
           <div class="input-group mb-3">
             <label class="input-group-text" for="inputGroupSelect01">Chọn loại phòng</label>
 
-            <select formControlName="typeMeetingRoom" class="custom-select" id="inputGroupSelect01">
+            <select formControlName="idTypeMeetingRoom" class="custom-select" id="inputGroupSelect01">
               <option *ngFor="let type of typesMeetingRoom" [value]="type.id" >{{type.name}}</option>
             </select>
           </div>
@@ -50,7 +50,7 @@
           <div class="input-group mb-3">
             <label class="input-group-text" for="inputGroupSelect02">Chọn
               phòng</label>
-            <select formControlName="nameRoom" class="custom-select" id="inputGroupSelect02">
+            <select formControlName="idMeetingRoom" class="custom-select" id="inputGroupSelect02">
               <option *ngFor="let meetingRoom of meetingRooms" [value]="meetingRoom.id" >{{meetingRoom.name}}</option>
             </select>
           </div>
@@ -120,7 +120,7 @@
         <td>{{obj.dateCheckin}}</td>
         <td>{{obj.dateCheckout}}</td>
         <td>{{obj.meetingRoom.roomStatus.name}}</td>
-        <td>{{obj.createAt}}</td>
+        <td>{{obj.createDate}}</td>
       </tr>
       </tbody>
     </table>
@@ -134,10 +134,12 @@
 <div id="chartStatistical" class="container-fluid">
   <div class="row justify-content-center">
   <div>
-    <ejs-chart [primaryXAxis]='xAxisPerformance' [primaryYAxis]='yAxisPerformance' [title]="performanceChartTitle"
+    <ejs-chart [primaryXAxis]='xAxisPerformance' [primaryYAxis]='yAxisPerformance'
+               [title]="performanceChartTitle"
                [legendSettings]='legend' [tooltip]='toolTipSettings'>
       <e-series-collection>
-        <e-series type="Line" [dataSource]="performanceDataChart" xName="Name Room" yName="Performance"
+        <e-series type="Line" [dataSource]="dataCharts"
+                  xName="nameMeetingRoom" yName="performance"
                   [marker]="markerSettings" name="Chart showing booking performance by month">
         </e-series>
       </e-series-collection>
@@ -148,8 +150,8 @@
     <ejs-chart [primaryXAxis]='xAxisTotalsOfUses' [primaryYAxis]="yAxisTotalsOfUses"
                [title]="usesChartTitle" [legendSettings]='legend' [tooltip]='toolTipSettings'>
       <e-series-collection>
-        <e-series type="Column" fill="#4472c4" [dataSource]="usesDataChart"
-                  xName='Name Room' yName="Totals Of Uses" [marker]="markerSettings" name="Chart showing booking performance by room">
+        <e-series type="Line" [dataSource]="dataCharts"
+                  xName='nameMeetingRoom' yName="uses" [marker]="markerSettings" name="Chart showing booking performance by room">
         </e-series>
       </e-series-collection>
 

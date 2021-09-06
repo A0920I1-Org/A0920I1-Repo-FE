@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {MeetingRoom} from '../../../../model/entity/MeetingRoom';
 import {MeetingRoomSerivce} from '../../../../service/MeetingRoomSerivce';
 import {TypeMeetingRoomService} from '../../../../service/TypeMeetingRoomService';
 import {RegisterHistoryService} from '../../../../service/RegisterHistoryService';
-import {TypeMeetingRoom} from '../../../../model/entity/TypeMeetingRoom';
 import {OrderMeeting} from '../../../../model/entity/OrderMeeting';
+import {MatDialog} from '@angular/material/dialog';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import {FormControl, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-delete-meeting',
@@ -17,14 +18,14 @@ import {OrderMeeting} from '../../../../model/entity/OrderMeeting';
   ]
 })
 export class DeleteMeetingComponent implements OnInit {
-  meetingRoom: MeetingRoom;
-  typeMeetingRoom: TypeMeetingRoom;
   registerHistory: OrderMeeting;
-
+  idOrder: any;
+  deleteForm: FormGroup;
   constructor(
-    private meetingRoomService: MeetingRoomSerivce,
-    private typeMeetingRoomService: TypeMeetingRoomService,
     private registerHistoryService: RegisterHistoryService,
+    private dialog: MatDialog,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) {
     // this.meetingRoomService.getMeetingRoom().subscribe(
     //   (data) => {
@@ -39,6 +40,24 @@ export class DeleteMeetingComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.deleteForm = new FormGroup({
+      reasonDelete: new FormControl(null)
+    });
+    this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
+      this.idOrder = (paramMap.get('id'));
+      this.registerHistoryService.findOrderById(this.idOrder).subscribe(
+        (data) => {
+          this.registerHistory = data;
+        }
+      );
+    });
   }
-
+  onSubmitDelete(deleteForm: FormGroup) {
+    console.log(deleteForm.value);
+    this.registerHistoryService.deleteOrderMeeting(this.idOrder, deleteForm.value).subscribe(
+      (data) => {
+        this.router.navigateByUrl('register-history');
+      }, error => console.log(error)
+    );
+  }
 }

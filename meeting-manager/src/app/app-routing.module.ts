@@ -11,6 +11,9 @@ const routes: Routes = [
   },
   {
     path: 'register-history', component: RegisterMeetingComponent
+  },
+  {
+    path: 'deleteRegisterMeeting/:id', component: DeleteMeetingComponent
   }
 ];
 

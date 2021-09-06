@@ -31,7 +31,6 @@ import {StatusRoomService} from './service/StatusRoomService';
 import {TypeMeetingRoomService} from './service/TypeMeetingRoomService';
 import {StatisticalService} from './service/StatisticalService';
 import {MeetingRoomSerivce} from './service/MeetingRoomSerivce';
-import { DialogUnsubcribeComponent } from './client/employee/meeting/delete-meeting/dialog-unsubcribe/dialog-unsubcribe.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {
@@ -67,8 +66,7 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
     DeleteEmployeeComponent,
     UpdateEmployeeComponent,
     DetailEmployeeComponent,
-    StatisticalComponent,
-    DialogUnsubcribeComponent,
+    StatisticalComponent
   ],
   imports: [
     BrowserModule,

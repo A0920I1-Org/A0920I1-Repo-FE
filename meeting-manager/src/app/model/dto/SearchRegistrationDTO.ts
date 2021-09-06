@@ -1,19 +1,19 @@
 export class SearchRegistrationDTO {
-  nameRoom: string;
+  idMeetingRoom: string;
   dateCheckin: string;
   dateCheckout: string;
-  statusRoom: string;
-  typeRoom: string;
-  createAt: string;
+  idStatusRoom: string;
+  idTypeRoom: string;
+  createDate: string;
 
   constructor(nameRoom: string, dateCheckin: string,
               dateCheckout: string, statusRoom: string,
               typeRoom: string, createAt: string) {
-    this.nameRoom = nameRoom;
+    this.idMeetingRoom = nameRoom;
     this.dateCheckin = dateCheckin;
     this.dateCheckout = dateCheckout;
-    this.statusRoom = statusRoom;
-    this.typeRoom = typeRoom;
-    this.createAt = createAt;
+    this.idStatusRoom = statusRoom;
+    this.idTypeRoom = typeRoom;
+    this.createDate = createAt;
   }
 }

@@ -6,6 +6,8 @@ import {TypeMeetingRoom} from '../../model/entity/TypeMeetingRoom';
 import {MeetingRoom} from '../../model/entity/MeetingRoom';
 import {TypeMeetingRoomService} from '../../service/TypeMeetingRoomService';
 import {MeetingRoomSerivce} from '../../service/MeetingRoomSerivce';
+import {Statistic} from '../../model/dto/Statistic';
+import {DataChart} from '../../model/dto/dataChart';
 
 @Component({
   selector: 'app-statistical',
@@ -33,7 +35,7 @@ export class StatisticalComponent implements OnInit {
   xAxisTotalsOfUses: any;
   yAxisTotalsOfUses: any;
   usesChartTitle: any;
-
+  dataCharts: DataChart[];
   constructor(
     private statisticalService: StatisticalService,
     private typeMeetingRoomService: TypeMeetingRoomService,
@@ -47,29 +49,29 @@ export class StatisticalComponent implements OnInit {
       dateCheckout: new FormControl(null)
     });
     this.statisticByRoomForm = new FormGroup({
-      typeMeetingRoom: new FormControl(null),
-      nameRoom: new FormControl(null),
+      idTypeMeetingRoom: new FormControl(null),
+      idMeetingRoom: new FormControl(null),
       month: new FormControl(null),
       // year : new FormControl(null),
     });
     this.usesChartTitle = 'Totals Of Uses';
-    this.performanceChartTitle = 'Statistical';
+    this.performanceChartTitle = 'Performance';
     this.toolTipSettings = {
       enable: true
     };
     this.xAxisPerformance = {
-      title: 'Name Room',
+      title: 'nameMeetingRoom',
       valueType: 'Category'
     };
     this.yAxisPerformance = {
-      title: 'Performance'
+      title: 'performance'
     };
     this.xAxisTotalsOfUses = {
-      title: 'Name Room',
+      title: 'Name Meeting Room',
       valueType: 'Category'
     };
     this.yAxisTotalsOfUses = {
-      title: 'Totals Of Uses'
+      title: 'Uses'
     };
     this.legend = {
       visible: true
@@ -100,43 +102,28 @@ export class StatisticalComponent implements OnInit {
       (data) => {
         console.log(data);
         this.statistics = data;
-        // this.totalsOfUses = this.statistics.length;
-        // this.statisticalService.calculatePerformance().subscribe(
-        //   (performances) => {
-        //     // this.performance = performance;
-        //     this.performanceDataChart = [
-        //       {nameRoom : 'Jan', performance : performances[0]}
-        //     ];
-        //   }
-        // );
+        this.statisticalService.calculateTotalsOfUses().subscribe(
+          (use) => {
+            console.log(use);
+            this.dataCharts = use;
+          }
+        );
       }, error => console.log(error)
     );
   }
 
   onSubmitRoomForm(statisticByRoomForm: FormGroup) {
+    console.log(statisticByRoomForm.value);
     this.statisticalService.statisticByRoom(statisticByRoomForm.value).subscribe(
       (data) => {
+        console.log(data);
         this.statistics = data;
-        // this.totalsOfUses = this.statistics.length;
-        // this.statisticalService.calculatePerformance().subscribe(
-        //   (performances) => {
-        // this.performanceDataChart = [
-        //   {month : 'Jan', performance : performances[0]},
-        //   {month : 'Feb', performance : performances[1]},
-        //   {month : 'Mar', performance : performances[2]},
-        //   {month : 'Apr', performance : performances[3]},
-        //   {month : 'May', performance : performances[4]},
-        //   {month : 'Jun', performance : performances[5]},
-        //   {month : 'Jul', performance : performances[6]},
-        //   {month : 'Aug', performance : performances[7]},
-        //   {month : 'Sep', performance : performances[8]},
-        //   {month : 'Oct', performance : performances[9]},
-        //   {month : 'Nov', performance : performances[10]},
-        //   {month : 'Dec', performance : performances[11]},
-        // ];
-        //   }
-        // );
-        // }
+        this.statisticalService.calculateTotalsOfUses().subscribe(
+          (use) => {
+            console.log(use);
+            this.dataCharts = use;
+          }
+        );
       });
   }
 }

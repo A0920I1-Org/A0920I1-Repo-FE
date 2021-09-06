@@ -16,7 +16,7 @@ export class OrderMeeting {
   deleteAt: string;
   reasonDelete: string;
   isConfirm: boolean;
-  createAt: string;
+  createDate: string;
 
   constructor(id: number, meetingRoom: MeetingRoom, account: Account,
               dateCheckin: Date, dateCheckout: Date, timeStart: string,
@@ -33,7 +33,7 @@ export class OrderMeeting {
     this.deleteAt = deleteAt;
     this.reasonDelete = reasonDelete;
     this.isConfirm = isConfirm;
-    this.createAt = createAt;
+    this.createDate = createAt;
   }
 }
 
