@@ -41,7 +41,6 @@ import {
   LineSeriesService,
   TooltipService
 } from '@syncfusion/ej2-angular-charts';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -75,8 +74,7 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
     ReactiveFormsModule,
     MatDialogModule,
     NgxPaginationModule,
-    ChartModule,
-    HttpClientModule
+    ChartModule
   ],
   providers: [
     RegisterHistoryService,

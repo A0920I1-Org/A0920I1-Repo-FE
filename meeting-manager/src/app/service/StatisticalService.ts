@@ -8,12 +8,18 @@ import {DataChart} from '../model/dto/dataChart';
   providedIn: 'root'
 })
 export class StatisticalService {
-  private readonly API_URL = 'http://localhost:8080/statistical';
+  private readonly API_URL = 'http://localhost:3000/statisticals';
   constructor(private httpClient: HttpClient) {
   }
+<<<<<<< HEAD
   public statisticByDate(statistic: Statistic): Observable<OrderMeeting[]>{
     console.log(this.API_URL + '/statisticByDate');
     return this.httpClient.put<OrderMeeting[]>(this.API_URL + '/statisticByDate', statistic);
+=======
+  public statisticByDate(statistic: StatisticByDate): Observable<OrderMeeting[]>{
+    console.log(this.API_URL + '/statistic-by-date');
+    return this.httpClient.put<OrderMeeting[]>(this.API_URL + '/statistic-by-date', statistic);
+>>>>>>> parent of 1399d8b... update
   }
   public statisticByRoom(statistic: Statistic): Observable<OrderMeeting[]>{
     return this.httpClient.put<OrderMeeting[]>(this.API_URL + '/statisticByRoom', statistic);

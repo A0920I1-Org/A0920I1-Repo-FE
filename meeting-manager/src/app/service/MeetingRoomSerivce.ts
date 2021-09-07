@@ -6,13 +6,11 @@ import {MeetingRoom} from '../model/entity/MeetingRoom';
   providedIn: 'root'
 })
 export class MeetingRoomSerivce {
-  private readonly API_URL = 'http://localhost:8080/meetingRooms';
+  private readonly API_URL = 'http://localhost:3000/meeting-rooms';
   constructor(private httpClient: HttpClient) {
   }
   public getMeetingRoom(): Observable<MeetingRoom[]>{
     return this.httpClient.get<MeetingRoom[]>(this.API_URL);
   }
-  public getNameMeetingRoom(): Observable<string[]>{
-    return this.httpClient.get<string[]>(this.API_URL + '/nameMeetingRooms');
-  }
+
 }
