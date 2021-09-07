@@ -74,7 +74,6 @@ import {
     ReactiveFormsModule,
     MatDialogModule,
     NgxPaginationModule,
-    ChartModule
   ],
   providers: [
     RegisterHistoryService,

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {StatisticalService} from '../../service/StatisticalService';
 import {OrderMeeting} from '../../model/entity/OrderMeeting';
 import {FormControl, FormGroup} from '@angular/forms';
@@ -14,8 +14,8 @@ import {DataChart} from '../../model/dto/dataChart';
   templateUrl: './statistical.component.html',
   styleUrls: ['./statistical.component.css'],
   providers: [StatisticalService,
-  TypeMeetingRoomService,
-  MeetingRoomSerivce]
+    TypeMeetingRoomService,
+    MeetingRoomSerivce]
 })
 export class StatisticalComponent implements OnInit {
   statistics: OrderMeeting[];
@@ -35,34 +35,20 @@ export class StatisticalComponent implements OnInit {
   xAxisTotalsOfUses: any;
   yAxisTotalsOfUses: any;
   usesChartTitle: any;
-<<<<<<< HEAD
   dataCharts: DataChart[];
-=======
->>>>>>> parent of 1399d8b... update
   constructor(
     private statisticalService: StatisticalService,
     private typeMeetingRoomService: TypeMeetingRoomService,
     private meetingRoomService: MeetingRoomSerivce
   ) {
-  this.typeMeetingRoomService.getTypesMeetingRoom().subscribe(
-    (date) => {
-      this.typesMeetingRoom = date;
-    }
-  );
-  this.meetingRoomService.getMeetingRoom().subscribe(
-    (data) => {
-      this.meetingRooms = data;
-    }
-  );
   }
 
   ngOnInit(): void {
     this.statisticByDateForm = new FormGroup({
-      dateCheckin : new FormControl(null),
-      dateCheckout : new FormControl(null)
+      dateCheckin: new FormControl(null),
+      dateCheckout: new FormControl(null)
     });
     this.statisticByRoomForm = new FormGroup({
-<<<<<<< HEAD
       idTypeMeetingRoom: new FormControl(null),
       idMeetingRoom: new FormControl(null),
       month: new FormControl(null),
@@ -70,29 +56,16 @@ export class StatisticalComponent implements OnInit {
     });
     this.usesChartTitle = 'Totals Of Uses';
     this.performanceChartTitle = 'Performance';
-=======
-      typeMeetingRoom : new FormControl(null),
-      nameRoom : new FormControl(null),
-      month : new FormControl(null),
-      // year : new FormControl(null),
-    });
-    this.performanceChartTitle = 'Statistical';
->>>>>>> parent of 1399d8b... update
     this.toolTipSettings = {
-      enable : true
+      enable: true
     };
     this.xAxisPerformance = {
-<<<<<<< HEAD
       title: 'nameMeetingRoom',
-=======
-      title: 'Month',
->>>>>>> parent of 1399d8b... update
       valueType: 'Category'
     };
     this.yAxisPerformance = {
       title: 'performance'
     };
-<<<<<<< HEAD
     this.xAxisTotalsOfUses = {
       title: 'Name Meeting Room',
       valueType: 'Category'
@@ -100,10 +73,8 @@ export class StatisticalComponent implements OnInit {
     this.yAxisTotalsOfUses = {
       title: 'Uses'
     };
-=======
->>>>>>> parent of 1399d8b... update
     this.legend = {
-      visible : true
+      visible: true
     };
     this.markerSettings = {
       visible: true,
@@ -111,13 +82,26 @@ export class StatisticalComponent implements OnInit {
         visible: true
       }
     };
+    this.typeMeetingRoomService.getTypesMeetingRoom().subscribe(
+      (data) => {
+        console.log(data);
+        this.typesMeetingRoom = data;
+      }
+    );
+    this.meetingRoomService.getMeetingRoom().subscribe(
+      (data) => {
+        console.log(data);
+        this.meetingRooms = data;
+      }
+    );
   }
 
   onSubmitDateForm(statisticByDateForm: FormGroup) {
+    console.log(statisticByDateForm.value);
     this.statisticalService.statisticByDate(statisticByDateForm.value).subscribe(
       (data) => {
+        console.log(data);
         this.statistics = data;
-<<<<<<< HEAD
         this.statisticalService.calculateTotalsOfUses().subscribe(
           (use) => {
             console.log(use);
@@ -125,29 +109,6 @@ export class StatisticalComponent implements OnInit {
           }
         );
       }, error => console.log(error)
-=======
-        // this.totalsOfUses = this.statistics.length;
-        this.statisticalService.calculatePerformance().subscribe(
-          (performances) => {
-            // this.performance = performance;
-            this.performanceDataChart = [
-              {month : 'Jan', performance : performances[0]},
-              {month : 'Feb', performance : performances[1]},
-              {month : 'Mar', performance : performances[2]},
-              {month : 'Apr', performance : performances[3]},
-              {month : 'May', performance : performances[4]},
-              {month : 'Jun', performance : performances[5]},
-              {month : 'Jul', performance : performances[6]},
-              {month : 'Aug', performance : performances[7]},
-              {month : 'Sep', performance : performances[8]},
-              {month : 'Oct', performance : performances[9]},
-              {month : 'Nov', performance : performances[10]},
-              {month : 'Dec', performance : performances[11]},
-            ];
-          }
-        );
-      }
->>>>>>> parent of 1399d8b... update
     );
   }
 
@@ -157,7 +118,6 @@ export class StatisticalComponent implements OnInit {
       (data) => {
         console.log(data);
         this.statistics = data;
-<<<<<<< HEAD
         this.statisticalService.calculateTotalsOfUses().subscribe(
           (use) => {
             console.log(use);
@@ -165,28 +125,5 @@ export class StatisticalComponent implements OnInit {
           }
         );
       });
-=======
-        // this.totalsOfUses = this.statistics.length;
-        this.statisticalService.calculatePerformance().subscribe(
-          (performances) => {
-            this.performanceDataChart = [
-              {month : 'Jan', performance : performances[0]},
-              {month : 'Feb', performance : performances[1]},
-              {month : 'Mar', performance : performances[2]},
-              {month : 'Apr', performance : performances[3]},
-              {month : 'May', performance : performances[4]},
-              {month : 'Jun', performance : performances[5]},
-              {month : 'Jul', performance : performances[6]},
-              {month : 'Aug', performance : performances[7]},
-              {month : 'Sep', performance : performances[8]},
-              {month : 'Oct', performance : performances[9]},
-              {month : 'Nov', performance : performances[10]},
-              {month : 'Dec', performance : performances[11]},
-            ];
-          }
-        );
-      }
-    );
->>>>>>> parent of 1399d8b... update
   }
 }
