@@ -10,7 +10,7 @@ describe('RegisterMeetingComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ RegisterMeetingComponent ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
