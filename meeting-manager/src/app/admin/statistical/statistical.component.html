@@ -140,18 +140,23 @@
       <e-series-collection>
         <e-series type="Line" [dataSource]="dataCharts"
                   xName="nameMeetingRoom" yName="performance"
-                  [marker]="markerSettings" name="Chart showing booking performance by month">
+                  [marker]="markerSettings"
+                  name="Chart showing booking performance by date">
         </e-series>
       </e-series-collection>
     </ejs-chart>
   </div>
 
   <div>
-    <ejs-chart [primaryXAxis]='xAxisTotalsOfUses' [primaryYAxis]="yAxisTotalsOfUses"
-               [title]="usesChartTitle" [legendSettings]='legend' [tooltip]='toolTipSettings'>
+    <ejs-chart [primaryXAxis]='xAxisTotalsOfUses'
+               [primaryYAxis]='yAxisTotalsOfUses'
+               [title]="usesChartTitle"
+               [legendSettings]='legend' [tooltip]='toolTipSettings'>
       <e-series-collection>
-        <e-series type="Line" [dataSource]="dataCharts"
-                  xName='nameMeetingRoom' yName="uses" [marker]="markerSettings" name="Chart showing booking performance by room">
+        <e-series type='Column' fill="#4472c4" [dataSource]="dataCharts"
+                  xName='nameMeetingRoom' yName="uses"
+                  [marker]="markerSettings"
+                  name="Chart showing booking performance by room">
         </e-series>
       </e-series-collection>
 

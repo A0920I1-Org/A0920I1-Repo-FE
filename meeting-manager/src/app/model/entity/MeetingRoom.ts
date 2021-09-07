@@ -8,7 +8,7 @@ export class MeetingRoom {
   id: number;
   name: string;
   floor: number;
-  imgUrl: string;
+  imageUrl: string;
   roomStatus: RoomStatus;
   orderMeetingList: OrderMeeting[];
   typeMeetingRoom: TypeMeetingRoom;
@@ -23,7 +23,7 @@ export class MeetingRoom {
     this.id = id;
     this.name = name;
     this.floor = floor;
-    this.imgUrl = imgUrl;
+    this.imageUrl = imgUrl;
     this.roomStatus = roomStatus;
     this.orderMeetingList = orderMeetingList;
     this.typeMeetingRoom = typeMeetingRoom;

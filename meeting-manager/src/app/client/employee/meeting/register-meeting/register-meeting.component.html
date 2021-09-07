@@ -83,7 +83,9 @@
         <td>{{register.createDate}}</td>
         <td>{{register.meetingRoom.roomStatus.name}}</td>
         <td>
-          <button [routerLink]="['/deleteRegisterMeeting/', register.id]" class="btn btn-danger">Huỷ đăng kí</button>
+          <button (click)="checkIsDelete(register.id)" class="btn btn-danger">Huỷ đăng kí</button>
+<!--                  [routerLink]="['/deleteRegisterMeeting/', register.id]" -->
+
         </td>
       </tr>
 

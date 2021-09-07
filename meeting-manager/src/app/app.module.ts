@@ -35,13 +35,14 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {
   CategoryService,
-  ChartModule,
+  ChartModule, ColumnSeriesService,
   DataLabelService,
   LegendService,
   LineSeriesService,
   TooltipService
 } from '@syncfusion/ej2-angular-charts';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {HttpClientModule} from '@angular/common/http';
+import {ToastrModule, ToastrService} from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,12 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
     MatDialogModule,
     NgxPaginationModule,
     ChartModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastrModule.forRoot({
+      timeOut: 2000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: false,
+    })
   ],
   providers: [
     RegisterHistoryService,
@@ -88,7 +94,9 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
     CategoryService,
     LegendService,
     DataLabelService,
-    TooltipService
+    TooltipService,
+    ColumnSeriesService,
+    ToastrService
   ],
   bootstrap: [AppComponent]
 })

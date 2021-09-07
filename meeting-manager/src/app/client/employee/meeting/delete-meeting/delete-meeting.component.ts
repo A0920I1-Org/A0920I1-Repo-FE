@@ -6,6 +6,7 @@ import {OrderMeeting} from '../../../../model/entity/OrderMeeting';
 import {MatDialog} from '@angular/material/dialog';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {FormControl, FormGroup} from '@angular/forms';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-delete-meeting',
@@ -25,18 +26,9 @@ export class DeleteMeetingComponent implements OnInit {
     private registerHistoryService: RegisterHistoryService,
     private dialog: MatDialog,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private toastrService: ToastrService
   ) {
-    // this.meetingRoomService.getMeetingRoom().subscribe(
-    //   (data) => {
-    //     this.meetingRoom = data;
-    //   }
-    // );
-    // this.typeMeetingRoomService.getTypesMeetingRoom().subscribe(
-    //   (data) => {
-    //     this.typeMeetingRoomService
-    //   }
-    // )
   }
 
   ngOnInit(): void {
@@ -44,18 +36,22 @@ export class DeleteMeetingComponent implements OnInit {
       reasonDelete: new FormControl(null)
     });
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
-      this.idOrder = (paramMap.get('id'));
+      this.idOrder = (paramMap.get('idOrder'));
       this.registerHistoryService.findOrderById(this.idOrder).subscribe(
         (data) => {
+          console.log(data);
           this.registerHistory = data;
+          console.log(this.registerHistory.meetingRoom.imageUrl)
         }
       );
     });
   }
   onSubmitDelete(deleteForm: FormGroup) {
+    console.log('notification');
+    this.toastrService.success('Bạn đã huỷ đặt phòng thành công !');
     console.log(deleteForm.value);
     this.registerHistoryService.deleteOrderMeeting(this.idOrder, deleteForm.value).subscribe(
-      (data) => {
+      () => {
         this.router.navigateByUrl('register-history');
       }, error => console.log(error)
     );

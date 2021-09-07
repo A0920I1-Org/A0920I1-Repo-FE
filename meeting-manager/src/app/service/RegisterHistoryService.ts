@@ -11,7 +11,8 @@ export class RegisterHistoryService {
   constructor(private httpClient: HttpClient) {
   }
   public getRegisterHistory(): Observable<OrderMeeting[]>{
-    return this.httpClient.get<OrderMeeting[]>(this.API_URL + '/1');
+    console.log(this.API_URL + '/5');
+    return this.httpClient.get<OrderMeeting[]>(this.API_URL + '/5');
   }
   public searchRegistration(
     search: SearchRegistrationDTO,
@@ -24,9 +25,12 @@ export class RegisterHistoryService {
   public deleteOrderMeeting(idOrder: number, reasonDelete: string): Observable<void>{
     return this.httpClient.put<void>(this.API_URL + '/deleteRegister/' + idOrder, reasonDelete);
   }
-  public findOrderById(id: string): Observable<OrderMeeting>{
+  public findOrderById(idOrder: string): Observable<OrderMeeting>{
     console.log(this.API_URL + '/' + (1));
-    return this.httpClient.get<OrderMeeting>(this.API_URL + '/findOrderById/' + 1);
+    return this.httpClient.get<OrderMeeting>(this.API_URL + '/findOrderById/' + idOrder);
   }
 
+  public checkIsDelete(idOrder: number): Observable<boolean>{
+    return this.httpClient.get<boolean>(this.API_URL + '/checkIsDelete/' + idOrder );
+  }
 }

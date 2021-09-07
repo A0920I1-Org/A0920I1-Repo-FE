@@ -94,6 +94,18 @@ export class StatisticalComponent implements OnInit {
         this.meetingRooms = data;
       }
     );
+    // this.statisticalService.calculateTotalsOfUses().subscribe(
+    //   (use) => {
+    //     this.dataCharts = use;
+    //     console.log(this.dataCharts);
+    //   }, error => console.log(error)
+    // );
+    this.dataCharts = [
+      {nameMeetingRoom : "Andy" , uses : 4, performance: 0.00215000007301569},
+      {nameMeetingRoom : "Tim" , uses : 3, performance: 0.00215000007301569},
+      {nameMeetingRoom : "Dark" , uses : 3, performance: 0.0042153007301569},
+      {nameMeetingRoom : "White" , uses : 3, performance: 0.006317301569}
+    ];
   }
 
   onSubmitDateForm(statisticByDateForm: FormGroup) {
@@ -102,14 +114,14 @@ export class StatisticalComponent implements OnInit {
       (data) => {
         console.log(data);
         this.statistics = data;
-        this.statisticalService.calculateTotalsOfUses().subscribe(
-          (use) => {
-            console.log(use);
-            this.dataCharts = use;
-          }
-        );
       }, error => console.log(error)
     );
+    // this.statisticalService.calculateTotalsOfUses().subscribe(
+    //   (use) => {
+    //     this.dataCharts = use;
+    //     console.log(this.dataCharts);
+    //   }, error => console.log(error)
+    // );
   }
 
   onSubmitRoomForm(statisticByRoomForm: FormGroup) {
@@ -118,12 +130,12 @@ export class StatisticalComponent implements OnInit {
       (data) => {
         console.log(data);
         this.statistics = data;
-        this.statisticalService.calculateTotalsOfUses().subscribe(
-          (use) => {
-            console.log(use);
-            this.dataCharts = use;
-          }
-        );
+        // this.statisticalService.calculateTotalsOfUses().subscribe(
+        //   (use) => {
+        //     console.log(use);
+        //     this.dataCharts = use;
+        //   }
+        // );
       });
   }
 }
