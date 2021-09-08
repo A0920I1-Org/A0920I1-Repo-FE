@@ -1,1 +1,99 @@
-<p>detail-meeting works!</p>
+
+
+<div class="container">
+  <h3 style="text-align: center; margin: 30px 0">
+    Thông tin chi tiết phòng họp
+  </h3>
+  <div class="row">
+    <form class="form-control" [ngModelGroup]="formMeetingDetails" >
+      <div class="col-md-4">
+        <div class="card mb-3">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-5">
+                <h6 class="mb-0">Tên phòng:</h6>
+              </div>
+              <div class="col-sm-7 text-secondary">
+                <input type="text" class="form-control-plaintext" formControlName="name" readonly>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-5">
+                <h6 class="mb-0">Tầng:</h6>
+              </div>
+              <div class="col-sm-7 text-secondary">
+                <input type="text" class="form-control-plaintext" formControlName="floors" readonly>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-5">
+                <h6 class="mb-0">Khu vực:</h6>
+              </div>
+              <div class="col-sm-7 text-secondary">
+                <input type="text" class="form-control-plaintext" formControlName="area" readonly>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-5">
+                <h6 class="mb-0">Sức chứa:</h6>
+              </div>
+              <div class="col-sm-7 text-secondary">
+                <input type="text" class="form-control-plaintext" formControlName="capacity" readonly>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-5">
+                <h6 class="mb-0">Loại phòng:</h6>
+              </div>
+              <div class="col-sm-7 text-secondary">
+                <input type="text" class="form-control-plaintext" formControlName="typeRoom" readonly>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-5">
+                <h6 class="mb-0">Trạng thái:</h6>
+              </div>
+              <div class="col-sm-7 text-secondary">
+                <input type="text" class="form-control-plaintext" formControlName="status" readonly>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-5">
+                <h6 class="mb-0">Số lần sử dụng:</h6>
+              </div>
+              <div class="col-sm-7 text-secondary">
+                <input type="text" class="form-control-plaintext" formControlName="numberOfUses" readonly>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-5">
+                <h6 class="mb-0">Tài sản:</h6>
+              </div>
+              <div class="col-sm-7 text-secondary">
+                <input type="text" class="form-control-plaintext" formControlName="equipment" readonly>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-12">
+                <a class="btn btn-info " target="__blank"
+                   href="#">Xem lịch sử
+                  đăng kí</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+
+      </div>
+    </form>
+  </div>
+</div>

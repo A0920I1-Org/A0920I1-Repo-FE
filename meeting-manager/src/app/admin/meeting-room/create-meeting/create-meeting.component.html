@@ -1,1 +1,127 @@
-<p>create-meeting works!</p>
+<meta charset="utf-8">
+<div class="container">
+  <h4 style="text-align: center; margin: 40px 0">
+    Thêm phòng họp mới
+  </h4>
+  <form class="form-control" [formGroup]="createMeetingRoom" (ngSubmit)="onSubmit(createMeetingRoom)">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="form-group row">
+          <label for="inputNameRoom" class="col-sm-3 col-md-3 col-form-label input-group-text"
+                 style="margin: 0 5px">
+            Tên phòng
+          </label>
+          <div class="col-sm-5">
+            <input type="text" class="form-control" id="inputNameRoom" maxlength="30"
+                   formControlName="name" placeholder="enter name room...">
+          </div>
+          <span>*</span>
+          <small *ngIf="createMeetingRoom.get('name').invalid && createMeetingRoom.get('name').touched" class="text-danger">bạn nhập không hợp lệ!</small>
+<!--          <small *ngIf="reateMeetingRoom.get('name').touchedc" class="text-danger">vui lòng nhập thông tin!</small>-->
+
+        </div>
+
+        <div class="form-group row">
+          <label for="inputFloor" class="col-sm-3 col-md-3 col-form-label input-group-text"
+                 style="margin: 0 5px">Tầng</label>
+          <div class="col-sm-5">
+            <input type="text" class="form-control" id="inputFloor" maxlength="10"
+                   formControlName="floors" placeholder="enter number of floor...">
+          </div>
+          <span>*</span>
+          <small *ngIf="createMeetingRoom.get('floors').invalid && createMeetingRoom.get('floors').touched" class="text-danger">bạn nhập không hợp lệ!</small>
+<!--          <small *ngIf="createMeetingRoom.get('floors').touched" class="text-danger">vui lòng nhập thông tin!</small>-->
+
+        </div>
+        <div class="form-group row">
+          <label for="inputNameRoom" class="col-sm-3 col-md-3 col-form-label input-group-text"
+                 style="margin: 0 5px">Khu
+            vực</label>
+          <div class="col-sm-5">
+            <select class="custom-select" formControlName="area">
+              <option *ngFor="let items of areaList" [ngValue]="items" >{{items.name}}</option>
+            </select>
+          </div>
+          <span>*</span>
+          <small *ngIf="createMeetingRoom.get('area').invalid && createMeetingRoom.get('area').touched" class="text-danger">vui lòng nhập thông tin!</small>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-3 col-md-3 col-form-label input-group-text" style="margin: 0 5px">Loại
+            phòng</label>
+          <div class="col-sm-5">
+            <select class="custom-select" formControlName="typeMeetingRoom">
+              <option *ngFor="let items of typeMeetingRoom" [ngValue]="items" selected>{{items.name}}</option>
+
+            </select>
+          </div>
+          <span>*</span>
+          <small *ngIf="createMeetingRoom.get('typeMeetingRoom').invalid && createMeetingRoom.get('typeMeetingRoom').touched" class="text-danger">vui lòng nhập thông
+            tin!</small>
+        </div>
+        <div class="form-group row">
+          <label for="inputCapacity" class="col-sm-3 col-md-3 col-form-label input-group-text"
+                 style="margin: 0 5px">Sức
+            chứa</label>
+          <div class="col-sm-5">
+            <input type="text" class="form-control" id="inputCapacity" maxlength="50"
+                   formControlName="capacity" placeholder="enter capacity...">
+          </div>
+          <span>*</span>
+          <small *ngIf="createMeetingRoom.get('capacity').invalid && createMeetingRoom.get('capacity').touched" class="text-danger">bạn nhập không hợp lệ!</small>
+<!--          <small *ngIf="createMeetingRoom.get('capacity').touched" class="text-danger">vui lòng nhập thông tin!</small>-->
+
+        </div>
+
+        <div class="form-group row ">
+          <!--          <label for="inputAsset" class="col-sm-3 col-md-3 col-form-label input-group-text"-->
+          <!--                 style="margin: 0 5px">Chọn-->
+          <!--            tài sản</label>-->
+          <!--          <div class="col-sm-5">-->
+          <!--            <input type="button" class="form-control" id="inputAsset" value="Chọn tài sản" (click)="getEquipment()" formControlName="equipment">-->
+          <!--          </div>-->
+          <label class="col-sm-3 col-md-3 col-form-label input-group-text" style="margin: 0 5px">
+            Chọn tài sản
+          </label>
+          <div class="col-sm-5">
+<!--            <button class="btn btn-light" (click)="getEquipment()">-->
+<!--              Chọn tài sản-->
+<!--            </button>-->
+            <input formArrayName="equipment" type="text">
+          </div>
+          <span>*</span>
+          <small *ngIf="createMeetingRoom.get('equipment').invalid && createMeetingRoom.get('equipment').touched" class="text-danger">bạn nhập không hợp lệ!</small>
+        </div>
+
+      </div>
+      <div class="col-md-4">
+        <div class="card card-user">
+          <div class="card-body">
+            <div >
+              <input type="file" (change)="onFileChanged($event)">
+              <mat-spinner *ngIf="checkUpLoadAvt"></mat-spinner>
+              <button *ngIf="downloadURL?!selectedFile:selectedFile" mat-stroked-button color="accent"
+                      class="mat-button-toggle-group btn-outline-success" (click)="onUpLoad()">upload avatar
+                <mat-icon color="accent" matSuffix>add_circle</mat-icon>
+              </button>
+              <div *ngIf="downloadURL" style="margin-bottom: 10px; margin-top: 10px">
+                <img [src]="downloadURL" style="width: 100%; height: auto" formControlName="image">
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <br>
+    <small>(có dấu (*) là bắt buộc nhập)</small>
+    <div class="row justify-content-center">
+      <button class="btn btn-danger mr-5">Xoá hết thông tin</button>
+      <button routerLink="" class="btn btn-primary">Quay lại</button>
+      <button  type="submit" class="btn btn-success" style="margin: 0 70px">Thêm</button>
+<!--      <button [disabled]="createMeetingRoom.invalid" type="submit" class="btn btn-success" style="margin: 0 70px">Thêm</button>-->
+    </div>
+
+
+  </form>
+
+</div>

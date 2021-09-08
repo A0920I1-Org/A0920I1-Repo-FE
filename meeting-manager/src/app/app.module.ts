@@ -23,6 +23,20 @@ import { ListEmployeeComponent } from './admin/employee-manager/list-employee/li
 import { DeleteEmployeeComponent } from './admin/employee-manager/delete-employee/delete-employee.component';
 import { UpdateEmployeeComponent } from './admin/employee-manager/update-employee/update-employee.component';
 import { DetailEmployeeComponent } from './admin/employee-manager/detail-employee/detail-employee.component';
+import {NgxPaginationModule} from 'ngx-pagination';
+import {HttpClientModule} from '@angular/common/http';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatDialogModule} from '@angular/material/dialog';
+import {RouterModule} from '@angular/router';
+import {MatButtonModule} from '@angular/material/button';
+import {environment} from '../environments/environment';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import {MatIconModule} from '@angular/material/icon';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -47,10 +61,27 @@ import { DetailEmployeeComponent } from './admin/employee-manager/detail-employe
     DeleteEmployeeComponent,
     UpdateEmployeeComponent,
     DetailEmployeeComponent,
+
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    RouterModule,
+    NgxPaginationModule,
+    HttpClientModule,
+    FormsModule,
+    MatDialogModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+
+    MatIconModule,
+    MatProgressSpinnerModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule, // firestore
+    AngularFireAuthModule, // auth
+    AngularFireStorageModule,
+    MatInputModule,
+// storage
   ],
   providers: [],
   bootstrap: [AppComponent]
