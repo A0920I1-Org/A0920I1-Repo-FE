@@ -7,4 +7,5 @@ export class RoomStatus {
   meetingRoomList: MeetingRoom[];
 
 
+
 }

@@ -23,6 +23,12 @@ import { ListEmployeeComponent } from './admin/employee-manager/list-employee/li
 import { DeleteEmployeeComponent } from './admin/employee-manager/delete-employee/delete-employee.component';
 import { UpdateEmployeeComponent } from './admin/employee-manager/update-employee/update-employee.component';
 import { DetailEmployeeComponent } from './admin/employee-manager/detail-employee/detail-employee.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ReactiveFormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
+import {MatDialogModule} from '@angular/material/dialog';
+import {NgxPaginationModule} from 'ngx-pagination';
+import {ChartModule} from '@syncfusion/ej2-angular-charts';
 
 @NgModule({
   declarations: [
@@ -50,7 +56,13 @@ import { DetailEmployeeComponent } from './admin/employee-manager/detail-employe
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    MatDialogModule,
+    NgxPaginationModule,
+    ChartModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

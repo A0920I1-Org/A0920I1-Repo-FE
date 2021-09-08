@@ -1,1 +1,88 @@
-<p>update-meeting works!</p>
+<div class="container-fluid col-6">
+
+
+  <form [formGroup]="editForm" (ngSubmit)="updateMeetingRoom()">
+    <div class="form-group">
+      <label>Tên Phòng</label>
+      <input type="text" class="form-control" placeholder="Nhập Tên" formControlName="name">
+    </div>
+    <!--  <p *ngIf="editForm.controls.codeBn.errors?.required && editForm.controls.codeBn.touched" class="text-danger">-->
+    <!--    Vui Lòng Nhập!-->
+    <!--  </p>-->
+    <div class="form-group">
+      <label>Tầng</label>
+      <input type="text" class="form-control" placeholder="Nhập Tên" formControlName="floors">
+    </div>
+    <!--  <p *ngIf="editForm.controls.codeBn.errors?.required && editForm.controls.codeBn.touched" class="text-danger">-->
+    <!--    Vui Lòng Nhập!-->
+    <!--  </p>-->
+    <div class="form-group">
+      <label>Khu vực</label>
+      <select class="form-control" formControlName="area">
+        <option *ngFor="let listAreas of listArea " [ngValue]="listAreas.id">
+          {{listAreas.name}}
+        </option>
+      </select>
+    </div>
+    <!--  <p *ngIf="editForm.controls.codeBn.errors?.required && editForm.controls.codeBn.touched" class="text-danger">-->
+    <!--    Vui Lòng Nhập!-->
+    <!--  </p>-->
+    <div class="form-group">
+      <label>Trạng thái</label>
+      <select class="form-control" formControlName="roomStatus">
+        <option *ngFor="let listStatus of listRoomStatus " [ngValue]="listStatus.id">
+          {{listStatus.name}}
+        </option>
+      </select>
+    </div>
+    <!--  <p *ngIf="editForm.controls.codeBn.errors?.required && editForm.controls.codeBn.touched" class="text-danger">-->
+    <!--    Vui Lòng Nhập!-->
+    <!--  </p>-->
+    <div class="form-group">
+      <label>Loại phòng</label>
+      <select class="form-control" formControlName="typeMeetingRoom">
+        <option *ngFor="let listTypeMeetingRooms of listTypeMeetingRoom " [ngValue]="listTypeMeetingRooms.id">
+          {{listTypeMeetingRooms.name}}
+        </option>
+      </select>
+    </div>
+    <!--  <p *ngIf="editForm.controls.codeBn.errors?.required && editForm.controls.codeBn.touched" class="text-danger">-->
+    <!--    Vui Lòng Nhập!-->
+    <!--  </p>-->
+    <div class="form-group">
+      <label>Sức chứa</label>
+      <select class="form-control" formControlName="typeMeetingRoom">
+        <option *ngFor="let listTypeMeetingRooms of listTypeMeetingRoom " [ngValue]="listTypeMeetingRooms.id">
+          {{listTypeMeetingRooms.capacity}}
+        </option>
+      </select>
+    </div>
+    <!--  <p *ngIf="editForm.controls.codeBn.errors?.required && editForm.controls.codeBn.touched" class="text-danger">-->
+    <!--    Vui Lòng Nhập!-->
+    <!--  </p>-->
+    <div class="form-group">
+      <label>Chọn tài sản</label>
+      <select class="form-control" formControlName="orderEquipmentList">
+        <option *ngFor="let listEquipments of listEquipment " [ngValue]="listEquipments.id">
+          {{listEquipments.name}}
+        </option>
+      </select>
+    </div>
+    <!--  <p *ngIf="editForm.controls.codeBn.errors?.required && editForm.controls.codeBn.touched" class="text-danger">-->
+    <!--    Vui Lòng Nhập!-->
+    <!--  </p>-->
+    <div class="form-group">
+      <label>Image</label>
+      <input type="text" class="form-control" placeholder="Nhập Tên" formControlName="imgUrl">
+    </div>
+    <!--  <p *ngIf="editForm.controls.codeBn.errors?.required && editForm.controls.codeBn.touched" class="text-danger">-->
+    <!--    Vui Lòng Nhập!-->
+    <!--  </p>-->
+    <div>
+      <button type="button"><a>Quay lại</a></button>
+
+      <button class="btn btn-primary" type="submit"> Sửa</button>
+
+    </div>
+  </form>
+</div>
