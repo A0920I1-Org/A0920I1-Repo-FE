@@ -77,10 +77,10 @@
         <td>{{register.description}}</td>
         <td>{{register.timeStart}}</td>
         <td>{{register.timeEnd}}</td>
-        <td>{{register.dateCheckin}}</td>
-        <td>{{register.dateCheckout}}</td>
+        <td>{{register.dateCheckin|date: 'dd-MM-yyyy'}}</td>
+        <td>{{register.dateCheckout|date: 'dd-MM-yyyy'}}</td>
         <td>{{register.meetingRoom.typeMeetingRoom.name}}</td>
-        <td>{{register.createDate}}</td>
+        <td>{{register.createDate|date: 'dd-MM-yyyy'}}</td>
         <td>{{register.meetingRoom.roomStatus.name}}</td>
         <td>
           <button (click)="checkIsDelete(register.id)" class="btn btn-danger">Huỷ đăng kí</button>

@@ -79,7 +79,7 @@ import {ToastrModule, ToastrService} from 'ngx-toastr';
     ChartModule,
     HttpClientModule,
     ToastrModule.forRoot({
-      timeOut: 2000,
+      timeOut: 3000,
       positionClass: 'toast-bottom-right',
       preventDuplicates: false,
     })

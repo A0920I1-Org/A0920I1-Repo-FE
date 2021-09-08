@@ -87,7 +87,7 @@ export class RegisterMeetingComponent implements OnInit {
       (data) => {
         // tslint:disable-next-line:triple-equals
         if (data === true) {
-          this.toastrService.error('Bạn đã huỷ đặt phòng này!',
+          this.toastrService.error('Bạn đã huỷ đặt phòng này hoặc đã hết hiệu lực!',
             'Thông báo');
           // this.router.navigateByUrl('register');
         }

@@ -7,12 +7,12 @@ import {SearchRegistrationDTO} from '../model/dto/SearchRegistrationDTO';
   providedIn: 'root'
 })
 export class RegisterHistoryService {
-  private readonly API_URL = 'http://localhost:8080/registerHistory';
+  private readonly API_URL = 'http://localhost:8080/register-history';
   constructor(private httpClient: HttpClient) {
   }
   public getRegisterHistory(): Observable<OrderMeeting[]>{
-    console.log(this.API_URL + '/5');
-    return this.httpClient.get<OrderMeeting[]>(this.API_URL + '/5');
+    console.log(this.API_URL + '/3');
+    return this.httpClient.get<OrderMeeting[]>(this.API_URL + '/3');
   }
   public searchRegistration(
     search: SearchRegistrationDTO,
@@ -26,7 +26,7 @@ export class RegisterHistoryService {
     return this.httpClient.put<void>(this.API_URL + '/deleteRegister/' + idOrder, reasonDelete);
   }
   public findOrderById(idOrder: string): Observable<OrderMeeting>{
-    console.log(this.API_URL + '/' + (1));
+    console.log(this.API_URL + '/' + idOrder);
     return this.httpClient.get<OrderMeeting>(this.API_URL + '/findOrderById/' + idOrder);
   }
 

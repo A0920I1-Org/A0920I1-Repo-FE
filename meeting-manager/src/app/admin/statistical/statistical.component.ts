@@ -6,8 +6,7 @@ import {TypeMeetingRoom} from '../../model/entity/TypeMeetingRoom';
 import {MeetingRoom} from '../../model/entity/MeetingRoom';
 import {TypeMeetingRoomService} from '../../service/TypeMeetingRoomService';
 import {MeetingRoomSerivce} from '../../service/MeetingRoomSerivce';
-import {Statistic} from '../../model/dto/Statistic';
-import {DataChart} from '../../model/dto/dataChart';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-statistical',
@@ -24,8 +23,6 @@ export class StatisticalComponent implements OnInit {
   typesMeetingRoom: TypeMeetingRoom[];
   meetingRooms: MeetingRoom[];
   page = 1;
-  performanceDataChart: any;
-  usesDataChart: any;
   xAxisPerformance: any;
   yAxisPerformance: any;
   performanceChartTitle: string;
@@ -35,12 +32,16 @@ export class StatisticalComponent implements OnInit {
   xAxisTotalsOfUses: any;
   yAxisTotalsOfUses: any;
   usesChartTitle: any;
-  dataCharts: DataChart[];
+  // tslint:disable-next-line:ban-types
+  public dataCharts: Object[];
+  private month: any;
   constructor(
     private statisticalService: StatisticalService,
     private typeMeetingRoomService: TypeMeetingRoomService,
+    private toastrService: ToastrService,
     private meetingRoomService: MeetingRoomSerivce
   ) {
+
   }
 
   ngOnInit(): void {
@@ -52,7 +53,6 @@ export class StatisticalComponent implements OnInit {
       idTypeMeetingRoom: new FormControl(null),
       idMeetingRoom: new FormControl(null),
       month: new FormControl(null),
-      // year : new FormControl(null),
     });
     this.usesChartTitle = 'Totals Of Uses';
     this.performanceChartTitle = 'Performance';
@@ -64,14 +64,14 @@ export class StatisticalComponent implements OnInit {
       valueType: 'Category'
     };
     this.yAxisPerformance = {
-      title: 'performance'
+      title: 'performance (%)'
     };
     this.xAxisTotalsOfUses = {
       title: 'Name Meeting Room',
       valueType: 'Category'
     };
     this.yAxisTotalsOfUses = {
-      title: 'Uses'
+      title: 'Uses '
     };
     this.legend = {
       visible: true
@@ -94,18 +94,7 @@ export class StatisticalComponent implements OnInit {
         this.meetingRooms = data;
       }
     );
-    // this.statisticalService.calculateTotalsOfUses().subscribe(
-    //   (use) => {
-    //     this.dataCharts = use;
-    //     console.log(this.dataCharts);
-    //   }, error => console.log(error)
-    // );
-    this.dataCharts = [
-      {nameMeetingRoom : "Andy" , uses : 4, performance: 0.00215000007301569},
-      {nameMeetingRoom : "Tim" , uses : 3, performance: 0.00215000007301569},
-      {nameMeetingRoom : "Dark" , uses : 3, performance: 0.0042153007301569},
-      {nameMeetingRoom : "White" , uses : 3, performance: 0.006317301569}
-    ];
+    this.dataCharts = [];
   }
 
   onSubmitDateForm(statisticByDateForm: FormGroup) {
@@ -114,28 +103,33 @@ export class StatisticalComponent implements OnInit {
       (data) => {
         console.log(data);
         this.statistics = data;
+        this.statisticalService.calculateTotalsOfUses().subscribe(
+          (use) => {
+            this.dataCharts = use;
+            console.log(this.dataCharts);
+          }, error => console.log(error)
+        );
       }, error => console.log(error)
     );
-    // this.statisticalService.calculateTotalsOfUses().subscribe(
-    //   (use) => {
-    //     this.dataCharts = use;
-    //     console.log(this.dataCharts);
-    //   }, error => console.log(error)
-    // );
   }
 
   onSubmitRoomForm(statisticByRoomForm: FormGroup) {
     console.log(statisticByRoomForm.value);
+    this.month = statisticByRoomForm.get('month').value;
+    console.log(this.month);
+    if (this.month == null){
+      this.toastrService.info('Bạn cần chọn tháng để thống kê hiệu suất', 'Thông báo');
+    }
     this.statisticalService.statisticByRoom(statisticByRoomForm.value).subscribe(
       (data) => {
         console.log(data);
         this.statistics = data;
-        // this.statisticalService.calculateTotalsOfUses().subscribe(
-        //   (use) => {
-        //     console.log(use);
-        //     this.dataCharts = use;
-        //   }
-        // );
+        this.statisticalService.calculateTotalsOfUses().subscribe(
+          (use) => {
+            console.log(use);
+            this.dataCharts = use;
+          }
+        );
       });
   }
 }

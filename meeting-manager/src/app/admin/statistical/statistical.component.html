@@ -57,8 +57,7 @@
 
           <div class="input-group mb-3">
 
-            <label class="input-group-text" for="inputGroupSelect03">Thống kê
-              theo</label>
+            <label class="input-group-text" for="inputGroupSelect03">Tháng </label>
 
             <select formControlName="month" class="custom-select" id="inputGroupSelect03">
               <option selected>Tháng</option>
@@ -117,10 +116,10 @@
         <td>{{obj.account.fullname}}</td>
         <td>{{obj.timeStart}}</td>
         <td>{{obj.timeEnd}}</td>
-        <td>{{obj.dateCheckin}}</td>
-        <td>{{obj.dateCheckout}}</td>
+        <td>{{obj.dateCheckin|date: 'dd-MM-yyyy'}}</td>
+        <td>{{obj.dateCheckout|date: 'dd-MM-yyyy'}}</td>
         <td>{{obj.meetingRoom.roomStatus.name}}</td>
-        <td>{{obj.createDate}}</td>
+        <td>{{obj.createDate|date: 'dd-MM-yyyy'}}</td>
       </tr>
       </tbody>
     </table>
@@ -146,6 +145,8 @@
       </e-series-collection>
     </ejs-chart>
   </div>
+  </div>
+  <div class="row justify-content-center">
 
   <div>
     <ejs-chart [primaryXAxis]='xAxisTotalsOfUses'
