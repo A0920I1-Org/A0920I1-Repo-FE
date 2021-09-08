@@ -1,0 +1,174 @@
+<div class="container">
+  <h2 class="row justify-content-center" style="margin-top: 20px">Thống kê</h2>
+  <div style="display: flex">
+
+    <div id="findByTime" class="d-flex justify-content-start flex-column rounded p-3 col-5">
+      <div style="height: 230px">
+        <form>
+          <legend>Theo thời gian</legend>
+          <div class="input-group ">
+            <label class="input-group-text" for="startDate">Từ ngày</label>
+            <input class="form-control" id="startDate" name="date" placeholder="MM/DD/YYYY" type="date"/>
+          </div>
+          <br>
+          <div class="input-group ">
+            <label class="input-group-text" for="endDate">
+              Đến
+            </label>
+            <input class="form-control" id="endDate" name="endDate" placeholder="MM/DD/YYYY" type="date"/>
+
+          </div>
+        </form>
+      </div>
+      <div>
+        <button class="btn btn-primary" type="submit">Thống kê</button>
+      </div>
+    </div>
+    <div class="col-2"></div>
+
+    <div id="findByRoom" class="d-flex justify-content-start flex-column rounded p-3 col-5 ">
+      <div style="height: 230px">
+        <form>
+          <legend>Theo phòng</legend>
+
+          <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupSelect01">Chọn loại phòng</label>
+            <select class="custom-select" id="inputGroupSelect01">
+              <option selected>Chọn loại phòng</option>
+              <option value="hàng tuần">Hàng tuần</option>
+              <option value="hàng tháng">Hàng tháng</option>
+              <option value="ngày">Ngày</option>
+              <option value="1 lần">1 lần</option>
+            </select>
+          </div>
+
+          <div class="input-group mb-3">
+
+            <label class="input-group-text" for="inputGroupSelect02">Chọn
+              phòng</label>
+
+            <select class="custom-select" id="inputGroupSelect02">
+              <option selected>Chọn phòng</option>
+              <option value="6A">6A</option>
+              <option value="6B">6B</option>
+              <option value="6C">6C</option>
+              <option value="6D">6D</option>
+            </select>
+          </div>
+
+          <div class="input-group mb-3">
+
+            <label class="input-group-text" for="inputGroupSelect03">Thống kê
+              theo</label>
+
+            <select class="custom-select" id="inputGroupSelect03">
+              <option selected>Tháng</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+            </select>
+          </div>
+        </form>
+      </div>
+
+      <div>
+        <button class="btn btn-primary" type="submit">Thống kê</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="result" class="p-3">
+  <h4>Kết quả</h4>
+  <div>
+    <label class="col-sm-4">Tên phòng : 6A</label>
+    <label class="col-sm-3">Tổng số lần sử dụng : 100</label>
+    <label style="margin-left: 20px">Hiệu suất : 80%</label>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">STT</th>
+        <th scope="col">Tên người đăng kí</th>
+        <th scope="col">Thời gian bắt đầu</th>
+        <th scope="col">Thời gian kết thúc</th>
+        <th scope="col">Ngày bắt đầu</th>
+        <th scope="col">Ngày kết thúc</th>
+        <th scope="col">Trạng thái</th>
+        <th scope="col">Ngày đăng kí</th>
+      </tr>
+      </thead>
+      <tbody class="table-active">
+      <tr>
+        <th scope="row">1</th>
+        <td>Mark</td>
+        <td>7:00 AM</td>
+        <td>10:00 PM</td>
+        <td>10/07/2021</td>
+        <td>12/07/2021</td>
+        <td>Đã kết thúc</td>
+        <td>08/07/2021</td>
+
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Max</td>
+        <td>7:00 AM</td>
+        <td>10:00 PM</td>
+        <td>10/07/2021</td>
+        <td>12/07/2021</td>
+        <td>Đã kết thúc</td>
+        <td>08/07/2021</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>John</td>
+        <td>7:00 AM</td>
+        <td>10:00 PM</td>
+        <td>10/07/2021</td>
+        <td>12/07/2021</td>
+        <td>Đã kết thúc</td>
+        <td>08/07/2021</td>
+      </tr>
+      <tr>
+        <th scope="row">4</th>
+        <td>Jenny</td>
+        <td>7:00 AM</td>
+        <td>10:00 PM</td>
+        <td>10/07/2021</td>
+        <td>12/07/2021</td>
+        <td>Đã kết thúc</td>
+        <td>08/07/2021</td>
+      </tr>
+      <tr>
+        <th scope="row">5</th>
+        <td>Pain</td>
+        <td>7:00 AM</td>
+        <td>10:00 PM</td>
+        <td>10/07/2021</td>
+        <td>12/07/2021</td>
+        <td>Đã kết thúc</td>
+        <td>08/07/2021</td>
+      </tr>
+      </tbody>
+    </table>
+    <nav class="d-flex justify-content-center mt-5" label="Page navigation example">
+      <ul class="pagination">
+        <li class="page-item"><a class="page-link" href="#">Trước</a></li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">Tiếp</a></li>
+      </ul>
+    </nav>
+  </div>
+</div>
