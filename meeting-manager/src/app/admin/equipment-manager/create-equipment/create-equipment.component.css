@@ -1,0 +1,20 @@
+.btn.btn-file>input[type=file] {
+  background-color: #fff;
+  cursor: inherit;
+  display: block;
+  font-size: 100px;
+  height: 302px;
+  width: 328px;
+  /* min-width: 100%; */
+  opacity: 0;
+  outline: 0;
+  position: absolute;
+  right: 0;
+  text-align: right;
+  top: 0;
+}
+.test{
+  border-radius: initial;
+  width: 1000px;
+  height: 1000px;
+}

@@ -1,0 +1,73 @@
+<div class="container-fluid">
+  <h2 style="text-align: center">Chi Tiết Tài Sản</h2>
+  <hr>
+  <div *ngIf="equipmentDetail">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="card mb-0">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-5">
+              <h6 class="mb-0">Id</h6>
+            </div>
+            <div class="col-sm-7 text-secondary">
+              <p>{{equipmentDetail.id}}</p>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-5">
+              <h6 class="mb-0">Tài sản</h6>
+            </div>
+            <div class="col-sm-7 text-secondary">
+              <p>{{equipmentDetail.name}}</p>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-5">
+              <h6 class="mb-0">Tổng số lượng:</h6>
+            </div>
+            <div class="col-sm-7 text-secondary">
+              <p>{{equipmentDetail.stock}}</p>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-5">
+              <h6 class="mb-0">Đang sử dụng</h6>
+            </div>
+            <div class="col-sm-7 text-secondary">
+              <p>{{equipmentDetail.stock - equipmentDetail.repairQuantity}}</p>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-5">
+              <h6 class="mb-0">Đang sửa chữa:</h6>
+            </div>
+            <div class="col-sm-7 text-secondary">
+              <p>{{equipmentDetail.repairQuantity}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="col-md-4">
+        <div class="row">
+          <div class="col-md-12 mb-3">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex flex-column align-items-center text-center">
+                  <img [src]="equipmentDetail.imageUrl"
+                       width="440" height="250">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
