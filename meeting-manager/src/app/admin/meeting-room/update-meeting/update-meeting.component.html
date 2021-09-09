@@ -1,88 +1,94 @@
-<div class="container-fluid col-6">
+<meta charset="utf-8">
+<div class="container">
+  <h4 style="text-align: center; margin: 40px 0">
+    Sửa phòng họp
+  </h4>
+  <form class="form-control" [formGroup]="editForm" (ngSubmit)="updateMeetingRoom()">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="form-group row">
+          <label for="inputNameRoom" class="col-sm-3 col-md-3 col-form-label input-group-text"
+                 style="margin: 0 5px">
+            Tên phòng
+          </label>
+          <div class="col-sm-5">
+            <input type="text" class="form-control" id="inputNameRoom" maxlength="30"
+                   formControlName="name" placeholder="enter name room...">
+          </div>
+<!--          <span>*</span>-->
+<!--          <small *ngIf="editForm.get('name').invalid && editForm.get('name').touched" class="text-danger">bạn nhập không hợp lệ!</small>-->
+          <!--          <small *ngIf="reateMeetingRoom.get('name').touchedc" class="text-danger">vui lòng nhập thông tin!</small>-->
+        </div>
 
+        <div class="form-group row">
+          <label for="inputFloor" class="col-sm-3 col-md-3 col-form-label input-group-text"
+                 style="margin: 0 5px">Tầng</label>
+          <div class="col-sm-5">
+            <input type="text" class="form-control" id="inputFloor" maxlength="10"
+                   formControlName="floors" placeholder="enter number of floor...">
+          </div>
+<!--          <span>*</span>-->
+<!--          <small *ngIf="editForm.get('floors').invalid && editForm.get('floors').touched" class="text-danger">bạn nhập không hợp lệ!</small>-->
+          <!--          <small *ngIf="createMeetingRoom.get('floors').touched" class="text-danger">vui lòng nhập thông tin!</small>-->
+        </div>
+        <div class="form-group row">
+          <label for="inputNameRoom" class="col-sm-3 col-md-3 col-form-label input-group-text"
+                 style="margin: 0 5px">Khu
+            vực</label>
+          <div class="col-sm-5">
+            <select class="custom-select" formControlName="area">
+              <option *ngFor="let items of areaList" [ngValue]="items" >{{items.name}}</option>
+            </select>
+          </div>
+<!--          <span>*</span>-->
+<!--          <small *ngIf="editForm.get('area').invalid && editForm.get('area').touched" class="text-danger">vui lòng nhập thông tin!</small>-->
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-3 col-md-3 col-form-label input-group-text" style="margin: 0 5px">Loại
+            phòng</label>
+          <div class="col-sm-5">
+            <select class="custom-select" formControlName="typeMeetingRoom">
+              <option *ngFor="let items of typeMeetingRoom" [ngValue]="items.id" selected>{{items.name}}</option>
 
-  <form [formGroup]="editForm" (ngSubmit)="updateMeetingRoom()">
-    <div class="form-group">
-      <label>Tên Phòng</label>
-      <input type="text" class="form-control" placeholder="Nhập Tên" formControlName="name">
-    </div>
-    <!--  <p *ngIf="editForm.controls.codeBn.errors?.required && editForm.controls.codeBn.touched" class="text-danger">-->
-    <!--    Vui Lòng Nhập!-->
-    <!--  </p>-->
-    <div class="form-group">
-      <label>Tầng</label>
-      <input type="text" class="form-control" placeholder="Nhập Tên" formControlName="floors">
-    </div>
-    <!--  <p *ngIf="editForm.controls.codeBn.errors?.required && editForm.controls.codeBn.touched" class="text-danger">-->
-    <!--    Vui Lòng Nhập!-->
-    <!--  </p>-->
-    <div class="form-group">
-      <label>Khu vực</label>
-      <select class="form-control" formControlName="area">
-        <option *ngFor="let listAreas of listArea " [ngValue]="listAreas.id">
-          {{listAreas.name}}
-        </option>
-      </select>
-    </div>
-    <!--  <p *ngIf="editForm.controls.codeBn.errors?.required && editForm.controls.codeBn.touched" class="text-danger">-->
-    <!--    Vui Lòng Nhập!-->
-    <!--  </p>-->
-    <div class="form-group">
-      <label>Trạng thái</label>
-      <select class="form-control" formControlName="roomStatus">
-        <option *ngFor="let listStatus of listRoomStatus " [ngValue]="listStatus.id">
-          {{listStatus.name}}
-        </option>
-      </select>
-    </div>
-    <!--  <p *ngIf="editForm.controls.codeBn.errors?.required && editForm.controls.codeBn.touched" class="text-danger">-->
-    <!--    Vui Lòng Nhập!-->
-    <!--  </p>-->
-    <div class="form-group">
-      <label>Loại phòng</label>
-      <select class="form-control" formControlName="typeMeetingRoom">
-        <option *ngFor="let listTypeMeetingRooms of listTypeMeetingRoom " [ngValue]="listTypeMeetingRooms.id">
-          {{listTypeMeetingRooms.name}}
-        </option>
-      </select>
-    </div>
-    <!--  <p *ngIf="editForm.controls.codeBn.errors?.required && editForm.controls.codeBn.touched" class="text-danger">-->
-    <!--    Vui Lòng Nhập!-->
-    <!--  </p>-->
-    <div class="form-group">
-      <label>Sức chứa</label>
-      <select class="form-control" formControlName="typeMeetingRoom">
-        <option *ngFor="let listTypeMeetingRooms of listTypeMeetingRoom " [ngValue]="listTypeMeetingRooms.id">
-          {{listTypeMeetingRooms.capacity}}
-        </option>
-      </select>
-    </div>
-    <!--  <p *ngIf="editForm.controls.codeBn.errors?.required && editForm.controls.codeBn.touched" class="text-danger">-->
-    <!--    Vui Lòng Nhập!-->
-    <!--  </p>-->
-    <div class="form-group">
-      <label>Chọn tài sản</label>
-      <select class="form-control" formControlName="orderEquipmentList">
-        <option *ngFor="let listEquipments of listEquipment " [ngValue]="listEquipments.id">
-          {{listEquipments.name}}
-        </option>
-      </select>
-    </div>
-    <!--  <p *ngIf="editForm.controls.codeBn.errors?.required && editForm.controls.codeBn.touched" class="text-danger">-->
-    <!--    Vui Lòng Nhập!-->
-    <!--  </p>-->
-    <div class="form-group">
-      <label>Image</label>
-      <input type="text" class="form-control" placeholder="Nhập Tên" formControlName="imgUrl">
-    </div>
-    <!--  <p *ngIf="editForm.controls.codeBn.errors?.required && editForm.controls.codeBn.touched" class="text-danger">-->
-    <!--    Vui Lòng Nhập!-->
-    <!--  </p>-->
-    <div>
-      <button type="button"><a>Quay lại</a></button>
+            </select>
+          </div>
+<!--          <span>*</span>-->
+<!--          <small *ngIf="editForm.get('typeMeetingRoom').invalid && editForm.get('typeMeetingRoom').touched" class="text-danger">vui lòng nhập thông-->
+<!--            tin!</small>-->
+        </div>
+        <div class="form-group row">
+          <label for="inputCapacity" class="col-sm-3 col-md-3 col-form-label input-group-text"
+                 style="margin: 0 5px">Sức
+            chứa</label>
+          <div class="col-sm-5">
+            <input type="text" class="form-control" id="inputCapacity" maxlength="50"
+                   placeholder="enter capacity...">
+          </div>
+<!--          <span>*</span>-->
+<!--          <small *ngIf="editForm.get('capacity').invalid && editForm.get('capacity').touched" class="text-danger">bạn nhập không hợp lệ!</small>-->
+          <!--          <small *ngIf="createMeetingRoom.get('capacity').touched" class="text-danger">vui lòng nhập thông tin!</small>-->
 
-      <button class="btn btn-primary" type="submit"> Sửa</button>
+        </div>
 
+        <div class="form-group row ">
+          <label class="col-sm-3 col-md-3 col-form-label input-group-text" style="margin: 0 5px">
+            Chọn tài sản
+          </label>
+          <div class="col-sm-5">
+            <input formArrayName="orderEquipmentList" type="text">
+          </div>
+<!--          <span>*</span>-->
+<!--          <small *ngIf="editForm.get('orderEquipmentList').invalid && editForm.get('orderEquipmentList').touched" class="text-danger">bạn nhập không hợp lệ!</small>-->
+        </div>
+
+      </div>
+    </div>
+    <br>
+    <small>(có dấu (*) là bắt buộc nhập)</small>
+    <div class="row justify-content-center">
+      <button routerLink="" class="btn btn-primary">Quay lại</button>
+      <button  type="submit" class="btn btn-warning" style="margin: 0 70px">Sửa</button>
     </div>
   </form>
 </div>
+

@@ -8,7 +8,7 @@ import {Equipment} from '../model/Equipment';
   providedIn: 'root'
 })
 export class EquipmentService {
-  private readonly API_URL = 'http://localhost:8080/listEquipment';
+  private readonly API_URL = 'http://localhost:8080/meeting/equipment';
 
   constructor(private httpClient: HttpClient) {
   }

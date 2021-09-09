@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MeetingRoom} from '../../../../model/MeetingRoom';
 import {MeetingRoomService} from '../../../../service/meeting-room.service';
 import {MatDialog} from '@angular/material/dialog';
+import {DeleteMeetingComponent} from '../delete-meeting/delete-meeting.component';
 
 @Component({
   selector: 'app-list-meeting',
@@ -25,7 +26,15 @@ export class ListMeetingComponent implements OnInit {
 
   openDialogDelete(id){
     this.meetingRoomService.get(id).subscribe( data => {
-      console.log(data);
+      // console.log(data);
+      const dialogRef =   this.dialog.open(DeleteMeetingComponent , {
+        width: '700px',
+        data: {data1: data}
+      });
+      dialogRef.afterClosed().subscribe( result => {
+        console.log('The dialog was closed');
+        this.ngOnInit();
+      });
     });
   }
 }

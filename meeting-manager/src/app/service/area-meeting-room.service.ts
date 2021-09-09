@@ -8,12 +8,12 @@ import {Area} from '../model/Area';
 })
 export class AreaMeetingRoomService {
 
-  private readonly API_URL = 'http://localhost:8080/listArea';
+  private readonly API_AREA_URL = 'http://localhost:8080/meeting/area';
 
   constructor(private httpClient: HttpClient) {
   }
 
   public getAllArea(): Observable<Area[]> {
-    return this.httpClient.get<Area[]>(this.API_URL);
+    return this.httpClient.get<Area[]>(this.API_AREA_URL);
   }
 }

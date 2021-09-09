@@ -29,6 +29,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {MatDialogModule} from '@angular/material/dialog';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {ChartModule} from '@syncfusion/ej2-angular-charts';
+import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import {ChartModule} from '@syncfusion/ej2-angular-charts';
     MatDialogModule,
     NgxPaginationModule,
     ChartModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

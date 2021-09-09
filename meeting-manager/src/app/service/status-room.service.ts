@@ -7,12 +7,12 @@ import {HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class StatusRoomService {
-  private readonly API_URL = 'http://localhost:8080/listRoomStatus';
+  private readonly API_MEETING_ROOM_STATUS_URL = 'http://localhost:8080/meeting/roomStatus';
 
   constructor(private httpClient: HttpClient) {
   }
 
   public getStatusRoom(): Observable<RoomStatus[]> {
-    return this.httpClient.get<RoomStatus[]>(this.API_URL);
+    return this.httpClient.get<RoomStatus[]>(this.API_MEETING_ROOM_STATUS_URL);
   }
 }
