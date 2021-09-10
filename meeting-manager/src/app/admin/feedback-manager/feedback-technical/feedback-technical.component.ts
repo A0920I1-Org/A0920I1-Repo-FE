@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {FeedBack} from "../../../model/FeedBack";
+import {FeedbackTechnicalService} from "../../../service/FeedbackTechnical/feedback-technical.service";
 
 @Component({
   selector: 'app-feedback-technical',
@@ -7,9 +9,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FeedbackTechnicalComponent implements OnInit {
 
-  constructor() { }
+  feedback: FeedBack[];
+  p:number =1;
+  firstName:any;
+  constructor(
+    private feedbackService:FeedbackTechnicalService
+  ) { }
 
   ngOnInit(): void {
+    this.feedbackService.getFeedback().subscribe(
+      (data ) =>{
+        console.log(data);
+        this.feedback = data;
+      }
+    )
   }
+
+  key:string = 'id';
+  reverse:boolean = false;
+  sort(key){
+    this.key = key;
+    this.reverse = !this.reverse;
+  }
+
 
 }

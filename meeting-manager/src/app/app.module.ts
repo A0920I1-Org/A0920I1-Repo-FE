@@ -23,6 +23,14 @@ import { FeedbackTechnicalComponent } from './admin/feedback-manager/feedback-te
 import {FooterComponent} from './client/client-shared/footer/footer.component';
 import {FeedBackComponent} from './client/employee/feedback/feed-back.component';
 import {HeaderComponent} from "./client/client-shared/header/header.component";
+import {HttpClientModule} from "@angular/common/http";
+import { FeedbackTechnicalCreateComponent } from './admin/feedback-manager/feedback-technical-create/feedback-technical-create.component';
+import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {ReactiveFormsModule} from "@angular/forms";
+import {Ng2SearchPipeModule} from "ng2-search-filter";
+import {Ng2OrderModule} from "ng2-order-pipe";
+import {NgxPaginationModule} from "ngx-pagination";
+import { FeedbackTechnicalUpdateComponent } from './admin/feedback-manager/feedback-technical-update/feedback-technical-update.component';
 
 @NgModule({
   declarations: [
@@ -48,11 +56,21 @@ import {HeaderComponent} from "./client/client-shared/header/header.component";
     UpdateEmployeeComponent,
     DetailEmployeeComponent,
     FeedbackTechnicalComponent,
+    FeedbackTechnicalCreateComponent,
+    FeedbackTechnicalUpdateComponent,
+
+
 
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    MatSnackBarModule,
+    NgxPaginationModule,
+    Ng2OrderModule,
+    Ng2SearchPipeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
