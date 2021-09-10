@@ -111,8 +111,8 @@
       </tr>
       </thead>
       <tbody class="table-active">
-      <tr *ngFor="let obj of statistics | paginate: {itemsPerPage:15, currentPage: page};">
-        <td scope="row">{{obj.id}}</td>
+      <tr *ngFor="let obj of statistics | paginate: {itemsPerPage:15, currentPage: page}; index as i">
+        <td scope="row">{{i+1}}</td>
         <td>{{obj.account.fullname}}</td>
         <td>{{obj.timeStart}}</td>
         <td>{{obj.timeEnd}}</td>

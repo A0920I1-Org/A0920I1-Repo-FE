@@ -71,8 +71,8 @@
       </tr>
       </thead>
       <tbody class="table-active">
-      <tr *ngFor="let register of registerHistory | paginate: {itemsPerPage:15, currentPage: page};">
-        <th scope="row">{{register.id}}</th>
+      <tr *ngFor="let register of registerHistory | paginate: {itemsPerPage:15, currentPage: page}; index as i;">
+        <th scope="row">{{i+1}}</th>
         <td>{{register.meetingRoom.name}}</td>
         <td>{{register.description}}</td>
         <td>{{register.timeStart}}</td>

@@ -10,10 +10,13 @@ const routes: Routes = [
     path: 'statistic' , component : StatisticalComponent
   },
   {
-    path: 'register-history', component: RegisterMeetingComponent
+    path: 'register-history/account/:idAccount', component: RegisterMeetingComponent
   },
   {
     path: 'deleteRegisterMeeting/:idOrder', component: DeleteMeetingComponent
+  },
+  {
+    path: 'register-history/meeting-room/:idMeetingRoom', component: RegisterMeetingComponent
   }
 ];
 

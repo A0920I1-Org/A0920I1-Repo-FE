@@ -7,7 +7,7 @@ import {TypeMeetingRoom} from '../../../../model/entity/TypeMeetingRoom';
 import {RoomStatus} from '../../../../model/entity/RoomStatus';
 import {OrderMeeting} from '../../../../model/entity/OrderMeeting';
 import {ToastrService} from 'ngx-toastr';
-import {Router} from '@angular/router';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 
 @Component({
   selector: 'app-register-meeting',
@@ -20,14 +20,19 @@ export class RegisterMeetingComponent implements OnInit {
   typesMeetingRoom: TypeMeetingRoom[];
   statusRoom: RoomStatus[];
   registerHistory: OrderMeeting[];
+  // hien thi lich su dang ki : tu man hinh meeting room (idMeetingRoom)
+  idMeetingROom: any;
+  idAccount: any;
   page = 1;
+  number: 0;
 
   constructor(
     private registerHistoryService: RegisterHistoryService,
     private typeMeetingRoomService: TypeMeetingRoomService,
     private statusRoomService: StatusRoomService,
     private toastrService: ToastrService,
-    private router: Router
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) {
     this.typeMeetingRoomService.getTypesMeetingRoom().subscribe(
       (data) => {
@@ -42,6 +47,33 @@ export class RegisterMeetingComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
+        this.idMeetingROom = (paramMap.get('idMeetingRoom'));
+        console.log(this.idMeetingROom);
+        // neu idMeetingRoom co gia tri
+        if (this.idMeetingROom != null) {
+          this.registerHistoryService.findOrderByIdMeetingRoom(this.idMeetingROom).subscribe(
+            (data) => {
+              this.registerHistory = data;
+            }
+          );
+        }
+      }
+    );
+    // đưa tham số account id vào getRegisterHistory
+    this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
+      this.idAccount = (paramMap.get('idAccount'));
+      console.log(this.idMeetingROom);
+      if (this.idAccount != null){
+        this.registerHistoryService.getRegisterHistory(this.idAccount).subscribe(
+          (data) => {
+            console.log(data);
+            this.registerHistory = data;
+          }
+        );
+      }
+      }
+    );
     this.findRegisterHistoryForm = new FormGroup({
       nameRoom: new FormControl(null),
       dateCheckin: new FormControl(null),
@@ -50,13 +82,6 @@ export class RegisterMeetingComponent implements OnInit {
       typeMeetingRoom: new FormControl(null),
       createAt: new FormControl(null)
     });
-    // đưa tham số account id vào getRegisterHistory
-    this.registerHistoryService.getRegisterHistory().subscribe(
-      (data) => {
-        console.log(data);
-        this.registerHistory = data;
-      }
-    );
     this.typeMeetingRoomService.getTypesMeetingRoom().subscribe(
       (data) => {
         console.log(data);

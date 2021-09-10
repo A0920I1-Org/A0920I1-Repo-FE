@@ -7,19 +7,21 @@ import {SearchRegistrationDTO} from '../model/dto/SearchRegistrationDTO';
   providedIn: 'root'
 })
 export class RegisterHistoryService {
-  private readonly API_URL = 'http://localhost:8080/register-history';
+  private readonly API_URL = 'http://localhost:8080/registerHistory';
   constructor(private httpClient: HttpClient) {
   }
-  public getRegisterHistory(): Observable<OrderMeeting[]>{
+  // display lich su dang ki theo idAccount
+  public getRegisterHistory(idAccount: any): Observable<OrderMeeting[]>{
+    // truyen id Account vao URL
     console.log(this.API_URL + '/3');
-    return this.httpClient.get<OrderMeeting[]>(this.API_URL + '/3');
+    return this.httpClient.get<OrderMeeting[]>(this.API_URL + '/account/' + idAccount);
   }
   public searchRegistration(
     search: SearchRegistrationDTO,
-    accountId: string
+    idAccount: string
   ): Observable<OrderMeeting[]>{
     console.log(this.API_URL + '/searchRegistrationHistory');
-    return this.httpClient.put<OrderMeeting[]>(this.API_URL + '/searchRegistrationHistory/' + (accountId), search);
+    return this.httpClient.put<OrderMeeting[]>(this.API_URL + '/searchRegistrationHistory/' + (idAccount), search);
   }
   // public findRegisterHistory()
   public deleteOrderMeeting(idOrder: number, reasonDelete: string): Observable<void>{
@@ -32,5 +34,10 @@ export class RegisterHistoryService {
 
   public checkIsDelete(idOrder: number): Observable<boolean>{
     return this.httpClient.get<boolean>(this.API_URL + '/checkIsDelete/' + idOrder );
+  }
+
+  public findOrderByIdMeetingRoom(idMeetingROom: any): Observable<OrderMeeting[]> {
+    // truyen idMeetingRoom vao
+      return this.httpClient.get<OrderMeeting[]>(this.API_URL + '/meetingRoom/' + idMeetingROom);
   }
 }
