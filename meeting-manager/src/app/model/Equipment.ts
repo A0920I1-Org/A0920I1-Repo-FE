@@ -7,7 +7,7 @@ export class Equipment {
   repairQuantity: number;
   stock: number;
   imageUrl: string;
-  orderEquipmentList: OrderEquipment[];
+  // orderEquipmentList: OrderEquipment[];
 
 
 }

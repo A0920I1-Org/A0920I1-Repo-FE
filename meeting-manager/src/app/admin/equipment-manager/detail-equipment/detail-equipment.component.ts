@@ -22,6 +22,7 @@ export class DetailEquipmentComponent implements OnInit {
       this.idEquipment = parseInt(paramMap.get('id'));
       this.equipmentManagerService.findById(this.idEquipment).subscribe((data) => {
         this.equipmentDetail = data;
+        console.log(this.equipmentDetail);
       });
     });
   }

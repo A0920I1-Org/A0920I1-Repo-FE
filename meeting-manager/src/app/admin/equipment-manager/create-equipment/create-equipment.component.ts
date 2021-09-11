@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {EquipmentManagerService} from '../../../service/equipment-manager.service';
 import {Router} from '@angular/router';
 
@@ -17,15 +17,15 @@ export class CreateEquipmentComponent implements OnInit {
   ngOnInit(): void {
     this.createEquipment = new FormGroup({
       id: new FormControl(''),
-      name: new FormControl(''),
-      repairQuantity: new FormControl(''),
-      stock: new FormControl(''),
+      name: new FormControl('', [Validators.required]),
+      repairQuantity: new FormControl('', [Validators.required]),
+      stock: new FormControl('', [Validators.required]),
       image: new FormControl('')
     });
   }
   getForm() {
     this.equipmentManagerService.addNewEquipment(this.createEquipment.value).subscribe((data) => {
-      this.router.navigate(['/']);
+      this.router.navigate(['/list-equipment']);
     });
   }
 }

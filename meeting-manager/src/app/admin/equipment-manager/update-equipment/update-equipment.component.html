@@ -1,1 +1,70 @@
-<p>update-equipment works!</p>
+
+
+<div class="container p-3 my-3 border">
+  <h4 style="text-align: center; margin: 40px 0">Sửa Thông Tin Tài Sản</h4>
+  <form [formGroup]="updateEquipment" (ngSubmit)="getUpdate()">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="form-group row">
+          <label for="inputNameRoom" class="col-sm-3 col-md-5 col-form-label input-group-text"
+                 style="margin: 0 15px">Id:</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" id="inputNameRoom"  formControlName="id"
+                   placeholder="Nhập Id...">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="inputFloor" class="col-sm-3 col-md-5 col-form-label input-group-text"
+                 style="margin: 0 15px">Tài sản *:</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" id="inputFloor" maxlength="10" formControlName="name"
+                   placeholder="Nhập tài sản...">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="inputNameRoom" class="col-sm-3 col-md-5 col-form-label input-group-text"
+                 style="margin: 0 15px">Tổng số lượng *:</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" maxlength="10" formControlName="stock"
+                   placeholder="Nhập số lượng...">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="inputNameRoom" class="col-sm-3 col-md-5 col-form-label input-group-text"
+                 style="margin: 0 15px">Đang sửa chữa:</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" maxlength="10" formControlName="repairQuantity"
+                   placeholder="Nhập số lượng...">
+          </div>
+        </div>
+        <small>(Dấu <i style="color: red">(*)</i> là bắt buộc nhập)</small>
+      </div>
+    <div class="col-md-4">
+      <div class="card card-user">
+        <div class="card-body">
+          <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+            <div class="fileinput-new thumbnail img-raised">
+              <img
+                src="http://2.bp.blogspot.com/-9QQc29PzHC0/UbS0OnSUVBI/AAAAAAAAAlM/U0F4XUuMl2g/s640/hinh-anh-canh-dong-hoa-dep-1.jpg"
+                style="width: 100%;" alt="..." rel="nofollow">
+            </div>
+            <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
+            <div>
+                                    <span class="btn btn-info btn-round btn-default btn-file btn__upload-custom"
+                                          style="margin-top: 15px">
+                                        <span class="fileinput-new">Chọn ảnh</span>
+                                        <input type="file" formControlName="image"/>
+                                    </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div  class="justify-content-center text-center">
+      <input type="submit" value="Quay lại" class="btn btn-primary" routerLink="/list-equipment" style="margin-right: 15px">
+      <input type="submit" value="Cập nhật" class="btn btn-warning"  style="margin-right: 30px">
+    </div>
+  </form>
+</div>
+

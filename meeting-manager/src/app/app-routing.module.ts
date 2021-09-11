@@ -7,10 +7,10 @@ import {UpdateEquipmentComponent} from './admin/equipment-manager/update-equipme
 
 
 const routes: Routes = [
-  {path: '' , component : ListEquipmentComponent},
+  {path: 'list-equipment' , component : ListEquipmentComponent},
   {path: 'create-equipment' , component: CreateEquipmentComponent},
   {path: ':id' , component : DetailEquipmentComponent},
-  {path: 'edit-equipment/:id' , component: UpdateEquipmentComponent}
+  {path: 'update-equipment/:id' , component: UpdateEquipmentComponent}
 ];
 
 @NgModule({

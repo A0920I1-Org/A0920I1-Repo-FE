@@ -24,17 +24,17 @@
       </tr>
       </thead>
       <tbody class="table-active">
-      <tr *ngFor="let order of equipment ">
-        <td>{{order.id}}</td>
-        <td>{{order.name}}</td>
-        <td>{{order.stock}}</td>
-        <td>{{order.repairQuantity}}</td>
-        <td>{{order.stock - order.repairQuantity}}</td>
-        <td><img [src]="order.imageUrl" class="img"></td>
+      <tr *ngFor="let equipments of equipment ">
+        <td>{{equipments.id}}</td>
+        <td>{{equipments.name}}</td>
+        <td>{{equipments.stock}}</td>
+        <td>{{equipments.repairQuantity}}</td>
+        <td>{{equipments.stock - equipments.repairQuantity}}</td>
+        <td><img [src]="equipments.imageUrl" class="img"></td>
         <td>
-          <button class="btn btn-success" [routerLink]="['',order.id]">Chi tiết</button>
-          <button class="btn btn-danger m-md-3" (click)="openDialogDelete(order.id)">Xóa</button>
-          <button class="btn btn-warning">Sửa</button>
+          <button class="btn btn-success" [routerLink]="['',equipments.id]">Chi tiết</button>
+          <button class="btn btn-danger m-md-3" (click)="openDialogDelete(equipments.id)">Xóa</button>
+          <button class="btn btn-warning" [routerLink]="['/update-equipment',equipments.id]">Sửa</button>
         </td>
       </tr>
       </tbody>
