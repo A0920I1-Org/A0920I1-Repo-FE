@@ -19,18 +19,18 @@ import { ListEmployeeComponent } from './admin/employee-manager/list-employee/li
 import { DeleteEmployeeComponent } from './admin/employee-manager/delete-employee/delete-employee.component';
 import { UpdateEmployeeComponent } from './admin/employee-manager/update-employee/update-employee.component';
 import { DetailEmployeeComponent } from './admin/employee-manager/detail-employee/detail-employee.component';
-import { FeedbackTechnicalComponent } from './admin/feedback-manager/feedback-technical/feedback-technical.component';
 import {FooterComponent} from './client/client-shared/footer/footer.component';
 import {FeedBackComponent} from './client/employee/feedback/feed-back.component';
 import {HeaderComponent} from "./client/client-shared/header/header.component";
 import {HttpClientModule} from "@angular/common/http";
-import { FeedbackTechnicalCreateComponent } from './admin/feedback-manager/feedback-technical-create/feedback-technical-create.component';
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {ReactiveFormsModule} from "@angular/forms";
 import {Ng2SearchPipeModule} from "ng2-search-filter";
 import {Ng2OrderModule} from "ng2-order-pipe";
 import {NgxPaginationModule} from "ngx-pagination";
 import { FeedbackTechnicalUpdateComponent } from './admin/feedback-manager/feedback-technical-update/feedback-technical-update.component';
+import { FeedbackTechnicalComponent } from './client/employee/feedback/feedback-technical/feedback-technical.component';
+import {RouterModule} from "@angular/router";
 
 @NgModule({
   declarations: [
@@ -55,9 +55,8 @@ import { FeedbackTechnicalUpdateComponent } from './admin/feedback-manager/feedb
     DeleteEmployeeComponent,
     UpdateEmployeeComponent,
     DetailEmployeeComponent,
-    FeedbackTechnicalComponent,
-    FeedbackTechnicalCreateComponent,
     FeedbackTechnicalUpdateComponent,
+    FeedbackTechnicalComponent,
 
 
 
@@ -70,7 +69,8 @@ import { FeedbackTechnicalUpdateComponent } from './admin/feedback-manager/feedb
     MatSnackBarModule,
     NgxPaginationModule,
     Ng2OrderModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -7,7 +7,7 @@ import {FeedBack} from "../../model/FeedBack";
   providedIn: 'root'
 })
 export class FeedbackTechnicalService {
-  private readonly API_FEEDBACK_URL = 'http://localhost:3000/feedbackTechnical';
+  private readonly API_FEEDBACK_URL = 'http://localhost:8081/feedback';
   constructor(private httpClient: HttpClient) {
   }
 
@@ -16,7 +16,7 @@ export class FeedbackTechnicalService {
   }
 
   public addFeedback(feedBack: FeedBack): Observable<void> {
-    return this.httpClient.post<void>(this.API_FEEDBACK_URL, feedBack);
+    return this.httpClient.post<void>(this.API_FEEDBACK_URL  +"/add", feedBack);
   }
 
   public findFeedbackById(id: number): Observable<FeedBack> {

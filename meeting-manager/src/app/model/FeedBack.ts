@@ -11,6 +11,7 @@ export class FeedBack {
   feedBackType: FeedBackType;
   account: Account;
   imageFeedBackList: ImageFeedBack[];
+  content:string;
 
 
 }

@@ -1,15 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {FeedbackTechnicalComponent} from "./admin/feedback-manager/feedback-technical/feedback-technical.component";
-import {FeedbackTechnicalCreateComponent} from "./admin/feedback-manager/feedback-technical-create/feedback-technical-create.component";
+import {FeedbackTechnicalComponent} from "./client/employee/feedback/feedback-technical/feedback-technical.component";
 
 
 const routes: Routes = [
   {
-    component:FeedbackTechnicalComponent, path : 'list'
-  },
-  {
-    component:FeedbackTechnicalCreateComponent, path : 'add'
+    component:FeedbackTechnicalComponent, path : 'add'
   }
 ];
 
