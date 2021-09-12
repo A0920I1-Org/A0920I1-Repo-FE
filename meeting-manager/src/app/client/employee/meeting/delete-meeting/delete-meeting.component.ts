@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {MeetingRoomSerivce} from '../../../../service/MeetingRoomSerivce';
 import {TypeMeetingRoomService} from '../../../../service/TypeMeetingRoomService';
 import {RegisterHistoryService} from '../../../../service/RegisterHistoryService';
@@ -7,6 +7,8 @@ import {MatDialog} from '@angular/material/dialog';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {FormControl, FormGroup} from '@angular/forms';
 import {ToastrService} from 'ngx-toastr';
+import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-delete-meeting',
@@ -27,10 +29,10 @@ export class DeleteMeetingComponent implements OnInit {
     private dialog: MatDialog,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private location: Location
   ) {
   }
-
   ngOnInit(): void {
     this.deleteForm = new FormGroup({
       reasonDelete: new FormControl(null)
@@ -41,7 +43,7 @@ export class DeleteMeetingComponent implements OnInit {
         (data) => {
           console.log(data);
           this.registerHistory = data;
-          console.log(this.registerHistory.meetingRoom.imageUrl)
+          console.log(this.registerHistory.meetingRoom.imageUrl);
         }
       );
     });
@@ -55,5 +57,9 @@ export class DeleteMeetingComponent implements OnInit {
         this.router.navigateByUrl('register-history');
       }, error => console.log(error)
     );
+  }
+  // push 12/9
+  comebackRegisterHistory() {
+    this.location.back();
   }
 }

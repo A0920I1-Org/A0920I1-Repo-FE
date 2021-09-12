@@ -33,7 +33,7 @@
 
     <div class="col-sm-4 input-group">
       <label class="input-group-text" for="inputGroupSelect02">Loại phòng họp</label>
-      <select formControlName="typeMeetingRoom" class="custom-select" id="inputGroupSelect02">
+      <select formControlName="idTypeMeetingRoom" class="custom-select" id="inputGroupSelect02">
         <option selected>Chọn loại phòng</option>
         <option *ngFor="let type of typesMeetingRoom" [value]="type.id">{{type.name}}</option>
       </select>
@@ -42,7 +42,7 @@
     <div class="col-sm-4 ">
       <div class="input-group">
         <label class="input-group-text" for="dateRegister">Ngày đăng kí </label>
-        <input formControlName="createAt" class="form-control" id="dateRegister" name="dateRegister" placeholder="DD/MM/YYYY" type="date"/>
+        <input formControlName="createDate" class="form-control" id="dateRegister" name="dateRegister" placeholder="DD/MM/YYYY" type="date"/>
       </div>
     </div>
   </div>
@@ -85,16 +85,12 @@
         <td>
           <button (click)="checkIsDelete(register.id)" class="btn btn-danger">Huỷ đăng kí</button>
 <!--                  [routerLink]="['/deleteRegisterMeeting/', register.id]" -->
-
         </td>
       </tr>
-
       </tbody>
     </table>
-
     <div>
       <pagination-controls (pageChange)="page = $event" class="text-center"></pagination-controls>
     </div>
-
   </div>
 </div>

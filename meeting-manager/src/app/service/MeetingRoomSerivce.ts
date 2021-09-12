@@ -12,7 +12,4 @@ export class MeetingRoomSerivce {
   public getMeetingRoom(): Observable<MeetingRoom[]>{
     return this.httpClient.get<MeetingRoom[]>(this.API_URL);
   }
-  public getNameMeetingRoom(): Observable<string[]>{
-    return this.httpClient.get<string[]>(this.API_URL + '/nameMeetingRooms');
-  }
 }

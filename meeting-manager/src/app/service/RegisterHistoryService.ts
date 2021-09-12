@@ -18,10 +18,9 @@ export class RegisterHistoryService {
   }
   public searchRegistration(
     search: SearchRegistrationDTO,
-    idAccount: string
   ): Observable<OrderMeeting[]>{
     console.log(this.API_URL + '/searchRegistrationHistory');
-    return this.httpClient.put<OrderMeeting[]>(this.API_URL + '/searchRegistrationHistory/' + (idAccount), search);
+    return this.httpClient.put<OrderMeeting[]>(this.API_URL + '/searchRegistrationHistory/', search);
   }
   // public findRegisterHistory()
   public deleteOrderMeeting(idOrder: number, reasonDelete: string): Observable<void>{
