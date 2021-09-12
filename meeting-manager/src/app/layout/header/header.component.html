@@ -19,7 +19,6 @@
         <a href="#" class=""><span class="mr-2  icon-phone"></span> <span class="d-none d-md-inline-block"></span></a>
 
         <div class="float-right">
-
           <a routerLink="/login" *ngIf="!authService.isUserLoggedIn()" class=""><span class="mr-2 bi fas fa-sign-in-alt"></span> <span
             class="d-none d-md-inline-block">Đăng Nhập</span></a>
           <a routerLink="/logout" *ngIf="authService.isUserLoggedIn()" class=""><span class="mr-2 bi fas fa-sign-in-alt"></span> <span

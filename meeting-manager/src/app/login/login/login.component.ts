@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  //kiem tra username va password - [Tu]
+  //kiem tra username va password - [TuHC]
   checkLogin() {
     this.authService.authenticate(this.loginForm.get('username').value, this.loginForm.get('password').value).subscribe(
       data => {

@@ -5,7 +5,6 @@ import {DeleteEmployeeComponent} from './admin/employee-manager/delete-employee/
 import {DetailEmployeeComponent} from './admin/employee-manager/detail-employee/detail-employee.component';
 import {ListEmployeeComponent} from './admin/employee-manager/list-employee/list-employee.component';
 import {UpdateEmployeeComponent} from './admin/employee-manager/update-employee/update-employee.component';
-import {AuthGaurdService} from './service/auth-gaurd.service';
 import {CreateEquipmentComponent} from './admin/equipment-manager/create-equipment/create-equipment.component';
 import {DetailEquipmentComponent} from './admin/equipment-manager/detail-equipment/detail-equipment.component';
 import {ListEquipmentComponent} from './admin/equipment-manager/list-equipment/list-equipment.component';
@@ -17,26 +16,27 @@ import {DetailMeetingComponent} from './admin/meeting-room/detail-meeting/detail
 import {ChangePasswordComponent} from './client/employee/account-manager/change-password/change-password.component';
 import {UpdateInfoComponent} from './client/employee/account-manager/update-info/update-info.component';
 import {LogoutComponent} from './login/logout/logout.component';
+import {AuthGuardService} from './service/auth-guard.service';
 
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
-  {path: 'logout', component: LogoutComponent, canActivate:[AuthGaurdService]},
-  {path: 'delete-employee', component: DeleteEmployeeComponent, canActivate:[AuthGaurdService]},
-  {path: 'detail-employee', component: DetailEmployeeComponent, canActivate:[AuthGaurdService]},
-  {path: 'list-employee', component: ListEmployeeComponent, canActivate:[AuthGaurdService]},
-  {path: 'update-employee', component: UpdateEmployeeComponent, canActivate:[AuthGaurdService]},
-  {path: 'create-equipment', component: CreateEquipmentComponent, canActivate:[AuthGaurdService]},
-  {path: 'detail-equipment', component: DetailEquipmentComponent, canActivate:[AuthGaurdService]},
-  {path: 'list-equipment', component: ListEquipmentComponent, canActivate:[AuthGaurdService]},
-  {path: 'update-equipment', component: UpdateEquipmentComponent, canActivate:[AuthGaurdService]},
-  {path: 'create-meeting', component: CreateMeetingComponent, canActivate:[AuthGaurdService]},
-  {path: 'update-meeting', component: UpdateMeetingComponent, canActivate:[AuthGaurdService]},
-  {path: 'delete-meeting', component: DeleteMeetingComponent, canActivate:[AuthGaurdService]},
-  {path: 'detail-meeting', component: DetailMeetingComponent, canActivate:[AuthGaurdService]},
-  {path: 'change-password', component: ChangePasswordComponent, canActivate:[AuthGaurdService]},
-  {path: 'update-info', component: UpdateInfoComponent, canActivate:[AuthGaurdService]},
-  {path: 'detail-meeting', component: DetailMeetingComponent, canActivate:[AuthGaurdService]},
+  {path: 'logout', component: LogoutComponent, canActivate:[AuthGuardService]},
+  {path: 'delete-employee', component: DeleteEmployeeComponent, canActivate:[AuthGuardService]},
+  {path: 'detail-employee', component: DetailEmployeeComponent, canActivate:[AuthGuardService]},
+  {path: 'list-employee', component: ListEmployeeComponent, canActivate:[AuthGuardService]},
+  {path: 'update-employee', component: UpdateEmployeeComponent, canActivate:[AuthGuardService]},
+  {path: 'create-equipment', component: CreateEquipmentComponent, canActivate:[AuthGuardService]},
+  {path: 'detail-equipment', component: DetailEquipmentComponent, canActivate:[AuthGuardService]},
+  {path: 'list-equipment', component: ListEquipmentComponent, canActivate:[AuthGuardService]},
+  {path: 'update-equipment', component: UpdateEquipmentComponent, canActivate:[AuthGuardService]},
+  {path: 'create-meeting', component: CreateMeetingComponent, canActivate:[AuthGuardService]},
+  {path: 'update-meeting', component: UpdateMeetingComponent, canActivate:[AuthGuardService]},
+  {path: 'delete-meeting', component: DeleteMeetingComponent, canActivate:[AuthGuardService]},
+  {path: 'detail-meeting', component: DetailMeetingComponent, canActivate:[AuthGuardService]},
+  {path: 'change-password', component: ChangePasswordComponent, canActivate:[AuthGuardService]},
+  {path: 'update-info', component: UpdateInfoComponent, canActivate:[AuthGuardService]},
+  {path: 'detail-meeting', component: DetailMeetingComponent, canActivate:[AuthGuardService]},
   ];
 
 @NgModule({

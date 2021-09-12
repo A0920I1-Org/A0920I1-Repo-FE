@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {Account} from '../model/Account';
+import {Observable} from 'rxjs';
+import {AccountDTO} from '../model/AccountDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -9,14 +11,14 @@ import {Account} from '../model/Account';
 export class AuthenticationService {
   account: Account;
 
-  urlAccount = 'http://localhost:8080/findAccount';
+  loginURL = 'http://localhost:8080/login';
 
 
   constructor(private httpClient: HttpClient) { }
 
-  //sau khi xac thuc thanh cong, luu username, token va role vao sessionStorage - [Tu]
+  //sau khi xac thuc thanh cong, luu username, token va role vao sessionStorage - [TuHC]
   authenticate(username, password) {
-    return this.httpClient.post<any>('http://localhost:8080/authenticate',{username,password}).pipe(
+    return this.httpClient.post<any>(this.loginURL + '/authenticate',{username,password}).pipe(
       map(
         userData => {
           sessionStorage.setItem('username',username);
@@ -30,32 +32,28 @@ export class AuthenticationService {
     );
   }
 
-  //kiem tra da login hay chua - [Tu]
+  //kiem tra da login hay chua - [TuHC]
   isUserLoggedIn() {
     let user = sessionStorage.getItem('username')
     // console.log(!(user === null))
     return !(user === null)
   }
 
-  //chuc nang logout - [Tu]
+  //chuc nang logout - [TuHC]
   logOut() {
     sessionStorage.clear();
   }
 
-  //kiem tra role co phai admin hay ko, neu co hien thi man hinh admin - [Tu]
+  //kiem tra role co phai admin hay ko, neu co hien thi man hinh admin va nguoc lai - [TuHC]
   checkRoleAdmin(){
     let roleAdmin = sessionStorage.getItem('role');
-    // console.log(roleAdmin);
     return (roleAdmin === '[ROLE_ADMIN]');
   }
 
-  //lay account bang username - [Tu]
-  findAccountByUser(){
+  //lay account bang username - [TuHC]
+  findAccountByUser() {
     let username = sessionStorage.getItem('username');
-    return this.httpClient.get<Account>(`${this.urlAccount}?username=${username}`).subscribe(data =>{
-      return this.account = data;
-    })
-    ;
+    // console.log(username);
+    return this.httpClient.get<Account>(`${this.loginURL + '/findAccount'}?username=${username}`)
   }
-
 }
