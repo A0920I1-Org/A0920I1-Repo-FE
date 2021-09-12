@@ -3,6 +3,7 @@ import {Equipment} from './Equipment';
 
 export class OrderEquipment {
   id: number;
+  quantity: number;
   equipment: Equipment;
   meetingRoom: MeetingRoom;
 

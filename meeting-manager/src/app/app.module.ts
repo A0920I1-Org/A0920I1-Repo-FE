@@ -37,6 +37,9 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import {MatIconModule} from '@angular/material/icon';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatInputModule} from '@angular/material/input';
+import { ChooseEquipmentComponent } from './admin/meeting-room/create-meeting/choose-equipment/choose-equipment.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -61,11 +64,13 @@ import {MatInputModule} from '@angular/material/input';
     DeleteEmployeeComponent,
     UpdateEmployeeComponent,
     DetailEmployeeComponent,
+    ChooseEquipmentComponent,
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
     RouterModule,
     NgxPaginationModule,
     HttpClientModule,
@@ -73,15 +78,17 @@ import {MatInputModule} from '@angular/material/input';
     MatDialogModule,
     ReactiveFormsModule,
     MatButtonModule,
+    MatDialogModule,
+    MatSnackBarModule,
 
     MatIconModule,
     MatProgressSpinnerModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule, // firestore
     AngularFireAuthModule, // auth
-    AngularFireStorageModule,
+    AngularFireStorageModule,// storage
     MatInputModule,
-// storage
+
   ],
   providers: [],
   bootstrap: [AppComponent]

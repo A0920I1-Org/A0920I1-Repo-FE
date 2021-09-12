@@ -1,99 +1,109 @@
-
-
-<div class="container">
-  <h3 style="text-align: center; margin: 30px 0">
+<div class="container-fluid">
+  <h4 style="text-align: center; margin: 30px 0">
     Thông tin chi tiết phòng họp
-  </h3>
+  </h4>
   <div class="row">
-    <form class="form-control" [ngModelGroup]="formMeetingDetails" >
-      <div class="col-md-4">
-        <div class="card mb-3">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-sm-5">
-                <h6 class="mb-0">Tên phòng:</h6>
-              </div>
-              <div class="col-sm-7 text-secondary">
-                <input type="text" class="form-control-plaintext" formControlName="name" readonly>
-              </div>
+    <div class="col-md-4">
+      <div class="card mb-3">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-5">
+              <h6 class="mb-0">Tên phòng:</h6>
             </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-5">
-                <h6 class="mb-0">Tầng:</h6>
-              </div>
-              <div class="col-sm-7 text-secondary">
-                <input type="text" class="form-control-plaintext" formControlName="floors" readonly>
-              </div>
+            <div class="col-sm-7 text-secondary">
+              {{meetingDetails.name}}
             </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-5">
-                <h6 class="mb-0">Khu vực:</h6>
-              </div>
-              <div class="col-sm-7 text-secondary">
-                <input type="text" class="form-control-plaintext" formControlName="area" readonly>
-              </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-5">
+              <h6 class="mb-0">Tầng:</h6>
             </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-5">
-                <h6 class="mb-0">Sức chứa:</h6>
-              </div>
-              <div class="col-sm-7 text-secondary">
-                <input type="text" class="form-control-plaintext" formControlName="capacity" readonly>
-              </div>
+            <div class="col-sm-7 text-secondary">
+              {{meetingDetails.floors}}
             </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-5">
-                <h6 class="mb-0">Loại phòng:</h6>
-              </div>
-              <div class="col-sm-7 text-secondary">
-                <input type="text" class="form-control-plaintext" formControlName="typeRoom" readonly>
-              </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-5">
+              <h6 class="mb-0">Khu vực:</h6>
             </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-5">
-                <h6 class="mb-0">Trạng thái:</h6>
-              </div>
-              <div class="col-sm-7 text-secondary">
-                <input type="text" class="form-control-plaintext" formControlName="status" readonly>
-              </div>
+            <div class="col-sm-7 text-secondary">
+              {{meetingDetails.area.name}}
             </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-5">
-                <h6 class="mb-0">Số lần sử dụng:</h6>
-              </div>
-              <div class="col-sm-7 text-secondary">
-                <input type="text" class="form-control-plaintext" formControlName="numberOfUses" readonly>
-              </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-5">
+              <h6 class="mb-0">Sức chứa:</h6>
             </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-5">
-                <h6 class="mb-0">Tài sản:</h6>
-              </div>
-              <div class="col-sm-7 text-secondary">
-                <input type="text" class="form-control-plaintext" formControlName="equipment" readonly>
-              </div>
+            <div class="col-sm-7 text-secondary">
+              {{meetingDetails.typeMeetingRoom.capacity}}
             </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-12">
-                <a class="btn btn-info " target="__blank"
-                   href="#">Xem lịch sử
-                  đăng kí</a>
-              </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-5">
+              <h6 class="mb-0">Loại phòng:</h6>
+            </div>
+            <div class="col-sm-7 text-secondary">
+              {{meetingDetails.typeMeetingRoom.name}}
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-5">
+              <h6 class="mb-0">Trạng thái:</h6>
+            </div>
+            <div class="col-sm-7 text-secondary">
+              {{meetingDetails.roomStatus.name}}
+            </div>
+          </div>
+
+          <hr>
+          <div class="row">
+            <div class="col-sm-5">
+              <h6 class="mb-0">Tài sản:</h6>
+            </div>
+            <div class="col-sm-7 text-secondary" >
+             <ul *ngFor="let items of equipmentList">
+               <li>{{items.quantity}}, {{items.equipment.name}}</li>
+             </ul>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-12">
+              <a class="btn btn-info" [routerLink]="['register-history/meeting-room/', id]">Xem lịch sử đăng kí</a>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-md-8">
+    </div>
 
+    <div class="col-md-8">
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <div class="card">
+            <div class="card-body">
+              <div class="d-flex flex-column align-items-center text-center">
+                <span >
+                  <img [src]="meetingDetails.imageUrl">
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="card" *ngFor="let items of equipmentList">
+            <div class="card-body">
+              <div class="d-flex flex-column align-items-center text-center">
+               <img [src]="items.equipment.imageUrl">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--        end img device-->
       </div>
-    </form>
+    </div>
   </div>
 </div>

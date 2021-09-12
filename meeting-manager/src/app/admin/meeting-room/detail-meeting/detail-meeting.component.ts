@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {MeetingRoomService} from '../../../service/meeting-room.service';
 import {FormBuilder} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
+import {Equipment} from '../../../models/Equipment';
+import {OrderEquipment} from '../../../models/OrderEquipment';
+import {MeetingRoom} from '../../../models/MeetingRoom';
 
 @Component({
   selector: 'app-detail-meeting',
@@ -17,23 +20,25 @@ export class DetailMeetingComponent implements OnInit {
     private activatedRoute: ActivatedRoute
   ) { }
 
-  formMeetingDetails = this.form.group({
-    id: [''],
-    name: [''],
-    floors: [''],
-    area: [''],
-    capacity: [''],
-    typeRoom: [''],
-    status: [''],
-    numberOfUses: [''],
-    equipment: this.form.array(['']),
-  })
+  meetingDetails: MeetingRoom;
+  numberOfUses: '10 lần';
+  equipmentList: OrderEquipment[];
+
   ngOnInit(): void {
     console.log(this.activatedRoute.snapshot.params.id);
     this.meetingService.findMeetingRoomById(this.activatedRoute.snapshot.params.id).subscribe((data) => {
-      this.formMeetingDetails.setValue(data);
-      console.log(data);
-    })
+      this.meetingDetails = data;
+      console.log(this.meetingDetails);
+    }, error => console.log('error'))
+
+    this.getEquipment();
   }
 
+  getEquipment(){
+    this.meetingService.listEquipmentByIdMeetingRoom(this.activatedRoute.snapshot.params.id).subscribe((data) => {
+      this.equipmentList = data;
+      console.log(this.equipmentList)
+    })
+
+  }
 }
