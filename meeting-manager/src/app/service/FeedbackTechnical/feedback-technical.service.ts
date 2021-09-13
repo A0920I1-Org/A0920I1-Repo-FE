@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {FeedBack} from "../../model/FeedBack";
-
 @Injectable({
   providedIn: 'root'
 })
@@ -23,7 +22,7 @@ export class FeedbackTechnicalService {
     return this.httpClient.get<FeedBack>(this.API_FEEDBACK_URL + '/' + (id));
   }
 
-  public updateCustomer(updateFeedback: FeedBack): Observable<void> {
+  public updateFeedbackTech(updateFeedback: FeedBack): Observable<void> {
     return this.httpClient.put<void>(this.API_FEEDBACK_URL + '/' + updateFeedback.id, updateFeedback);
   }
 

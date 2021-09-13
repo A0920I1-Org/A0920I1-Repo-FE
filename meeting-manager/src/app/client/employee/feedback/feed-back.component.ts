@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {FeedBack} from "../../../model/FeedBack";
+import {FeedbackTechnicalService} from "../../../service/FeedbackTechnical/feedback-technical.service";
 
 @Component({
   selector: 'app-feed-back',
@@ -6,10 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./feed-back.component.css']
 })
 export class FeedBackComponent implements OnInit {
-
-  constructor() { }
+  FeedBack :FeedBack[];
+  constructor(
+    private feedBackService:FeedbackTechnicalService
+  ) { }
 
   ngOnInit(): void {
+    this.feedBackService.getFeedback().subscribe(
+      (data) =>{
+        console.log(data);
+        this.FeedBack = data;
+      }
+    )
   }
 
 }

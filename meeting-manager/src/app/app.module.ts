@@ -24,13 +24,21 @@ import {FeedBackComponent} from './client/employee/feedback/feed-back.component'
 import {HeaderComponent} from "./client/client-shared/header/header.component";
 import {HttpClientModule} from "@angular/common/http";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {Ng2SearchPipeModule} from "ng2-search-filter";
 import {Ng2OrderModule} from "ng2-order-pipe";
 import {NgxPaginationModule} from "ngx-pagination";
 import { FeedbackTechnicalUpdateComponent } from './admin/feedback-manager/feedback-technical-update/feedback-technical-update.component';
 import { FeedbackTechnicalComponent } from './client/employee/feedback/feedback-technical/feedback-technical.component';
 import {RouterModule} from "@angular/router";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatNativeDateModule} from "@angular/material/core";
+import {MatInputModule} from "@angular/material/input";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MatTableModule} from "@angular/material/table";
+import {MatButtonModule} from "@angular/material/button";
+
 
 @NgModule({
   declarations: [
@@ -70,7 +78,17 @@ import {RouterModule} from "@angular/router";
     NgxPaginationModule,
     Ng2OrderModule,
     Ng2SearchPipeModule,
-    RouterModule
+    RouterModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    MatInputModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    FormsModule,
+    MatTableModule,
+    MatSnackBarModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

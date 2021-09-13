@@ -5,6 +5,7 @@ import {ImageFeedBack} from "./ImageFeedBack";
 
 export class FeedBack {
   id: number;
+  title:string
   description: string;
   dateFeedback: Date;
   IsHandle: boolean;
