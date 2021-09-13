@@ -21,7 +21,7 @@ export class EquipmentManagerService {
     return this.httpClient.get<Equipment>(this.API_EQUIPMENT + '/findById/' + id);
   }
   updateEquipment(equipment: Equipment): Observable<void>{
-    return this.httpClient.put<void>(this.API_EQUIPMENT + '/' + equipment.id, equipment);
+    return this.httpClient.put<void>(this.API_EQUIPMENT + '/update-equipment/' + equipment.id, equipment);
   }
   deleteEquipment(id: number){
     return this.httpClient.delete(this.API_EQUIPMENT + '/delete-equipment/' + id);

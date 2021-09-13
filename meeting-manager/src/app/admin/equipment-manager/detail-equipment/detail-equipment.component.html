@@ -1,5 +1,5 @@
 
-<h2 style="text-align: center">Chi Tiết Tài Sản</h2><hr>
+<h2 style="text-align: center" id="title">Chi Tiết Tài Sản</h2><hr>
 <div class="container p-3 my-3 border">
   <div *ngIf="equipmentDetail">
   <div class="row">
@@ -52,18 +52,21 @@
           </div>
         </div>
       </div>
+      <hr>
       <h5 >Danh sách phòng đang sử dụng tài sản:</h5>
       <table class="table table-hover" border="1">
         <thead class="thead-dark">
         <tr>
-          <th>STT</th>
           <th>Tên Phòng</th>
+          <th>Tên Tài Sản</th>
           <th>Số lượng đang sử dụng</th>
         </tr>
         </thead>
         <tbody class="table-active">
-        <tr>
-          <td></td>
+        <tr *ngIf="orderEquipment">
+          <td>{{orderEquipment.meetingRoom}}</td>
+          <td>{{orderEquipment.equipment}}</td>
+          <td>{{orderEquipment.quantity}}</td>
         </tr>
         </tbody>
       </table>

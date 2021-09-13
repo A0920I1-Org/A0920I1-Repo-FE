@@ -1,6 +1,6 @@
 #add {
 
-  margin-left: 300px;
+  margin-left: 100px;
 }
 
 #search {
@@ -10,4 +10,8 @@
 .img{
   width: 100px;
   height: 100px;
+}
+#title{
+  background: royalblue;
+  color: white;
 }

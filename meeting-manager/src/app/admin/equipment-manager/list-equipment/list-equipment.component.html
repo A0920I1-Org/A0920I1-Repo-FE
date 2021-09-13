@@ -1,12 +1,11 @@
-<h1 class="text-center" id="title">Danh Sách Tài Sản</h1>
-<i class="fas fa-cut"></i>
-<i class="fab fa-accessible-icon"></i>
 
-<div class="container-fluid main-content mt-4">
+
+<div class="container">
+  <h1 class="text-center" id="title">Danh Sách Tài Sản</h1>
   <div class="filter-container mb-2 ">
     <form class="form-inline my-2 my-lg-0">
       <button class="btn btn-success" id="add" routerLink="/create-equipment">Thêm Tài Sản</button>
-      <input class="form-control mr-sm-2" placeholder="Tên Tài Sản" type="search" id="search">
+      <input class="form-control mr-sm-2" placeholder="Nhập Tên Tài Sản..." type="search" id="search">
       <button class=" btn btn-primary my-2 my-sm-0">Tìm Kiếm</button>
     </form>
   </div>
@@ -24,17 +23,17 @@
       </tr>
       </thead>
       <tbody class="table-active">
-      <tr *ngFor="let equipments of equipment ">
-        <td>{{equipments.id}}</td>
+      <tr *ngFor="let equipments of equipment; let i = index ">
+        <td>{{i+1}}</td>
         <td>{{equipments.name}}</td>
         <td>{{equipments.stock}}</td>
         <td>{{equipments.repairQuantity}}</td>
         <td>{{equipments.stock - equipments.repairQuantity}}</td>
         <td><img [src]="equipments.imageUrl" class="img"></td>
         <td>
-          <button class="btn btn-success" [routerLink]="['',equipments.id]">Chi tiết</button>
+          <button class="btn btn-info" [routerLink]="['',equipments.id]">Chi tiết</button>
           <button class="btn btn-danger m-md-3" (click)="openDialogDelete(equipments.id)">Xóa</button>
-          <button class="btn btn-warning" [routerLink]="['/update-equipment',equipments.id]">Sửa</button>
+          <button class="btn btn-warning" style="color: #fdffff" [routerLink]="['/update-equipment',equipments.id]">Sửa</button>
         </td>
       </tr>
       </tbody>

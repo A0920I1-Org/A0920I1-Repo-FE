@@ -26,12 +26,17 @@ import { DetailEmployeeComponent } from './admin/employee-manager/detail-employe
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {MatDialogModule} from '@angular/material/dialog';
-import {MatIconModule} from '@angular/material/icon';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { DeleteEquipmentComponent } from './admin/equipment-manager/delete-equipment/delete-equipment.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {AngularFireStorageModule} from '@angular/fire/storage';
+import {AngularFireAuthModule} from '@angular/fire/auth';
+import {AngularFirestoreModule} from '@angular/fire/firestore';
+import {environment} from '../environments/environment';
+import {AngularFireModule} from '@angular/fire';
 
 
 @NgModule({
@@ -68,9 +73,14 @@ import { DeleteEquipmentComponent } from './admin/equipment-manager/delete-equip
     NgxPaginationModule,
     MatDialogModule,
     MatButtonModule,
-    MatIconModule,
     BrowserAnimationsModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatSnackBarModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule, // firestore
+    AngularFireAuthModule, // auth
+    AngularFireStorageModule
+    // storage
   ],
   providers: [],
   bootstrap: [AppComponent]
