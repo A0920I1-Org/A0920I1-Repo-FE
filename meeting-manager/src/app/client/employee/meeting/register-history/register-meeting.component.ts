@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {RegisterHistoryService} from '../../../../service/RegisterHistoryService';
 import {TypeMeetingRoomService} from '../../../../service/TypeMeetingRoomService';
 import {StatusRoomService} from '../../../../service/StatusRoomService';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {TypeMeetingRoom} from '../../../../model/entity/TypeMeetingRoom';
 import {RoomStatus} from '../../../../model/entity/RoomStatus';
 import {OrderMeeting} from '../../../../model/entity/OrderMeeting';
@@ -76,7 +76,7 @@ export class RegisterMeetingComponent implements OnInit {
       }
     );
     this.findRegisterHistoryForm = new FormGroup({
-      nameRoom: new FormControl(null),
+      nameRoom: new FormControl(null, [Validators.required, Validators.pattern('^[a-zA-Z0-9_.-]*$')]),
       dateCheckin: new FormControl(null),
       dateCheckout: new FormControl(null),
       statusRoom: new FormControl(null),

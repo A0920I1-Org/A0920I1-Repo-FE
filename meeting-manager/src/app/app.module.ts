@@ -3,10 +3,9 @@ import {NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {FooterComponent} from './client/client-shared/footer/footer.component';
-import {HeaderComponent} from './client/client-shared/header/header.component';
-import {NavbarComponent} from './client/client-shared/navbar/navbar.component';
-import {RegisterMeetingComponent} from './client/employee/meeting/register-meeting/register-meeting.component';
+import {FooterComponent} from './footer/footer.component';
+import {HeaderComponent} from './header/header.component';
+import {RegisterMeetingComponent} from './client/employee/meeting/register-history/register-meeting.component';
 import {DeleteMeetingComponent} from './client/employee/meeting/delete-meeting/delete-meeting.component';
 import {ListMeetingComponent} from './client/employee/meeting/list-meeting/list-meeting.component';
 import {CreateMeetingComponent} from './admin/meeting-room/create-meeting/create-meeting.component';
@@ -43,13 +42,13 @@ import {
 } from '@syncfusion/ej2-angular-charts';
 import {HttpClientModule} from '@angular/common/http';
 import {ToastrModule, ToastrService} from 'ngx-toastr';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
     HeaderComponent,
-    NavbarComponent,
     RegisterMeetingComponent,
     DeleteMeetingComponent,
     ListMeetingComponent,
@@ -82,7 +81,8 @@ import {ToastrModule, ToastrService} from 'ngx-toastr';
       timeOut: 3000,
       positionClass: 'toast-bottom-right',
       preventDuplicates: false,
-    })
+    }),
+    MatInputModule
   ],
   providers: [
     RegisterHistoryService,

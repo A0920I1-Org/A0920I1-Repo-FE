@@ -17,7 +17,7 @@
 #result{
   border: 1px solid black;
   margin-top: 50px;
-  width: 75%;
+  width: 90%;
   background-color: whitesmoke;
   margin-left: auto;
   margin-right: auto;
@@ -37,3 +37,8 @@ ejs-chart{
   width: 700px;
   height: 500px;
 }
+#wrap{
+  padding: 50px 50px 50px 50px;
+  background-image: url("https://img4.thuthuatphanmem.vn/uploads/2020/05/12/hinh-anh-xam-khoi_103624490.jpg");
+}
+

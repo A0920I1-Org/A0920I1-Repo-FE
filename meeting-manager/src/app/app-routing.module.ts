@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {StatisticalComponent} from './admin/statistical/statistical.component';
-import {RegisterMeetingComponent} from './client/employee/meeting/register-meeting/register-meeting.component';
+import {RegisterMeetingComponent} from './client/employee/meeting/register-history/register-meeting.component';
 import {DeleteMeetingComponent} from './client/employee/meeting/delete-meeting/delete-meeting.component';
 
 

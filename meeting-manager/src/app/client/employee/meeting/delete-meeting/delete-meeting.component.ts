@@ -54,7 +54,7 @@ export class DeleteMeetingComponent implements OnInit {
     console.log(deleteForm.value);
     this.registerHistoryService.deleteOrderMeeting(this.idOrder, deleteForm.value).subscribe(
       () => {
-        this.router.navigateByUrl('register-history');
+        this.location.back();
       }, error => console.log(error)
     );
   }
