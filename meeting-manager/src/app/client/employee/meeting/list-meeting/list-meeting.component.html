@@ -10,7 +10,7 @@
     <th scope="col">Loại phòng</th>
     <th scope="col">Sức chứa</th>
 
-    <th scope="col">Action</th>
+    <th scope="col">Xem chi tiết</th>
   </tr>
   </thead>
   <tbody>
@@ -30,7 +30,7 @@
   </tbody>
 </table>
 <div>
-  <pagination-controls (pageChange)="page = $event" style="text-align: end"></pagination-controls>
+  <pagination-controls (pageChange)="page = $event" previousLabel="Trước" nextLabel="Tiếp" style="text-align: center"></pagination-controls>
 </div>
 
 <style>

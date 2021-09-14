@@ -6,6 +6,9 @@
     <div class="col-md-4">
       <div class="card mb-3">
         <div class="card-body">
+          <a routerLink="">
+            <span class="material-icons">arrow_back</span>
+          </a>
           <div class="row">
             <div class="col-sm-5">
               <h6 class="mb-0">Tên phòng:</h6>
@@ -65,10 +68,10 @@
             <div class="col-sm-5">
               <h6 class="mb-0">Tài sản:</h6>
             </div>
-            <div class="col-sm-7 text-secondary" >
-             <ul *ngFor="let items of equipmentList">
-               <li>{{items.quantity}}, {{items.equipment.name}}</li>
-             </ul>
+            <div class="col-sm-7 text-secondary">
+              <ul *ngFor="let items of equipmentList">
+                <li>{{items.quantity}}, {{items.equipment.name}}</li>
+              </ul>
             </div>
           </div>
           <hr>
@@ -81,22 +84,24 @@
       </div>
     </div>
 
-    <div class="col-md-8">
+    <div class="col-md-8 p-3">
       <div class="row">
         <div class="col-md-4 mb-3">
           <div class="card">
             <div class="card-body">
               <div class="d-flex flex-column align-items-center text-center">
-                <span >
+                <span>
                   <img [src]="meetingDetails.imageUrl">
                 </span>
               </div>
             </div>
           </div>
-          <div class="card" *ngFor="let items of equipmentList">
-            <div class="card-body">
-              <div class="d-flex flex-column align-items-center text-center">
-               <img [src]="items.equipment.imageUrl">
+          <div class="col-md-4 mb-3" *ngFor="let items of equipmentList">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex flex-column align-items-center text-center">
+                  <img [src]="items.equipment.imageUrl">
+                </div>
               </div>
             </div>
           </div>

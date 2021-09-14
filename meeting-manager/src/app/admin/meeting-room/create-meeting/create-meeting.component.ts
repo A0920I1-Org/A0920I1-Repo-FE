@@ -8,10 +8,10 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {OrderEquipment} from '../../../models/OrderEquipment';
 import {AngularFireStorage, AngularFireStorageReference} from '@angular/fire/storage';
 import {MatDialog} from '@angular/material/dialog';
-import {MatSnackBar} from '@angular/material/snack-bar';
 import {ChooseEquipmentComponent} from './choose-equipment/choose-equipment.component';
 import {formatDate} from '@angular/common';
 import {finalize} from 'rxjs/operators';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-create-meeting',
@@ -22,7 +22,7 @@ export class CreateMeetingComponent implements OnInit {
   areaList: Area[];
   typeMeetingRoom: TypeMeetingRoom[];
   statusRoomList: RoomStatus[];
-  equipmentList: OrderEquipment[];
+  orderEquipmentList: OrderEquipment[];
 
   selectedFile: any;
   ref: AngularFireStorageReference;
@@ -32,7 +32,7 @@ export class CreateMeetingComponent implements OnInit {
   giveURL = new EventEmitter<string>();
 
   constructor(
-    private _snackBar: MatSnackBar,
+    private toastService: ToastrService,
     private meetingService: MeetingRoomService,
     private router: Router, private form: FormBuilder,
     public dialog: MatDialog,
@@ -40,23 +40,45 @@ export class CreateMeetingComponent implements OnInit {
   ) { }
 
   createMeetingRoom = this.form.group({
-    name:['', Validators.required],
-    floors:['', Validators.required],
-    areaDto:['', Validators.required],
-    roomStatusDto:['', Validators.required],
-    typeMeetingRoomDto:['', Validators.required],
-    imageUrl:['', Validators.required],
+    name:['', [Validators.required, Validators.pattern('^[a-zA-Z0-9\\+]*$')]],
+    floors:['', [Validators.required, Validators.pattern('^[0-9]{1,10}$')]],
+    areaDto:['', [Validators.required]],
+    roomStatusDto:['', [Validators.required]],
+    typeMeetingRoomDto:['', [Validators.required]],
+    imageUrl:['', [Validators.required]],
     // equipment: this.form.array([''])
-  })
+  });
+
+  validation_messages = {
+    name: [
+      {type: 'required', message: 'Vui lòng nhập tên phòng!'},
+      {type: 'minlength', message: 'Vui lòng nhập tên phòng có ít nhất 4 kí tự!'},
+      {type: 'pattern', message: 'Nhập tên không hợp lệ!'}
+    ],
+    floors: [
+      {type: 'required', message: 'Vui lòng nhập số tầng!'},
+      {type: 'minlength', message: 'Vui lòng nhập ít nhất 1 số!'},
+
+    ],
+    areaDto: [
+      {type: 'required', message: 'Vui lòng chọn khu vực!'},
+    ],
+    roomStatusDto: [
+      {type: 'required', message: 'Vui lòng chọn trạng thái phòng!'}
+    ],
+    typeMeetingRoomDto: [
+      {type: 'required', message: 'Vui lòng chọn loại phòng!'}
+    ],
+    imageUrl: [
+      {type: 'required', message: 'Vui lòng chọn ảnh!'},
+      {type: 'pattern', message: 'Bạn chọn không đúng file ảnh!'}
+    ]
+  };
 
   ngOnInit(): void {
     this.getArea();
     this.getRoomStatus();
     this.getTypeMeetingRoom();
-  }
-
-  onFileChanged($event){
-    this.selectedFile = $event.target.files[0];
   }
 
   onUpLoad(){
@@ -82,20 +104,21 @@ export class CreateMeetingComponent implements OnInit {
     return formatDate(new Date(), 'dd-MM-yyyyhhmmssa', 'en-US');
   }
 
-  onSubmit(createMeetingRoom: FormGroup){
-    console.log(createMeetingRoom.value);
+  onSubmit(){
     const nameImage = this.getCurrentDateTime() + this.selectedFile.name;
     const fileRef = this.storage.ref(nameImage);
+
 
     // chưa set name khi up firebase
     this.storage.upload(nameImage, this.selectedFile).snapshotChanges().pipe(
       finalize(() => {
         fileRef.getDownloadURL().subscribe((url) => {
+          this.downloadURL = url;
           this.createMeetingRoom.patchValue({imageUrl: url});
 
           this.meetingService.addMeetingRoom(this.createMeetingRoom.value).subscribe(() => {
-            this.router.navigateByUrl('').then(e => this._snackBar.open("Thêm mới thành công!", "Ok", {duration: 2000}))
-          })
+            this.router.navigateByUrl('').then(e => this.toastService.success("Thêm mới thành công!", "Thông báo"))
+          }, error => this.toastService.error("Lỗi thêm mới!", "Thông báo"))
         })
       })
     ).subscribe();
@@ -124,9 +147,6 @@ export class CreateMeetingComponent implements OnInit {
     }, error => console.log('data Room status error'))
   }
 
-  getEquipment() {
-
-  }
 
   showImage($event: any) {
     this.selectedFile = $event.target.files[0];

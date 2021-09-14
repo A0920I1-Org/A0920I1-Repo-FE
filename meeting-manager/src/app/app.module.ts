@@ -3,9 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FooterComponent } from './client/client-shared/footer/footer.component';
-import { HeaderComponent } from './client/client-shared/header/header.component';
-import { NavbarComponent } from './client/client-shared/navbar/navbar.component';
 import { RegisterMeetingComponent } from './client/employee/meeting/register-meeting/register-meeting.component';
 import { DeleteMeetingComponent } from './client/employee/meeting/delete-meeting/delete-meeting.component';
 import { ListMeetingComponent } from './client/employee/meeting/list-meeting/list-meeting.component';
@@ -38,15 +35,17 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatInputModule} from '@angular/material/input';
 import { ChooseEquipmentComponent } from './admin/meeting-room/create-meeting/choose-equipment/choose-equipment.component';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {FooterComponent} from './footer/footer.component';
+import {HeaderComponent} from './header/header.component';
+import {ToastrModule} from 'ngx-toastr';
 
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
     HeaderComponent,
-    NavbarComponent,
     RegisterMeetingComponent,
     DeleteMeetingComponent,
     ListMeetingComponent,
@@ -79,7 +78,12 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     MatButtonModule,
     MatDialogModule,
-    MatSnackBarModule,
+    MatPaginatorModule,
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: false,
+    }),
 
     MatIconModule,
     MatProgressSpinnerModule,

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {MeetingRoomService} from '../../../service/meeting-room.service';
 import {FormBuilder} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
-import {Equipment} from '../../../models/Equipment';
 import {OrderEquipment} from '../../../models/OrderEquipment';
 import {MeetingRoom} from '../../../models/MeetingRoom';
 

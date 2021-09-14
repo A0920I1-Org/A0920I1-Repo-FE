@@ -51,10 +51,6 @@ export class MeetingRoomService {
     return this.httpClient.post<void>(this.API_MEETINGROOM_URL, meetingRoom);
   }
 
-  // public findMeetingRoomById(id: number): Observable<OrderEquipment> {
-  //   return this.httpClient.get<OrderEquipment>(this.API_MEETINGROOM_URL + '/details-meeting-room/' + (id));
-  // }
-
   public findMeetingRoomById(id: number): Observable<MeetingRoom> {
     return this.httpClient.get<MeetingRoom>(this.API_MEETINGROOM_URL + '/details-meeting-room/' + (id));
   }
