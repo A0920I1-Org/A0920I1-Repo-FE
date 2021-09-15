@@ -22,11 +22,12 @@ import { UpdateEmployeeComponent } from './admin/employee-manager/update-employe
 import { DetailEmployeeComponent } from './admin/employee-manager/detail-employee/detail-employee.component';
 import { LoginComponent } from './login/login/login.component';
 import { LogoutComponent } from './login/logout/logout.component';
-import {FooterComponent} from './layout/footer/footer.component';
-import {HeaderComponent} from './layout/header/header.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {BasicAuthHttpInterceptorService} from './service/basic-auth-http-interceptor.service';
+import {FooterComponent} from './footer/footer.component';
+import {HeaderComponent} from './header/header.component';
+import {JwtModule} from '@auth0/angular-jwt';
 
 @NgModule({
   declarations: [
@@ -58,10 +59,16 @@ import {BasicAuthHttpInterceptorService} from './service/basic-auth-http-interce
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter:  () => sessionStorage.getItem('toke')
+      }
+    })
   ],
   providers: [{
-    provide:HTTP_INTERCEPTORS, useClass:BasicAuthHttpInterceptorService, multi:true
+    provide:HTTP_INTERCEPTORS, useClass:BasicAuthHttpInterceptorService, multi:true,
+
   }],
   bootstrap: [AppComponent]
 })

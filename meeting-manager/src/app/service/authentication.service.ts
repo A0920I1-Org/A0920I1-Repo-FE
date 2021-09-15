@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {Account} from '../model/Account';
-import {Observable} from 'rxjs';
-import {AccountDTO} from '../model/AccountDTO';
+import {JwtHelperService} from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
@@ -13,28 +12,27 @@ export class AuthenticationService {
 
   loginURL = 'http://localhost:8080/login';
 
-
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private jwtHelper: JwtHelperService) { }
 
   //sau khi xac thuc thanh cong, luu username, token va role vao sessionStorage - [TuHC]
   authenticate(username, password) {
     return this.httpClient.post<any>(this.loginURL + '/authenticate',{username,password}).pipe(
       map(
         userData => {
-          sessionStorage.setItem('username',username);
-          let tokenStr= 'Bearer ' + userData.token;
+          let tokenStr = 'Bearer ' + userData.token;
           sessionStorage.setItem('token', tokenStr);
-          let role = userData.role;
-          sessionStorage.setItem('role', role);
           return userData;
         }
       )
     );
   }
 
-  //kiem tra da login hay chua - [TuHC]
+  // kiem tra da login hay chua - [TuHC]
   isUserLoggedIn() {
-    let user = sessionStorage.getItem('username')
+    const token = sessionStorage.getItem('token');
+    // decode the token to get its payload
+    const tokenPayload = this.jwtHelper.decodeToken(token);
+    let user = tokenPayload.sub;
     // console.log(!(user === null))
     return !(user === null)
   }
@@ -43,17 +41,20 @@ export class AuthenticationService {
   logOut() {
     sessionStorage.clear();
   }
-
-  //kiem tra role co phai admin hay ko, neu co hien thi man hinh admin va nguoc lai - [TuHC]
+  //
+  // //kiem tra role co phai admin hay ko, neu co hien thi man hinh admin va nguoc lai - [TuHC]
   checkRoleAdmin(){
-    let roleAdmin = sessionStorage.getItem('role');
-    return (roleAdmin === '[ROLE_ADMIN]');
+    const token = sessionStorage.getItem('token');
+    // decode the token to get its payload
+    const tokenPayload = this.jwtHelper.decodeToken(token);
+    let roleAdmin = tokenPayload.role;
+    return (roleAdmin === 'ROLE_ADMIN');
   }
-
-  //lay account bang username - [TuHC]
-  findAccountByUser() {
-    let username = sessionStorage.getItem('username');
-    // console.log(username);
-    return this.httpClient.get<Account>(`${this.loginURL + '/findAccount'}?username=${username}`)
-  }
+  //
+  // //lay account bang username - [TuHC]
+  // findAccountByUser() {
+  //   let username = sessionStorage.getItem('username');
+  //   // console.log(username);
+  //   return this.httpClient.get<Account>(`${this.loginURL + '/findAccount'}?username=${username}`)
+  // }
 }

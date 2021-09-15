@@ -1,56 +1,54 @@
-<section class="vh-100" >
-  <div class="container py-5 h-100">
-    <div class="row d-flex align-items-center justify-content-center h-100">
-      <div class="col-md-8 col-lg-7 col-xl-6">
-        <img src="https://i.pinimg.com/originals/7a/a3/ad/7aa3adf8fb238ef6f5f56daaf3f81f9a.png" class="img-fluid" alt="Phone image">
-      </div>
-      <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-        <form (ngSubmit)="checkLogin()" [formGroup]="loginForm" >
-          <!-- Email input -->
-          <div class="form-outline mb-4">
-            <label class="form-label" for="form1Example13">Tên đăng nhập<span style="color: red">*</span></label>
-            <input type="text" id="form1Example13" class="form-control form-control-lg" name="username" formControlName="username"/>
-          </div>
-
-          <!-- Password input -->
-          <div class="form-outline mb-4">
-            <label class="form-label" for="form1Example23">Mật khẩu<span style="color: red">*</span></label>
-            <input type="password" id="form1Example23" class="form-control form-control-lg" name="password" formControlName="password"/>
-          </div>
-          <p *ngIf="loginForm.get('username').touched && loginForm.get('username').invalid" class="text-danger">
-            Tên đăng nhập không đúng. Vui lòng kiểm tra lại
-          </p>
-          <p *ngIf="loginForm.get('password').touched && loginForm.get('password').invalid" class="text-danger">
-            Mật khẩu không đúng. Vui lòng kiểm tra lại
-          </p>
-          <div class="d-flex justify-content-around align-items-center mb-4">
-            <!-- Checkbox -->
-            <div class="form-check">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="form1Example3"
-              />
-              <label class="form-check-label" for="form1Example3"> Nhớ mật khẩu </label>
+<div class="container-fluid">
+  <section class="vh-100">
+    <div class="container py-5 h-100">
+      <div class="row d-flex align-items-center justify-content-center h-100">
+        <!--        <div class="col-md-8 col-lg-7 col-xl-6">-->
+        <!--          <img src="https://i.pinimg.com/originals/7a/a3/ad/7aa3adf8fb238ef6f5f56daaf3f81f9a.png" class="img-fluid"-->
+        <!--               alt="Phone image">-->
+        <!--        </div>-->
+        <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1" id="login-form">
+          <form (ngSubmit)="checkLogin()" [formGroup]="loginForm" style="margin-top: 20px">
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+              <label class="form-label" for="form1Example13">Tên đăng nhập</label>
+              <input type="text" id="form1Example13" class="form-control form-control-lg" name="username"
+                     formControlName="username"/>
             </div>
-            <a href="#!">Quên mật khẩu?</a>
-          </div>
 
-          <!-- Submit button -->
-          <button type="submit" class="btn btn-primary btn-lg btn-block" (click)=checkLogin()>Đăng nhập</button>
+            <!-- Password input -->
+            <div class="form-outline mb-4">
+              <label class="form-label" for="form1Example23">Mật khẩu</label>
+              <input type="password" id="form1Example23" class="form-control form-control-lg" name="password"
+                     formControlName="password"/>
+            </div>
+            <p *ngIf="submitted && (loginForm.get('username').invalid || loginForm.get('password').invalid)" class="text-danger">
+              Tài khoản hoặc mật khẩu không đúng. Vui lòng kiểm tra lại
+            </p>
+            <div class="d-flex justify-content-around align-items-center mb-4">
+              <!-- Checkbox -->
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="form1Example3"/>
+                <label class="form-check-label" for="form1Example3"> Nhớ mật khẩu </label>
+              </div>
+              <a href="#!">Quên mật khẩu?</a>
+            </div>
 
-          <div class="divider d-flex align-items-center my-4">
-            <p class="text-center fw-bold mx-3 mb-0 text-muted">hoặc</p>
-          </div>
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-primary btn-lg btn-block" (click)=checkLogin()>Đăng nhập</button>
 
-          <a class="btn btn-primary btn-lg btn-block" style="background-color: #3b5998" href="#!" role="button">
-            <i class="fa fa-facebook" aria-hidden="true"></i> Đăng nhập với Facebook
-          </a>
-          <a class="btn btn-danger btn-lg btn-block" style="background-color: #e60000" href="#!" role="button">
-            <i class="fa fa-google" aria-hidden="true"></i> Đăng nhập với Google</a>
-        </form>
+            <div class="divider d-flex align-items-center my-4">
+              <p class="text-center fw-bold mx-3 mb-0 text-muted">hoặc</p>
+            </div>
+            <!--Button Facebook-->
+            <a class="btn btn-primary btn-lg btn-block" style="background-color: #3b5998" href="#!" role="button">
+              <i class="fa fa-facebook" aria-hidden="true"></i> Đăng nhập với Facebook
+            </a>
+            <!--Button Google-->
+            <a class="btn btn-danger btn-lg btn-block" style="background-color: #e60000" href="#!" role="button">
+              <i class="fa fa-google" aria-hidden="true"></i> Đăng nhập với Google</a>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+</div>
