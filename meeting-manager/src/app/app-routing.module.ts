@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {UpdateMeetingComponent} from './admin/meeting-room/update-meeting/update-meeting.component';
 import {ListMeetingComponent} from './client/employee/meeting/list-meeting/list-meeting.component';
+import {CreateMeetingComponent} from './admin/meeting-room/create-meeting/create-meeting.component';
 
 
 const routes: Routes = [

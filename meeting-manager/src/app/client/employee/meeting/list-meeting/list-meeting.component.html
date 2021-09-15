@@ -1,127 +1,143 @@
-<<div class="content">
-  <div class="container-fluid">
-    <!--      <h4 style="text-align: center; margin: 30px 0">-->
-    <!--        Danh sách phòng họp-->
-    <!--      </h4>-->
-    <div class="container">
-      <h3 id="title" style="text-align: center; margin-top: 50px">Danh sách phòng họp</h3>
+<div id="wrap">
+<!--  <section class="content">-->
+    <div class="container-fluid content_style">
+      <h1 id="title" >Danh sách phòng họp</h1>
+      <div class="card shadow">
+        <div class=" card-header" >
 
-      <div ><button class="btn btn-primary">Thêm phòng mới</button></div>
+          <div>
+            <a style="color: white;" class=" btn btn-primary" routerLink="createMeeting">
+              <i class="fa fa-plus-circle" aria-hidden="true"></i> Thêm Tài Khoản
+            </a>          </div>
 
-      <div class="row" style="margin-top: 20px">
-        <div class="col-lg-3 input-group">
-          <label class="input-group-text" for="nameRoom">Tên phòng</label>
-          <input type="text" class="form-control" id="nameRoom">
-        </div>
+          <div class="row" style="margin-top: 20px">
+            <div class="col-lg-3 input-group">
+              <label class="input-group-text" for="nameRoom">Tên phòng</label>
+              <input type="text" class="form-control" id="nameRoom" aria-label="Search"  placeholder="Nhập tên phòng" [(ngModel)]="nameMeeting">
+            </div>
 
-        <div class="col-sm-3 ">
-          <div class="input-group">
-            <label class="input-group-text" for="startDate">Tầng </label>
-            <input class="form-control" id="startDate" name="startDate"  type="text"/>
+            <div class="col-sm-3 ">
+              <div class="input-group">
+                <label class="input-group-text" for="startDate">Tầng  </label>
+                <input class="form-control" id="startDate" name="startDate" type="text" placeholder="Nhập tầng" [(ngModel)]="floors"/>
+              </div>
+            </div>
+
+            <div class="col-sm-3 ">
+              <div class="input-group">
+                <label class="input-group-text" for="area">Khu vực </label>
+                <select class="custom-select" id="area" [(ngModel)]="area_id">
+                  <option selected [ngValue]="null">Chọn</option>
+                  <option *ngFor="let items of areaList" [ngValue]="items.id">{{items.name}}</option>
+                </select>
+              </div>
+            </div>
           </div>
-        </div>
+          <br>
+          <div class="row">
+            <div class="col-lg-3 input-group">
+              <label class="input-group-text" for="inputGroupSelect01">Trạng thái</label>
+              <select class="custom-select" id="inputGroupSelect01" [(ngModel)]="room_status_id">
+                <option selected [ngValue]="null">Chọn</option>
+                <option *ngFor="let items of statusRoomList" [ngValue]="items.id">{{items.name}}</option>
 
-        <div class="col-sm-3 ">
-          <div class="input-group">
-            <label class="input-group-text" for="endDate">Khu vực </label>
-            <select class="custom-select" id="endDate">
-              <option selected>Chọn</option>
-              <option value="A">A</option>
-              <option value="B">B</option>
-              <option value="C">C</option>
-              <option value="D">D</option>
-            </select>
+
+              </select>
+            </div>
+
+            <div class="col-sm-3 input-group">
+              <label class="input-group-text" for="inputGroupSelect02">Loại phòng</label>
+              <select class="custom-select" id="inputGroupSelect02" [(ngModel)]="type_meeting_room_id">
+                <option selected [ngValue]="null">Chọn</option>
+                <option *ngFor="let items of typeMeetingRoomList" [ngValue]="items.id">{{items.name}}</option>
+              </select>
+            </div>
+
+            <div class="col-sm-3 input-group">
+              <label class="input-group-text" for="capacity">Sức chứa</label>
+              <select class="custom-select" id="capacity" [(ngModel)]="capacity">
+                <option selected [ngValue]="null">Chọn</option>
+                <option *ngFor="let items of typeMeetingRoomList" [ngValue]="items.capacity">{{items.capacity}}</option>
+              </select>
+            </div>
+
+            <div class="row justify-content-center">
+              <button type="submit" class="btn btn-primary" style="width: 100px; margin: 0 50px" (click)="search()">
+                <div class="row justify-content-center">
+                  <span class="material-icons">search</span>Tìm kiếm
+                </div>
+              </button>
+            </div>
+
+
+
+<!--          <div class="col-4 input-group mt-auto mb-auto">-->
+<!--            <input type="search" class="form-control" placeholder="Tìm kiếm">-->
+<!--            <div class="input-group-append">-->
+<!--              <button type="submit" class="btn btn-default">-->
+<!--                <i style="font-size: 20px" class="fa fa-search" aria-hidden="true"></i>-->
+<!--              </button>-->
+<!--            </div>-->
+<!--          </div>-->
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-hover" width="100%" cellspacing="0">
+              <thead class="thead-dark">
+              <tr>
+                <th scope="col">STT</th>
+                <th scope="col">Tên phòng</th>
+                <th scope="col">Tầng</th>
+                <th scope="col">Khu vực</th>
+                <th scope="col">Trạng thái</th>
+                <th scope="col">Loại phòng</th>
+                <th scope="col">Sức chứa</th>
+                <th class="text-center" colspan="3">Hành Động</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let meetingRoom of meetingRoomList | paginate: {itemsPerPage:3, currentPage: page}; let i = index"
+                class="col-lg-4 border text-center mt-4 p-1">
+
+                <td class="text-center"> {{i + 1}}</td>
+                <td class="text-left">{{meetingRoom.name}}</td>
+                <td class="text-left">{{meetingRoom.floors }}</td>
+                <td class="text-left">{{meetingRoom.area.name |titlecase}}</td>
+                <td class="text-left">{{meetingRoom.roomStatus.name}}</td>
+                <td class="text-left">{{meetingRoom.typeMeetingRoom.name}}</td>
+                <td class="text-left">{{meetingRoom.typeMeetingRoom.capacity}}</td>
+                <td class="text-center">
+                  <a href="#myModal" class="trigger-btn" data-toggle="modal" data-target="#myModal">
+                      <span class="material-icons" (click)="openDialogDelete(meetingRoom.id)">
+                        <i style="font-size: 20px; color: red" class="fa fa-trash" aria-hidden="true"></i>
+                      </span>
+                  </a>
+                </td>
+                <td class="text-center">
+                  <a routerLink="/update/{{meetingRoom.id}}">
+                      <span class="material-icons">
+                        <i style="font-size: 20px; color: #17a2b8" class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                      </span>
+                  </a>
+                </td>
+                <td class="text-center"><a href="detailAccount.html" >
+                  <i style="font-size: 20px;" class="fa fa-info-circle" aria-hidden="true"></i>
+                </a>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+
+          </div>
+          <div class="d-flex flex-row justify-content-center ">
+            <nav aria-label="Page navigation example">
+              <div>
+                <pagination-controls (pageChange)="page = $event" style="text-align: center " previousLabel="Trước" nextLabel="Tiếp"></pagination-controls>
+              </div>
+            </nav>
           </div>
         </div>
       </div>
-      <br>
-      <div class="row">
-        <div class="col-lg-3 input-group">
-          <label class="input-group-text" for="inputGroupSelect01">Trạng thái</label>
-          <select class="custom-select" id="inputGroupSelect01">
-            <option selected>Chọn</option>
-            <option value="đang được sử dụng">Đang được sử dụng</option>
-            <option value="chưa được sử dụng">Chưa được sử dụng</option>
-
-          </select>
-        </div>
-
-        <div class="col-sm-3 input-group">
-          <label class="input-group-text" for="inputGroupSelect02">Loại phòng</label>
-          <select class="custom-select" id="inputGroupSelect02">
-            <option selected>Chọn</option>
-            <option value="hàng tuần">Hàng tuần</option>
-            <option value="hàng tháng">Hàng tháng</option>
-            <option value="ngày">Ngày</option>
-            <option value="1 lần">1 lần</option>
-          </select>
-        </div>
-
-        <div class="col-sm-3 ">
-          <div class="input-group">
-            <label class="input-group-text" for="dateRegister">Sức chứa </label>
-            <input class="form-control" id="dateRegister" name="dateRegister" type="text"/>
-          </div>
-        </div>
-
-        <div class="col-sm-3 justify-content-center">
-          <button class="btn btn-primary">Tìm kiếm</button>
-        </div>
-
-      </div>
-      <!--        <br>-->
-      <!--        <div class="row justify-content-center">-->
-      <!--          <button class="btn btn-primary">Tìm kiếm</button>-->
-      <!--        </div>-->
     </div>
-  </div>
-  <div>
-    <br>
-    <br>
-  </div>
-  <div>
-    <div>
-      <table class="table table-hover">
-        <thead class="thead-dark">
-        <tr>
-          <th scope="col">STT</th>
-          <th scope="col">Tên phòng</th>
-          <th scope="col">Tầng</th>
-          <th scope="col">Khu vực</th>
-          <th scope="col">Trạng thái</th>
-          <th scope="col">Loại phòng</th>
-          <th scope="col">Sức chứa</th>
-          <th scope="col">Chi tiết</th>
-          <th scope="col">Sửa</th>
-          <th scope="col">Xóa</th>
-        </tr>
-        </thead>
-        <tbody class="table-active">
-        <tr *ngFor="let meetingRoom of meetingRoomList | paginate: {itemsPerPage:2, currentPage: page}; let i = index" class="col-lg-4 border text-center mt-4 p-1">
-          <td>{{i + 1}}</td>
-          <td>{{meetingRoom.name}}</td>
-          <td>{{meetingRoom.floors }}</td>
-          <td>{{meetingRoom.area.name |titlecase}}</td>
-          <td>{{meetingRoom.roomStatus.name}}</td>
-          <td>{{meetingRoom.typeMeetingRoom.name}}</td>
-          <td>{{meetingRoom.typeMeetingRoom.capacity}}</td>
-          <td><button class="btn btn-info" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
-            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
-            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
-          </svg></button></td>
-          <td><button class="btn btn-warning" routerLink="/update/{{meetingRoom.id}}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
-            <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
-          </svg></button></td>
-          <td><button class="btn btn-danger" (click)="openDialogDelete(meetingRoom.id)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
-            <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
-          </svg></button></td>
-        </tr>
-        </tbody>
-      </table>
-      <div>
-        <pagination-controls (pageChange)="page = $event" style="text-align: end"></pagination-controls>
-      </div>
-    </div>
-  </div>
+<!--  </section>-->
 </div>
-

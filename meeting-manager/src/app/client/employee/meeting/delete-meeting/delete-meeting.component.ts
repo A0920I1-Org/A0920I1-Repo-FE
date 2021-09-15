@@ -2,6 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {MeetingRoomService} from '../../../../service/meeting-room.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-delete-meeting',
@@ -15,6 +16,7 @@ export class DeleteMeetingComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<DeleteMeetingComponent>,
+    private toastrService: ToastrService,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private meetingRoomService: MeetingRoomService,
     private snackBar: MatSnackBar
@@ -27,9 +29,9 @@ export class DeleteMeetingComponent implements OnInit {
 
   delete(){
     this.meetingRoomService.delete(this.idMeetingRoom).subscribe( data => {
-      console.log('Đã xóa');
+      this.toastrService.success('Bạn đã xóa thành công!');
       this.dialogRef.close();
-      this.snackBar.open('Đã xóa thành công!', 'Oke');
+      // this.snackBar.open('Đã xóa thành công!', 'Oke',{duration: 2000});
     });
   }
 }
