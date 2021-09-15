@@ -4,9 +4,13 @@ img{
   height: 350px;
 }
 #content{
-  font-size: 14px;
+  font-size: 16px;
 }
 #wrap{
   padding: 50px 50px 50px 50px;
   background-image: url("https://img4.thuthuatphanmem.vn/uploads/2020/05/12/hinh-anh-xam-khoi_103624490.jpg");
 }
+button{
+  border-radius: 10px;
+}
+

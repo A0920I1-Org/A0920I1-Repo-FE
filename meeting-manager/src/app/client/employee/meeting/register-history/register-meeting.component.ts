@@ -63,16 +63,16 @@ export class RegisterMeetingComponent implements OnInit {
     );
     // đưa tham số account id vào getRegisterHistory
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
-      this.idAccount = (paramMap.get('idAccount'));
-      console.log(this.idAccount);
-      if (this.idAccount != null){
-        this.registerHistoryService.getRegisterHistory(this.idAccount).subscribe(
-          (data) => {
-            console.log(data);
-            this.registerHistory = data;
-          }
-        );
-      }
+        this.idAccount = (paramMap.get('idAccount'));
+        console.log(this.idAccount);
+        if (this.idAccount != null) {
+          this.registerHistoryService.getRegisterHistory(this.idAccount).subscribe(
+            (data) => {
+              console.log(data);
+              this.registerHistory = data;
+            }
+          );
+        }
       }
     );
     this.findRegisterHistoryForm = new FormGroup({
@@ -99,12 +99,16 @@ export class RegisterMeetingComponent implements OnInit {
 
   onSubmit(findRegisterHistory: FormGroup) {
     console.log(findRegisterHistory.value);
-    this.registerHistoryService.searchRegistration(findRegisterHistory.value).subscribe(
-      (data) => {
-        console.log(data);
-        this.registerHistory = data;
-      }
-    );
+    // if (findRegisterHistory.value === null) {
+    //   console.log(null);
+    // } else {
+      this.registerHistoryService.searchRegistration(findRegisterHistory.value).subscribe(
+        (data) => {
+          console.log(data);
+          this.registerHistory = data;
+        }
+      );
+    // }
   }
 
   checkIsDelete(idOrder: any) {
@@ -122,5 +126,9 @@ export class RegisterMeetingComponent implements OnInit {
         }
       }
     );
+  }
+
+  resetInput() {
+    this.findRegisterHistoryForm.reset();
   }
 }

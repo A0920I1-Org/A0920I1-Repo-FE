@@ -55,13 +55,19 @@
         </div>
       </div>
       <br>
+
       <div class="row justify-content-center">
-        <button type="submit" class="btn btn-primary" style="width: 100px">
-          <div class="row justify-content-center">
-        <span class="material-icons">search</span>Tìm kiếm
-          </div>
-        </button>
+
+          <button type="submit" class="btn btn-primary" style="width: 100px">
+            <div class="row justify-content-center">
+              <span class="material-icons">search</span>Tìm kiếm
+            </div>
+          </button>
       </div>
+      <div class="row float-right">
+        <a (click)="resetInput()" class="link-secondary">Clear all</a>
+      </div>
+
     </form>
   </div>
 

@@ -6,6 +6,9 @@ label {
   display: grid;
 
 }
+button{
+  border-radius: 10px;
+}
 
 #result {
   margin-top: 50px;
