@@ -27,7 +27,7 @@ export class AuthenticationService {
     );
   }
 
-  // kiem tra da login hay chua - [TuHC]
+  // kiem tra da login hay chua - [TuHC  ]
   isUserLoggedIn() {
     const token = sessionStorage.getItem('token');
     if(token) {
