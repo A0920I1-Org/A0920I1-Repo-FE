@@ -1,6 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {EquipmentManagerService} from '../../../service/equipment-manager.service';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-delete-equipment',
@@ -13,7 +15,8 @@ export class DeleteEquipmentComponent implements OnInit {
 
   constructor(private equipmentManagerService: EquipmentManagerService,
               public dialogRef: MatDialogRef<DeleteEquipmentComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any) {
+              @Inject(MAT_DIALOG_DATA) public data: any,
+              private toastrService: ToastrService) {
   }
 
   ngOnInit(): void {
@@ -23,6 +26,9 @@ export class DeleteEquipmentComponent implements OnInit {
   deleteEquipment() {
     this.equipmentManagerService.deleteEquipment(this.idEquipment).subscribe((data) => {
       this.dialogRef.close();
+      // this._snackBar.open('Bạn đã xóa thành công!', 'OK');
+      this.toastrService.success('Bạn đã xóa thành công!','Thông báo')
+
     });
   }
 

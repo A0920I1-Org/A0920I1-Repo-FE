@@ -11,10 +11,11 @@ export class OrderEquipmentServiceService {
   private readonly API_ORDER_EQUIPMENT = 'http://localhost:8080/api';
 
   constructor(private httpClient: HttpClient) { }
-  getAllOrderEquipment(): Observable<OrderEquipment[]>{
+
+  getAllOrderEquipment(idEquipment: number): Observable<OrderEquipment[]>{
     return this.httpClient.get<OrderEquipment[]>(this.API_ORDER_EQUIPMENT + '/order-equipment');
   }
-  getByOrderEquipment(id: number): Observable<OrderEquipment>{
-    return this.httpClient.get<OrderEquipment>(this.API_ORDER_EQUIPMENT + '/byOrder-equipment/' + id);
+  getByOrderEquipment(id: number): Observable<OrderEquipment[]>{
+    return this.httpClient.get<OrderEquipment[]>(this.API_ORDER_EQUIPMENT + '/byOrder-equipment/+id');
   }
 }

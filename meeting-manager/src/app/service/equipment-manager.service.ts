@@ -10,26 +10,28 @@ export class EquipmentManagerService {
   private readonly API_EQUIPMENT = 'http://localhost:8080/api';
   constructor(private httpClient: HttpClient) {
   }
+  //listEquipment- PhapNT
   getAllEquipment(): Observable<Equipment[]>{
     return this.httpClient.get<Equipment[]>(this.API_EQUIPMENT + '/list-equipment');
   }
+  //addEquipment - PhapNT
   addNewEquipment(equipment: Equipment): Observable<void>{
     return this.httpClient.post<void>(this.API_EQUIPMENT + '/create-equipment', equipment );
   }
-
+//findId - PhapNT
   findById(id: number): Observable<Equipment>{
     return this.httpClient.get<Equipment>(this.API_EQUIPMENT + '/findById/' + id);
   }
+  //updateEquipment - PhapNT
   updateEquipment(equipment: Equipment): Observable<void>{
     return this.httpClient.put<void>(this.API_EQUIPMENT + '/update-equipment/' + equipment.id, equipment);
   }
+  //deleteEquipment - PhapNT
   deleteEquipment(id: number){
     return this.httpClient.delete(this.API_EQUIPMENT + '/delete-equipment/' + id);
   }
-  searchAllName(keyword, keyword2){
-    return this.httpClient.get(this.API_EQUIPMENT + '?name_like=' + keyword + '$equipment.name' + keyword2);
-  }
+ //searchName - PhapNT
   findByName(nameSearch: string): Observable<Equipment[]>{
-    return this.httpClient.get<Equipment[]>(this.API_EQUIPMENT + '?name_like=' + nameSearch);
+    return this.httpClient.get<Equipment[]>(this.API_EQUIPMENT + '/searchNameEquipment?name=' + nameSearch);
   }
 }

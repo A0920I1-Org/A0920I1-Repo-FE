@@ -13,8 +13,7 @@ import {OrderEquipment} from '../../../model/OrderEquipment';
 export class DetailEquipmentComponent implements OnInit {
   idEquipment: number;
   equipmentDetail: Equipment;
-  orderEquipment: OrderEquipment;
-  idOrder: number;
+  orderEquipment: OrderEquipment[];
 
   constructor(private equipmentManagerService: EquipmentManagerService, private orderEquipmentServiceService: OrderEquipmentServiceService,
 
@@ -22,7 +21,7 @@ export class DetailEquipmentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.orderEquipmentServiceService.getByOrderEquipment(this.idOrder).subscribe((data) => {
+    this.orderEquipmentServiceService.getAllOrderEquipment(this.idEquipment).subscribe((data) => {
         this.orderEquipment = data;
       }
     );
@@ -34,13 +33,6 @@ export class DetailEquipmentComponent implements OnInit {
         console.log(data);
       });
     });
-    // this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
-    //   // tslint:disable-next-line:radix
-    //   this.idOrder = parseInt(paramMap.get('id'));
-    //   this.orderEquipmentServiceService.getByOrderEquipment(this.idOrder).subscribe((data) => {
-    //     this.orderEquipment = data;
-    //   });
-    // });
   }
   }
 

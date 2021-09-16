@@ -3,6 +3,7 @@ import {EquipmentManagerService} from '../../../service/equipment-manager.servic
 import {Equipment} from '../../../model/Equipment';
 import {MatDialog} from '@angular/material/dialog';
 import {DeleteEquipmentComponent} from '../delete-equipment/delete-equipment.component';
+import {ToastrService} from 'ngx-toastr';
 
 
 @Component({
@@ -12,8 +13,12 @@ import {DeleteEquipmentComponent} from '../delete-equipment/delete-equipment.com
 })
 export class ListEquipmentComponent implements OnInit {
   equipment: Equipment[];
+  nameEquipment: String;
+  page = 1;
+  totalPage: number;
 
-  constructor(private equipmentManagerService: EquipmentManagerService, private dialog: MatDialog) {
+  constructor(private equipmentManagerService: EquipmentManagerService, private dialog: MatDialog,
+              private toastrService: ToastrService) {
   }
 
   ngOnInit(): void {
@@ -39,5 +44,18 @@ export class ListEquipmentComponent implements OnInit {
     this.equipmentManagerService.deleteEquipment(id).subscribe((data) => {
       console.log( 'xóa thành công' );
     });
+  }
+  searchName(): void {
+    // @ts-ignore
+    this.equipmentManagerService.findByName(this.nameEquipment).subscribe(data => {
+        this.equipment = data;
+      this.page = 1;
+      });
+  }
+  paginate(page: number) {
+    if (page >= 0 && page < this.totalPage) {
+      this.page = page;
+      this.ngOnInit();
+    }
   }
 }

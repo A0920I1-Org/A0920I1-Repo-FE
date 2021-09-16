@@ -13,3 +13,21 @@
   text-align: right;
   top: 0;
 }
+#wrap {
+  padding: 50px 50px 50px 50px;
+  background-image: url("https://img4.thuthuatphanmem.vn/uploads/2020/05/12/hinh-anh-xam-khoi_103624490.jpg");
+}
+#toast-container > .toast-success {
+  background-image: none;
+  background-color: #e9e9e9;
+  color: black;
+}
+
+#toast-container > .toast-error {
+  background-image: none;
+  background-color: #e9e9e9;
+  color: red;
+}
+button{
+  border-radius: 10px;
+}

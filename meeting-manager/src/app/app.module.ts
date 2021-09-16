@@ -37,7 +37,9 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {environment} from '../environments/environment';
 import {AngularFireModule} from '@angular/fire';
-
+// @ts-ignore
+import { ToastrModule } from 'ngx-toastr';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -72,6 +74,7 @@ import {AngularFireModule} from '@angular/fire';
     HttpClientModule,
     NgxPaginationModule,
     MatDialogModule,
+    MatIconModule,
     MatButtonModule,
     BrowserAnimationsModule,
     MatDatepickerModule,
@@ -79,8 +82,12 @@ import {AngularFireModule} from '@angular/fire';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule, // firestore
     AngularFireAuthModule, // auth
-    AngularFireStorageModule
-    // storage
+    AngularFireStorageModule,
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: false,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]
