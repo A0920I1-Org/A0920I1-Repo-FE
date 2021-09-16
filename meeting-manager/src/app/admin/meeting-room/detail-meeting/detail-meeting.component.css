@@ -1,6 +1,4 @@
 .container > .row > .form-control {
-
-
   display: block;
   width: 100%;
   height: 100%;
@@ -10,3 +8,32 @@
   line-height: 1.5;
   color: #495057;
 }
+/*tiêu đề*/
+/*#wrap > .container-fluid > div.head> h4{*/
+/*  justify-content: center;*/
+/*  border-radius: 10px;*/
+/*  background: navy;*/
+/*  color: white;*/
+/*}*/
+#wrap{
+  padding: 50px;
+  background-image: url("https://img4.thuthuatphanmem.vn/uploads/2020/05/12/hinh-anh-xam-khoi_103624490.jpg");
+}
+
+div>.card-body{
+  background: cornsilk;
+}
+
+img[class="img-meeting"] {
+  width: 300px;
+  transition-property: all;
+
+}
+
+img[class="img-meeting"]:hover {
+  /*width: 400px;*/
+  transition: 0.5s;
+  width: 70%;
+  height: auto;
+}
+

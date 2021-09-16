@@ -17,6 +17,7 @@ export class ChooseEquipmentComponent implements OnInit {
 
   searchName: string;
   createOrderEquipment: any;
+  sl: number;
 
   constructor(
     private meetingService: MeetingRoomService,
@@ -28,13 +29,12 @@ export class ChooseEquipmentComponent implements OnInit {
     this.getEquipment();
 
     this.createOrderEquipment = this.form.group({
-      order: this.form.array([
-
-      ])
+      quantity: ['']
     })
 
   }
 
+  //HueHV tạo ngày 16/9/2021, chức năng đóng Dialog
   closeDialog(){
     this.dialog.closeAll();
   }
@@ -44,13 +44,16 @@ export class ChooseEquipmentComponent implements OnInit {
 
   }
 
-  searchByNameEquipment($event){
-    this.meetingService.searchEquipmentByName($event.target.files[0]).subscribe((data) => {
+  //HueHV tạo ngày 16/9/2021, chức năng tìm kiếm tài sản theo tên
+  searchByNameEquipment(){
+    console.log(this.searchName)
+    this.meetingService.searchEquipmentByName(this.searchName).subscribe((data) => {
       this.equipmentList =  data;
+      console.log(data)
     });
-    this.ngOnInit();
   }
 
+  //HueHV tạo ngày 16/9/2021, chức năng hiển thị danh sách tài sản
   getEquipment(){
     this.meetingService.getEquipment().subscribe((data) => {
       this.equipmentList = data;
@@ -58,4 +61,13 @@ export class ChooseEquipmentComponent implements OnInit {
     })
   }
 
+  listOrder: any[];
+  add(id: number) {
+    const quantity = document.getElementById("quantity");
+    console.log(id);
+    console.log(quantity);
+
+    this.listOrder.push(id, quantity);
+    console.log(this.listOrder)
+  }
 }

@@ -1,120 +1,170 @@
 <div id="wrap">
-  <div class="container">
-    <h4 style="text-align: center; margin: 40px 0">
-      Thêm phòng họp mới
-    </h4>
-    <form class="form-control" [formGroup]="createMeetingRoom" (ngSubmit)="onSubmit()">
-      <div class="row">
-        <div class="col-md-8">
-          <div class="form-group row">
-            <label for="inputNameRoom" class="col-sm-3 col-md-3 col-form-label input-group-text"
-                   style="margin: 0 5px">
-              Tên phòng (<span style="color: red">*</span>)
-            </label>
-            <div class="col-sm-5">
-              <input type="text" class="form-control" id="inputNameRoom" maxlength="30"
-                     formControlName="name" placeholder="nhập tên phòng...">
-            </div>
-            <div class="text-danger" *ngFor="let validation of validation_messages.name">
-              <div class="error-message" style="padding: 0 150px"
-                   *ngIf="createMeetingRoom.get('name').hasError(validation.type) && (createMeetingRoom.get('name').dirty || createMeetingRoom.get('name').touched)">
-                {{validation.message}}</div>
-            </div>
+    <div class="content">
+      <section class="content" style="font-family: 'Poppins', sans-serif;">
+        <div class="container-fluid">
 
-          </div>
+          <!-- Create new user account -->
+          <form [formGroup]="createMeetingRoom" (ngSubmit)="onSubmit()">
+          <div class="row content_style">
+            <div class="col-md-3">
+              <div class="card card-user">
+                <div class="card-body">
+                  <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                    <div class="fileinput-new thumbnail img-raised">
+                      <img [src]="getImageUrl()" style="width: 100%;" alt="..." rel="nofollow">
+                    </div>
+                    <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
+                    <div>
+                      <span style="margin-top: 20px" class="btn btn-info btn-round btn-default btn-file btn__upload-custom">
+                        <span class="fileinput-new">Chọn ảnh</span>
+                        <input type="file" accept=".jpg,.jpeg,.png" name="..." (change)="showImage($event)" />
+                      </span>
+                      <ng-container *ngFor="let validation of validation_messages.imageUrl">
+                        <small class="form-text text-danger"
+                               *ngIf="createMeetingRoom.get('imageUrl').hasError(validation.type)&& (createMeetingRoom.get('imageUrl').touched || createMeetingRoom.get('imageUrl').dirty)">
+                          {{validation.message}}
+                        </small>
+                      </ng-container>
+                    </div>
 
-          <div class="form-group row">
-            <label for="inputFloor" class="col-sm-3 col-md-3 col-form-label input-group-text"
-                   style="margin: 0 5px">Tầng (<span style="color: red">*</span>)
-            </label>
-            <div class="col-sm-5">
-              <input type="number" class="form-control" id="inputFloor" maxlength="10"
-                     formControlName="floors" placeholder="nhập số tầng...">
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="text-danger" *ngFor="let validation of validation_messages.floors">
-              <div class="error-message" style="padding: 0 150px"
-                   *ngIf="createMeetingRoom.get('floors').hasError(validation.type) && (createMeetingRoom.get('floors').dirty || createMeetingRoom.get('floors').touched)">
-                {{validation.message}}</div>
+            <!--End table information-->
+
+            <div class="col-md-9">
+              <div class="card-user">
+                <div class="card-header card-background-color ">
+                  <h4><b>Tạo Mới phòng họp</b></h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-12 pr-1">
+                        <div class="form-group">
+                          <label for="inputNameRoom">Tên phòng  <span class="infomation__required" style="color: red">*</span></label>
+                          <input id="inputNameRoom" type="text" class="form-control" placeholder="nhập tên phòng" maxlength="50" minlength="4" formControlName="name">
+                          <ng-container *ngFor="let validation of validation_messages.name">
+                            <small class="form-text text-danger"
+                                   *ngIf="createMeetingRoom.get('name').hasError(validation.type) && (createMeetingRoom.get('name').touched || createMeetingRoom.get('name').dirty)">
+                              {{validation.message}}
+                            </small>
+                          </ng-container>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12 pr-1">
+                        <div class="form-group">
+                          <label for="inputFloors">Tầng  <span class="infomation__required" style="color: red">*</span></label>
+                          <input id="inputFloors" type="number" class="form-control" placeholder="nhập số tầng" maxlength="10" minlength="1" formControlName="floors">
+                          <ng-container *ngFor="let validation of validation_messages.floors">
+                            <small class="form-text text-danger"
+                                   *ngIf="createMeetingRoom.get('floors').hasError(validation.type)&&(createMeetingRoom.get('floors').dirty || createMeetingRoom.get('floors').touched)">
+                              {{validation.message}}
+                            </small>
+                          </ng-container>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label>Khu vực  <span class="infomation__required" style="color: red">*</span></label>
+                          <select class="form-control" formControlName="area">
+                            <option selected>Chọn khu vực</option>
+                            <ng-container *ngFor="let area of areaList">
+                              <option [ngValue]="area.id"> {{area.name}}</option>
+                            </ng-container>
+                          </select>
+                          <ng-container *ngFor="let validation of validation_messages.areaDto">
+                            <small class="form-text text-danger"
+                                   *ngIf="createMeetingRoom.get('area').hasError(validation.type)&& (createMeetingRoom.get('area').touched || createMeetingRoom.get('area').dirty)">
+                              {{validation.message}}
+                            </small>
+                          </ng-container>
+                        </div>
+
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6 pr-1">
+                        <div class="form-group">
+                          <label >Trạng thái  <span class="infomation__required" style="color: red">*</span></label>
+                          <select class="form-control"  formControlName="roomStatus">
+                            <option selected>Chọn trạng thái</option>
+                            <ng-container *ngFor="let status of statusRoomList">
+                              <option [ngValue]="status.id"> {{status.name}}</option>
+                            </ng-container>
+                          </select>
+                          <ng-container *ngFor="let validation of validation_messages.roomStatusDto">
+                            <small class="form-text text-danger"
+                                   *ngIf="createMeetingRoom.get('roomStatus').hasError(validation.type)&& (createMeetingRoom.get('roomStatus').touched || createMeetingRoom.get('roomStatus').dirty)">
+                              {{validation.message}}
+                            </small>
+                          </ng-container>
+                        </div>
+
+                      </div>
+                      <div class="col-md-6 pr-1">
+                        <div class="form-group">
+                          <label>Loại phòng  <span class="infomation__required" style="color: red">*</span></label>
+                          <select class="form-control" id="role" formControlName="typeMeetingRoom">
+                            <option selected>Chọn loại phòng</option>
+                            <ng-container *ngFor="let typeMeeeting of typeMeetingRoom">
+                              <option [ngValue]="typeMeeeting.id"> {{typeMeeeting.name}}</option>
+                            </ng-container>
+                          </select>
+                          <ng-container *ngFor="let validation of validation_messages.typeMeetingRoomDto">
+                          <small class="form-text text-danger"
+                                 *ngIf="createMeetingRoom.get('typeMeetingRoom').hasError(validation.type)&& (createMeetingRoom.get('typeMeetingRoom').touched || createMeetingRoom.get('typeMeetingRoom').dirty)">
+                            {{validation.message}}
+                          </small>
+                        </ng-container>
+                        </div>
+
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6 pr-1">
+                        <div class="row ">
+                          <label class="col-6 " >Chọn tài sản <span class="infomation__required" style="color: red">*</span></label>
+                          <button class="btn btn-light" style="background: #e9ecef; margin-bottom: 40px; margin-left: 20px" (click)="openDialogEquipment()">
+                                        Chọn
+                          </button>
+                        </div>
+                        <ng-container *ngFor="let validation of validation_messages.equipment">
+<!--                          <small class="form-text text-danger"-->
+<!--                                 *ngIf="createMeetingRoom.get('email').hasError(validation.type)&& createMeetingRoom.get('email').touched">-->
+<!--                            {{validation.message}}-->
+<!--                          </small>-->
+                        </ng-container>
+                      </div>
+
+                    </div>
+                    <div class="row justify-content-between">
+                      <div class="row">
+                        <div class="">
+                          <button class="btn btn-info" style="margin: 0 30px;border-radius: 10px" [routerLink]="['']">Quay Lại
+                          </button>
+                        </div>
+                        <div class="">
+                          <button type="submit"  class="btn btn-secondary" style="margin: 0 30px; border-radius: 10px">Thêm Mới
+                          </button>
+                        </div>
+                        <div class="">
+                          <button type="reset" class="btn btn-danger" style="margin: 0 30px; border-radius: 10px">Xoá hết thông tin
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                </div>
+              </div>
             </div>
           </div>
-          <div class="form-group row">
-            <label for="inputNameRoom" class="col-sm-3 col-md-3 col-form-label input-group-text"
-                   style="margin: 0 5px">
-              Khu vực (<span style="color: red">*</span>)</label>
-            <div class="col-sm-5">
-              <select class="custom-select" formControlName="areaDto">
-                <option *ngFor="let items of areaList" [ngValue]="items.id">{{items.name}}</option>
-              </select>
-            </div>
-            <div class="text-danger" *ngFor="let validation of validation_messages.areaDto">
-              <div class="error-message" style="padding: 0 150px"
-                   *ngIf="createMeetingRoom.get('areaDto').hasError(validation.type) && (createMeetingRoom.get('areaDto').dirty || createMeetingRoom.get('areaDto').touched)">
-                {{validation.message}}</div>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-sm-3 col-md-3 col-form-label input-group-text" style="margin: 0 5px">Loại
-              phòng (<span style="color: red">*</span>)</label>
-            <div class="col-sm-5">
-              <select class="custom-select" formControlName="typeMeetingRoomDto">
-                <option *ngFor="let items of typeMeetingRoom" [ngValue]="items.id">{{items.name}}</option>
-              </select>
-            </div>
-            <div class="text-danger" *ngFor="let validation of validation_messages.typeMeetingRoomDto">
-              <div class="error-message" style="padding: 0 150px"
-                   *ngIf="createMeetingRoom.get('typeMeetingRoomDto').hasError(validation.type) && (createMeetingRoom.get('typeMeetingRoomDto').dirty || createMeetingRoom.get('typeMeetingRoomDto').touched)">
-                {{validation.message}}</div>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-sm-3 col-md-3 col-form-label input-group-text"
-                   style="margin: 0 5px">Trạng thái (<span style="color: red">*</span>)</label>
-            <div class="col-sm-5">
-              <select class="custom-select" formControlName="roomStatusDto">
-                <option *ngFor="let items of statusRoomList" [ngValue]="items.id">{{items.name}}</option>
-              </select>
-          </div>
-            <div class="text-danger" *ngFor="let validation of validation_messages.roomStatusDto">
-              <div class="error-message" style="padding: 0 150px"
-                   *ngIf="createMeetingRoom.get('roomStatusDto').hasError(validation.type) && (createMeetingRoom.get('roomStatusDto').dirty || createMeetingRoom.get('roomStatusDto').touched)">
-                {{validation.message}}</div>
-            </div>
-          </div>
-          <button class="btn btn-light" style="background: #e9ecef" (click)="openDialogEquipment()">
-            Chọn tài sản (<span style="color: red">*</span>)
-          </button>
+          </form>
         </div>
-        <div class="col-md-4">
-          <div class="card card-user">
-            <div class="card-body">
-              <input type="file" class="form-control-file" (change)="showImage($event)">
-              <label>Chọn ảnh (<span style="color: red">*</span>)</label>
-            </div>
-          </div>
-<!--          <div class="text-danger" *ngFor="let validation of validation_messages.name">-->
-<!--            <div class="error-message" style="padding: 0 150px"-->
-<!--                 *ngIf="createMeetingRoom.get('name').hasError(validation.type) && (createMeetingRoom.get('name').dirty || createMeetingRoom.get('name').touched)">-->
-<!--              {{validation.message}}</div>-->
-<!--          </div>-->
-
-        </div>
-      </div>
-      <br>
-      <small>(có dấu (*) là bắt buộc nhập)</small>
-      <div class="row justify-content-center">
-        <button type="reset" class="btn btn-danger mr-5" style="border-radius: 10px">Xoá hết thông tin</button>
-        <button routerLink="" class="btn btn-primary" style="border-radius: 10px">Quay lại</button>
-<!--        <div class="row justify-content-center">-->
-          <button type="submit" class="btn btn-success" style="margin: 0 70px; border-radius: 10px">
-<!--                    <span class="material-icons" style="padding: 2px">add_circle</span>-->
-            Thêm
-          </button>
-<!--        </div>-->
-        <!--      <button type="submit" [disabled]="createMeetingRoom.invalid" class="btn btn-success" style="margin: 0 70px">Thêm</button>-->
-      </div>
-
-
-    </form>
-
-  </div>
+      </section>
+    </div>
 </div>

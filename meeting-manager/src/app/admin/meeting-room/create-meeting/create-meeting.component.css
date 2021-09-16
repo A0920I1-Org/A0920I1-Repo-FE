@@ -1,10 +1,4 @@
-.container > .form-control > .row > .col-md-8 > .row > span{
-  color: red;
-}
 
-.container > .form-control > .row > .col-md-8 > .row > small{
-  padding-left: 180px;
-}
 #wrap{
   padding: 50px;
   background-image: url("https://img4.thuthuatphanmem.vn/uploads/2020/05/12/hinh-anh-xam-khoi_103624490.jpg");
