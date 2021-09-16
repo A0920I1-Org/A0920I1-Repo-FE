@@ -21,7 +21,7 @@ import {DeleteMeetingComponent} from './client/employee/meeting/delete-meeting/d
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
-  {path: 'logout', component: LogoutComponent, canActivate:[AuthGuardService]},
+  {path: 'logout', component: LogoutComponent, canActivate:[AuthGuardService], data: {expectedRole: ['ROLE_ADMIN', 'ROLE_USER']}},
   {path: 'delete-employee', component: DeleteEmployeeComponent, canActivate:[AuthGuardService], data: {expectedRole: ['ROLE_ADMIN']}},
   {path: 'detail-employee', component: DetailEmployeeComponent, canActivate:[AuthGuardService]},
   {path: 'list-employee', component: ListEmployeeComponent, canActivate:[AuthGuardService]},

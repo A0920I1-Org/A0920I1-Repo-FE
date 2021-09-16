@@ -30,11 +30,14 @@ export class AuthenticationService {
   // kiem tra da login hay chua - [TuHC]
   isUserLoggedIn() {
     const token = sessionStorage.getItem('token');
-    // decode the token to get its payload
-    const tokenPayload = this.jwtHelper.decodeToken(token);
-    let user = tokenPayload.sub;
-    // console.log(!(user === null))
-    return !(user === null)
+    if(token) {
+      // decode the token to get its payload
+      const tokenPayload = this.jwtHelper.decodeToken(token);
+      let user = tokenPayload.sub;
+      // console.log(!(user === null))
+      return !(user === null)
+    }
+    return false;
   }
 
   //chuc nang logout - [TuHC]
@@ -50,11 +53,13 @@ export class AuthenticationService {
     let roleAdmin = tokenPayload.role;
     return (roleAdmin === 'ROLE_ADMIN');
   }
-  //
+
   // //lay account bang username - [TuHC]
-  // findAccountByUser() {
-  //   let username = sessionStorage.getItem('username');
-  //   // console.log(username);
-  //   return this.httpClient.get<Account>(`${this.loginURL + '/findAccount'}?username=${username}`)
-  // }
+  findAccountByUser() {
+    const token = sessionStorage.getItem('token');
+    const tokenPayload = this.jwtHelper.decodeToken(token);
+    let username = tokenPayload.user;
+    // console.log(username);
+    return this.httpClient.get<Account>(`${this.loginURL + '/findAccount'}?username=${username}`)
+  }
 }

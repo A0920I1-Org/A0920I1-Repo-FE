@@ -21,8 +21,9 @@
             <a routerLink="/login" class="" *ngIf="!authService.isUserLoggedIn()"><span
               class="mr-2 fa fa-sign-in"></span> <span
               class="d-none d-md-inline-block">Đăng Nhập</span></a>
-            <span class="mx-md-2 d-inline-block"></span> Xin chào, {{username}}
-              <a routerLink="/logout" class="" *ngIf="authService.isUserLoggedIn()"><span class="mr-2 bi fas fa-sign-in-alt"></span></a>
+            <span class="mx-md-2 d-inline-block"></span>
+
+            <a routerLink="/logout" class="" *ngIf="authService.isUserLoggedIn()">Đăng xuất<span class="mr-2 bi fas fa-sign-in-alt"></span></a>
           </div>
         </div>
       </div>
