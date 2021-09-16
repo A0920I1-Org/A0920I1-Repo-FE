@@ -6,7 +6,7 @@ import {AppComponent} from './app.component';
 
 import {RegisterMeetingComponent} from './client/employee/meeting/register-meeting/register-meeting.component';
 import {DeleteMeetingComponent} from './admin/meeting-room/delete-meeting/delete-meeting.component';
-import {ListMeetingComponent} from './admin/meeting-room/list-meeting/list-meeting.component';
+import {ListMeetingComponent} from './client/employee/meeting/list-meeting/list-meeting.component';
 import {CreateMeetingComponent} from './admin/meeting-room/create-meeting/create-meeting.component';
 import {UpdateMeetingComponent} from './admin/meeting-room/update-meeting/update-meeting.component';
 import {DetailMeetingComponent} from './admin/meeting-room/detail-meeting/detail-meeting.component';

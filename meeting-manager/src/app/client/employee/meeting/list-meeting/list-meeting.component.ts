@@ -1,15 +1,15 @@
 import {Component, OnInit} from '@angular/core';
-import {MeetingRoom} from '../../../model/MeetingRoom';
-import {MeetingRoomService} from '../../../service/meeting-room.service';
+import {MeetingRoom} from '../../../../model/MeetingRoom';
+import {MeetingRoomService} from '../../../../service/meeting-room.service';
 import {MatDialog} from '@angular/material/dialog';
-import {Area} from '../../../model/Area';
-import {TypeMeetingRoom} from '../../../model/TypeMeetingRoom';
-import {RoomStatus} from '../../../model/RoomStatus';
-import {TypeMeetingRoomService} from '../../../service/type-meeting-room.service';
-import {AreaMeetingRoomService} from '../../../service/area-meeting-room.service';
-import {StatusRoomService} from '../../../service/status-room.service';
+import {Area} from '../../../../model/Area';
+import {TypeMeetingRoom} from '../../../../model/TypeMeetingRoom';
+import {RoomStatus} from '../../../../model/RoomStatus';
+import {TypeMeetingRoomService} from '../../../../service/type-meeting-room.service';
+import {AreaMeetingRoomService} from '../../../../service/area-meeting-room.service';
+import {StatusRoomService} from '../../../../service/status-room.service';
 import {Router} from '@angular/router';
-import {DeleteMeetingComponent} from '../delete-meeting/delete-meeting.component';
+import {DeleteMeetingComponent} from '../../../../admin/meeting-room/delete-meeting/delete-meeting.component';
 
 @Component({
   selector: 'app-list-meeting',
