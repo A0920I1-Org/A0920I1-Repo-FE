@@ -12,6 +12,7 @@ export class AuthGuardService implements CanActivate{
   constructor(private router: Router, private authService: AuthenticationService, private jwtHelper: JwtHelperService) {
   }
 
+  //phan quyen - TuHC
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     // this will be passed from the route config
     // on the data property

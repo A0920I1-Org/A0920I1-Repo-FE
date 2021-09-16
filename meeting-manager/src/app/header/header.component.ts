@@ -13,6 +13,7 @@ export class HeaderComponent implements OnInit{
   account: Account;
   constructor(public authService: AuthenticationService) { }
 
+// - [TuHC]
   ngOnInit(): void {
     // if (this.authService.isUserLoggedIn()) {
     //   this.authService.findAccountByUser().subscribe(data =>{

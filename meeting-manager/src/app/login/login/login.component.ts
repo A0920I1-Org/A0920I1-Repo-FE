@@ -27,12 +27,12 @@ export class LoginComponent implements OnInit {
   checkLogin() {
     this.submitted = true;
 
-    //neu khong dung format du lieu thi ko gui request ve backend
+    //neu khong dung format du lieu thi ko gui request ve backend - [TuHC]
     if (this.loginForm.invalid) {
       return;
     }
 
-    //dung format du lieu, gui ve backend kiem tra username va password
+    //dung format du lieu, gui ve backend kiem tra username va password - [TuHC]
     this.authService.authenticate(this.loginForm.get('username').value, this.loginForm.get('password').value).subscribe(
       data => {
         this.router.navigateByUrl('/detail-meeting');

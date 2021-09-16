@@ -18,7 +18,7 @@ import {LogoutComponent} from './login/logout/logout.component';
 import {AuthGuardService} from './service/auth-guard.service';
 import {DeleteMeetingComponent} from './client/employee/meeting/delete-meeting/delete-meeting.component';
 
-
+//TuHC
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'logout', component: LogoutComponent, canActivate:[AuthGuardService], data: {expectedRole: ['ROLE_ADMIN', 'ROLE_USER']}},
