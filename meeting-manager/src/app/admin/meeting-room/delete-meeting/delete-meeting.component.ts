@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {MeetingRoomService} from '../../../../service/meeting-room.service';
+import {MeetingRoomService} from '../../../service/meeting-room.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {ToastrService} from 'ngx-toastr';
 
