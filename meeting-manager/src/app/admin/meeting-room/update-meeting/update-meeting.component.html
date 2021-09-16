@@ -20,7 +20,7 @@
                     <span style="margin-top: 20px"
                           class="btn btn-info btn-round btn-default btn-file btn__upload-custom">
                       <span class="fileinput-new">Upload</span>
-                      <input formControlName="imageUrl" type="file" name="..." (change)="showImage($event)"/>
+                      <input type="file" name="..." (change)="showImage($event)"/>
                     </span>
                   </div>
 
@@ -51,7 +51,7 @@
                     <div class="col-md-12 pr-1">
                       <div class="form-group">
                         <label>Tầng <span class="infomation__required">(*)</span></label>
-                        <input type="number" class="form-control" placeholder="floors" formControlName="floors">
+                        <input type="number" class="form-control" placeholder="Nhập tầng" formControlName="floors" min="1">
                         <small *ngIf="editMeetingRoom.get('floors').invalid && editMeetingRoom.get('floors').touched"
                                class="text-danger">Vui lòng nhập tầng!</small>
                       </div>
@@ -72,7 +72,7 @@
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label for="roomStatus">Trạng thái<span class="infomation__required">(*)</span></label>
-                        <select class="form-control" id="roomStatus" formControlName="typeMeetingRoom">
+                        <select class="form-control" id="roomStatus" formControlName="roomStatus">
                           <option *ngFor="let roomStatus of statusRoomList" [ngValue]="roomStatus.id"
                                   [selected]="roomStatus.name == editMeetingRoom.controls.roomStatus.value.name">{{roomStatus.name}}</option>
                         </select>

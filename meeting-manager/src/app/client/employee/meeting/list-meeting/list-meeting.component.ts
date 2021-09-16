@@ -83,6 +83,7 @@ export class ListMeetingComponent implements OnInit {
   search() {
     this.meetingRoomService.search(this.nameMeeting, this.floors, this.area_id, this.room_status_id, this.type_meeting_room_id, this.capacity).subscribe(data => {
       this.meetingRoomList = data;
+
       this.page = 1;
     });
   }

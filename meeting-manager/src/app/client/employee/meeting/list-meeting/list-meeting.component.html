@@ -7,8 +7,8 @@
 
           <div>
             <a style="color: white;" class=" btn btn-primary" routerLink="createMeeting">
-              <i class="fa fa-plus-circle" aria-hidden="true"></i> Thêm Tài Khoản
-            </a>          </div>
+              <i class="fa fa-plus-circle" aria-hidden="true"></i> Thêm Tài Khoản</a>
+          </div>
 
           <div class="row" style="margin-top: 20px">
             <div class="col-lg-3 input-group">
@@ -27,7 +27,7 @@
               <div class="input-group">
                 <label class="input-group-text" for="area">Khu vực </label>
                 <select class="custom-select" id="area" [(ngModel)]="area_id">
-                  <option selected [ngValue]="null">Chọn</option>
+                  <option selected [ngValue]="capacity">Chọn</option>
                   <option *ngFor="let items of areaList" [ngValue]="items.id">{{items.name}}</option>
                 </select>
               </div>
@@ -38,7 +38,7 @@
             <div class="col-lg-3 input-group">
               <label class="input-group-text" for="inputGroupSelect01">Trạng thái</label>
               <select class="custom-select" id="inputGroupSelect01" [(ngModel)]="room_status_id">
-                <option selected [ngValue]="null">Chọn</option>
+                <option selected [ngValue]="capacity">Chọn</option>
                 <option *ngFor="let items of statusRoomList" [ngValue]="items.id">{{items.name}}</option>
 
 
@@ -48,7 +48,7 @@
             <div class="col-sm-3 input-group">
               <label class="input-group-text" for="inputGroupSelect02">Loại phòng</label>
               <select class="custom-select" id="inputGroupSelect02" [(ngModel)]="type_meeting_room_id">
-                <option selected [ngValue]="null">Chọn</option>
+                <option selected [ngValue]="capacity">Chọn</option>
                 <option *ngFor="let items of typeMeetingRoomList" [ngValue]="items.id">{{items.name}}</option>
               </select>
             </div>
@@ -56,7 +56,7 @@
             <div class="col-sm-3 input-group">
               <label class="input-group-text" for="capacity">Sức chứa</label>
               <select class="custom-select" id="capacity" [(ngModel)]="capacity">
-                <option selected [ngValue]="null">Chọn</option>
+                <option selected [ngValue]="capacity">Chọn</option>
                 <option *ngFor="let items of typeMeetingRoomList" [ngValue]="items.capacity">{{items.capacity}}</option>
               </select>
             </div>
@@ -68,20 +68,9 @@
                 </div>
               </button>
             </div>
-
-
-
-<!--          <div class="col-4 input-group mt-auto mb-auto">-->
-<!--            <input type="search" class="form-control" placeholder="Tìm kiếm">-->
-<!--            <div class="input-group-append">-->
-<!--              <button type="submit" class="btn btn-default">-->
-<!--                <i style="font-size: 20px" class="fa fa-search" aria-hidden="true"></i>-->
-<!--              </button>-->
-<!--            </div>-->
-<!--          </div>-->
         </div>
         <div class="card-body">
-          <div class="table-responsive">
+          <div >
             <table class="table table-hover" width="100%" cellspacing="0">
               <thead class="thead-dark">
               <tr>
@@ -96,10 +85,10 @@
               </tr>
               </thead>
               <tbody>
-              <tr *ngFor="let meetingRoom of meetingRoomList | paginate: {itemsPerPage:3, currentPage: page}; let i = index"
+              <tr *ngFor="let meetingRoom of meetingRoomList | paginate: {itemsPerPage:10, currentPage: page}; let i = index"
                 class="col-lg-4 border text-center mt-4 p-1">
 
-                <td class="text-center"> {{i + 1}}</td>
+                <td class="text-left"> {{i + 1}}</td>
                 <td class="text-left">{{meetingRoom.name}}</td>
                 <td class="text-left">{{meetingRoom.floors }}</td>
                 <td class="text-left">{{meetingRoom.area.name |titlecase}}</td>
@@ -127,7 +116,6 @@
               </tr>
               </tbody>
             </table>
-
           </div>
           <div class="d-flex flex-row justify-content-center ">
             <nav aria-label="Page navigation example">

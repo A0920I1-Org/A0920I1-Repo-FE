@@ -97,12 +97,6 @@ export class UpdateMeetingComponent implements OnInit {
               });
             });
           });
-
-          //get meeting room
-          // this.meetingRoomService.getMeetingById(this.active.snapshot.params.id).subscribe(data => {
-          //   this.editMeetingRoom.setValue(data);
-          //   console.log(data);
-          // });
         });
       });
     });
