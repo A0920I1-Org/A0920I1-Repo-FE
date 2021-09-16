@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="53fcf3d1-ae3d-44d5-b238-28c65e490d7d" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1xqyS8zSPp9MItxu93WTy35Jo5Y" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/meeting-manager/src/app/admin/employee-manager/list-employee/employee-assets" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="ts.external.directory.path" value="E:\CODEGYM\a0720i1_ToThanhNam\A0920I1\FE\A0920I1-Repo-FE\meeting-manager\node_modules\typescript\lib" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\CODEGYM\a0720i1_ToThanhNam\A0920I1\FE\A0920I1-Repo-FE\meeting-manager\src\app\admin\employee-manager\list-employee\employee-assets" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\CODEGYM\a0720i1_ToThanhNam\A0920I1\FE\A0920I1-Repo-FE\meeting-manager\src\app" />
+      <recent name="E:\CODEGYM\a0720i1_ToThanhNam\A0920I1\FE\A0920I1-Repo-FE\meeting-manager\src\assets" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="53fcf3d1-ae3d-44d5-b238-28c65e490d7d" name="Default Changelist" comment="" />
+      <created>1631096909701</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1631096909701</updated>
+      <workItem from="1631096912707" duration="7410000" />
+      <workItem from="1631117563578" duration="973000" />
+      <workItem from="1631118570981" duration="397000" />
+      <workItem from="1631119001861" duration="1320000" />
+      <workItem from="1631120358547" duration="717000" />
+      <workItem from="1631122979534" duration="859000" />
+      <workItem from="1631201032549" duration="587000" />
+      <workItem from="1631201695570" duration="688000" />
+      <workItem from="1631266036383" duration="2431000" />
+      <workItem from="1631432608509" duration="661000" />
+      <workItem from="1631433558561" duration="5551000" />
+      <workItem from="1631444326359" duration="6149000" />
+      <workItem from="1631468135264" duration="9787000" />
+      <workItem from="1631512192386" duration="3566000" />
+      <workItem from="1631544467507" duration="9381000" />
+      <workItem from="1631623077201" duration="4265000" />
+      <workItem from="1631628743741" duration="302000" />
+      <workItem from="1631631680953" duration="84000" />
+      <workItem from="1631639594391" duration="2234000" />
+      <workItem from="1631642326863" duration="7540000" />
+      <workItem from="1631677052128" duration="2514000" />
+      <workItem from="1631679620218" duration="1119000" />
+      <workItem from="1631680758767" duration="2591000" />
+      <workItem from="1631686554415" duration="3295000" />
+      <workItem from="1631690935967" duration="15895000" />
+      <workItem from="1631809509615" duration="668000" />
+      <workItem from="1631815020450" duration="2111000" />
+      <workItem from="1631819261907" duration="395000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+</project>
