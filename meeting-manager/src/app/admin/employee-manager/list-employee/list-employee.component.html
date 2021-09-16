@@ -1,5 +1,5 @@
 <div id="wrap">
-  <section class="content">
+  <section class="content" id="main-container">
     <div class="container-fluid content_style">
       <div class="card shadow">
         <div class="col-12 card-header d-flex justify-content-between">
@@ -9,7 +9,7 @@
             </a>
           </div>
           <div class="col-4 input-group mt-auto mb-auto">
-            <input type="search" class="form-control" placeholder="Tìm kiếm">
+            <input type="search" (ngModelChange)="searchStaffByKey(key.value)" #key="ngModel" ngModel name="key" class="form-control" placeholder="Tìm kiếm">
             <div class="input-group-append">
               <button type="submit" class="btn btn-default">
                 <i style="font-size: 20px" class="fa fa-search" aria-hidden="true"></i>
@@ -47,20 +47,20 @@
                 <td class="text-left">{{employee.email}}</td>
                 <td class="text-left">{{employee.phone}}</td>
                 <td class="text-center">
-                  <a href="#myModal" class="trigger-btn" data-toggle="modal" data-target="#myModal">
+                  <a class="trigger-btn" data-toggle="modal" data-target="#myModal" (click)="onOpenModal(employee,'delete')">
                       <span class="material-icons">
                         <i style="font-size: 20px; color: red" class="fa fa-trash" aria-hidden="true"></i>
                       </span>
                   </a>
                 </td>
                 <td class="text-center">
-                  <a href="">
+                  <a [routerLink]="['/emp-update' , employee.id]">
                       <span class="material-icons">
                         <i style="font-size: 20px; color: #17a2b8" class="fa fa-pencil-square-o" aria-hidden="true"></i>
                       </span>
                   </a>
                 </td>
-                <td class="text-center"><a href="detailAccount.html">
+                <td class="text-center"><a href="#">
                   <i style="font-size: 20px;" class="fa fa-info-circle" aria-hidden="true"></i>
                 </a>
                 </td>
@@ -71,12 +71,13 @@
 
           <!-- Modal -->
 
-          <div id="myModal" class="modal fade">
+          <div id="deleteEmployeeModal" class="modal fade" role="dialog"
+               aria-labelledby="deleteModelLabel" aria-hidden="true">
             <div class="modal-dialog modal-confirm">
               <div class="modal-content">
                 <div class="modal-header flex-column">
                   <div class="icon-box">
-                    <i class="material-icons">&#xE5CD;</i>
+                    <i class="fa fa-times" aria-hidden="true"></i>
                   </div>
                   <h4 class="modal-title w-100">Bạn chắc chắn chứ ?</h4>
                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -97,12 +98,12 @@
           <div class="d-flex flex-row justify-content-center ">
             <nav aria-label="Page navigation example">
               <ul class="pagination justify-content-center">
-                <!-- <li class="page-item">
+                <li class="page-item">
                   <a class="page-link click" tabindex="-1" (click)="paginate(0)">Đầu</a>
-                </li> -->
+                </li>
                 <li class="page-item ">
                   <button class="page-link text-dark click" (click)="paginate(page-1)"><i
-                    class=""></i>Trước
+                    class=""></i><<
                   </button>
                 </li>
                 <li class="page-item click"><a class="page-link text-dark" (click)="paginate(page-2)"
@@ -117,12 +118,12 @@
                                                *ngIf="page+2<totalPage&&page-1<0">{{page + 3}}</a></li>
                 <li class="page-item">
                   <button class="page-link text-dark click" (click)="paginate(page+1)"><i
-                    class=""></i>Tiếp
+                    class=""></i>>>
                   </button>
                 </li>
-                <!-- <li class="page-item">
+                <li class="page-item">
                   <a class="page-link text-dark click" (click)="paginate(totalPage-1)">Cuối</a>
-                </li> -->
+                </li>
               </ul>
             </nav>
           </div>

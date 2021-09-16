@@ -33,7 +33,7 @@ import {AngularFireStorageModule} from '@angular/fire/storage';
 // @ts-ignore
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {CreateEmployeeComponent} from './admin/employee-manager/create-employee/create-employee.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {FooterComponent} from './footer/footer.component';
 import {HeaderComponent} from './header/header.component';
 import {MatIconModule} from '@angular/material/icon';
@@ -66,23 +66,24 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     DetailEmployeeComponent,
     CreateEmployeeComponent,
   ],
-  imports: [
-    BrowserModule,
-    RouterModule,
-    AppRoutingModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    ToastrModule.forRoot({
-      timeOut: 3000,
-      positionClass: 'toast-bottom-right',
-      preventDuplicates: false,
-    }),
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireStorageModule,
-    AngularFireDatabaseModule,
-    MatIconModule,
-    BrowserAnimationsModule
-  ],
+    imports: [
+        BrowserModule,
+        RouterModule,
+        AppRoutingModule,
+        HttpClientModule,
+        ReactiveFormsModule,
+        ToastrModule.forRoot({
+            timeOut: 3000,
+            positionClass: 'toast-bottom-right',
+            preventDuplicates: false,
+        }),
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        AngularFireStorageModule,
+        AngularFireDatabaseModule,
+        MatIconModule,
+        BrowserAnimationsModule,
+        FormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

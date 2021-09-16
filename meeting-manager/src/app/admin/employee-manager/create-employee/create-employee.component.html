@@ -4,41 +4,41 @@
       <div class="container-fluid">
 
         <!-- Create new user account -->
+        <form [formGroup]="employeeCreateForm" (ngSubmit)="onSubmit()">
         <div class="row content_style">
-          <div class="col-md-3">
-            <div class="card card-user">
-              <div class="card-body">
-                <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                  <div class="fileinput-new thumbnail img-raised">
-                    <img [src]="getImageUrl()" style="width: 100%;" alt="..." rel="nofollow">
-                  </div>
-                  <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
-                  <div>
-                    <span style="margin-top: 20px" class="btn btn-info btn-round btn-default btn-file btn__upload-custom">
+            <div class="col-md-3">
+              <div class="card card-user">
+                <div class="card-body">
+                  <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                    <div class="fileinput-new thumbnail img-raised">
+                      <img [src]="getImageUrl()" style="width: 100%;" alt="..." rel="nofollow">
+                    </div>
+                    <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
+                    <div>
+                    <span style="margin-top: 20px"
+                          class="btn btn-info btn-round btn-default btn-file btn__upload-custom">
                       <span class="fileinput-new">Upload</span>
-                      <input formControlName="imageUrl" type="file" name="..." (change)="selectImage($event)" />
+                      <input formControlName="imageUrl" type="file" name="..." (change)="selectImage($event)" accept=".jpg,.jpeg,.png"/>
                       <ng-container *ngFor="let validation of validationMessage.imageUrl">
                         <small class="form-text text-danger"
-                          *ngIf="employeeCreateForm.get('username').hasError(validation.type)&& employeeCreateForm.get('username').touched">
+                               *ngIf="employeeCreateForm.get('username').hasError(validation.type)&& employeeCreateForm.get('username').touched">
                           {{validation.message}}
                         </small>
                       </ng-container>
                     </span>
+                    </div>
                   </div>
-
                 </div>
               </div>
             </div>
-          </div>
-          <!--End table information-->
+            <!--End table information-->
 
-          <div class="col-md-9">
-            <div class="card-user">
-              <div class="card-header card-background-color ">
-                <h4><b>Tạo Mới Tài Khoản</b></h4>
-              </div>
-              <div class="card-body">
-                <form [formGroup]="employeeCreateForm" (ngSubmit)="onSubmit()">
+            <div class="col-md-9">
+              <div class="card-user">
+                <div class="card-header card-background-color ">
+                  <h4><b>Tạo Mới Tài Khoản</b></h4>
+                </div>
+                <div class="card-body">
                   <div class="row">
                     <div class="col-md-12 pr-1">
                       <div class="form-group">
@@ -46,7 +46,7 @@
                         <input type="text" class="form-control" placeholder="Tài khoản" formControlName="username">
                         <ng-container *ngFor="let validation of validationMessage.username">
                           <small class="form-text text-danger"
-                            *ngIf="employeeCreateForm.get('username').hasError(validation.type)&& employeeCreateForm.get('username').touched">
+                                 *ngIf="employeeCreateForm.get('username').hasError(validation.type)&& employeeCreateForm.get('username').touched">
                             {{validation.message}}
                           </small>
                         </ng-container>
@@ -60,7 +60,7 @@
                         <input type="password" class="form-control" placeholder="Mật Khẩu" formControlName="password">
                         <ng-container *ngFor="let validation of validationMessage.password">
                           <small class="form-text text-danger"
-                            *ngIf="employeeCreateForm.get('password').hasError(validation.type)&& employeeCreateForm.get('password').touched">
+                                 *ngIf="employeeCreateForm.get('password').hasError(validation.type)&& employeeCreateForm.get('password').touched">
                             {{validation.message}}
                           </small>
                         </ng-container>
@@ -75,7 +75,7 @@
                       </div>
                       <ng-container *ngFor="let validation of validationMessage.fullName">
                         <small class="form-text text-danger"
-                          *ngIf="employeeCreateForm.get('fullName').hasError(validation.type)&& employeeCreateForm.get('fullName').touched">
+                               *ngIf="employeeCreateForm.get('fullName').hasError(validation.type)&& employeeCreateForm.get('fullName').touched">
                           {{validation.message}}
                         </small>
                       </ng-container>
@@ -112,7 +112,7 @@
                       </div>
                       <ng-container *ngFor="let validation of validationMessage.email">
                         <small class="form-text text-danger"
-                          *ngIf="employeeCreateForm.get('email').hasError(validation.type)&& employeeCreateForm.get('email').touched">
+                               *ngIf="employeeCreateForm.get('email').hasError(validation.type)&& employeeCreateForm.get('email').touched">
                           {{validation.message}}
                         </small>
                       </ng-container>
@@ -120,10 +120,10 @@
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Số điện thoại <span class="infomation__required">(*)</span></label>
-                        <input type="text" class="form-control" placeholder="SĐT" formControlName="phone">
-                        <ng-container *ngFor="let validation of validationMessage.birthday">
+                        <input type="number" class="form-control" placeholder="SĐT" formControlName="phone">
+                        <ng-container *ngFor="let validation of validationMessage.phone">
                           <small class="form-text text-danger"
-                            *ngIf="employeeCreateForm.get('phone').hasError(validation.type)&& employeeCreateForm.get('phone').touched">
+                                 *ngIf="employeeCreateForm.get('phone').hasError(validation.type)&& employeeCreateForm.get('phone').touched">
                             {{validation.message}}
                           </small>
                         </ng-container>
@@ -133,23 +133,23 @@
                   <div class="row">
                     <div class="row">
                       <div class="">
-                        <button class="btn btn-secondary" style="margin: 0 30px">Thêm Mới
+                        <button type="submit" [disabled] = "employeeCreateForm.invalid" class="btn btn-secondary" style="margin: 0 30px">Thêm Mới
                         </button>
                       </div>
                       <div class="">
-                        <button class="btn btn-info" [routerLink]="['/empList']">Quay Lại
+                        <button class="btn btn-info" routerLink="/empList">Quay Lại
                         </button>
                       </div>
                     </div>
                   </div>
-                </form>
+                </div>
               </div>
             </div>
-          </div>
         </div>
+        </form>
       </div>
     </section>
   </div>
 </div>
 
-<!-- {{employeeCreateForm.value | json}} -->
+<!-- {{employeeCreateForm.value | json}}-->

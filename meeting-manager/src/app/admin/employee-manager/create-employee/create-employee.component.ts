@@ -38,38 +38,30 @@ export class CreateEmployeeComponent implements OnInit {
 
   validationMessage = {
     username: [
-      { type: 'required', message: 'Tên đăng nhập không được để trống!' },
-      { type: 'minlength', message: 'Tên đăng nhập tối thiểu 4 ký tự' },
-      { type: 'maxlength', message: 'Tên đăng nhập tối đa 32 ký tự' },
-      { type: 'pattern', message: 'Tên đăng nhập không chứa dấu ký tự đặc biệt hoặc khoảng trắng' }
+      {type: 'required', message: 'Tên đăng nhập không được để trống!'},
+      {type: 'minlength', message: 'Tên đăng nhập tối thiểu 4 ký tự'},
+      {type: 'maxlength', message: 'Tên đăng nhập tối đa 32 ký tự'},
+      {type: 'pattern', message: 'Tên đăng nhập không chứa dấu ký tự đặc biệt hoặc khoảng trắng'}
     ],
     password: [
-      { type: 'required', message: 'Mật khẩu không được để trống!' },
-      { type: 'minlength', message: 'Mật khẩu tối thiểu 4 ký tự' },
-      { type: 'maxlength', message: 'Mật khẩu tối đa 32 ký tự' }
-    ],
-    confirmPassword: [
-      { type: 'required', message: 'Xác nhận mật khẩu không được để trống!' },
-      { type: 'match', message: 'Xác nhận mật khẩu không trùng khớp' },
-      { type: 'failConfirmPassword', message: 'Xác nhận mật khẩu phải trùng với mật khẩu' },
+      {type: 'required', message: 'Mật khẩu không được để trống!'},
+      {type: 'minlength', message: 'Mật khẩu tối thiểu 4 ký tự'},
+      {type: 'maxlength', message: 'Mật khẩu tối đa 32 ký tự'}
     ],
     fullName: [
-      { type: 'required', message: 'Họ và tên không được để trống!' },
-      { type: 'maxlength', message: 'Họ và tên dài tối đa 300 ký tự' },
-      { type: 'pattern', message: 'Họ và tên không chứa ký tự số hoặc ký tự đặc biệt' }
-    ],
-    birthday: [
-      { type: 'required', message: 'Số điện thoại không được để trống !' },
-      { type: 'past', message: 'Ngày sinh phải là ngày trong quá khứ' },
-      { type: 'notEnoughAge', message: 'Bạn chưa đủ tuổi để đăng kí' },
-      { type: 'tooAge', message: 'Bạn không thể quá 100 tuổi' }
+      {type: 'required', message: 'Họ và tên không được để trống!'},
+      {type: 'maxlength', message: 'Họ và tên dài tối đa 300 ký tự'},
+      {type: 'pattern', message: 'Họ và tên không chứa ký tự số hoặc ký tự đặc biệt'}
     ],
     email: [
-      { type: 'required', message: 'Email không được để trống!' },
-      { type: 'email', message: 'Email không đúng định dạng' }
+      {type: 'required', message: 'Email không được để trống!'},
+      {type: 'email', message: 'Email không đúng định dạng'}
+    ],
+    phone: [
+      {type: 'required', message: 'Số điện thoại không được để trống!'},
     ],
     imageUrl: [
-      { type: 'pattern', message: 'Chỉ chấp nhận file jpg, png, jpeg' }
+      {type: 'pattern', message: 'Chỉ chấp nhận file jpg, png, jpeg'}
     ]
   };
 
@@ -80,16 +72,12 @@ export class CreateEmployeeComponent implements OnInit {
   }
 
   onSubmit() {
-    this.employeeService.createEmployee(this.employeeCreateForm.value).subscribe(data => {
-      this.router.navigateByUrl('/empList');
-    });
     if (this.inputImage != null) {
       const imageName = formatDate(new Date(), 'dd-MM-yyyyhhmmssa', 'en-US') + this.inputImage.name;
       const fileRef = this.storage.ref(imageName);
       this.storage.upload(imageName, this.inputImage).snapshotChanges().pipe(
         finalize(() => {
           fileRef.getDownloadURL().subscribe((url) => {
-
             this.employeeService.createEmployee({...this.employeeCreateForm.value, imageUrl: url}).subscribe(
               () => {
                 this.router.navigateByUrl('/empList').then(
@@ -132,7 +120,6 @@ export class CreateEmployeeComponent implements OnInit {
             console.log(error.error);
             this.listError = error.error;
           }
-
           this.toastrService.error(
             'Tạo mới thất bại',
             'Thông báo',
@@ -160,12 +147,13 @@ export class CreateEmployeeComponent implements OnInit {
         Validators.required
       ]),
       email: this.formBuilder.control('', [
-        Validators.email
+        Validators.email,
+        Validators.required
       ]),
       phone: this.formBuilder.control('', [
         Validators.required
       ]),
-      imageURL: this.formBuilder.control(null, [
+      imageUrl: this.formBuilder.control(null, [
         Validators.required
       ])
     });
@@ -173,7 +161,7 @@ export class CreateEmployeeComponent implements OnInit {
 
   selectImage(event) {
     this.inputImage = event.target.files[0];
-    this.employeeCreateForm.get('imageURL').updateValueAndValidity();
+    this.employeeCreateForm.get('imageUrl').updateValueAndValidity();
     const reader = new FileReader();
     reader.onload = () => {
       this.filePath = reader.result as string;

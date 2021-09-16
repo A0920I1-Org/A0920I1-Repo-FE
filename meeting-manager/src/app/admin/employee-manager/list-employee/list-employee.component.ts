@@ -44,6 +44,7 @@ export class ListEmployeeComponent implements OnInit {
     this.employeeService.deleteEmployeeById(id).subscribe(
       (response: void) => {
         this.ngOnInit();
+        console.log(id);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -51,21 +52,35 @@ export class ListEmployeeComponent implements OnInit {
     );
   }
 
-  // public searchStaffByKey(key: string): void {
-  //   console.log(key);
-  //   const results: IEmployeeDto[] = [];
-  //   for (const employee of this.listEmployee) {
-  //     if (employee.name.toLowerCase().indexOf(key.toLowerCase()) !== -1
-  //       || employee.email.toLowerCase().indexOf(key.toLowerCase()) !== -1
-  //       || employee.phone.toLowerCase().indexOf(key.toLowerCase()) !== -1) {
-  //       results.push(employee);
-  //     }
-  //   }
-  //   this.listStaff = results;
-  //   if (results == null || !key) {
-  //     this.getListStaff();
-  //   }
-  //
-  // }
+  public searchStaffByKey(key: string): void {
+    console.log(key);
+    const results: IEmployeeDto[] = [];
+    for (const employee of this.listEmployee) {
+      if (employee.fullName.toLowerCase().indexOf(key.toLowerCase()) !== -1
+        || employee.email.toLowerCase().indexOf(key.toLowerCase()) !== -1
+        || employee.phone.toLowerCase().indexOf(key.toLowerCase()) !== -1) {
+        results.push(employee);
+      }
+    }
+    this.listEmployee = results;
+    if (results == null || !key) {
+      this.getListEmployee();
+    }
+
+  }
+
+  public onOpenModal(employee: IEmployeeDto, mode: string): void {
+    const container = document.getElementById('main-container');
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.style.display = 'none';
+    button.setAttribute('data-toggle', 'modal');
+    if (mode === 'delete') {
+      this.deleteEmployee = employee;
+      button.setAttribute('data-target', '#deleteEmployeeModal');
+    }
+    container.appendChild(button);
+    button.click();
+  }
 
 }

@@ -38,16 +38,16 @@ export class EmployeeService {
   }
 
   public deleteEmployeeById(id: number): Observable<any> {
-    return this.httpClient.delete<any>(this.url + '/api/public/account/{id}' + id , this.httpOptions);
+    return this.httpClient.delete<any>(this.url + '/api/public/account/' + id , this.httpOptions);
   }
 
-//   public getByEmployeeId(id:number):Observable<any> {
-//     return this.httpClient.get<any>(this.AUTH_API + '/api/public/employee/'+ id , this.httpOptions);
-//   }
+  public getByEmployeeId(id: number): Observable<any> {
+    return this.httpClient.get<any>(this.url + '/api/public/account/' + id , this.httpOptions);
+  }
 
-//   public update(staff : any) {
-//     return this.httpClient.put<any>(this.AUTH_API + '/api/public/employee', staff, this.httpOptions)
-//   }
+  public update(employee: any) {
+    return this.httpClient.put<any>(this.url + '/api/public/account', employee, this.httpOptions);
+  }
 
 
 }
