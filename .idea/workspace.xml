@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ae4d3f27-24e9-4068-8616-56dd37d37abe" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/meeting-manager/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/meeting-manager/angular.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting-manager/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/meeting-manager/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting-manager/src/app/admin/equipment-manager/create-equipment/create-equipment.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/meeting-manager/src/app/admin/equipment-manager/create-equipment/create-equipment.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting-manager/src/app/admin/equipment-manager/create-equipment/create-equipment.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/meeting-manager/src/app/admin/equipment-manager/create-equipment/create-equipment.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting-manager/src/app/admin/equipment-manager/create-equipment/create-equipment.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/meeting-manager/src/app/admin/equipment-manager/create-equipment/create-equipment.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting-manager/src/app/admin/equipment-manager/detail-equipment/detail-equipment.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/meeting-manager/src/app/admin/equipment-manager/detail-equipment/detail-equipment.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting-manager/src/app/admin/equipment-manager/list-equipment/list-equipment.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/meeting-manager/src/app/admin/equipment-manager/list-equipment/list-equipment.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting-manager/src/app/admin/equipment-manager/update-equipment/update-equipment.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/meeting-manager/src/app/admin/equipment-manager/update-equipment/update-equipment.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting-manager/src/app/admin/equipment-manager/update-equipment/update-equipment.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/meeting-manager/src/app/admin/equipment-manager/update-equipment/update-equipment.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting-manager/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/meeting-manager/src/app/app-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting-manager/src/app/model/Equipment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/meeting-manager/src/app/model/Equipment.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting-manager/src/app/service/equipment-manager.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/meeting-manager/src/app/service/equipment-manager.service.ts" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1xkihr0Yjqx3O9XtLInAFtt3P9J" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/meeting-manager" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="ts.external.directory.path" value="C:\A0920I1-NguyenTanPhap\module-project\A0920I1-Repo-FE\A0920I1-Repo-FE\meeting-manager\node_modules\typescript\lib" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ae4d3f27-24e9-4068-8616-56dd37d37abe" name="Default Changelist" comment="" />
+      <created>1630905608716</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1630905608716</updated>
+      <workItem from="1630905609968" duration="256000" />
+      <workItem from="1630914967904" duration="13000" />
+      <workItem from="1630914982449" duration="58000" />
+      <workItem from="1631204368238" duration="198000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="549" y="168" key="FileChooserDialogImpl" timestamp="1631204566553">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="549" y="168" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1631204566553" />
+  </component>
+</project>
