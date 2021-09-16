@@ -6,9 +6,11 @@ import {Injectable} from '@angular/core';
   providedIn: 'root'
 })
 export class TypeMeetingRoomService {
+  // AnhLT
   private readonly API_URL = 'http://localhost:8080/listTypeMeetingRoom';
   constructor(private httpClient: HttpClient) {
   }
+  // AnhLT
   public getTypesMeetingRoom(): Observable<TypeMeetingRoom[]>{
     return this.httpClient.get<TypeMeetingRoom[]>(this.API_URL);
   }

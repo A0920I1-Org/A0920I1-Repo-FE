@@ -32,6 +32,10 @@ export class StatisticalComponent implements OnInit {
   xAxisTotalsOfUses: any;
   yAxisTotalsOfUses: any;
   usesChartTitle: any;
+  isResult = false;
+  isMonth = false;
+  isDateCheckin = false;
+  isDateCheckout = false;
   // tslint:disable-next-line:ban-types
   public dataCharts: Object[];
   private month: any;
@@ -39,7 +43,7 @@ export class StatisticalComponent implements OnInit {
     private statisticalService: StatisticalService,
     private typeMeetingRoomService: TypeMeetingRoomService,
     private toastrService: ToastrService,
-    private meetingRoomService: MeetingRoomSerivce
+    private meetingRoomService: MeetingRoomSerivce,
   ) {
 
   }
@@ -60,18 +64,18 @@ export class StatisticalComponent implements OnInit {
       enable: true
     };
     this.xAxisPerformance = {
-      title: 'nameMeetingRoom',
+      title: 'Tên phòng',
       valueType: 'Category'
     };
     this.yAxisPerformance = {
-      title: 'performance (%)'
+      title: 'Hiệu suất (%)'
     };
     this.xAxisTotalsOfUses = {
-      title: 'Name Meeting Room',
+      title: 'Tên phòng',
       valueType: 'Category'
     };
     this.yAxisTotalsOfUses = {
-      title: 'Uses '
+      title: 'Số lần sử dụng '
     };
     this.legend = {
       visible: true
@@ -99,16 +103,33 @@ export class StatisticalComponent implements OnInit {
 
   onSubmitDateForm(statisticByDateForm: FormGroup) {
     console.log(statisticByDateForm.value);
+    this.isDateCheckin = statisticByDateForm.get('dateCheckin').value;
+    this.isDateCheckout = statisticByDateForm.get('dateCheckout').value;
+    console.log(this.isDateCheckout);
+    // @ts-ignore
+    if (this.isDateCheckin == null || this.isDateCheckout == null || this.isDateCheckout === '' || this.isDateCheckin === ''){
+        this.isDateCheckout = false;
+        this.isMonth = false;
+    }else {
+      this.isDateCheckout = true;
+    }
     this.statisticalService.statisticByDate(statisticByDateForm.value).subscribe(
       (data) => {
         console.log(data);
-        this.statistics = data;
-        this.statisticalService.calculateTotalsOfUses().subscribe(
-          (use) => {
-            this.dataCharts = use;
-            console.log(this.dataCharts);
-          }, error => console.log(error)
-        );
+        if (data.length === 0){
+          this.isResult = false;
+          this.statistics = data;
+          this.toastrService.info('Không tìm thấy kết quả phù hợp', 'Thông báo');
+        }else {
+          this.isResult = true;
+          this.statistics = data;
+          this.statisticalService.calculateTotalsOfUses().subscribe(
+            (use) => {
+              this.dataCharts = use;
+              console.log(this.dataCharts);
+            }, error => console.log(error)
+          );
+        }
       }, error => console.log(error)
     );
   }
@@ -118,18 +139,26 @@ export class StatisticalComponent implements OnInit {
     this.month = statisticByRoomForm.get('month').value;
     console.log(this.month);
     if (this.month == null){
-      this.toastrService.info('Bạn cần chọn tháng để thống kê hiệu suất', 'Thông báo');
-    }
+      this.isDateCheckin = false;
+      this.isMonth = false;
+    }else {this.isMonth = true; }
     this.statisticalService.statisticByRoom(statisticByRoomForm.value).subscribe(
       (data) => {
-        console.log(data);
-        this.statistics = data;
-        this.statisticalService.calculateTotalsOfUses().subscribe(
-          (use) => {
-            console.log(use);
-            this.dataCharts = use;
-          }
-        );
+        if (data.length === 0){
+          this.isResult = false;
+          this.statistics = data;
+          this.toastrService.info('Không tìm thấy kết quả phù hợp', 'Thông báo');
+        }else {
+          this.isResult = true;
+          console.log(data);
+          this.statistics = data;
+          this.statisticalService.calculateTotalsOfUses().subscribe(
+            (use) => {
+              console.log(use);
+              this.dataCharts = use;
+            }
+          );
+        }
       });
   }
 }

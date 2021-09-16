@@ -8,6 +8,7 @@ import {RoomStatus} from '../../../../model/entity/RoomStatus';
 import {OrderMeeting} from '../../../../model/entity/OrderMeeting';
 import {ToastrService} from 'ngx-toastr';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-register-meeting',
@@ -25,6 +26,9 @@ export class RegisterMeetingComponent implements OnInit {
   idAccount: any;
   page = 1;
   number: 0;
+  dayNowSys: Date = new Date();
+  dayNow: string;
+  isResult = true;
 
   constructor(
     private registerHistoryService: RegisterHistoryService,
@@ -32,7 +36,7 @@ export class RegisterMeetingComponent implements OnInit {
     private statusRoomService: StatusRoomService,
     private toastrService: ToastrService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
   ) {
     console.log('constructor');
     this.typeMeetingRoomService.getTypesMeetingRoom().subscribe(
@@ -45,6 +49,9 @@ export class RegisterMeetingComponent implements OnInit {
         this.statusRoom = data;
       }
     );
+    this.dayNow = this.dayNowSys.toLocaleDateString();
+    console.log(this.dayNow);
+
   }
 
   ngOnInit(): void {
@@ -95,6 +102,7 @@ export class RegisterMeetingComponent implements OnInit {
         this.statusRoom = data;
       }
     );
+
   }
 
   onSubmit(findRegisterHistory: FormGroup) {
@@ -102,12 +110,19 @@ export class RegisterMeetingComponent implements OnInit {
     // if (findRegisterHistory.value === null) {
     //   console.log(null);
     // } else {
-      this.registerHistoryService.searchRegistration(findRegisterHistory.value).subscribe(
-        (data) => {
-          console.log(data);
+    this.registerHistoryService.searchRegistration(findRegisterHistory.value).subscribe(
+      (data) => {
+        if (data.length === 0){
+          this.isResult = false;
           this.registerHistory = data;
+          this.toastrService.info('Không tìm thấy kết quả phù hợp', 'Thông báo');
         }
-      );
+        else {
+        console.log(data);
+        this.registerHistory = data;
+        }
+      }
+    );
     // }
   }
 
@@ -119,7 +134,7 @@ export class RegisterMeetingComponent implements OnInit {
         if (data === true) {
           this.toastrService.error('Bạn đã huỷ đặt phòng này hoặc đã hết hiệu lực!',
             'Thông báo');
-          // this.router.navigateByUrl('register');
+          this.router.navigateByUrl('register');
         }
         if (data === false) {
           this.router.navigate(['/deleteRegisterMeeting/', idOrder]);

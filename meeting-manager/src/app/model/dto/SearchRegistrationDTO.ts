@@ -1,3 +1,4 @@
+// AnhLT
 export class SearchRegistrationDTO {
   idMeetingRoom: string;
   dateCheckin: string;

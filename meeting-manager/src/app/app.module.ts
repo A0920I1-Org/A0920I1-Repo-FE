@@ -96,7 +96,7 @@ import {MatInputModule} from '@angular/material/input';
     DataLabelService,
     TooltipService,
     ColumnSeriesService,
-    ToastrService
+    ToastrService,
   ],
   bootstrap: [AppComponent]
 })

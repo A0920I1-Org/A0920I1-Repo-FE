@@ -1,3 +1,4 @@
+// AnhLT
 export class Statistic {
   dateCheckin: string;
   dateCheckout: string;

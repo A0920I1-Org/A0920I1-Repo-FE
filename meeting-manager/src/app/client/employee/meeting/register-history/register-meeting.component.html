@@ -9,7 +9,7 @@
           <input type="text" class="form-control" id="nameRoom" formControlName="nameRoom">
           <p style="padding-left: 150px"
              *ngIf="findRegisterHistoryForm.get('nameRoom').invalid && findRegisterHistoryForm.get('nameRoom').value != null "
-             class="text-danger">Tên không hợp lệ</p>
+             class="text-danger">Tên không hợp lệ.</p>
         </div>
 
         <div class="col-sm-4 ">
@@ -65,7 +65,7 @@
           </button>
       </div>
       <div class="row float-right">
-        <a (click)="resetInput()" class="link-secondary">Clear all</a>
+        <a (click)="resetInput()" class="link-secondary">Đặt lại</a>
       </div>
 
     </form>
@@ -83,7 +83,7 @@
           <th scope="col">Thời gian kết thúc</th>
           <th scope="col">Ngày bắt đầu</th>
           <th scope="col">Ngày kết thúc</th>
-          <th scope="col">Loại phòng họṕ</th>
+          <th scope="col">Loại phòng họp</th>
           <th scope="col">Ngày đăng kí</th>
           <th scope="col">Trạng thái</th>
           <th scope="col">Hành động</th>
@@ -102,16 +102,23 @@
           <td>{{register.createDate|date: 'dd-MM-yyyy'}}</td>
           <td>{{register.meetingRoom.roomStatus.name}}</td>
           <td>
+<!--            <span *ngIf="!((dayNow.valueOf()-register.dateCheckout.valueOf())>0)">-->
+<!--              <button class="btn btn-danger">Đã huỷ</button>-->
+<!--            </span>-->
+<!--            <span *ngIf="((dayNow-register.dateCheckout|date:'dd/MM/yyyy')<0)">-->
             <button (click)="checkIsDelete(register.id)" class="btn btn-danger">Huỷ đăng kí</button>
+<!--            </span>-->
           </td>
         </tr>
         </tbody>
       </table>
+      <span *ngIf="isResult">
       <div>
         <pagination-controls (pageChange)="page = $event" class="text-center" previousLabel="Trước"
                              nextLabel="Tiếp"></pagination-controls>
       </div>
+        </span>
+
     </div>
   </div>
-
 </div>

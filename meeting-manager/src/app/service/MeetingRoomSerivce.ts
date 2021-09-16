@@ -6,9 +6,11 @@ import {MeetingRoom} from '../model/entity/MeetingRoom';
   providedIn: 'root'
 })
 export class MeetingRoomSerivce {
+  // AnhLT
   private readonly API_URL = 'http://localhost:8080/meetingRooms';
   constructor(private httpClient: HttpClient) {
   }
+  // AnhLT
   public getMeetingRoom(): Observable<MeetingRoom[]>{
     return this.httpClient.get<MeetingRoom[]>(this.API_URL);
   }
