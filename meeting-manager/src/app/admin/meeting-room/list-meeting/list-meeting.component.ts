@@ -1,14 +1,15 @@
 import {Component, OnInit} from '@angular/core';
-import {MeetingRoom} from '../../../../model/MeetingRoom';
-import {MeetingRoomService} from '../../../../service/meeting-room.service';
+import {MeetingRoom} from '../../../model/MeetingRoom';
+import {MeetingRoomService} from '../../../service/meeting-room.service';
 import {MatDialog} from '@angular/material/dialog';
-import {DeleteMeetingComponent} from '../delete-meeting/delete-meeting.component';
-import {Area} from '../../../../model/Area';
-import {TypeMeetingRoom} from '../../../../model/TypeMeetingRoom';
-import {RoomStatus} from '../../../../model/RoomStatus';
-import {TypeMeetingRoomService} from '../../../../service/type-meeting-room.service';
-import {AreaMeetingRoomService} from '../../../../service/area-meeting-room.service';
-import {StatusRoomService} from '../../../../service/status-room.service';
+import {DeleteMeetingComponent} from '../../../client/employee/meeting/delete-meeting/delete-meeting.component';
+import {Area} from '../../../model/Area';
+import {TypeMeetingRoom} from '../../../model/TypeMeetingRoom';
+import {RoomStatus} from '../../../model/RoomStatus';
+import {TypeMeetingRoomService} from '../../../service/type-meeting-room.service';
+import {AreaMeetingRoomService} from '../../../service/area-meeting-room.service';
+import {StatusRoomService} from '../../../service/status-room.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-list-meeting',
@@ -30,6 +31,7 @@ export class ListMeetingComponent implements OnInit {
   capacity: any;
   page = 1;
   meetingRoomList: MeetingRoom[] = [];
+  searchNull: null ;
 
   key: string = 'id';
   reverse: boolean = false;
@@ -41,6 +43,7 @@ export class ListMeetingComponent implements OnInit {
     private statusRoomService: StatusRoomService,
     private meetingRoomService: MeetingRoomService,
     private dialog: MatDialog,
+    private router: Router
   ) {
   }
 
@@ -83,7 +86,6 @@ export class ListMeetingComponent implements OnInit {
   search() {
     this.meetingRoomService.search(this.nameMeeting, this.floors, this.area_id, this.room_status_id, this.type_meeting_room_id, this.capacity).subscribe(data => {
       this.meetingRoomList = data;
-
       this.page = 1;
     });
   }
@@ -103,4 +105,7 @@ export class ListMeetingComponent implements OnInit {
   //   });
   // }
 
+  backToListMeeting():void {
+  window.location.reload();
+}
 }

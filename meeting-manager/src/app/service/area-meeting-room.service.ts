@@ -13,6 +13,7 @@ export class AreaMeetingRoomService {
   constructor(private httpClient: HttpClient) {
   }
 
+  // (Hoàng)
   public getAllArea(): Observable<Area[]> {
     return this.httpClient.get<Area[]>(this.API_AREA_URL);
   }

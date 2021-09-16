@@ -13,6 +13,8 @@ export class TypeMeetingRoomService {
 
   constructor(private httpClient: HttpClient) {
   }
+
+  // Hoàng
   public getTypesMeetingRoom(): Observable<TypeMeetingRoom[]>{
     return this.httpClient.get<TypeMeetingRoom[]>(this.API_TYPE_MEETING_ROOM_URL);
   }

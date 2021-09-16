@@ -42,8 +42,10 @@
                       <div class="form-group">
                         <label>Tên phòng <span class="infomation__required">(*)</span></label>
                         <input type="text" class="form-control" placeholder="Tên phòng" formControlName="name">
-                        <small *ngIf="editMeetingRoom.get('name').invalid && editMeetingRoom.get('name').touched"
-                               class="text-danger">Vui lòng nhập tên phòng!</small>
+                        <div class="text-danger" *ngFor="let validation of validation_messages.name">
+                          <small *ngIf="editMeetingRoom.get('name').hasError(validation.type) && (editMeetingRoom.get('name').dirty || editMeetingRoom.get('name').touched)"
+                                 class="text-danger"> {{validation.message}}</small>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -52,8 +54,10 @@
                       <div class="form-group">
                         <label>Tầng <span class="infomation__required">(*)</span></label>
                         <input type="number" class="form-control" placeholder="Nhập tầng" formControlName="floors" min="1">
-                        <small *ngIf="editMeetingRoom.get('floors').invalid && editMeetingRoom.get('floors').touched"
-                               class="text-danger">Vui lòng nhập tầng!</small>
+                        <div class="text-danger" *ngFor="let validation of validation_messages.floors">
+                          <small *ngIf="editMeetingRoom.get('floors').hasError(validation.type) && (editMeetingRoom.get('floors').dirty || editMeetingRoom.get('floors').touched)"
+                                 class="text-danger"> {{validation.message}}</small>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -98,7 +102,7 @@
                   </div>
                   <div class="row">
                     <div class="row">
-                      <div class="">
+                      <div>
                         <button class="btn btn-warning" type="submit" style="margin: 0 30px">Chỉnh Sửa
                         </button>
                       </div>

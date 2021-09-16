@@ -11,7 +11,7 @@ export class StatusRoomService {
 
   constructor(private httpClient: HttpClient) {
   }
-
+// Hoàng
   public getStatusRoom(): Observable<RoomStatus[]> {
     return this.httpClient.get<RoomStatus[]>(this.API_MEETING_ROOM_STATUS_URL);
   }

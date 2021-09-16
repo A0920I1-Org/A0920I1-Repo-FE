@@ -55,12 +55,12 @@ export class UpdateMeetingComponent implements OnInit {
   ngOnInit(): void {
 
     this.editMeetingRoom = this.fb.group({
-      id: ['', Validators.required],
-      name: ['', Validators.required],
-      floors: ['', Validators.required],
-      area: ['', Validators.required],
-      roomStatus: ['', Validators.required],
-      typeMeetingRoom: ['', Validators.required],
+      id: [''],
+      name:['', [Validators.required, Validators.pattern('^[a-zA-Z0-9\\+]*$'),Validators.minLength(4),Validators.maxLength(10)]],
+      floors: ['', [Validators.required, Validators.pattern('^[1-9]{0,2}$')]],
+      area: ['', [Validators.required]],
+      roomStatus: ['', [Validators.required]],
+      typeMeetingRoom: ['', [Validators.required]],
       // capacity: ['', Validators.required],
       imageUrl: ['']
       // orderEquipmentList: ['', Validators.required]
@@ -102,6 +102,34 @@ export class UpdateMeetingComponent implements OnInit {
     });
   }
 
+  validation_messages = {
+    name: [
+      {type: 'required', message: 'Vui lòng nhập tên phòng!'},
+      {type: 'minlength', message: 'Vui lòng nhập tên phòng có ít nhất 4 kí tự!'},
+      {type: 'maxlength', message: 'Vui lòng nhập tên phòng có nhiều nhất 10 kí tự!'},
+      {type: 'pattern', message: 'Nhập tên không hợp lệ!'}
+    ],
+    floors: [
+      {type: 'required', message: 'Vui lòng nhập số tầng!'},
+      {type: 'minlength', message: 'Vui lòng nhập ít nhất 1 số!'},
+      {type: 'pattern', message: 'Nhập tầng không hợp lệ!'}
+
+    ],
+    area: [
+      {type: 'required', message: 'Vui lòng chọn khu vực!'},
+    ],
+    roomStatus: [
+      {type: 'required', message: 'Vui lòng chọn trạng thái phòng!'}
+    ],
+    typeMeetingRoom: [
+      {type: 'required', message: 'Vui lòng chọn loại phòng!'}
+    ],
+    imageUrl: [
+      {type: 'required', message: 'Vui lòng chọn ảnh!'},
+      {type: 'pattern', message: 'Bạn chọn không đúng file ảnh!'}
+    ]
+  };
+
   updateMeetingRoom() {
     this.meetingRoomService.updateMeetingRoom(this.editMeetingRoom.value).subscribe( data =>{
       this.toastrService.success('Bạn đã sửa thành công!');
@@ -124,7 +152,6 @@ export class UpdateMeetingComponent implements OnInit {
         fileRef.getDownloadURL().subscribe((url) => {
           this.editMeetingRoom.patchValue({imageUrl: url});
           console.log(this.imgUpdate);
-
           this.updateMeetingRoom();
         });
       })

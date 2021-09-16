@@ -1,25 +1,28 @@
 <div id="wrap">
-<!--  <section class="content">-->
-    <div class="container-fluid content_style">
-      <h1 id="title" >Danh sách phòng họp</h1>
-      <div class="card shadow">
-        <div class=" card-header" >
-
+  <!--  <section class="content">-->
+  <div class="container-fluid content_style">
+    <h1 id="title">Danh sách phòng họp</h1>
+    <div class="card shadow">
+      <div class=" card-header">
+        <div style="margin: 0 25px">
           <div>
-            <a style="color: white;" class=" btn btn-primary" routerLink="createMeeting">
-              <i class="fa fa-plus-circle" aria-hidden="true"></i> Thêm Tài Khoản</a>
+            <a style="color: white;" class=" btn btn-primary" routerLink="createMeeting"><i class="fa fa-plus-circle"
+                                                                                            aria-hidden="true"></i> Thêm
+              Tài Khoản</a>
           </div>
 
           <div class="row" style="margin-top: 20px">
             <div class="col-lg-3 input-group">
               <label class="input-group-text" for="nameRoom">Tên phòng</label>
-              <input type="text" class="form-control" id="nameRoom" aria-label="Search"  placeholder="Nhập tên phòng" [(ngModel)]="nameMeeting">
+              <input type="text" class="form-control" id="nameRoom" aria-label="Search" placeholder="Nhập tên phòng"
+                     [(ngModel)]="nameMeeting">
             </div>
 
             <div class="col-sm-3 ">
               <div class="input-group">
-                <label class="input-group-text" for="startDate">Tầng  </label>
-                <input class="form-control" id="startDate" name="startDate" type="text" placeholder="Nhập tầng" [(ngModel)]="floors"/>
+                <label class="input-group-text" for="startDate">Tầng </label>
+                <input class="form-control" id="startDate" name="startDate" type="text" placeholder="Nhập tầng"
+                       [(ngModel)]="floors"/>
               </div>
             </div>
 
@@ -27,7 +30,7 @@
               <div class="input-group">
                 <label class="input-group-text" for="area">Khu vực </label>
                 <select class="custom-select" id="area" [(ngModel)]="area_id">
-                  <option selected [ngValue]="capacity">Chọn</option>
+                  <option selected [ngValue]="searchNull">Chọn</option>
                   <option *ngFor="let items of areaList" [ngValue]="items.id">{{items.name}}</option>
                 </select>
               </div>
@@ -38,7 +41,7 @@
             <div class="col-lg-3 input-group">
               <label class="input-group-text" for="inputGroupSelect01">Trạng thái</label>
               <select class="custom-select" id="inputGroupSelect01" [(ngModel)]="room_status_id">
-                <option selected [ngValue]="capacity">Chọn</option>
+                <option selected [ngValue]="searchNull">Chọn</option>
                 <option *ngFor="let items of statusRoomList" [ngValue]="items.id">{{items.name}}</option>
 
 
@@ -48,7 +51,7 @@
             <div class="col-sm-3 input-group">
               <label class="input-group-text" for="inputGroupSelect02">Loại phòng</label>
               <select class="custom-select" id="inputGroupSelect02" [(ngModel)]="type_meeting_room_id">
-                <option selected [ngValue]="capacity">Chọn</option>
+                <option selected [ngValue]="searchNull">Chọn</option>
                 <option *ngFor="let items of typeMeetingRoomList" [ngValue]="items.id">{{items.name}}</option>
               </select>
             </div>
@@ -56,21 +59,26 @@
             <div class="col-sm-3 input-group">
               <label class="input-group-text" for="capacity">Sức chứa</label>
               <select class="custom-select" id="capacity" [(ngModel)]="capacity">
-                <option selected [ngValue]="capacity">Chọn</option>
+                <option selected [ngValue]="searchNull">Chọn</option>
                 <option *ngFor="let items of typeMeetingRoomList" [ngValue]="items.capacity">{{items.capacity}}</option>
               </select>
             </div>
-
             <div class="row justify-content-center">
-              <button type="submit" class="btn btn-primary" style="width: 100px; margin: 0 50px" (click)="search()">
+              <button type="submit" class="btn btn-primary" style="width: 100px; margin: 0 20px" (click)="search()">
                 <div class="row justify-content-center">
                   <span class="material-icons">search</span>Tìm kiếm
                 </div>
               </button>
+              <button type="submit" class="btn btn-primary" style="width: 20px; margin: 0 5px"  (click)="backToListMeeting()">
+                <div class="row justify-content-center">
+                 <span class="material-icons"  >settings_backup_restore</span>
+                </div>
+              </button>
             </div>
+          </div>
         </div>
         <div class="card-body">
-          <div >
+          <div>
             <table class="table table-hover" width="100%" cellspacing="0">
               <thead class="thead-dark">
               <tr>
@@ -85,7 +93,8 @@
               </tr>
               </thead>
               <tbody>
-              <tr *ngFor="let meetingRoom of meetingRoomList | paginate: {itemsPerPage:10, currentPage: page}; let i = index"
+              <tr
+                *ngFor="let meetingRoom of meetingRoomList | paginate: {itemsPerPage:10, currentPage: page}; let i = index"
                 class="col-lg-4 border text-center mt-4 p-1">
 
                 <td class="text-left"> {{i + 1}}</td>
@@ -109,7 +118,7 @@
                       </span>
                   </a>
                 </td>
-                <td class="text-center"><a href="detailAccount.html" >
+                <td class="text-center"><a href="detailAccount.html">
                   <i style="font-size: 20px;" class="fa fa-info-circle" aria-hidden="true"></i>
                 </a>
                 </td>
@@ -120,12 +129,14 @@
           <div class="d-flex flex-row justify-content-center ">
             <nav aria-label="Page navigation example">
               <div>
-                <pagination-controls (pageChange)="page = $event" style="text-align: center " previousLabel="Trước" nextLabel="Tiếp"></pagination-controls>
+                <pagination-controls (pageChange)="page = $event" style="text-align: center " previousLabel="Trước"
+                                     nextLabel="Tiếp"></pagination-controls>
               </div>
             </nav>
           </div>
         </div>
       </div>
     </div>
-<!--  </section>-->
+    <!--  </section>-->
+  </div>
 </div>
