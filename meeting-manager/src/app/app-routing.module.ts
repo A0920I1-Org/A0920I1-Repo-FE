@@ -11,9 +11,6 @@ const routes: Routes = [
   },
   {
     component:FeedbackTechnicalUpdateComponent, path : 'update/:id'
-  },
-  {
-    component:FeedBackComponent, path : 'list'
   }
 ];
 

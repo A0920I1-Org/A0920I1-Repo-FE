@@ -19,9 +19,7 @@ import { ListEmployeeComponent } from './admin/employee-manager/list-employee/li
 import { DeleteEmployeeComponent } from './admin/employee-manager/delete-employee/delete-employee.component';
 import { UpdateEmployeeComponent } from './admin/employee-manager/update-employee/update-employee.component';
 import { DetailEmployeeComponent } from './admin/employee-manager/detail-employee/detail-employee.component';
-import {FooterComponent} from './client/client-shared/footer/footer.component';
 import {FeedBackComponent} from './client/employee/feedback/feed-back.component';
-import {HeaderComponent} from "./client/client-shared/header/header.component";
 import {HttpClientModule} from "@angular/common/http";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -37,14 +35,19 @@ import {MatNativeDateModule} from "@angular/material/core";
 import {MatInputModule} from "@angular/material/input";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatTableModule} from "@angular/material/table";
-import {MatButtonModule} from "@angular/material/button";
-
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import {environment} from "../environments/environment";
+import {AngularFirestoreModule} from "@angular/fire/firestore";
+import {AngularFireModule} from "@angular/fire";
+import {AngularFireAuthModule} from "@angular/fire/auth";
+import {AngularFireStorageModule} from "@angular/fire/storage";
+import { Pipe, PipeTransform } from '@angular/core';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FooterComponent,
-    HeaderComponent,
     FeedBackComponent,
     RegisterMeetingComponent,
     DeleteMeetingComponent,
@@ -65,6 +68,8 @@ import {MatButtonModule} from "@angular/material/button";
     DetailEmployeeComponent,
     FeedbackTechnicalUpdateComponent,
     FeedbackTechnicalComponent,
+    HeaderComponent,
+    FooterComponent,
 
 
 
@@ -87,7 +92,13 @@ import {MatButtonModule} from "@angular/material/button";
     HttpClientModule,
     FormsModule,
     MatTableModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule, // firestore
+    AngularFireAuthModule, // auth
+    AngularFireStorageModule,// storage
+    
+
 
   ],
   providers: [],

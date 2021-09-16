@@ -8,18 +8,11 @@ import {FeedbackTechnicalService} from "../../../service/FeedbackTechnical/feedb
   styleUrls: ['./feed-back.component.css']
 })
 export class FeedBackComponent implements OnInit {
-  FeedBack :FeedBack[];
+
   constructor(
-    private feedBackService:FeedbackTechnicalService
+
   ) { }
 
-  ngOnInit(): void {
-    this.feedBackService.getFeedback().subscribe(
-      (data) =>{
-        console.log(data);
-        this.FeedBack = data;
-      }
-    )
-  }
+  ngOnInit(): void {}
 
 }

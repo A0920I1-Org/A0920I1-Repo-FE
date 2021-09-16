@@ -1,6 +1,7 @@
 import {Account} from "./Account";
 import {FeedBackType} from "./FeedBackType";
 import {ImageFeedBack} from "./ImageFeedBack";
+import {MeetingRoom} from "./MeetingRoom";
 
 
 export class FeedBack {
@@ -10,6 +11,7 @@ export class FeedBack {
   dateFeedback: Date;
   IsHandle: boolean;
   feedBackType: FeedBackType;
+  meetingRoom:MeetingRoom;
   account: Account;
   imageFeedBackList: ImageFeedBack[];
   content:string;
