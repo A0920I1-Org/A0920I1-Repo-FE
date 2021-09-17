@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FeedBackComponent } from './feed-back.component';
+import { DeleteFeedbackComponent } from './delete-feedback.component';
 
-describe('FeedBackComponent', () => {
-  let component: FeedBackComponent;
-  let fixture: ComponentFixture<FeedBackComponent>;
+describe('DeleteFeedbackComponent', () => {
+  let component: DeleteFeedbackComponent;
+  let fixture: ComponentFixture<DeleteFeedbackComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FeedBackComponent ]
+      declarations: [ DeleteFeedbackComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FeedBackComponent);
+    fixture = TestBed.createComponent(DeleteFeedbackComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

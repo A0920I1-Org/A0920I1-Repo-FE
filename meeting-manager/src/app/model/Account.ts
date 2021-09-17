@@ -1,6 +1,6 @@
 import {AccountRole} from './AccountRole';
-import {FeedBack} from "./FeedBack";
-import {OrderMeeting} from "./OrderMeeting";
+import {FeedBack} from './FeedBack';
+import {OrderMeeting} from './OrderMeeting';
 
 export class Account {
   id: number;
