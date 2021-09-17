@@ -3,7 +3,10 @@ import {NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {RegisterMeetingComponent} from './client/employee/meeting/register-meeting/register-meeting.component';
+import {FooterComponent} from './footer/footer.component';
+import {HeaderComponent} from './header/header.component';
+import {RegisterMeetingComponent} from './client/employee/meeting/register-history/register-meeting.component';
+
 import {DeleteMeetingComponent} from './client/employee/meeting/delete-meeting/delete-meeting.component';
 import {ListMeetingComponent} from './client/employee/meeting/list-meeting/list-meeting.component';
 import {CreateMeetingComponent} from './admin/meeting-room/create-meeting/create-meeting.component';
@@ -25,8 +28,7 @@ import {RouterModule} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
 import {environment} from 'src/environments/environment';
 
-// @ts-ignore
-import {ToastrModule} from 'ngx-toastr';
+
 // @ts-ignore
 import {AngularFireModule} from '@angular/fire';
 // @ts-ignore
@@ -35,11 +37,10 @@ import {AngularFireStorageModule} from '@angular/fire/storage';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {CreateEmployeeComponent} from './admin/employee-manager/create-employee/create-employee.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {FooterComponent} from './footer/footer.component';
-import {HeaderComponent} from './header/header.component';
 import {MatIconModule} from '@angular/material/icon';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgxPaginationModule} from 'ngx-pagination';
+
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
@@ -47,6 +48,22 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {ChooseEquipmentComponent} from './admin/meeting-room/create-meeting/choose-equipment/choose-equipment.component';
 import {DeleteMeetingRoomComponent} from './admin/meeting-room/delete-meeting/delete-meeting-room.component';
+import {
+  CategoryService,
+  ChartModule, ColumnSeriesService,
+  DataLabelService,
+  LegendService,
+  LineSeriesService,
+  TooltipService
+} from '@syncfusion/ej2-angular-charts';
+import {ToastrModule, ToastrService} from 'ngx-toastr';
+import {MatInputModule} from '@angular/material/input';
+import {RegisterHistoryService} from './service/RegisterHistoryService';
+import {StatusRoomService} from './service/StatusRoomService';
+import {TypeMeetingRoomService} from './service/TypeMeetingRoomService';
+import {StatisticalService} from './service/StatisticalService';
+import {MeetingRoomSerivce} from './service/MeetingRoomSerivce';
+
 
 @NgModule({
   declarations: [
@@ -72,7 +89,8 @@ import {DeleteMeetingRoomComponent} from './admin/meeting-room/delete-meeting/de
     DetailEmployeeComponent,
     CreateEmployeeComponent,
     ChooseEquipmentComponent,
-    DeleteMeetingRoomComponent
+    DeleteMeetingRoomComponent,
+    RegisterMeetingComponent
   ],
   imports: [
     BrowserModule,
@@ -96,10 +114,30 @@ import {DeleteMeetingRoomComponent} from './admin/meeting-room/delete-meeting/de
     MatDialogModule,
     MatButtonModule,
     MatDatepickerModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    ChartModule,
+    HttpClientModule,
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: false,
+    }),
+    MatInputModule
   ],
-
-  providers: [],
+  providers: [
+    RegisterHistoryService,
+    StatusRoomService,
+    TypeMeetingRoomService,
+    StatisticalService,
+    MeetingRoomSerivce,
+    LineSeriesService,
+    CategoryService,
+    LegendService,
+    DataLabelService,
+    TooltipService,
+    ColumnSeriesService,
+    ToastrService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

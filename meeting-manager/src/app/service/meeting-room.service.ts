@@ -23,7 +23,7 @@ export class MeetingRoomService {
   private readonly API_URL = 'http://localhost:8080/meeting';
   private readonly API_URL_UPDATE_MEETING = 'http://localhost:8080/meeting/update-meeting';
 
-  httpOptions ={
+  httpOptions = {
     header: new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*'

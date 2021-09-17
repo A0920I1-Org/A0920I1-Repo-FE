@@ -28,6 +28,7 @@
     "@material/snackbar": "^12.0.0",
     "@syncfusion/ej2-angular-charts": "^19.2.59",
     "angular-confirmation-popover": "^6.0.0",
+    "angular-notifier": "^9.1.0",
     "bootstrap": "^4.6.0",
     "chart.js": "^3.5.1",
     "firebase": "^8.10.0",

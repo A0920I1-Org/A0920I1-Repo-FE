@@ -1,9 +1,10 @@
+// AnhLT
 export class SearchRegistrationDTO {
   idMeetingRoom: string;
   dateCheckin: string;
   dateCheckout: string;
   idStatusRoom: string;
-  idTypeRoom: string;
+  idTypeMeetingRoom: string;
   createDate: string;
 
   constructor(nameRoom: string, dateCheckin: string,
@@ -13,7 +14,7 @@ export class SearchRegistrationDTO {
     this.dateCheckin = dateCheckin;
     this.dateCheckout = dateCheckout;
     this.idStatusRoom = statusRoom;
-    this.idTypeRoom = typeRoom;
+    this.idTypeMeetingRoom = typeRoom;
     this.createDate = createAt;
   }
 }

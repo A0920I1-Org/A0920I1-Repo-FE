@@ -23,6 +23,7 @@ export class MeetingRoom {
     this.id = id;
     this.name = name;
     this.floor = floor;
+
     this.imageUrl = imageUrl;
     this.roomStatus = roomStatus;
     this.orderMeetingList = orderMeetingList;

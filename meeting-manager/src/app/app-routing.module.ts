@@ -5,6 +5,10 @@ import {CreateMeetingComponent} from './admin/meeting-room/create-meeting/create
 import {DetailMeetingComponent} from './admin/meeting-room/detail-meeting/detail-meeting.component';
 import {ChooseEquipmentComponent} from './admin/meeting-room/create-meeting/choose-equipment/choose-equipment.component';
 import {UpdateMeetingComponent} from './admin/meeting-room/update-meeting/update-meeting.component';
+import {StatisticalComponent} from './admin/statistical/statistical.component';
+import {RegisterMeetingComponent} from './client/employee/meeting/register-history/register-meeting.component';
+import {DeleteMeetingComponent} from './client/employee/meeting/delete-meeting/delete-meeting.component';
+
 
 
 import { ListEmployeeComponent } from './admin/employee-manager/list-employee/list-employee.component';
@@ -16,7 +20,7 @@ import {DetailEquipmentComponent} from './admin/equipment-manager/detail-equipme
 import {UpdateEquipmentComponent} from './admin/equipment-manager/update-equipment/update-equipment.component';
 
 
-// @ts-ignore
+
 const routes: Routes = [
   {path: 'empList', component: ListEmployeeComponent},
   {path: 'emp-create', component: CreateEmployeeComponent},
@@ -30,6 +34,18 @@ const routes: Routes = [
   {path: 'createMeeting', component: CreateMeetingComponent},
   {path: 'showDetailsMeeting/:id', component: DetailMeetingComponent},
   {path: 'chooseEquipment', component: ChooseEquipmentComponent},
+    {
+      path: 'statistic' , component : StatisticalComponent
+    },
+    {
+      path: 'register-history/account/:idAccount', component: RegisterMeetingComponent
+    },
+    {
+      path: 'deleteRegisterMeeting/:idOrder', component: DeleteMeetingComponent
+    },
+    {
+      path: 'register-history/meeting-room/:idMeetingRoom', component: RegisterMeetingComponent
+    }
 
 /*
 * Author: Ho Van Hue, created 6/9/2021(dd/mm/yyyy)
