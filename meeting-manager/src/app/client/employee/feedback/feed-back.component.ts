@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {FeedBack} from "../../../model/FeedBack";
+import {FeedbackTechnicalService} from "../../../service/FeedbackTechnical/feedback-technical.service";
 
 @Component({
   selector: 'app-feed-back',
@@ -7,9 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FeedBackComponent implements OnInit {
 
-  constructor() { }
+  constructor(
 
-  ngOnInit(): void {
-  }
+  ) { }
+
+  ngOnInit(): void {}
 
 }
