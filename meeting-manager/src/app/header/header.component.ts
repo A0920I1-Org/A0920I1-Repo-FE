@@ -1,7 +1,5 @@
 import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {AuthenticationService} from '../service/authentication.service';
-import {Account} from '../model/Account';
-import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -22,6 +20,5 @@ export class HeaderComponent implements OnInit{
     //   })
     // }
   }
-
 
 }

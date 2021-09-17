@@ -1,0 +1,129 @@
+<!--
+feedTech TriNH
+-->
+
+<div id="wrap">
+  <div class="container">
+    <h1 style="text-align: center; margin: 40px 0"><b>
+      Xử lý phản hồi hệ thống
+    </b>
+    </h1>
+  </div>
+  <div class="container">
+    <form [formGroup]="updateFeedbackTech" (ngSubmit)="editFeedbackTech()">
+      <div class="card-body ">
+        <div class="form-group row">
+          <div class="col-sm-3" align="right">
+            <h6 class="mb-0">Tiêu đề:</h6>
+          </div>
+          <div class="col-sm-6 text-secondary">
+            <input type="text" class="form-control border-1 shadow-1" formControlName="title" readonly="readonly"
+                   placeholder="Góp ý kiến hệ thống">
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-sm-3" align="right">
+            <h6 class="mb-0">Người gửi phản hồi:</h6>
+          </div>
+          <div class="col-sm-6">
+            <select class="form-control" formControlName="account">
+              <option *ngFor="let AccountType of account" [ngValue]="AccountType.id">{{AccountType.fullname}}</option>
+            </select>
+          </div>
+        </div>
+        <br>
+        <div class="form-group row">
+          <div class="col-sm-3" align="right">
+            <label class="mb-0" for="inputBirt">Ngày gửi:</label>
+          </div>
+          <div class="col-sm-6 text-secondary">
+            <mat-form-field>
+              <mat-label>Choose a date</mat-label>
+              <input [max]="maxDate" [min]="minDate" formControlName="dateFeedback" readonly="readonly" id="inputBirt"
+                     matInput [matDatepicker]="myDatepicker">
+              <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
+              <mat-datepicker #myDatepicker></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-sm-3" align="right">
+            <h6 class="mb-0">Tên phòng :</h6>
+          </div>
+          <div class="col-sm-6">
+            <select class="form-control" readonly="readonly">
+              <option *ngFor="let RoomTypeId of meetingRoom" [ngValue]="RoomTypeId.id">{{RoomTypeId.name}}</option>
+            </select>
+          </div>
+        </div>
+        <br>
+        <div class="form-group row">
+          <div class="col-sm-3" align="right">
+            <h6 class="mb-0">Nội dung :</h6>
+          </div>
+          <div class="col-sm-6 text-secondary">
+                    <textarea class="form-control" readonly="readonly" formControlName="description">Lỗi quản lý thống kê
+                    </textarea>
+          </div>
+        </div>
+        <br>
+        <!--<div class="form-group row">
+          <div class="col-sm-3" align="right">
+            <h6 class="mb-0">Ảnh:</h6>
+          </div>
+          <div class="col-sm-6 text-secondary">
+            <input type="file" class="form-control border-1 shadow-1" formControlName="imageFeedBackList"
+                   readonly="readonly" placeholder="hethong.png">
+            <span *ngFor="let item of feedBack.imageFeedBackList" formControlName="imageFeedBackList">
+              <img src="{{item.imageUrl}}">
+            </span>
+          </div>
+        </div>
+        <br>-->
+        <div class="form-group row">
+          <div class="col-sm-3" align="right">
+            <h6 class="mb-0">Nhân Viên xử lý :</h6>
+          </div>
+          <div class="col-sm-6">
+            <select class="form-control" formControlName="account">
+              <option *ngFor="let AccountType of account" [ngValue]="AccountType.id">{{AccountType.fullname}}</option>
+            </select>
+          </div>
+          <div class="text-danger" *ngFor="let validation of validation_messages.account">
+            <div class="error-message" style="padding: 0 300px"
+                 *ngIf="updateFeedbackTech.get('account').hasError(validation.type) && (updateFeedbackTech.get('account').dirty || updateFeedbackTech.get('account').touched)">
+              {{validation.message}}</div>
+          </div>
+        </div>
+        <br>
+        <div class="form-group row">
+          <div class="col-sm-3" align="right">
+            <h6 class="mb-0">Nội dung xử lý:</h6>
+          </div>
+          <p class="text-danger">*</p>
+          <div class="col-sm-6 text-secondary">
+            <textarea class="form-control" formControlName="content">Xử lý hệ thống chức năng thống kê</textarea>
+          </div>
+          <div class="text-danger" *ngFor="let validation of validation_messages.content">
+            <div class="error-message" style="padding: 0 300px"
+                 *ngIf="updateFeedbackTech.get('content').hasError(validation.type) && (updateFeedbackTech.get('content').dirty || updateFeedbackTech.get('content').touched)">
+              {{validation.message}}</div>
+          </div>
+        </div>
+        <br>
+        <div class="form-group row">
+          <div class="col-sm-12" align="center">
+            <button type="submit" class="btn btn-primary" (click)="onSubmit(updateFeedbackTech)">Xử lý phản hồi</button>
+            <button class="btn btn-danger" style="margin: 0 50px">Huỷ phản hồi</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+

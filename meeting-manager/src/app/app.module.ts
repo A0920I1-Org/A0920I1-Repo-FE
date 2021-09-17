@@ -14,8 +14,6 @@ import { ListEquipmentComponent } from './admin/equipment-manager/list-equipment
 import { CreateEquipmentComponent } from './admin/equipment-manager/create-equipment/create-equipment.component';
 import { UpdateEquipmentComponent } from './admin/equipment-manager/update-equipment/update-equipment.component';
 import { DetailEquipmentComponent } from './admin/equipment-manager/detail-equipment/detail-equipment.component';
-import { ListFeedbackComponent } from './client/employee/feedback/list-feedback/list-feedback.component';
-import { DetailFeedbackComponent } from './client/employee/feedback/detail-feedback/detail-feedback.component';
 import { ListEmployeeComponent } from './admin/employee-manager/list-employee/list-employee.component';
 import { DeleteEmployeeComponent } from './admin/employee-manager/delete-employee/delete-employee.component';
 import { UpdateEmployeeComponent } from './admin/employee-manager/update-employee/update-employee.component';
@@ -28,10 +26,39 @@ import {BasicAuthHttpInterceptorService} from './service/basic-auth-http-interce
 import {FooterComponent} from './footer/footer.component';
 import {HeaderComponent} from './header/header.component';
 import {JwtModule} from '@auth0/angular-jwt';
+import {DeleteMeetingRoomComponent} from './admin/meeting-room/delete-meeting/delete-meeting-room.component';
+import {ChooseEquipmentComponent} from './admin/meeting-room/create-meeting/choose-equipment/choose-equipment.component';
+import {CreateEmployeeComponent} from './admin/employee-manager/create-employee/create-employee.component';
+import {StatisticalComponent} from './admin/statistical/statistical.component';
+import {FeedbackTechnicalUpdateComponent} from './admin/feedback-manager/feedback-technical-update/feedback-technical-update.component';
+import {FeedbackListComponent} from './client/employee/client-feedback/feedback-list/feedback-list.component';
+import {HandlebarsMeetinghouseComponent} from './admin/feedback-manager/handlefeedback-meetingroom/handlebars-meetinghouse.component';
+import {ListFeedbackadminComponent} from './admin/feedback-manager/list-feedbackadmin/list-feedbackadmin.component';
+import {DeleteFeedbackComponent} from './admin/feedback-manager/delete-feedback/delete-feedback.component';
+import {FeedbackTechnicalCreateComponent} from './client/employee/client-feedback/feedback-technical-create/feedback-technical-create.component';
+import {MatInputModule} from '@angular/material/input';
+import {ChartModule} from '@syncfusion/ej2-angular-charts';
+import {AngularFireModule} from '@angular/fire';
+import {AngularFirestoreModule} from '@angular/fire/firestore';
+import {AngularFireAuthModule} from '@angular/fire/auth';
+import {AngularFireDatabaseModule} from '@angular/fire/database';
+import {AngularFireStorageModule} from '@angular/fire/storage';
+import {MatIconModule} from '@angular/material/icon';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {NgxPaginationModule} from 'ngx-pagination';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatButtonModule} from '@angular/material/button';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {environment} from '../environments/environment';
+import {RouterModule} from '@angular/router';
+import {ToastrModule} from 'ngx-toastr';
+
 
 
 @NgModule({
   declarations: [
+
     AppComponent,
     FooterComponent,
     HeaderComponent,
@@ -39,6 +66,17 @@ import {JwtModule} from '@auth0/angular-jwt';
     DeleteMeetingComponent,
     ListMeetingComponent,
     CreateMeetingComponent,
+    DeleteMeetingRoomComponent,
+    ChooseEquipmentComponent,
+    CreateEmployeeComponent,
+    StatisticalComponent,
+    FeedbackTechnicalUpdateComponent,
+    FeedbackListComponent,
+    ListFeedbackadminComponent,
+    HandlebarsMeetinghouseComponent,
+    DeleteFeedbackComponent,
+    FeedbackTechnicalCreateComponent,
+
     UpdateMeetingComponent,
     DetailMeetingComponent,
     ChangePasswordComponent,
@@ -46,8 +84,6 @@ import {JwtModule} from '@auth0/angular-jwt';
     CreateEquipmentComponent,
     UpdateEquipmentComponent,
     DetailEquipmentComponent,
-    ListFeedbackComponent,
-    DetailFeedbackComponent,
     ListEmployeeComponent,
     DeleteEmployeeComponent,
     UpdateEmployeeComponent,
@@ -59,18 +95,43 @@ import {JwtModule} from '@auth0/angular-jwt';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    RouterModule,
+
     HttpClientModule,
     ReactiveFormsModule,
     JwtModule.forRoot({
       config: {
         tokenGetter:  () => sessionStorage.getItem('toke')
       }
-    })
+    }),
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: false,
+    }),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
+    AngularFireAuthModule, // auth
+    AngularFireDatabaseModule,
+    AngularFireStorageModule,
+    MatIconModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    NgxPaginationModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatDatepickerModule,
+    MatSnackBarModule,
+    ChartModule,
+    HttpClientModule,
+    MatInputModule,
   ],
   providers: [{
     provide:HTTP_INTERCEPTORS, useClass:BasicAuthHttpInterceptorService, multi:true,
 
   }],
+
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
