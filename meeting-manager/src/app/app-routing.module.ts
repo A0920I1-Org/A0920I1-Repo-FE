@@ -1,20 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-<<<<<<< HEAD
+// @ts-ignore
 import {FeedbackTechnicalComponent} from "./client/employee/feedback/feedback-technical/feedback-technical.component";
 import {FeedbackTechnicalUpdateComponent} from "./admin/feedback-manager/feedback-technical-update/feedback-technical-update.component";
 import {FeedBackComponent} from "./client/employee/feedback/feed-back.component";
-
-
-const routes: Routes = [
-  {
-    component:FeedbackTechnicalComponent, path : 'add'
-  },
-  {
-    component:FeedbackTechnicalUpdateComponent, path : 'update/:id'
-  }
-];
-=======
 import {FeedbackComponent} from './client/employee/client-feedback/feedback/feedback.component';
 import {FeedbackListComponent} from './client/employee/client-feedback/feedback-list/feedback-list.component';
 import {ListFeedbackadminComponent} from './admin/feedback-manager/list-feedbackadmin/list-feedbackadmin.component';
@@ -39,12 +28,19 @@ const routes: Routes = [
   },
   {
     path: 'handle-feedback/:idfeedback', component: HandlebarsMeetinghouseComponent
+  },
+  {
+    component:FeedbackTechnicalComponent, path : 'add'
+  },
+  {
+    component:FeedbackTechnicalUpdateComponent, path : 'update/:id'
   }
 ]
->>>>>>> VietNT-feedback
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
+
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

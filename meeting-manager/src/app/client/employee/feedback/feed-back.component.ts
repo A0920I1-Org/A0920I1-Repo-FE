@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {FeedBack} from "../../../model/FeedBack";
-import {FeedbackTechnicalService} from "../../../service/FeedbackTechnical/feedback-technical.service";
 
 @Component({
   selector: 'app-feed-back',

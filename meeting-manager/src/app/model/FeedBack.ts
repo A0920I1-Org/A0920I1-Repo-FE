@@ -4,9 +4,6 @@ import {FeedBackType} from "./FeedBackType";
 import {ImageFeedBack} from "./ImageFeedBack";
 import {MeetingRoom} from "./MeetingRoom";
 
-
-
-
 export class FeedBack {
   id: number;
   title:string
