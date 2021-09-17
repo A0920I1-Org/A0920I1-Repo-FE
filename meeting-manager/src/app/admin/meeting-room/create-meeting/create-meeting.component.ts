@@ -1,10 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MeetingRoomService} from '../../../service/meeting-room.service';
-import {Area} from '../../../models/Area';
-import {TypeMeetingRoom} from '../../../models/TypeMeetingRoom';
-import {RoomStatus} from '../../../models/RoomStatus';
-import {Router} from '@angular/router';
-import {OrderEquipment} from '../../../models/OrderEquipment';
 import {AngularFireStorage, AngularFireStorageReference} from '@angular/fire/storage';
 import {MatDialog} from '@angular/material/dialog';
 import {ChooseEquipmentComponent} from './choose-equipment/choose-equipment.component';
@@ -12,6 +7,11 @@ import {formatDate} from '@angular/common';
 import {finalize} from 'rxjs/operators';
 import {ToastrService} from 'ngx-toastr';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {TypeMeetingRoom} from '../../../model/entity/TypeMeetingRoom';
+import {Area} from '../../../model/entity/Area';
+import {RoomStatus} from '../../../model/entity/RoomStatus';
+import { OrderEquipment } from 'src/app/model/entity/OrderEquipment';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-create-meeting',

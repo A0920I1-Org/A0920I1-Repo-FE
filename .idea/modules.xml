@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> HoangLV_EditMeetingRoom
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ProjectModuleManager">
@@ -6,6 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/A0920I1-Repo-FE.iml" filepath="$PROJECT_DIR$/.idea/A0920I1-Repo-FE.iml" />
     </modules>
   </component>
+<<<<<<< HEAD
 =======
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
@@ -15,4 +19,6 @@
     </modules>
   </component>
 >>>>>>> HueHV_CreateMeetingRoom
+=======
+>>>>>>> HoangLV_EditMeetingRoom
 </project>

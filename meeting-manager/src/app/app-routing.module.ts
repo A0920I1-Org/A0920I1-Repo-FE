@@ -4,15 +4,18 @@ import {ListMeetingComponent} from './client/employee/meeting/list-meeting/list-
 import {CreateMeetingComponent} from './admin/meeting-room/create-meeting/create-meeting.component';
 import {DetailMeetingComponent} from './admin/meeting-room/detail-meeting/detail-meeting.component';
 import {ChooseEquipmentComponent} from './admin/meeting-room/create-meeting/choose-equipment/choose-equipment.component';
+import {UpdateMeetingComponent} from './admin/meeting-room/update-meeting/update-meeting.component';
 
 /*
 * Author: Ho Van Hue, created 6/9/2021(dd/mm/yyyy)
 * */
+
 const routes: Routes = [
-  {path: '', component: ListMeetingComponent},
-  {path: 'createMeeting', component: CreateMeetingComponent},
-  {path: 'showDetailsMeeting/:id', component: DetailMeetingComponent},
-  {path: 'chooseEquipment', component: ChooseEquipmentComponent},
+  {component: ListMeetingComponent , path: ''},
+  {component: UpdateMeetingComponent, path: 'update/:id'},
+    {path: 'createMeeting', component: CreateMeetingComponent},
+    {path: 'showDetailsMeeting/:id', component: DetailMeetingComponent},
+    {path: 'chooseEquipment', component: ChooseEquipmentComponent},
 ];
 
 @NgModule({

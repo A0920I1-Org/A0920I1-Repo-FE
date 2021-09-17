@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {MeetingRoom} from '../models/MeetingRoom';
-import {Area} from '../models/Area';
-import {TypeMeetingRoom} from '../models/TypeMeetingRoom';
-import {RoomStatus} from '../models/RoomStatus';
-import {OrderEquipment} from '../models/OrderEquipment';
-import {Equipment} from '../models/Equipment';
+import {MeetingRoom} from '../model/entity/MeetingRoom';
+import {Equipment} from '../model/entity/Equipment';
+import {Area} from '../model/entity/Area';
+import {TypeMeetingRoom} from '../model/entity/TypeMeetingRoom';
+import {RoomStatus} from '../model/entity/RoomStatus';
+import {OrderEquipment} from '../model/entity/OrderEquipment';
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +20,8 @@ export class MeetingRoomService {
   private readonly API_TPYE_MEETINGROOM_URL = 'http://localhost:8081/meeting/typeMeetingRoom';
   private readonly API_MEETINGROOM_STATUS_URL = 'http://localhost:8081/meeting/roomStatus';
   private readonly API_EQUIPMENT_URL = 'http://localhost:8081/meeting/equipment';
+  private readonly API_URL = 'http://localhost:8080/meeting';
+  private readonly API_URL_UPDATE_MEETING = 'http://localhost:8080/meeting/update-meeting';
 
   httpOptions ={
     header: new HttpHeaders({
@@ -71,4 +75,25 @@ export class MeetingRoomService {
     return this.httpClient.get<Equipment[]>(this.API_EQUIPMENT_URL + '?name=' + (name));
   }
 
+  // hiển phòng theo id (Hoàng)
+  getMeetingById(id: number): Observable<MeetingRoom>{
+    return this.httpClient.get<MeetingRoom>(this.API_URL + '/' + id);
+  }
+
+  // xóa phòng họp (Hoàng)
+  delete(id: number): Observable<any> {
+    return this.httpClient.delete(this.API_URL + '/' + id);
+  }
+
+  // tìm kiếm phòng họp (Hoàng)
+  search(name: string ,floors: number ,area_id: number , room_status_id:number,
+         type_meeting_room_id:number,capacity:number): Observable<any>{
+    console.log(name,floors,area_id,room_status_id,type_meeting_room_id,capacity);
+    return  this.httpClient.get(`${this.API_URL +'/'+ 'search'}?name=${name}&&floors=${floors}&&area_id=${area_id}&&room_status_id=${room_status_id}&&type_meeting_room_id=${type_meeting_room_id}&&capacity=${capacity}`)
+  }
+    // Hoàng update meeting
+  updateMeetingRoom(meetingRoom: MeetingRoom): Observable<void>{
+    // console.log(meetingRoom);
+    return this.httpClient.put<void>(this.API_URL_UPDATE_MEETING + '/'+ meetingRoom.id, meetingRoom );
+  }
 }

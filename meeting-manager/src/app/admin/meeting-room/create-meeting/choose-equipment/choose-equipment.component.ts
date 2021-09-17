@@ -1,9 +1,11 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {Equipment} from '../../../../models/Equipment';
+
 import {MeetingRoomService} from '../../../../service/meeting-room.service';
 import {MAT_DIALOG_DATA, MatDialog} from '@angular/material/dialog';
-import {OrderEquipment} from '../../../../models/OrderEquipment';
+
 import {FormArray, FormBuilder, FormGroup} from '@angular/forms';
+import {Equipment} from '../../../../model/entity/Equipment';
+import {OrderEquipment} from '../../../../model/entity/OrderEquipment';
 
 @Component({
   selector: 'app-choose-equipment',

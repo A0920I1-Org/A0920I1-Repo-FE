@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {MeetingRoomService} from '../../../service/meeting-room.service';
 import {FormBuilder} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
-import {OrderEquipment} from '../../../models/OrderEquipment';
-import {MeetingRoom} from '../../../models/MeetingRoom';
+import {MeetingRoom} from '../../../model/entity/MeetingRoom';
+import {OrderEquipment} from '../../../model/entity/OrderEquipment';
+
 
 @Component({
   selector: 'app-detail-meeting',

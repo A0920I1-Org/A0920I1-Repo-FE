@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> HoangLV_EditMeetingRoom
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="WEB_MODULE" version="4">
   <component name="NewModuleRootManager">
@@ -10,6 +13,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
+<<<<<<< HEAD
 =======
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="WEB_MODULE" version="4">
@@ -23,4 +27,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 >>>>>>> HueHV_CreateMeetingRoom
+=======
+>>>>>>> HoangLV_EditMeetingRoom
 </module>

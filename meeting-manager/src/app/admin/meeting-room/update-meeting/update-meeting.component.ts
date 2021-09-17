@@ -1,15 +1,178 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
+import {TypeMeetingRoomService} from '../../../service/type-meeting-room.service';
+import {StatusRoomService} from '../../../service/status-room.service';
+import {AreaMeetingRoomService} from '../../../service/area-meeting-room.service';
+
+import {EquipmentService} from '../../../service/equipment.service';
+import {MeetingRoomService} from '../../../service/meeting-room.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+
+import {AngularFireStorage} from '@angular/fire/storage';
+import {formatDate} from '@angular/common';
+import {finalize} from 'rxjs/operators';
+// @ts-ignore
+import {ToastrService} from 'ngx-toastr';
+import {TypeMeetingRoom} from '../../../model/entity/TypeMeetingRoom';
+import {RoomStatus} from '../../../model/entity/RoomStatus';
+import {OrderEquipment} from '../../../model/entity/OrderEquipment';
+import {MeetingRoom} from '../../../model/entity/MeetingRoom';
+import {Area} from '../../../model/entity/Area';
 @Component({
   selector: 'app-update-meeting',
   templateUrl: './update-meeting.component.html',
   styleUrls: ['./update-meeting.component.css']
 })
 export class UpdateMeetingComponent implements OnInit {
+  idMeeting: number;
+  areaList: Area[];
+  typeMeetingRoom: TypeMeetingRoom[];
+  statusRoomList: RoomStatus[];
+  equipmentList: OrderEquipment[];
+  imgUpdate: any;
+  editMeetingRoom:FormGroup;
+  meetingRoom: MeetingRoom;
+  filePath: string =  null;
+  defaultImage = 'https://epicattorneymarketing.com/wp-content/uploads/2016/07/Headshot-Placeholder-1.png';
+  constructor(
+    private fb: FormBuilder,
+    private typeMeetingRoomService: TypeMeetingRoomService,
+    private areaService: AreaMeetingRoomService,
+    private statusRoomService: StatusRoomService,
+    private equipmentService: EquipmentService,
+    private meetingRoomService: MeetingRoomService,
+    private snackBar: MatSnackBar,
+    private toastrService: ToastrService,
+    private active: ActivatedRoute,
+    private router: Router,
+    private _snackBar: MatSnackBar,
+    @Inject(AngularFireStorage) private storage: AngularFireStorage
+  ) {
+  }
 
-  constructor() { }
+
+
 
   ngOnInit(): void {
+
+    this.editMeetingRoom = this.fb.group({
+      id: [''],
+      name:['', [Validators.required, Validators.pattern('^[a-zA-Z0-9\\+]*$'),Validators.minLength(4),Validators.maxLength(10)]],
+      floors: ['', [Validators.required, Validators.pattern('^[1-9]{0,2}$')]],
+      area: ['', [Validators.required]],
+      roomStatus: ['', [Validators.required]],
+      typeMeetingRoom: ['', [Validators.required]],
+      // capacity: ['', Validators.required],
+      imageUrl: ['']
+      // orderEquipmentList: ['', Validators.required]
+    });
+
+
+    //list khu vực
+    this.areaService.getAllArea().subscribe((data) => {
+      this.areaList = data;
+
+      //list trạng thái phòng
+      this.statusRoomService.getStatusRoom().subscribe((data) => {
+        this.statusRoomList = data;
+
+        // list loại phòng
+        this.typeMeetingRoomService.getTypesMeetingRoom().subscribe((data) => {
+
+          this.typeMeetingRoom = data;
+
+          this.active.paramMap.subscribe((paramMap: ParamMap) => {
+            this.idMeeting = parseInt(paramMap.get('id'));
+            this.meetingRoomService.getMeetingById(this.idMeeting).subscribe((data) => {
+              this.meetingRoom = data;
+              // console.log(this.editMeetingRoom);
+              this.editMeetingRoom.patchValue({
+                id : this.meetingRoom.id,
+                name: this.meetingRoom.name,
+                floors: this.meetingRoom.floor,
+                area: this.meetingRoom.area.id,
+                roomStatus: this.meetingRoom.roomStatus.id,
+                typeMeetingRoom: this.meetingRoom.typeMeetingRoom.id,
+                // capacity:this.meetingRoom.typeMeetingRoom.capacity,
+                imageUrl: this.meetingRoom.imageUrl
+              });
+            });
+          });
+        });
+      });
+    });
+  }
+
+  validation_messages = {
+    name: [
+      {type: 'required', message: 'Vui lòng nhập tên phòng!'},
+      {type: 'minlength', message: 'Vui lòng nhập tên phòng có ít nhất 4 kí tự!'},
+      {type: 'maxlength', message: 'Vui lòng nhập tên phòng có nhiều nhất 10 kí tự!'},
+      {type: 'pattern', message: 'Nhập tên không hợp lệ!'}
+    ],
+    floors: [
+      {type: 'required', message: 'Vui lòng nhập số tầng!'},
+      {type: 'minlength', message: 'Vui lòng nhập ít nhất 1 số!'},
+      {type: 'pattern', message: 'Nhập tầng không hợp lệ!'}
+
+    ],
+    area: [
+      {type: 'required', message: 'Vui lòng chọn khu vực!'},
+    ],
+    roomStatus: [
+      {type: 'required', message: 'Vui lòng chọn trạng thái phòng!'}
+    ],
+    typeMeetingRoom: [
+      {type: 'required', message: 'Vui lòng chọn loại phòng!'}
+    ],
+    imageUrl: [
+      {type: 'required', message: 'Vui lòng chọn ảnh!'},
+      {type: 'pattern', message: 'Bạn chọn không đúng file ảnh!'}
+    ]
+  };
+
+  updateMeetingRoom() {
+    this.meetingRoomService.updateMeetingRoom(this.editMeetingRoom.value).subscribe( data =>{
+      this.toastrService.success('Bạn đã sửa thành công!');
+      this.router.navigateByUrl('');
+      // this.snackBar.open('Đã sữa thành công !', 'xong',{duration:2000});
+      }
+    );
+
+  }
+  getCurrentDateTime(): string {
+    return formatDate(new Date(), 'dd-MM-yyyyhhmmssa', 'en-US');
+  }
+  onSubmit(editMeetingRoom: FormGroup){
+    const nameImage = this.getCurrentDateTime() + this.imgUpdate.name;
+    const fileRef = this.storage.ref(nameImage);
+    console.log(this.imgUpdate);
+    // chưa set name khi up firebase
+    this.storage.upload(nameImage, this.imgUpdate).snapshotChanges().pipe(
+      finalize(() => {
+        fileRef.getDownloadURL().subscribe((url) => {
+          this.editMeetingRoom.patchValue({imageUrl: url});
+          console.log(this.imgUpdate);
+          this.updateMeetingRoom();
+        });
+      })
+    ).subscribe();
+  }
+  showImage($event: any) {
+    this.imgUpdate = $event.target.files[0];
+  }
+
+  getImageUrl(){
+    if (this.filePath != null){
+      return this.filePath;
+    }
+    if (this.editMeetingRoom.value.imageUrl != null){
+      return this.editMeetingRoom.value.imageUrl;
+    }
+    return this.defaultImage;
   }
 
 }
+

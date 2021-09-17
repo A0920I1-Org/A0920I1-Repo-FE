@@ -40,6 +40,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {FooterComponent} from './footer/footer.component';
 import {HeaderComponent} from './header/header.component';
 import {ToastrModule} from 'ngx-toastr';
+import {DeleteMeetingRoomComponent} from './admin/meeting-room/delete-meeting/delete-meeting-room.component';
 
 // @ts-ignore
 @NgModule({
@@ -65,7 +66,7 @@ import {ToastrModule} from 'ngx-toastr';
     UpdateEmployeeComponent,
     DetailEmployeeComponent,
     ChooseEquipmentComponent,
-
+    DeleteMeetingRoomComponent
   ],
   imports: [
     BrowserModule,
@@ -97,3 +98,4 @@ import {ToastrModule} from 'ngx-toastr';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
