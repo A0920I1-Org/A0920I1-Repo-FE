@@ -4,6 +4,7 @@ import {MeetingRoom} from './MeetingRoom';
 export class TypeMeetingRoom {
   id: number;
   name: string;
+  capacity: number;
   meetingRoomList: MeetingRoom[];
   constructor(id: number, name: string, meetingRoomList: MeetingRoom[]) {
     this.id = id;

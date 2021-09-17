@@ -8,7 +8,7 @@ export class MeetingRoom {
   id: number;
   name: string;
   floor: number;
-  imgUrl: string;
+  imageUrl: string;
   roomStatus: RoomStatus;
   orderMeetingList: OrderMeeting[];
   typeMeetingRoom: TypeMeetingRoom;
@@ -16,14 +16,14 @@ export class MeetingRoom {
   orderEquipmentList: OrderEquipment[];
 
   constructor(id: number, name: string, floor: number,
-              imgUrl: string, roomStatus: RoomStatus,
+              imageUrl: string, roomStatus: RoomStatus,
               orderMeetingList: OrderMeeting[],
               typeMeetingRoom: TypeMeetingRoom, area: Area,
               orderEquipmentList: OrderEquipment[]) {
     this.id = id;
     this.name = name;
     this.floor = floor;
-    this.imgUrl = imgUrl;
+    this.imageUrl = imageUrl;
     this.roomStatus = roomStatus;
     this.orderMeetingList = orderMeetingList;
     this.typeMeetingRoom = typeMeetingRoom;
