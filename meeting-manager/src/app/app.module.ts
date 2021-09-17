@@ -3,9 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FooterComponent } from './client/client-shared/footer/footer.component';
-import { HeaderComponent } from './client/client-shared/header/header.component';
-import { NavbarComponent } from './client/client-shared/navbar/navbar.component';
 import { RegisterMeetingComponent } from './client/employee/meeting/register-meeting/register-meeting.component';
 import { DeleteMeetingComponent } from './client/employee/meeting/delete-meeting/delete-meeting.component';
 import { ListMeetingComponent } from './client/employee/meeting/list-meeting/list-meeting.component';
@@ -23,13 +20,33 @@ import { ListEmployeeComponent } from './admin/employee-manager/list-employee/li
 import { DeleteEmployeeComponent } from './admin/employee-manager/delete-employee/delete-employee.component';
 import { UpdateEmployeeComponent } from './admin/employee-manager/update-employee/update-employee.component';
 import { DetailEmployeeComponent } from './admin/employee-manager/detail-employee/detail-employee.component';
+import {NgxPaginationModule} from 'ngx-pagination';
+import {HttpClientModule} from '@angular/common/http';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatDialogModule} from '@angular/material/dialog';
+import {RouterModule} from '@angular/router';
+import {MatButtonModule} from '@angular/material/button';
+import {environment} from '../environments/environment';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import {MatIconModule} from '@angular/material/icon';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatInputModule} from '@angular/material/input';
+import { ChooseEquipmentComponent } from './admin/meeting-room/create-meeting/choose-equipment/choose-equipment.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {FooterComponent} from './footer/footer.component';
+import {HeaderComponent} from './header/header.component';
+import {ToastrModule} from 'ngx-toastr';
 
+// @ts-ignore
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
     HeaderComponent,
-    NavbarComponent,
     RegisterMeetingComponent,
     DeleteMeetingComponent,
     ListMeetingComponent,
@@ -47,10 +64,34 @@ import { DetailEmployeeComponent } from './admin/employee-manager/detail-employe
     DeleteEmployeeComponent,
     UpdateEmployeeComponent,
     DetailEmployeeComponent,
+    ChooseEquipmentComponent,
+
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    RouterModule,
+    NgxPaginationModule,
+    HttpClientModule,
+    FormsModule,
+    MatDialogModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatPaginatorModule,
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: false,
+    }),
+    MatIconModule,
+    MatProgressSpinnerModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule, // firestor
+    AngularFireAuthModule, // auth
+    AngularFireStorageModule,// storage
+    MatInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
