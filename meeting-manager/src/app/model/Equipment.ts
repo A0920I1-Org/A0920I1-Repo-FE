@@ -1,13 +1,13 @@
-import {OrderEquipment} from "./OrderEquipment";
+import {OrderEquipment} from './OrderEquipment';
 
 
 export class Equipment {
   id: number;
-  quantityRepair: number;
+  name: string;
+  repairQuantity: number;
   stock: number;
   imageUrl: string;
   orderEquipmentList: OrderEquipment[];
-
 
 
 }

@@ -1,1 +1,190 @@
-<p>create-equipment works!</p>
+<!--<div id="wrap">-->
+<!--<div class="container">-->
+<!--<h1 style="text-align: center; margin: 40px 0">Thêm mới tài sản</h1> <hr>-->
+
+<!--  <form [formGroup]="createEquipment" (ngSubmit)="onSubmit(createEquipment)">-->
+<!--    <div class="row">-->
+<!--      <div class="col-md-8">-->
+<!--        <div class="form-group row">-->
+<!--          <label for="inputNameRoom" class="col-sm-5 col-md-5 col-form-label input-group-text"-->
+<!--                 style="margin: 0 15px">Mã:</label>-->
+<!--          <div class="col-sm-6">-->
+<!--            <input type="text" class="form-control" id="inputNameRoom" formControlName="id" placeholder="Nhập mã tài sản...">-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="form-group row">-->
+<!--          <label for="inputFloor" class="col-sm-3 col-md-5 col-form-label input-group-text"-->
+<!--                 style="margin: 0 15px">Tài sản: <i style="color: red">*</i></label>-->
+<!--          <div class="col-sm-6">-->
+<!--            <input type="text" class="form-control" id="inputFloor" maxlength="10" formControlName="name"-->
+<!--                   placeholder="Nhập tài sản...">-->
+<!--            <div class="alert-danger" *ngIf="createEquipment.get('name').invalid && createEquipment.get('id').touched">-->
+<!--              Tên tài sản không được để trống!-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="form-group row">-->
+<!--          <label for="inputNameRoom" class="col-sm-3 col-md-5 col-form-label input-group-text"-->
+<!--                 style="margin: 0 15px">Tổng số lượng: <i style="color: red">*</i></label>-->
+<!--          <div class="col-sm-6">-->
+<!--            <input type="text" class="form-control" maxlength="10" formControlName="stock"-->
+<!--                   placeholder="Nhập số lượng...">-->
+<!--            <div class="alert-danger" *ngIf="createEquipment.get('stock').invalid && createEquipment.get('id').touched">-->
+<!--             Số lượng không được để trống!!-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="form-group row">-->
+<!--          <label for="inputNameRoom" class="col-sm-3 col-md-5 col-form-label input-group-text"-->
+<!--                 style="margin:0 15px">Đang sửa chữa:<i style="color: red">*</i></label>-->
+<!--          <div class="col-sm-6">-->
+<!--            <input type="text" class="form-control" maxlength="10" formControlName="repairQuantity"-->
+<!--                   placeholder="Nhập số lượng...">-->
+<!--            <div class="alert-danger"-->
+<!--                 *ngIf="createEquipment.get('repairQuantity').invalid && createEquipment.get('id').touched">Không được-->
+<!--              để trống!!-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <small>(Dấu <i style="color: red">(*)</i> là bắt buộc nhập)</small>-->
+<!--      </div>-->
+<!--      <div class="col-md-4">-->
+<!--        <div class="card card-user">-->
+<!--          <div class="card-body">-->
+<!--            <div class="fileinput fileinput-new text-center" data-provides="fileinput">-->
+<!--              <div class="fileinput-new thumbnail img-raised">-->
+<!--&lt;!&ndash;                <img&ndash;&gt;-->
+<!--&lt;!&ndash;                  src="http://2.bp.blogspot.com/-9QQc29PzHC0/UbS0OnSUVBI/AAAAAAAAAlM/U0F4XUuMl2g/s640/hinh-anh-canh-dong-hoa-dep-1.jpg"&ndash;&gt;-->
+<!--&lt;!&ndash;                  style="width: 100%;" alt="..." rel="nofollow">&ndash;&gt;-->
+<!--              </div>-->
+<!--              <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>-->
+<!--              <div>-->
+<!--&lt;!&ndash;                                    <span class="btn btn-info btn-round btn-default btn-file btn__upload-custom"&ndash;&gt;-->
+<!--&lt;!&ndash;                                          style="margin-top: 15px">&ndash;&gt;-->
+<!--                                        <span class="fileinput-new">Chọn ảnh</span>-->
+<!--                                        <input type="file" (change)="showImage($event)">-->
+<!--&lt;!&ndash;                                    </span>&ndash;&gt;-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="justify-content-center text-center">-->
+<!--      <input type="submit" value="Quay lại" class="btn btn-primary"  style="margin-right: 15px" routerLink="/list-equipment">-->
+<!--      <input type="submit" value="Thêm mới" class="btn btn-success"-->
+<!--             style="margin-right: 0px">-->
+<!--    </div>-->
+
+<!--  </form>-->
+<!--</div>-->
+<!--</div>-->
+<div id="wrap">
+  <div class="content">
+    <section class="content" style="font-family: 'Poppins', sans-serif;">
+      <div class="container-fluid">
+        <form [formGroup]="createEquipment" (ngSubmit)="onSubmit()">
+        <!-- Create new user account -->
+        <div class="row content_style">
+          <div class="col-md-3">
+            <div class="card card-user">
+              <div class="card-body">
+                <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                  <div class="fileinput-new thumbnail img-raised">
+                    <img [src]="getImageUrl()" style="width: 100%;" alt="..." rel="nofollow">
+                  </div>
+                  <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
+                  <div>
+                    <span style="margin-top: 20px"
+                          class="btn btn-info btn-round btn-default btn-file btn__upload-custom">
+                      <span class="fileinput-new" >Chọn ảnh</span>
+                      <input type="file" name="..." (change)="selectImage($event)"/>
+                      <ng-container *ngFor="let validation of validationMessage.imageUrl">
+                        <small class="form-text text-danger"
+                               *ngIf="createEquipment.get('name').hasError(validation.type)&& createEquipment.get('name').touched">
+                          {{validation.message}}
+                        </small>
+                      </ng-container>
+                    </span>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--End table information-->
+
+          <div class="col-md-9">
+            <div class="card-user">
+              <div class="card-header card-background-color ">
+                <h4><b>Thêm Mới Tài Sản</b></h4>
+              </div>
+              <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-12 pr-1">
+                      <div class="form-group">
+                        <label>Tên tài sản <span class="infomation__required">(*)</span></label>
+                        <input type="text" class="form-control" placeholder="Nhập tên tài sản" formControlName="name">
+                        <ng-container *ngFor="let validation of validationMessage.name">
+                          <small class="form-text text-danger"
+                                 *ngIf="createEquipment.get('name').invalid && createEquipment.get('name').touched">
+                            {{validation.message}}
+                          </small>
+                        </ng-container>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label>Tổng số lượng <span class="infomation__required">(*)</span></label>
+                        <input type="text" class="form-control" placeholder="Nhập số lượng" formControlName="stock">
+                      </div>
+                      <ng-container *ngFor="let validation of validationMessage.stock">
+                        <small class="form-text text-danger"
+                               *ngIf="createEquipment.get('stock').hasError(validation.type)&& createEquipment.get('stock').touched">
+                          {{validation.message}}
+                        </small>
+                      </ng-container>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label>Đang sửa chữa <span class="infomation__required">(*)</span></label>
+                        <input type="text" class="form-control" placeholder="Nhập số lượng"
+                               formControlName="repairQuantity">
+                      </div>
+                      <ng-container *ngFor="let validation of validationMessage.repairQuantity">
+                        <small class="form-text text-danger"
+                               *ngIf="createEquipment.get('repairQuantity').hasError(validation.type)&& createEquipment.get('repairQuantity').touched">
+                          {{validation.message}}
+                        </small>
+                      </ng-container>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="row">
+                      <div class="" style="margin-left: 200px">
+                        <button class="btn btn-info" routerLink="/list-equipment">Quay Lại
+                        </button>
+                      </div>
+                      <div class="">
+                        <button class="btn btn-secondary" (click)="uploadImage()" style="margin: 0 30px">Thêm Mới
+                        </button>
+
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </form>
+      </div>
+    </section>
+  </div>
+</div>
+
+

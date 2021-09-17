@@ -1,4 +1,4 @@
-import {FeedBack} from "./FeedBack";
+import {FeedBack} from './FeedBack';
 
 
 export class ImageFeedBack {

@@ -1,1 +1,66 @@
-<p>update-equipment works!</p>
+<div id="wrap">
+  <div class="container ">
+    <h1 style="text-align: center; margin: 40px 0">Chỉnh Sửa Thông Tin Tài Sản</h1>
+    <hr>
+    <form [formGroup]="updateEquipment" (ngSubmit)="onSubmit(updateEquipment)">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card card-user">
+            <div class="card-body">
+              <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                <div class="fileinput-new thumbnail img-raised" *ngIf="editEquipment">
+                  <img src="{{editEquipment.imageUrl}}" style="width: 100%;" alt="..." rel="nofollow">
+                </div>
+                <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
+                <div>
+               <span class="btn btn-info btn-round btn-default btn-file btn__upload-custom">
+                                        <span class="fileinput-new">Chọn ảnh</span>
+                                        <input type="file" (change)="showImage($event)">
+               </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="form-group row">
+            <label for="inputFloor" class="col-sm-3 col-md-5 col-form-label input-group-text"
+                   style="margin: 0 15px">Tài sản</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" id="inputFloor" maxlength="10" formControlName="name"
+                     placeholder="Nhập tài sản...">
+              <div class="alert-danger"
+                   *ngIf="updateEquipment.get('name').invalid && updateEquipment.get('name').touched">Không được
+                để trống!!
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputStock" class="col-sm-3 col-md-5 col-form-label input-group-text"
+                   style="margin: 0 15px">Tổng số lượng</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" id="inputStock" maxlength="10" formControlName="stock"
+                     placeholder="Nhập số lượng...">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="repairQuantity" class="col-sm-3 col-md-5 col-form-label input-group-text"
+                   style="margin: 0 15px">Đang sửa chữa:</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" id="repairQuantity" maxlength="10"
+                     formControlName="repairQuantity"
+                     placeholder="Nhập số lượng...">
+            </div>
+          </div>
+          <div class="row">
+            <div style="margin-left: 255px">
+              <input type="submit" value="Quay lại" class="btn btn-info" routerLink="/list-equipment"
+                     style="margin-right: 15px">
+              <input type="submit" value="Cập nhật" class="btn btn-secondary" style="margin-right: 30px; color: white">
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,5 +1,5 @@
-import {Account} from "./Account";
-import {FeedBack} from "./FeedBack";
+import {Account} from './Account';
+import {FeedBack} from './FeedBack';
 
 
 export class FeedBackType {

@@ -1,6 +1,6 @@
-import {Account} from "./Account";
-import {FeedBackType} from "./FeedBackType";
-import {ImageFeedBack} from "./ImageFeedBack";
+import {Account} from './Account';
+import {FeedBackType} from './FeedBackType';
+import {ImageFeedBack} from './ImageFeedBack';
 
 
 export class FeedBack {

@@ -1,4 +1,4 @@
-import {MeetingRoom} from "./MeetingRoom";
+import {MeetingRoom} from './MeetingRoom';
 
 
 export class TypeMeetingRoom {

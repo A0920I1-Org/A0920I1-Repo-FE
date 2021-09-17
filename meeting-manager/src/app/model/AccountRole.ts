@@ -1,5 +1,5 @@
-import {Account} from "./Account";
-import {Role} from "./Role";
+import {Account} from './Account';
+import {Role} from './Role';
 
 
 export class AccountRole {
