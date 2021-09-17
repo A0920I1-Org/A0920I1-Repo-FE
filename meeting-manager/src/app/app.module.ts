@@ -26,7 +26,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {MatDialogModule} from '@angular/material/dialog';
 import {NgxPaginationModule} from 'ngx-pagination';
-import {ChartModule} from '@syncfusion/ej2-angular-charts';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {environment} from '../environments/environment';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
@@ -69,7 +68,6 @@ import {MatIconModule} from '@angular/material/icon';
     MatDialogModule,
     MatIconModule,
     NgxPaginationModule,
-    ChartModule,
     HttpClientModule,
     MatSnackBarModule,
     FormsModule,
