@@ -1,0 +1,13 @@
+#login-form{
+  border-radius: 5px;
+  height: 90%;
+  background-color:white;
+}
+
+.container-fluid{
+  /*background-image: url("/assets/images/hinh-anh.jpg");*/
+  background-position: center;
+  background: #f1f1f1;
+
+}
+

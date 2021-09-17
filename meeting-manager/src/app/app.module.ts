@@ -3,9 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FooterComponent } from './client/client-shared/footer/footer.component';
-import { HeaderComponent } from './client/client-shared/header/header.component';
-import { NavbarComponent } from './client/client-shared/navbar/navbar.component';
 import { RegisterMeetingComponent } from './client/employee/meeting/register-meeting/register-meeting.component';
 import { DeleteMeetingComponent } from './client/employee/meeting/delete-meeting/delete-meeting.component';
 import { ListMeetingComponent } from './client/employee/meeting/list-meeting/list-meeting.component';
@@ -23,13 +20,21 @@ import { ListEmployeeComponent } from './admin/employee-manager/list-employee/li
 import { DeleteEmployeeComponent } from './admin/employee-manager/delete-employee/delete-employee.component';
 import { UpdateEmployeeComponent } from './admin/employee-manager/update-employee/update-employee.component';
 import { DetailEmployeeComponent } from './admin/employee-manager/detail-employee/detail-employee.component';
+import { LoginComponent } from './login/login/login.component';
+import { LogoutComponent } from './login/logout/logout.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {BasicAuthHttpInterceptorService} from './service/basic-auth-http-interceptor.service';
+import {FooterComponent} from './footer/footer.component';
+import {HeaderComponent} from './header/header.component';
+import {JwtModule} from '@auth0/angular-jwt';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
     HeaderComponent,
-    NavbarComponent,
     RegisterMeetingComponent,
     DeleteMeetingComponent,
     ListMeetingComponent,
@@ -47,12 +52,25 @@ import { DetailEmployeeComponent } from './admin/employee-manager/detail-employe
     DeleteEmployeeComponent,
     UpdateEmployeeComponent,
     DetailEmployeeComponent,
+    LoginComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter:  () => sessionStorage.getItem('toke')
+      }
+    })
   ],
-  providers: [],
+  providers: [{
+    provide:HTTP_INTERCEPTORS, useClass:BasicAuthHttpInterceptorService, multi:true,
+
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "meeting-manager"
+    }
+  },
+  "defaultProject": "meeting-manager",
+  "cli": {
+    "analytics": false
+  }
 }
