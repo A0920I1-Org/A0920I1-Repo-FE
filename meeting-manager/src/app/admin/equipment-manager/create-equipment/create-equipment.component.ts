@@ -32,20 +32,20 @@ export class CreateEquipmentComponent implements OnInit {
               private formBuilder: FormBuilder) { }
   validationMessage = {
     name: [
-      { type: 'required', message: 'Tên tài sản không được để trống!' },
-      { type: 'minlength', message: 'Tên tài sản phải tối thiểu 4 ký tự' },
-      { type: 'maxlength', message: 'Tên tài sản tối đa 32 ký tự' }
+      { type: 'required', message: 'Tên tài sản không được để trống.' },
+      { type: 'minlength', message: 'Tên tài sản phải tối thiểu 4 ký tự.' },
+      { type: 'maxlength', message: 'Tên tài sản tối đa 32 ký tự.' }
     ],
     stock: [
-      { type: 'required', message: 'Số lượng không được để trống!' },
+      { type: 'required', message: 'Số lượng không được để trống.' },
 
     ],
     repairQuantity: [
-      { type: 'required', message: 'Số lượng không được để trống!' },
+      { type: 'required', message: 'Số lượng không được để trống.' },
 
     ],
     imageUrl: [
-      { type: 'pattern', message: 'Chỉ chấp nhận file jpg, png, jpeg' }
+      { type: 'pattern', message: 'Chỉ chấp nhận file jpg, png, jpeg.' }
     ]
   };
 

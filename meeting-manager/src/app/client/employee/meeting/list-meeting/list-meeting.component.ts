@@ -3,15 +3,15 @@ import {Component, OnInit} from '@angular/core';
 import {MeetingRoomService} from '../../../../service/meeting-room.service';
 import {MatDialog} from '@angular/material/dialog';
 
-import {TypeMeetingRoomService} from '../../../../service/type-meeting-room.service';
 import {AreaMeetingRoomService} from '../../../../service/area-meeting-room.service';
-import {StatusRoomService} from '../../../../service/status-room.service';
 import {Router} from '@angular/router';
 import {DeleteMeetingRoomComponent} from '../../../../admin/meeting-room/delete-meeting/delete-meeting-room.component';
 import {Area} from '../../../../model/entity/Area';
 import {TypeMeetingRoom} from '../../../../model/entity/TypeMeetingRoom';
 import {RoomStatus} from '../../../../model/entity/RoomStatus';
 import {MeetingRoom} from '../../../../model/entity/MeetingRoom';
+import {TypeMeetingRoomService} from '../../../../service/TypeMeetingRoomService';
+import {StatusRoomService} from '../../../../service/StatusRoomService';
 
 @Component({
   selector: 'app-list-meeting',
@@ -23,7 +23,6 @@ export class ListMeetingComponent implements OnInit {
   areaList: Area[];
   typeMeetingRoomList: TypeMeetingRoom[];
   statusRoomList: RoomStatus[];
-
 
   nameMeeting: any;
   floors: any;

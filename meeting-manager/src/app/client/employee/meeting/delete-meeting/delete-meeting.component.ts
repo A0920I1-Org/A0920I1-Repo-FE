@@ -1,20 +1,3 @@
-<<<<<<< HEAD
-import { Component, OnInit } from '@angular/core';
-
-@Component({
-  selector: 'app-delete-meeting',
-  templateUrl: './delete-meeting.component.html',
-  styleUrls: ['./delete-meeting.component.css']
-})
-export class DeleteMeetingComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}
-=======
 import {Component, Input, OnInit} from '@angular/core';
 import {MeetingRoomSerivce} from '../../../../service/MeetingRoomSerivce';
 import {TypeMeetingRoomService} from '../../../../service/TypeMeetingRoomService';
@@ -80,4 +63,3 @@ export class DeleteMeetingComponent implements OnInit {
     this.location.back();
   }
 }
->>>>>>> statistical

@@ -7,6 +7,7 @@ import {MeetingRoom} from '../../model/entity/MeetingRoom';
 import {TypeMeetingRoomService} from '../../service/TypeMeetingRoomService';
 import {MeetingRoomSerivce} from '../../service/MeetingRoomSerivce';
 import {ToastrService} from 'ngx-toastr';
+import {Statistic} from '../../model/dto/Statistic';
 
 @Component({
   selector: 'app-statistical',
@@ -17,6 +18,7 @@ import {ToastrService} from 'ngx-toastr';
     MeetingRoomSerivce]
 })
 export class StatisticalComponent implements OnInit {
+  statistic : Statistic;
   statistics: OrderMeeting[];
   statisticByDateForm: FormGroup;
   statisticByRoomForm: FormGroup;
@@ -98,7 +100,18 @@ export class StatisticalComponent implements OnInit {
         this.meetingRooms = data;
       }
     );
+    this.statistic = {
+      dateCheckin : "01-08-2021",
+      dateCheckout: "01-09-2021"
+    };
     this.dataCharts = [];
+    this.statisticalService.statisticByDate(this.statistic).subscribe(
+      (data) => {
+        this.dataCharts = data;
+        this.isResult = true;
+        this.isDateCheckin = true;
+      }
+    )
   }
 
   onSubmitDateForm(statisticByDateForm: FormGroup) {

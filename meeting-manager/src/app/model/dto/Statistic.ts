@@ -1,10 +1,10 @@
 // AnhLT
 export class Statistic {
-  dateCheckin: string;
-  dateCheckout: string;
-  typeMeetingRoom: string;
-  nameRoom: string;
-  month: string;
+  dateCheckin?: string;
+  dateCheckout?: string;
+  typeMeetingRoom?: string;
+  nameRoom?: string;
+  month?: string;
 
 
   constructor(dateCheckin: string, dateCheckout: string, typeMeetingRoom: string, nameRoom: string, month: string) {

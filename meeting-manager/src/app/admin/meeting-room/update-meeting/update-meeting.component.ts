@@ -1,8 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
-import {TypeMeetingRoomService} from '../../../service/type-meeting-room.service';
-import {StatusRoomService} from '../../../service/status-room.service';
 import {AreaMeetingRoomService} from '../../../service/area-meeting-room.service';
 
 import {EquipmentService} from '../../../service/equipment.service';
@@ -20,6 +18,8 @@ import {RoomStatus} from '../../../model/entity/RoomStatus';
 import {OrderEquipment} from '../../../model/entity/OrderEquipment';
 import {MeetingRoom} from '../../../model/entity/MeetingRoom';
 import {Area} from '../../../model/entity/Area';
+import {TypeMeetingRoomService} from '../../../service/TypeMeetingRoomService';
+import {StatusRoomService} from '../../../service/StatusRoomService';
 @Component({
   selector: 'app-update-meeting',
   templateUrl: './update-meeting.component.html',

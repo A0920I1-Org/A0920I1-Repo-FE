@@ -63,6 +63,7 @@ import {StatusRoomService} from './service/StatusRoomService';
 import {TypeMeetingRoomService} from './service/TypeMeetingRoomService';
 import {StatisticalService} from './service/StatisticalService';
 import {MeetingRoomSerivce} from './service/MeetingRoomSerivce';
+import {StatisticalComponent} from './admin/statistical/statistical.component';
 
 
 @NgModule({
@@ -90,7 +91,8 @@ import {MeetingRoomSerivce} from './service/MeetingRoomSerivce';
     CreateEmployeeComponent,
     ChooseEquipmentComponent,
     DeleteMeetingRoomComponent,
-    RegisterMeetingComponent
+    RegisterMeetingComponent,
+    StatisticalComponent
   ],
   imports: [
     BrowserModule,
