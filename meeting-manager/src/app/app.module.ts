@@ -28,6 +28,7 @@ import {BasicAuthHttpInterceptorService} from './service/basic-auth-http-interce
 import {FooterComponent} from './footer/footer.component';
 import {HeaderComponent} from './header/header.component';
 import {JwtModule} from '@auth0/angular-jwt';
+import { FieldDisplayErrorComponent } from './login/field-display-error/field-display-error.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import {JwtModule} from '@auth0/angular-jwt';
     LoginComponent,
     LogoutComponent,
     FooterComponent,
-    HeaderComponent
+    HeaderComponent,
+    FieldDisplayErrorComponent
   ],
   imports: [
     BrowserModule,

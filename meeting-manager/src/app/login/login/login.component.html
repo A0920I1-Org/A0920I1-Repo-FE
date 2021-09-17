@@ -21,9 +21,15 @@
               <input type="password" id="form1Example23" class="form-control form-control-lg" name="password"
                      formControlName="password"/>
             </div>
-            <p *ngIf="submitted && (loginForm.get('username').invalid || loginForm.get('password').invalid)" class="text-danger">
-              Tài khoản hoặc mật khẩu không đúng. Vui lòng kiểm tra lại
-            </p>
+            <!--            <p *ngIf="isFieldValid('username') || isFieldValid('password')" class="text-danger">-->
+            <!--              Tài khoản hoặc mật khẩu không đúng. Vui lòng kiểm tra lại-->
+            <!--            </p>-->
+            <app-field-display-error [displayError]="isFieldValid('username')"
+                                     errorMsg="Please inform your username">>
+            </app-field-display-error>
+            <app-field-display-error [displayError]="isFieldValid('password')"
+                                     errorMsg="Please inform your password">>
+            </app-field-display-error>
             <div class="d-flex justify-content-around align-items-center mb-4">
               <!-- Checkbox -->
               <div class="form-check">
