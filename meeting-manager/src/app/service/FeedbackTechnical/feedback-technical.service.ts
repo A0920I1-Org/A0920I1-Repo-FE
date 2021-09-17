@@ -30,7 +30,7 @@ export class FeedbackTechnicalService {
   //service TriNH
 
   public addFeedback(feedBack: FeedBack): Observable<void> {
-    return this.httpClient.post<void>(this.API_FEEDBACK_URL  +"/add", feedBack);
+    return this.httpClient.post<void>(this.API_FEEDBACK_URL  +"/addFeedTechnical", feedBack);
   }
   //service TriNH
 
@@ -41,7 +41,7 @@ export class FeedbackTechnicalService {
 
   public updateFeedbackTech(updateFeedback: FeedBack, value: any): Observable<void> {
     console.log(this.API_FEEDBACK_URL + '/update/' + updateFeedback.id);
-    return this.httpClient.put<void>(this.API_FEEDBACK_URL + '/update/' + updateFeedback.id, updateFeedback);
+    return this.httpClient.put<void>(this.API_FEEDBACK_URL + '/updateFeedTechnical/' + updateFeedback.id, updateFeedback);
   }
 
 }

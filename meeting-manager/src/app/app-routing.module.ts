@@ -6,6 +6,7 @@ import {FeedbackListComponent} from './client/employee/client-feedback/feedback-
 import {ListFeedbackadminComponent} from './admin/feedback-manager/list-feedbackadmin/list-feedbackadmin.component';
 import {HandlebarsMeetinghouseComponent} from './admin/feedback-manager/handlefeedback-meetingroom/handlebars-meetinghouse.component';
 import {FeedbackTechnicalComponent} from "./admin/feedback-manager/list-feedbackadmin/feedback-technical/feedback-technical.component";
+import {FeedbackTechnicalCreateComponent} from "./client/employee/client-feedback/feedback-technical-create/feedback-technical-create.component";
 
 
 
@@ -28,10 +29,10 @@ const routes: Routes = [
     path: 'handle-feedback/:idfeedback', component: HandlebarsMeetinghouseComponent
   },
   {
-     path : 'add',    component:FeedbackTechnicalComponent,
+     path : 'addFeedTechnical',component:FeedbackTechnicalCreateComponent,
   },
   {
-   path : 'update/:id', component:FeedbackTechnicalUpdateComponent,
+   path : 'updateFeedTechnical/:id', component:FeedbackTechnicalUpdateComponent,
   },
 ]
 

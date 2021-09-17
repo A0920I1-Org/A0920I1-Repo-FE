@@ -40,6 +40,12 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {UpdateEquipmentComponent} from "./admin/equipment-manager/update-equipment/update-equipment.component";
 import {MatNativeDateModule} from "@angular/material/core";
 import {HttpClientModule} from "@angular/common/http";
+import { FeedbackTechnicalCreateComponent } from './client/employee/client-feedback/feedback-technical-create/feedback-technical-create.component';
+import {environment} from "../environments/environment";
+import {AngularFireStorageModule} from "@angular/fire/storage";
+import {AngularFireAuthModule} from "@angular/fire/auth";
+import {AngularFirestoreModule} from "@angular/fire/firestore";
+import {AngularFireModule} from "@angular/fire";
 
 @NgModule({
   declarations: [
@@ -70,6 +76,7 @@ import {HttpClientModule} from "@angular/common/http";
     ListFeedbackadminComponent,
     HandlebarsMeetinghouseComponent,
     DeleteFeedbackComponent,
+    FeedbackTechnicalCreateComponent,
 
   ],
   imports: [
@@ -99,6 +106,11 @@ import {HttpClientModule} from "@angular/common/http";
     FormsModule,
     MatTableModule,
     MatSnackBarModule,
+
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule, // firestore
+    AngularFireAuthModule, // auth
+    AngularFireStorageModule,// storage
 
 
     MatSnackBarModule,
