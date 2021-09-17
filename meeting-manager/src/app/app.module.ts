@@ -17,8 +17,6 @@ import {ListEquipmentComponent} from './admin/equipment-manager/list-equipment/l
 import {CreateEquipmentComponent} from './admin/equipment-manager/create-equipment/create-equipment.component';
 import {UpdateEquipmentComponent} from './admin/equipment-manager/update-equipment/update-equipment.component';
 import {DetailEquipmentComponent} from './admin/equipment-manager/detail-equipment/detail-equipment.component';
-import {ListFeedbackComponent} from './client/employee/feedback/list-feedback/list-feedback.component';
-import {DetailFeedbackComponent} from './client/employee/feedback/detail-feedback/detail-feedback.component';
 import {ListEmployeeComponent} from './admin/employee-manager/list-employee/list-employee.component';
 import {DeleteEmployeeComponent} from './admin/employee-manager/delete-employee/delete-employee.component';
 import {UpdateEmployeeComponent} from './admin/employee-manager/update-employee/update-employee.component';
@@ -64,10 +62,19 @@ import {TypeMeetingRoomService} from './service/TypeMeetingRoomService';
 import {StatisticalService} from './service/StatisticalService';
 import {MeetingRoomSerivce} from './service/MeetingRoomSerivce';
 import {StatisticalComponent} from './admin/statistical/statistical.component';
+import {AngularFireAuthModule} from '@angular/fire/auth';
+import {FeedbackTechnicalUpdateComponent} from './admin/feedback-manager/feedback-technical-update/feedback-technical-update.component';
+import {FeedbackListComponent} from './client/employee/client-feedback/feedback-list/feedback-list.component';
+import {FeedbackComponent} from './client/employee/client-feedback/feedback/feedback.component';
+import {ListFeedbackadminComponent} from './admin/feedback-manager/list-feedbackadmin/list-feedbackadmin.component';
+import {HandlebarsMeetinghouseComponent} from './admin/feedback-manager/handlefeedback-meetingroom/handlebars-meetinghouse.component';
+import {DeleteFeedbackComponent} from './admin/feedback-manager/delete-feedback/delete-feedback.component';
+import {FeedbackTechnicalCreateComponent} from './client/employee/client-feedback/feedback-technical-create/feedback-technical-create.component';
 
 
 @NgModule({
   declarations: [
+
     AppComponent,
     FooterComponent,
     HeaderComponent,
@@ -75,6 +82,7 @@ import {StatisticalComponent} from './admin/statistical/statistical.component';
     DeleteMeetingComponent,
     ListMeetingComponent,
     CreateMeetingComponent,
+
     UpdateMeetingComponent,
     DetailMeetingComponent,
     ChangePasswordComponent,
@@ -82,8 +90,6 @@ import {StatisticalComponent} from './admin/statistical/statistical.component';
     CreateEquipmentComponent,
     UpdateEquipmentComponent,
     DetailEquipmentComponent,
-    ListFeedbackComponent,
-    DetailFeedbackComponent,
     ListEmployeeComponent,
     DeleteEmployeeComponent,
     UpdateEmployeeComponent,
@@ -92,7 +98,14 @@ import {StatisticalComponent} from './admin/statistical/statistical.component';
     ChooseEquipmentComponent,
     DeleteMeetingRoomComponent,
     RegisterMeetingComponent,
-    StatisticalComponent
+    StatisticalComponent,
+    FeedbackTechnicalUpdateComponent,
+    FeedbackListComponent,
+    FeedbackComponent,
+    ListFeedbackadminComponent,
+    HandlebarsMeetinghouseComponent,
+    DeleteFeedbackComponent,
+    FeedbackTechnicalCreateComponent
   ],
   imports: [
     BrowserModule,
@@ -107,6 +120,7 @@ import {StatisticalComponent} from './admin/statistical/statistical.component';
     }),
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
+    AngularFireAuthModule, // auth
     AngularFireDatabaseModule,
     AngularFireStorageModule,
     MatIconModule,
@@ -119,12 +133,9 @@ import {StatisticalComponent} from './admin/statistical/statistical.component';
     MatSnackBarModule,
     ChartModule,
     HttpClientModule,
-    ToastrModule.forRoot({
-      timeOut: 3000,
-      positionClass: 'toast-bottom-right',
-      preventDuplicates: false,
-    }),
-    MatInputModule
+    MatInputModule,
+
+
   ],
   providers: [
     RegisterHistoryService,
@@ -138,10 +149,9 @@ import {StatisticalComponent} from './admin/statistical/statistical.component';
     DataLabelService,
     TooltipService,
     ColumnSeriesService,
-    ToastrService,
+    ToastrService
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
 }
-

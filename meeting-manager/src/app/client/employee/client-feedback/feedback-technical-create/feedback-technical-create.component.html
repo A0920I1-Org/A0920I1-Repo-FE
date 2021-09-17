@@ -1,0 +1,105 @@
+<!--FeedTech TriNH-->
+<div id="wrap">
+  <div class="container">
+    <h1 style="text-align: center; margin: 40px 0"><b>
+      Xử lý phản hồi hệ thống
+    </b>
+    </h1>
+  </div>
+  <div class="container">
+    <form [formGroup]="createFeedbackTech" (ngSubmit)="addFeedbackTech(createFeedbackTech)">
+      <div class="card-body ">
+
+
+        <div class="form-group row">
+          <div class="col-sm-3" align="right">
+            <h6 class="mb-0">Tiêu đề:</h6>
+          </div>
+          <div class="col-sm-6 text-secondary">
+            <input type="text" class="form-control border-1 shadow-1" formControlName="title"
+                   placeholder="Góp ý kiến hệ thống">
+          </div>
+          <div class="text-danger" *ngFor="let validation of validation_messages.title">
+            <div class="error-message" style="padding: 0 300px"
+                 *ngIf="createFeedbackTech.get('title').hasError(validation.type) && (createFeedbackTech.get('title').dirty || createFeedbackTech.get('title').touched)">
+              {{validation.message}}</div>
+          </div>
+        </div>
+
+
+
+        <br>
+        <div class="form-group row">
+          <div class="col-sm-3" align="right">
+            <label class="mb-0" for="inputBirt">Ngày gửi:</label>
+          </div>
+          <div class="col-sm-6 text-secondary">
+            <mat-form-field>
+              <mat-label>Choose a date</mat-label>
+              <input [max]="maxDate" [min]="minDate" formControlName="dateFeedback" id="inputBirt" matInput
+                     [matDatepicker]="myDatepicker">
+              <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
+              <mat-datepicker #myDatepicker></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="text-danger" *ngFor="let validation of validation_messages.dateFeedback">
+            <div class="error-message" style="padding: 0 300px"
+                 *ngIf="createFeedbackTech.get('dateFeedback').hasError(validation.type) && (createFeedbackTech.get('dateFeedback').dirty || createFeedbackTech.get('dateFeedback').touched)">
+              {{validation.message}}</div>
+          </div>
+        </div>
+        <br>
+        <div class="form-group row">
+          <div class="col-sm-3" align="right">
+            <h6 class="mb-0">Loại lỗi :</h6>
+          </div>
+          <div class="col-sm-6 text-secondary">
+                    <textarea class="form-control" formControlName="description">
+                    </textarea>
+          </div>
+          <div class="text-danger" *ngFor="let validation of validation_messages.description">
+            <div class="error-message" style="padding: 0 300px"
+                 *ngIf="createFeedbackTech.get('description').hasError(validation.type) && (createFeedbackTech.get('description').dirty || createFeedbackTech.get('description').touched)">
+              {{validation.message}}</div>
+          </div>
+        </div>
+        <br>
+        <div class="form-group row">
+          <div class="col-sm-3" align="right">
+            <h6 class="mb-0">Ảnh:</h6>
+          </div>
+          <div class="col-sm-6 text-secondary">
+            <input type="file" class="form-control border-1 shadow-1" formControlName="imageFeedBackList"
+                   readonly="readonly" placeholder="hethong.png">
+          </div>
+          <div class="text-danger" *ngFor="let validation of validation_messages.imageFeedBackList">
+            <div class="error-message" style="padding: 0 300px"
+                 *ngIf="createFeedbackTech.get('imageFeedBackList').hasError(validation.type) && (createFeedbackTech.get('imageFeedBackList').dirty || createFeedbackTech.get('imageFeedBackList').touched)">
+              {{validation.message}}</div>
+          </div>
+        </div>
+        <br>
+        <div class="form-group row">
+          <div class="col-sm-3" align="right">
+            <h6 class="mb-0">Nội dung lỗi:</h6>
+          </div>
+          <div class="col-sm-6 text-secondary">
+            <textarea class="form-control" formControlName="content"></textarea>
+          </div>
+          <div class="text-danger" *ngFor="let validation of validation_messages.content">
+            <div class="error-message" style="padding: 0 300px"
+                 *ngIf="createFeedbackTech.get('content').hasError(validation.type) && (createFeedbackTech.get('content').dirty || createFeedbackTech.get('content').touched)">
+              {{validation.message}}</div>
+          </div>
+        </div>
+        <br>
+        <div class="form-group row">
+          <div class="col-sm-12" align="center">
+            <button type="submit" class="btn btn-primary">Xử lý phản hồi</button>
+            <button class="btn btn-danger" style="margin: 0 50px">Huỷ phản hồi</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="53fcf3d1-ae3d-44d5-b238-28c65e490d7d" name="Default Changelist" comment="" />
+=======
+<<<<<<< HEAD
+    <list default="true" id="36a67867-da31-47c0-b92b-817665333aa9" name="Default Changelist" comment="" />
+=======
+    <list default="true" id="7cb9da1d-9089-4015-a57c-0a46fb1bcde4" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/meeting-manager/src/app/model/FeedBack.ts" beforeDir="false" afterPath="$PROJECT_DIR$/meeting-manager/src/app/model/FeedBack.ts" afterDir="false" />
+    </list>
+>>>>>>> 718d429c306ff4e138e98f291c6cf09eb0403136
+>>>>>>> feedback-manager
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -10,6 +20,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+<<<<<<< HEAD
   <component name="ProjectId" id="1xqyS8zSPp9MItxu93WTy35Jo5Y" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -72,10 +83,56 @@
       <workItem from="1631809509615" duration="668000" />
       <workItem from="1631815020450" duration="2111000" />
       <workItem from="1631819261907" duration="558000" />
+=======
+<<<<<<< HEAD
+  <component name="ProjectId" id="1xqHxo4doeuEA5KmLOLFrB0alCX" />
+=======
+  <component name="ProjectId" id="1y2WrfFKWMiKXPXgrgcLT51bdtY" />
+>>>>>>> 718d429c306ff4e138e98f291c6cf09eb0403136
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+<<<<<<< HEAD
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/meeting-manager" />
+=======
+    <property name="last_opened_file_path" value="F:/A0920I1-NguyenHuuTri/modul5/CaseStudy/CaseStudy" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="ts.external.directory.path" value="F:\Project\A0920I1-Repo-FE\meeting-manager\node_modules\typescript\lib" />
+>>>>>>> 718d429c306ff4e138e98f291c6cf09eb0403136
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+<<<<<<< HEAD
+      <changelist id="36a67867-da31-47c0-b92b-817665333aa9" name="Default Changelist" comment="" />
+      <created>1631075947526</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1631075947526</updated>
+      <workItem from="1631075948824" duration="49000" />
+=======
+      <changelist id="7cb9da1d-9089-4015-a57c-0a46fb1bcde4" name="Default Changelist" comment="" />
+      <created>1631450363114</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1631450363114</updated>
+      <workItem from="1631450364384" duration="2911000" />
+>>>>>>> 718d429c306ff4e138e98f291c6cf09eb0403136
+>>>>>>> feedback-manager
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
+<<<<<<< HEAD
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -89,5 +146,21 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+=======
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+<<<<<<< HEAD
+    <state x="740" y="276" key="FileChooserDialogImpl" timestamp="1631075995823">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="276" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1631075995823" />
+=======
+    <state x="549" y="168" key="FileChooserDialogImpl" timestamp="1631451728338">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="549" y="168" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1631451728338" />
+>>>>>>> 718d429c306ff4e138e98f291c6cf09eb0403136
+>>>>>>> feedback-manager
   </component>
 </project>
