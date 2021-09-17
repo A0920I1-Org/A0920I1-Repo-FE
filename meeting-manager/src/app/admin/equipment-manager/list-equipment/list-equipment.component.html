@@ -106,8 +106,8 @@
                 <td class="text-center">{{i+1}}</td>
                 <td class="text-left">{{equipments.name | titlecase}}</td>
                 <td class="text-left">{{equipments.stock}}</td>
-                <td class="text-left">{{equipments.repairQuantity}}</td>
-                <td class="text-left">{{equipments.stock - equipments.repairQuantity}}</td>
+                <td class="text-left">{{equipments.quantityRepair}}</td>
+                <td class="text-left">{{equipments.stock - equipments.quantityRepair}}</td>
                 <td class="text-left"><img [src]="equipments.imageUrl" class="img"></td>
                 <td class="text-left">
                   <a (click)="openDialogDelete(equipments.id)" class="trigger-btn" data-toggle="modal" data-target="#myModal" style="margin-right: 20px; cursor: pointer">
@@ -190,5 +190,5 @@
         </div>
       </div>
     </div>
-
 </div>
+

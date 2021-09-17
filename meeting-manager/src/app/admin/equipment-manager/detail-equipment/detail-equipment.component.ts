@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {Equipment} from '../../../model/Equipment';
 import {EquipmentManagerService} from '../../../service/equipment-manager.service';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import {OrderEquipmentServiceService} from '../../../service/order-equipment-service.service';
-import {OrderEquipment} from '../../../model/OrderEquipment';
+import {Equipment} from '../../../model/entity/Equipment';
+import {OrderEquipment} from '../../../model/entity/OrderEquipment';
 
 @Component({
   selector: 'app-detail-equipment',
@@ -16,7 +16,6 @@ export class DetailEquipmentComponent implements OnInit {
   orderEquipment: OrderEquipment[];
 
   constructor(private equipmentManagerService: EquipmentManagerService, private orderEquipmentServiceService: OrderEquipmentServiceService,
-
               private activatedRoute: ActivatedRoute) {
   }
 
@@ -34,6 +33,4 @@ export class DetailEquipmentComponent implements OnInit {
       });
     });
   }
-  }
-
-
+}

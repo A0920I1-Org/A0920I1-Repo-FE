@@ -35,28 +35,6 @@ export class UpdateEmployeeComponent implements OnInit {
   id: number;
   defaultImage = 'https://epicattorneymarketing.com/wp-content/uploads/2016/07/Headshot-Placeholder-1.png';
   roles = [];
-
-  ngOnInit(): void {
-    this.roles = [{id: 1, name: 'admin'},
-      {id: 2, name: 'user'}];
-    this.getId();
-    this.getStaffById(this.id);
-  }
-
-  getId() {
-    this.id = this.route.snapshot.params.id;
-  }
-
-  getStaffById(id: number) {
-    this.employeeService.getByEmployeeId(id).subscribe((data) => {
-      this.employeeUpdate = data;
-      console.log(data);
-      this.initForm();
-      // console.log(this.staffUpdate.imageURL);
-      // console.log(this.staffUpdate.account.username);
-      this.filePath = this.employeeUpdate.imageUrl;
-    });
-  }
   validationMessage = {
     username: [
       {type: 'required', message: 'Tên đăng nhập không được để trống!'},
@@ -85,6 +63,28 @@ export class UpdateEmployeeComponent implements OnInit {
       {type: 'pattern', message: 'Chỉ chấp nhận file jpg, png, jpeg'}
     ]
   };
+
+  ngOnInit(): void {
+    this.roles = [{id: 1, name: 'admin'},
+      {id: 2, name: 'user'}];
+    this.getId();
+    this.getStaffById(this.id);
+  }
+
+  getId() {
+    this.id = this.route.snapshot.params.id;
+  }
+
+  getStaffById(id: number) {
+    this.employeeService.getByEmployeeId(id).subscribe((data) => {
+      this.employeeUpdate = data;
+      console.log(data);
+      this.initForm();
+      // console.log(this.staffUpdate.imageURL);
+      // console.log(this.staffUpdate.account.username);
+      this.filePath = this.employeeUpdate.imageUrl;
+    });
+  }
 
   initForm() {
     this.employeeCreateForm = this.formBuilder.group({
@@ -183,4 +183,3 @@ export class UpdateEmployeeComponent implements OnInit {
     }
   }
 }
-

@@ -45,6 +45,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {ChooseEquipmentComponent} from './admin/meeting-room/create-meeting/choose-equipment/choose-equipment.component';
+import {DeleteMeetingRoomComponent} from './admin/meeting-room/delete-meeting/delete-meeting-room.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +71,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     UpdateEmployeeComponent,
     DetailEmployeeComponent,
     CreateEmployeeComponent,
+    ChooseEquipmentComponent,
+    DeleteMeetingRoomComponent
   ],
   imports: [
     BrowserModule,
@@ -100,3 +104,4 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 })
 export class AppModule {
 }
+

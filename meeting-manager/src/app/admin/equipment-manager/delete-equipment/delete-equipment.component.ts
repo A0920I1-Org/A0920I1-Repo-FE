@@ -27,7 +27,7 @@ export class DeleteEquipmentComponent implements OnInit {
     this.equipmentManagerService.deleteEquipment(this.idEquipment).subscribe((data) => {
       this.dialogRef.close();
       // this._snackBar.open('Bạn đã xóa thành công!', 'OK');
-      this.toastrService.success('Bạn đã xóa thành công!','Thông báo')
+      this.toastrService.success('Bạn đã xóa thành công!', 'Thông báo');
 
     });
   }

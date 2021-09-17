@@ -1,5 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import {ListMeetingComponent} from './client/employee/meeting/list-meeting/list-meeting.component';
+import {CreateMeetingComponent} from './admin/meeting-room/create-meeting/create-meeting.component';
+import {DetailMeetingComponent} from './admin/meeting-room/detail-meeting/detail-meeting.component';
+import {ChooseEquipmentComponent} from './admin/meeting-room/create-meeting/choose-equipment/choose-equipment.component';
+import {UpdateMeetingComponent} from './admin/meeting-room/update-meeting/update-meeting.component';
+
 
 import { ListEmployeeComponent } from './admin/employee-manager/list-employee/list-employee.component';
 import {CreateEmployeeComponent} from './admin/employee-manager/create-employee/create-employee.component';
@@ -18,7 +24,17 @@ const routes: Routes = [
   {path: 'list-equipment' , component : ListEquipmentComponent},
   {path: 'create-equipment' , component: CreateEquipmentComponent},
   {path: ':id' , component : DetailEquipmentComponent},
-  {path: 'update-equipment/:id' , component: UpdateEquipmentComponent}
+  {path: 'update-equipment/:id' , component: UpdateEquipmentComponent},
+  {component: ListMeetingComponent , path: ''},
+  {component: UpdateMeetingComponent, path: 'update/:id'},
+  {path: 'createMeeting', component: CreateMeetingComponent},
+  {path: 'showDetailsMeeting/:id', component: DetailMeetingComponent},
+  {path: 'chooseEquipment', component: ChooseEquipmentComponent},
+
+/*
+* Author: Ho Van Hue, created 6/9/2021(dd/mm/yyyy)
+* */
+
 ];
 
 @NgModule({

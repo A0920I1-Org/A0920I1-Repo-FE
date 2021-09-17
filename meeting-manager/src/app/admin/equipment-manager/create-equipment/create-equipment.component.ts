@@ -7,8 +7,8 @@ import {finalize} from 'rxjs/operators';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {ToastrService} from 'ngx-toastr';
-import {Equipment} from '../../../model/Equipment';
 import {HttpErrorResponse} from '@angular/common/http';
+import {Equipment} from '../../../model/entity/Equipment';
 @Component({
   selector: 'app-create-equipment',
   templateUrl: './create-equipment.component.html',
@@ -29,7 +29,7 @@ export class CreateEquipmentComponent implements OnInit {
   constructor(private equipmentManagerService: EquipmentManagerService, private router: Router,
               @Inject(AngularFireStorage) private storage: AngularFireStorage,
               private toastrService: ToastrService,
-              private formBuilder: FormBuilder,) { }
+              private formBuilder: FormBuilder) { }
   validationMessage = {
     name: [
       { type: 'required', message: 'Tên tài sản không được để trống!' },
@@ -114,7 +114,7 @@ export class CreateEquipmentComponent implements OnInit {
               },
               (error: HttpErrorResponse) => {
                 console.log(error);
-                if (error.status == 400) {
+                if (error.status === 400) {
                   console.log(error.error);
                   this.listError = error.error;
                 }
@@ -191,6 +191,6 @@ export class CreateEquipmentComponent implements OnInit {
     return this.defaultImage;
   }
   uploadImage(){
-    this.storage.upload("/files" + Math.random() + this.inputImage, this.inputImage)
+    this.storage.upload('/files' + Math.random() + this.inputImage, this.inputImage)
   }
 }
