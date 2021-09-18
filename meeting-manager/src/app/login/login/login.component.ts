@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
     //dung format du lieu, gui ve backend kiem tra username va password - [TuHC]
     this.authService.authenticate(this.loginForm.get('username').value, this.loginForm.get('password').value).subscribe(
       data => {
-        this.router.navigateByUrl('/detail-meeting');
+        this.router.navigateByUrl('/list-meeting');
         this.invalidLogin = false;
       },
       error => {

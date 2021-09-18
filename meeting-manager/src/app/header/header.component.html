@@ -40,16 +40,16 @@
           <nav class="site-navigation text-right ml-auto " role="navigation">
 
             <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
-              <li><a href="#" *ngIf="(authService.isUserLoggedIn() && authService.checkRoleAdmin())">Quản Lý Phòng
+              <li><a href="/list-meeting" *ngIf="(authService.isUserLoggedIn() && authService.checkRoleAdmin())">Quản Lý Phòng
                 Họp</a></li>
-              <li><a href="#" *ngIf="(authService.isUserLoggedIn() && authService.checkRoleAdmin())">Quản Lý Tài Sản</a>
+              <li><a href="/list-equipment" *ngIf="(authService.isUserLoggedIn() && authService.checkRoleAdmin())">Quản Lý Tài Sản</a>
               </li>
-              <li><a href="#" *ngIf="authService.isUserLoggedIn()">Quản Lý Tài Khoản</a></li>
+              <li><a href="/emp-list" *ngIf="authService.isUserLoggedIn()">Quản Lý Tài Khoản</a></li>
               <li><a href="#" *ngIf="(authService.isUserLoggedIn() && authService.checkRoleAdmin())">Quản Lý Người
                 Dùng</a></li>
-              <li><a href="#" *ngIf="(authService.isUserLoggedIn() && authService.checkRoleAdmin())">Thống Kê</a></li>
+              <li><a href="/statistic" *ngIf="(authService.isUserLoggedIn() && authService.checkRoleAdmin())">Thống Kê</a></li>
               <li class="has-children">
-                <a href="#" class="nav-link" *ngIf="authService.isUserLoggedIn()">Xem Phản Hồi</a>
+                <a href="/list" class="nav-link" *ngIf="authService.isUserLoggedIn()">Xem Phản Hồi</a>
                 <ul class="dropdown arrow-top">
                   <li><a href="#" class="nav-link">Phản Hồi Phòng Họp</a></li>
                   <li><a href="#" class="nav-link">Phản Hồi Hệ Thống</a></li>

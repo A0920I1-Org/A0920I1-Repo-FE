@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
-import {Account} from '../model/Account';
 import {JwtHelperService} from '@auth0/angular-jwt';
+import {Account} from '../model/entity/Account';
 
 @Injectable({
   providedIn: 'root'
