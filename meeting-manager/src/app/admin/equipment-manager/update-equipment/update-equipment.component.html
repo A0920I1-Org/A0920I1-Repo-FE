@@ -29,10 +29,12 @@
             <div class="col-sm-6">
               <input type="text" class="form-control" id="inputFloor" maxlength="10" formControlName="name"
                      placeholder="Nhập tài sản...">
-              <div class="alert-danger"
-                   *ngIf="updateEquipment.get('name').invalid && updateEquipment.get('name').touched">Không được
-                để trống!!
-              </div>
+              <ng-container *ngFor="let validation of validationMessage.name">
+                <small class="form-text text-danger"
+                       *ngIf="updateEquipment.get('name').hasError(validation.type)&& updateEquipment.get('name').touched">
+                  {{validation.message}}
+                </small>
+              </ng-container>
             </div>
           </div>
           <div class="form-group row">
@@ -41,6 +43,12 @@
             <div class="col-sm-6">
               <input type="text" class="form-control" id="inputStock" maxlength="10" formControlName="stock"
                      placeholder="Nhập số lượng...">
+              <ng-container *ngFor="let validation of validationMessage.stock">
+                <small class="form-text text-danger"
+                       *ngIf="updateEquipment.get('stock').hasError(validation.type)&& updateEquipment.get('stock').touched">
+                  {{validation.message}}
+                </small>
+              </ng-container>
             </div>
           </div>
           <div class="form-group row">
@@ -50,6 +58,12 @@
               <input type="text" class="form-control" id="repairQuantity" maxlength="10"
                      formControlName="repairQuantity"
                      placeholder="Nhập số lượng...">
+              <ng-container *ngFor="let validation of validationMessage.repairQuantity">
+                <small class="form-text text-danger"
+                       *ngIf="updateEquipment.get('repairQuantity').hasError(validation.type)&& updateEquipment.get('repairQuantity').touched">
+                  {{validation.message}}
+                </small>
+              </ng-container>
             </div>
           </div>
           <div class="row">

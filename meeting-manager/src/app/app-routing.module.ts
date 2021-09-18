@@ -9,7 +9,7 @@ import {UpdateEquipmentComponent} from './admin/equipment-manager/update-equipme
 const routes: Routes = [
   {path: 'list-equipment' , component : ListEquipmentComponent},
   {path: 'create-equipment' , component: CreateEquipmentComponent},
-  {path: ':id' , component : DetailEquipmentComponent},
+  {path: 'details-equipment/:id' , component : DetailEquipmentComponent},
   {path: 'update-equipment/:id' , component: UpdateEquipmentComponent}
 ];
 

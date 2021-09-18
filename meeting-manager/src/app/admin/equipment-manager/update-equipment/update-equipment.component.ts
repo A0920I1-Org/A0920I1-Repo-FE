@@ -26,13 +26,29 @@ export class UpdateEquipmentComponent implements OnInit {
               @Inject(AngularFireStorage) private storage: AngularFireStorage,
               private toastrService: ToastrService) {
   }
+  validationMessage = {
+    name: [
+      { type: 'required', message: 'Tên tài sản không được để trống.' },
+      { type: 'minlength', message: 'Tên tài sản phải tối thiểu 4 ký tự.' },
+      { type: 'maxlength', message: 'Tên tài sản tối đa 32 ký tự.' },
+      {type: 'pattern', message: 'Vui lòng nhập tên không có ký tự số.'}
+    ],
+    stock: [
+      { type: 'required', message: 'Số lượng không được để trống.' },
+      {type: 'pattern', message: 'Vui lòng nhập số.'}
+    ],
+    repairQuantity: [
+      { type: 'required', message: 'Số lượng không được để trống.' },
+      {type: 'pattern', message: 'Vui lòng nhập số.'}
+    ]
+  };
 
   ngOnInit(): void {
     this.updateEquipment = this.fb.group({
-      id: ['',Validators.required],
-      name: ['',Validators.required],
-      stock: [('')],
-      repairQuantity: [('')],
+      id: [''],
+      name: ['',[Validators.required,Validators.minLength(4),Validators.maxLength(32),Validators.pattern("\\D+")]],
+      stock: [(''),[Validators.required,Validators.pattern("^[0-9]+$")]],
+      repairQuantity: [(''),[Validators.required,Validators.pattern("^[0-9]+$")]],
       imageUrl: [('')]
     });
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
