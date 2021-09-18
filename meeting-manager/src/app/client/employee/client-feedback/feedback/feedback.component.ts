@@ -22,7 +22,7 @@ export class FeedbackComponent implements OnInit {
                private  snackBar: MatSnackBar
             ) { }
   public maxDate = new Date();
-  public minDate = new Date(2000, 1, 1);
+  public minDate = new Date(2021, 9, 17);
   // VietNT feedback
   ngOnInit(): void {
    // @ts-ignore
@@ -33,7 +33,7 @@ export class FeedbackComponent implements OnInit {
     description: new  FormControl('', [Validators.required, Validators.minLength(6)]),
     dateFeedback:  new  FormControl('', [Validators.required]),
     IsHandle:  new  FormControl('', [Validators.required]),
-    feedBackType:  new  FormControl('', [Validators.required]),
+  feedBackType:  new  FormControl('', [Validators.required]),
     account:  new  FormControl('', [Validators.required, ]),
     meetingRoom:  new  FormControl('', [Validators.required, ]),
    });

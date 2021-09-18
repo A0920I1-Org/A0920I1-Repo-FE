@@ -1,13 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-// @ts-ignore
-import {FeedbackTechnicalComponent} from "./client/employee/feedback/feedback-technical/feedback-technical.component";
 import {FeedbackTechnicalUpdateComponent} from "./admin/feedback-manager/feedback-technical-update/feedback-technical-update.component";
-import {FeedBackComponent} from "./client/employee/feedback/feed-back.component";
 import {FeedbackComponent} from './client/employee/client-feedback/feedback/feedback.component';
 import {FeedbackListComponent} from './client/employee/client-feedback/feedback-list/feedback-list.component';
 import {ListFeedbackadminComponent} from './admin/feedback-manager/list-feedbackadmin/list-feedbackadmin.component';
 import {HandlebarsMeetinghouseComponent} from './admin/feedback-manager/handlefeedback-meetingroom/handlebars-meetinghouse.component';
+import {FeedbackTechnicalComponent} from "./admin/feedback-manager/list-feedbackadmin/feedback-technical/feedback-technical.component";
 
 
 
@@ -30,11 +28,11 @@ const routes: Routes = [
     path: 'handle-feedback/:idfeedback', component: HandlebarsMeetinghouseComponent
   },
   {
-    component:FeedbackTechnicalComponent, path : 'add'
+     path : 'add',    component:FeedbackTechnicalComponent,
   },
   {
-    component:FeedbackTechnicalUpdateComponent, path : 'update/:id'
-  }
+   path : 'update/:id', component:FeedbackTechnicalUpdateComponent,
+  },
 ]
 
 

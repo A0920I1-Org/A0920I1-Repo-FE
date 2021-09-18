@@ -1,5 +1,4 @@
 import {AppComponent} from "./app.component";
-import {FeedBackComponent} from "./client/employee/feedback/feed-back.component";
 import {ListMeetingComponent} from "./client/employee/meeting/list-meeting/list-meeting.component";
 import {DetailMeetingComponent} from "./admin/meeting-room/detail-meeting/detail-meeting.component";
 import {RegisterMeetingComponent} from "./client/employee/meeting/register-meeting/register-meeting.component";
@@ -46,7 +45,6 @@ import {HttpClientModule} from "@angular/common/http";
   declarations: [
 
     AppComponent,
-    FeedBackComponent,
     RegisterMeetingComponent,
     DeleteMeetingComponent,
     ListMeetingComponent,
@@ -67,7 +65,6 @@ import {HttpClientModule} from "@angular/common/http";
     FeedbackTechnicalComponent,
     HeaderComponent,
     FooterComponent,
-
     FeedbackListComponent,
     FeedbackComponent,
     ListFeedbackadminComponent,
@@ -102,7 +99,7 @@ import {HttpClientModule} from "@angular/common/http";
     FormsModule,
     MatTableModule,
     MatSnackBarModule,
- 
+
 
     MatSnackBarModule,
     MatDialogModule,
