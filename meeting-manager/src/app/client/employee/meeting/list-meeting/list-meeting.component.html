@@ -22,7 +22,7 @@
               <div class="input-group">
                 <label class="input-group-text" for="startDate">Tầng </label>
                 <input class="form-control" id="startDate" name="startDate" type="text" placeholder="Nhập tầng"
-                       [(ngModel)]="floors"/>
+                       [(ngModel)]="floors">
               </div>
             </div>
 
@@ -69,7 +69,7 @@
                   <span class="material-icons">search</span>Tìm kiếm
                 </div>
               </button>
-              <button type="submit" class="btn btn-primary" style="width: 40px" (click)="backToListMeeting()">
+              <button type="reset" class="btn btn-primary" style="width: 40px">
                 <div class="row justify-content-center">
                   <span class="material-icons">settings_backup_restore</span>
                 </div>
@@ -99,29 +99,31 @@
 
                 <td class="text-left"> {{i + 1}}</td>
                 <td class="text-left">{{meetingRoom.name}}</td>
-                <td class="text-left">{{meetingRoom.floor }}</td>
+                <td class="text-left">{{meetingRoom.floors }}</td>
                 <td class="text-left">{{meetingRoom.area.name |titlecase}}</td>
                 <td class="text-left">{{meetingRoom.roomStatus.name}}</td>
                 <td class="text-left">{{meetingRoom.typeMeetingRoom.name}}</td>
                 <td class="text-left">{{meetingRoom.typeMeetingRoom.capacity}}</td>
                 <td class="text-center">
+                  <div class="row justify-content-around">
                   <a href="#myModal" class="trigger-btn" data-toggle="modal" data-target="#myModal">
                       <span class="material-icons" (click)="openDialogDelete(meetingRoom.id)">
                         <i style="font-size: 20px; color: red" class="fa fa-trash" aria-hidden="true"></i>
                       </span>
                   </a>
-                </td>
-                <td class="text-center">
+
                   <a routerLink="/update-meeting/{{meetingRoom.id}}">
                       <span class="material-icons">
                         <i style="font-size: 20px; color: #17a2b8" class="fa fa-pencil-square-o" aria-hidden="true"></i>
                       </span>
                   </a>
+
+                  <a routerLink="/show-details-meeting/{{meetingRoom.id}}" >
+                    <i style="font-size: 20px;" class="fa fa-info-circle" aria-hidden="true"></i>
+                  </a>
+                  </div>
                 </td>
-                <td class="text-center"><a routerLink="/show-details-meeting/{{meetingRoom.id}}" >
-                  <i style="font-size: 20px;" class="fa fa-info-circle" aria-hidden="true"></i>
-                </a>
-                </td>
+
               </tr>
               </tbody>
             </table>

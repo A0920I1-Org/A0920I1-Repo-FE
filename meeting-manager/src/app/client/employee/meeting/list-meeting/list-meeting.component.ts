@@ -102,7 +102,7 @@ export class ListMeetingComponent implements OnInit {
   //   });
   // }
 
-  backToListMeeting():void {
-  window.location.reload();
-}
+//   backToListMeeting():void {
+//   window.location.reload();
+// }
 }
