@@ -1,0 +1,111 @@
+<div id="wrap">
+  <div class="container">
+  <h1 style="text-align: center; margin: 40px 0"><b>
+    Phản hồi phòng họp
+  </b>
+  </h1>
+  <form [formGroup]="formCreateFeedback" (ngSubmit)="save() " >
+    <div class="card-body ">
+      <div class="row">
+
+        <div class="col-sm-3" align="right">
+          <h6 class="mb-0">Tiêu đề:</h6>
+        </div>
+        <div class="col-sm-6 text-secondary">
+
+          <input type="text"  aria-describedby="button-addon1"
+                 class="form-control border-1 shadow-1" formControlName="title">
+
+          <div  *ngIf=" !title.valid &&( title.dirty || title.touched)"><p style="color: red">*vui lòng nhập,không để trống và trên 6 kí tự!</p></div>
+        </div>
+      </div>
+      <br>
+
+      <div class=" row">
+        <div class="col-sm-3" align="right">
+          <h6 class="mb-0">Ngày phản hồi:</h6>
+        </div>
+        <div  class="col-sm-6 text-secondary">
+
+
+            <input   class="form-control border-1 shadow-1"   [max]="maxDate" [min]="minDate" formControlName="dateFeedback" id="inputBirt" matInput [matDatepicker]="myDatepicker" >
+          <div *ngIf="formCreateFeedback.get('dateFeedback').invalid && formCreateFeedback.touched" class="text-danger">Vui lòng chon ngày !</div>
+          <small> <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle></small>
+            <mat-datepicker #myDatepicker></mat-datepicker>
+
+        </div>
+
+      </div>
+
+      <br>
+      <div class="row">
+
+        <div class="col-sm-3" align="right">
+          <h6 class="mb-0">Tên người dùng:</h6>
+        </div>
+        <div class="col-sm-6 text-secondary">
+          <input type="text"  aria-describedby="button-addon1" class="form-control border-1 shadow-1" formControlName="account">
+          <div  *ngIf=" !account.valid &&( account.dirty || account.touched)"><p style="color: red">*vui lòng nhập,không để trống và trên 6 kí tự!</p></div>
+
+        </div>
+
+      </div>
+      <br>
+
+      <div class="row">
+        <div class="col-sm-3" align="right">
+          <h6 class="mb-0">Tên phòng :</h6>
+        </div>
+        <div class="col-sm-6">
+          <select class="form-control" formControlName="meetingRoom" >
+
+            <option value="1">codegym</option>
+            <option value="2">ken</option>
+            <option value="3">anda</option>
+          </select>
+          <div  *ngIf=" !meetingRoom.valid &&( meetingRoom.dirty || meetingRoom.touched)"><p style="color: red">*vui lòng nhập,không để trống!</p></div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-sm-3" align="right">
+          <h6 class="mb-0">Loại lỗi :</h6>
+        </div>
+      <div class="col-sm-6">
+        <select class="form-control" formControlName="feedBackType" >
+
+          <option value="1">Phòng họp</option>
+          <option value="2">Kỹ thuật</option>
+          <option value="3">Khác</option>
+        </select>
+ <div  *ngIf=" !feedBackType.valid &&( feedBackType.dirty || feedBackType.touched)"><p style="color: red">*vui lòng nhập,không để trống!</p></div>
+      </div>
+    </div>
+
+
+    <br>
+
+      <div class="row">
+        <div class="col-sm-3" align="right">
+          <h6 class="mb-0">Nội dung :</h6>
+        </div>
+        <div class="col-sm-6 text-secondary">
+                    <textarea class="form-control"  formControlName="description">
+                    </textarea>  <div  *ngIf=" !description.valid &&( description.dirty || description.touched)"><p style="color: red">*vui lòng nhập,không để trống!</p></div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-sm-12" align="center" >
+<!--          // toastr-->
+<!--          <button (click)="snackbar('thêm thành công !', 'OK')" class="btn btn-primary" type="submit" [disabled]="formCreateFeedback.valid">Gửi phản hồi</button>-->
+          <button type="submit" class="btn btn-danger"  style="margin: 0 50px" routerLink="/list">Huỷ phản hồi</button>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="col-sm-5" align="right"><p>Dấu(<span style="color: red">*</span>)Vui lòng nhập không được để trống!</p></div>
+
+</div>
+</div>
+<router-outlet></router-outlet>

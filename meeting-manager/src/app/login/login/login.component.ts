@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthenticationService} from '../../service/authentication.service';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -10,51 +10,55 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   invalidLogin = false;
+  submitted = false;
+  showErrorMessage = false;
   loginForm: FormGroup;
 
-  constructor(private router: Router, private authService: AuthenticationService) {
+  constructor(private router: Router, private authService: AuthenticationService, private fb: FormBuilder) {
   }
 
   ngOnInit(): void {
-    this.loginForm = new FormGroup({
-      username: new FormControl('', [Validators.required && Validators.pattern('^[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){3,18}[a-zA-Z0-9]$')]),
-      password: new FormControl('', [Validators.required && Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,32}$')])
+    this.loginForm = this.fb.group({
+      username: this.fb.control('', [Validators.required, Validators.pattern('^[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){3,18}[a-zA-Z0-9]$')]),
+      password: this.fb.control('', [Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,32}$')])
     });
+  }
+
+  get f() {
+    return this.loginForm.controls;
   }
 
   //kiem tra username va password - [TuHC]
   checkLogin() {
-    if (!this.loginForm.valid) {
-      this.validateAllFormFields(this.loginForm);
+    if (this.loginForm.invalid) {
+      this.validateAllFields(this.loginForm);
     } else {
       //dung format du lieu, gui ve backend kiem tra username va password - [TuHC]
       this.authService.authenticate(this.loginForm.get('username').value, this.loginForm.get('password').value).subscribe(
         data => {
-          this.router.navigateByUrl('/detail-meeting');
+          this.router.navigateByUrl('/list-meeting');
           this.invalidLogin = false;
         },
         error => {
           this.invalidLogin = true;
-
+          this.showErrorMessage = true;
         }
       );
+
     }
+
   }
 
-  //validate tat ca cac truong cua form
-  validateAllFormFields(formGroup: FormGroup) {         //{1}
-    Object.keys(formGroup.controls).forEach(field => {  //{2}
-      const control = formGroup.get(field);             //{3}
-      if (control instanceof FormControl) {             //{4}
+
+  validateAllFields(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach(field => {
+      const control = formGroup.get(field);
+      if (control instanceof FormControl) {
         control.markAsTouched({onlySelf: true});
-      } else if (control instanceof FormGroup) {        //{5}
-        this.validateAllFormFields(control);            //{6}
+      } else if (control instanceof FormGroup) {
+        this.validateAllFields(control);
       }
     });
-  }
-
-  isFieldValid(field: string) {
-    return !this.loginForm.get(field).valid && this.loginForm.get(field).touched;
   }
 
 }

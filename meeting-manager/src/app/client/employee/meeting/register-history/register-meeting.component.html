@@ -1,0 +1,124 @@
+<div id="wrap">
+  <div class="container">
+    <h2 id="title" style="text-align: center; margin-top: 50px; font-size: 40px">Lịch sử đăng kí</h2>
+    <form [formGroup]="findRegisterHistoryForm" (ngSubmit)="onSubmit(findRegisterHistoryForm)">
+      <div class="row" style="margin-top: 20px">
+
+        <div class="col-lg-4 input-group">
+          <label class="input-group-text" for="nameRoom">Tên phòng</label>
+          <input type="text" class="form-control" id="nameRoom" formControlName="nameRoom">
+          <p style="padding-left: 150px"
+             *ngIf="findRegisterHistoryForm.get('nameRoom').invalid && findRegisterHistoryForm.get('nameRoom').value != null "
+             class="text-danger">Tên không hợp lệ.</p>
+        </div>
+
+        <div class="col-sm-4 ">
+          <div class="input-group">
+            <label class="input-group-text" for="startDate">Ngày bắt đầu </label>
+            <input formControlName="dateCheckin" class="form-control" id="startDate" name="startDate"
+                   placeholder="DD/MM/YYYY" type="date"/>
+          </div>
+        </div>
+
+        <div class="col-sm-4 ">
+          <div class="input-group">
+            <label class="input-group-text" for="endDate">Ngày kết thúc </label>
+            <input formControlName="dateCheckout" class="form-control" id="endDate" name="endDate"
+                   placeholder="DD/MM/YYYY" type="date"/>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-lg-4 input-group">
+          <label class="input-group-text" for="inputGroupSelect01">Trạng thái</label>
+          <select formControlName="statusRoom" class="custom-select" id="inputGroupSelect01">
+            <option selected [ngValue]="null">Chọn</option>
+            <option *ngFor="let status of statusRoom" [value]="status.id">{{status.name}}</option>
+          </select>
+        </div>
+
+        <div class="col-sm-4 input-group">
+          <label class="input-group-text" for="inputGroupSelect02">Loại phòng họp</label>
+          <select formControlName="idTypeMeetingRoom" class="custom-select" id="inputGroupSelect02">
+            <option selected [ngValue]="null">Chọn loại phòng</option>
+            <option *ngFor="let type of typesMeetingRoom" [value]="type.id">{{type.name}}</option>
+          </select>
+        </div>
+
+        <div class="col-sm-4 ">
+          <div class="input-group">
+            <label class="input-group-text" for="dateRegister">Ngày đăng kí </label>
+            <input formControlName="createDate" class="form-control" id="dateRegister" name="dateRegister"
+                   placeholder="DD/MM/YYYY" type="date"/>
+          </div>
+        </div>
+      </div>
+      <br>
+
+      <div class="row justify-content-center">
+
+        <button type="submit" class="btn btn-primary" style="width: 100px">
+          <div class="row justify-content-center">
+            <span class="material-icons">search</span>Tìm kiếm
+          </div>
+        </button>
+      </div>
+      <div class="row float-right">
+        <a (click)="resetInput()" class="link-secondary">Đặt lại</a>
+      </div>
+
+    </form>
+  </div>
+
+  <div id="result" class="p-3">
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead class="thead-dark">
+        <tr>
+          <th scope="col">STT</th>
+          <th scope="col">Tên phòng</th>
+          <th scope="col">Nội dung</th>
+          <th scope="col">Thời gian bắt đầu</th>
+          <th scope="col">Thời gian kết thúc</th>
+          <th scope="col">Ngày bắt đầu</th>
+          <th scope="col">Ngày kết thúc</th>
+          <th scope="col">Loại phòng họp</th>
+          <th scope="col">Ngày đăng kí</th>
+          <th scope="col">Trạng thái</th>
+          <th scope="col">Hành động</th>
+        </tr>
+        </thead>
+        <tbody class="table-active">
+        <tr *ngFor="let register of registerHistory | paginate: {itemsPerPage:10, currentPage: page}; index as i;">
+          <th scope="row">{{i + 1}}</th>
+          <td>{{register.meetingRoom.name}}</td>
+          <td>{{register.description}}</td>
+          <td>{{register.timeStart}}</td>
+          <td>{{register.timeEnd}}</td>
+          <td>{{register.dateCheckin|date: 'dd-MM-yyyy'}}</td>
+          <td>{{register.dateCheckout|date: 'dd-MM-yyyy'}}</td>
+          <td>{{register.meetingRoom.typeMeetingRoom.name}}</td>
+          <td>{{register.createDate|date: 'dd-MM-yyyy'}}</td>
+          <td>{{register.meetingRoom.roomStatus.name}}</td>
+          <td>
+            <!--            <span *ngIf="!((dayNow.valueOf()-register.dateCheckout.valueOf())>0)">-->
+            <!--              <button class="btn btn-danger">Đã huỷ</button>-->
+            <!--            </span>-->
+            <!--            <span *ngIf="((dayNow-register.dateCheckout|date:'dd/MM/yyyy')<0)">-->
+            <button (click)="checkIsDelete(register.id)" class="btn btn-danger">Huỷ đăng kí</button>
+            <!--            </span>-->
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <span *ngIf="isResult">
+      <div>
+        <pagination-controls (pageChange)="page = $event" class="text-center" previousLabel="Trước"
+                             nextLabel="Tiếp"></pagination-controls>
+      </div>
+        </span>
+
+    </div>
+  </div>
+</div>

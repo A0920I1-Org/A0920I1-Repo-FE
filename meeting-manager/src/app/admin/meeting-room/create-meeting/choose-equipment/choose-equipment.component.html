@@ -1,0 +1,60 @@
+
+
+<div class="content p-3">
+   <h3 style="padding: 10px;">Chọn tài sản</h3>
+  <div class="form-group row">
+    <label for="input" class="col-sm-4 col-form-label">Danh sách tài sản</label>
+    <div class="col-sm-5">
+      <input type="text" class="form-control" id="input" placeholder="Nhập tên tài sản" [(ngModel)]="searchName" (change)="searchByNameEquipment()">
+    </div>
+  </div>
+
+
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th scope="col">Mã sản phẩm</th>
+        <th scope="col">Tài sản</th>
+        <th scope="col">Số lượng trong kho</th>
+        <th scope="col">Số lượng muốn thêm</th>
+        <th scope="col">Thêm</th>
+      </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let equipment of equipmentList | paginate: {itemsPerPage:2, currentPage: page};">
+          <td >
+            <p id="id">{{equipment.id}}</p>
+          </td>
+          <td scope="row" >{{equipment.name}}</td>
+          <td >{{equipment.stock}}</td>
+          <td style="padding: 0 5%">
+            <input style="width: 80%" type="number" id="quantity" class="form-control mx-3" min="0" max="{{equipment.stock}}">
+          </td>
+          <td>
+            <button id="btnAddEquipment" class="btn" style="border-radius: 10px; border: 5px" (click)="add(equipment.id)">Thêm</button>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+
+  <div>
+    <pagination-controls (pageChange)="page = $event" previousLabel="Trước" nextLabel="Tiếp" style="text-align: center"></pagination-controls>
+  </div>
+    <div class="text-center m-2">
+      <button (click)="closeDialog()" class="btn-outline-danger m-5" style="width: 70px; border-radius: 10px">Huỷ</button>
+      <button type="submit" class="btn-outline-success m-5" style="width: 90px; border-radius: 10px">Thêm</button>
+    </div>
+</div>
+
+<script>
+  $("#btnAddEquipment").click(function (){
+    const id = document.getElementById('id');
+    const quantity = document.getElementById('quantity');
+
+    console.log(id, quantity)
+
+  });
+
+
+</script>
