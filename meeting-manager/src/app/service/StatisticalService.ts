@@ -8,7 +8,7 @@ import {Statistic} from '../model/dto/Statistic';
 })
 export class StatisticalService {
   // AnhLT
-  private readonly API_URL = 'http://localhost:8080/statistical';
+  private readonly API_URL = 'http://localhost:8080/api/statistical';
   constructor(private httpClient: HttpClient) {
   }
   // AnhLT
