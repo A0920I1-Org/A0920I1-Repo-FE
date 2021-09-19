@@ -15,13 +15,13 @@ import {OrderEquipment} from '../model/entity/OrderEquipment';
 })
 
 export class MeetingRoomService {
-  private readonly API_MEETINGROOM_URL = 'http://localhost:8081/meeting';
-  private readonly API_MEETINGROOM_AREA_URL = 'http://localhost:8081/meeting/area';
-  private readonly API_TPYE_MEETINGROOM_URL = 'http://localhost:8081/meeting/typeMeetingRoom';
-  private readonly API_MEETINGROOM_STATUS_URL = 'http://localhost:8081/meeting/roomStatus';
-  private readonly API_EQUIPMENT_URL = 'http://localhost:8081/meeting/equipment';
-  private readonly API_URL = 'http://localhost:8080/meeting';
-  private readonly API_URL_UPDATE_MEETING = 'http://localhost:8080/meeting/update-meeting';
+  private readonly API_MEETINGROOM_URL = 'http://localhost:8080/api';
+  private readonly API_MEETINGROOM_AREA_URL = 'http://localhost:8080/api/area';
+  private readonly API_TPYE_MEETINGROOM_URL = 'http://localhost:8080/api/typeMeetingRoom';
+  private readonly API_MEETINGROOM_STATUS_URL = 'http://localhost:8080/api/roomStatus';
+  private readonly API_EQUIPMENT_URL = 'http://localhost:8080/api/equipment';
+  private readonly API_URL = 'http://localhost:8080/api';
+  private readonly API_URL_UPDATE_MEETING = 'http://localhost:8080/api/update-meeting';
 
   httpOptions = {
     header: new HttpHeaders({
@@ -32,7 +32,7 @@ export class MeetingRoomService {
   constructor(private httpClient: HttpClient) { }
 
   public getMeetingRoom(): Observable<MeetingRoom[]> {
-    return this.httpClient.get<MeetingRoom[]>(this.API_MEETINGROOM_URL);
+    return this.httpClient.get<MeetingRoom[]>(this.API_MEETINGROOM_URL + '/list');
   }
 
   //HueHV tạo ngày 16/9/2021, chức năng hiển thị danh sách tài sản
@@ -94,6 +94,6 @@ export class MeetingRoomService {
     // Hoàng update meeting
   updateMeetingRoom(meetingRoom: MeetingRoom): Observable<void>{
     // console.log(meetingRoom);
-    return this.httpClient.put<void>(this.API_URL_UPDATE_MEETING + '/'+ meetingRoom.id, meetingRoom );
+    return this.httpClient.patch<void>(this.API_URL_UPDATE_MEETING + '/'+ meetingRoom.id, meetingRoom );
   }
 }

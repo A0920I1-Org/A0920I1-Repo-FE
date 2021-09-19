@@ -39,9 +39,6 @@ export class ListMeetingComponent implements OnInit {
   private totalPage: any;
 
   constructor(
-    private typeMeetingRoomService: TypeMeetingRoomService,
-    private areaService: AreaMeetingRoomService,
-    private statusRoomService: StatusRoomService,
     private meetingRoomService: MeetingRoomService,
     private dialog: MatDialog,
     private router: Router
@@ -50,13 +47,13 @@ export class ListMeetingComponent implements OnInit {
 
   ngOnInit(): void {
     //danh sách khu vực
-    this.areaService.getAllArea().subscribe((data) => {
+    this.meetingRoomService.getArea().subscribe((data) => {
       this.areaList = data;
       //danh sách loại phòng
-      this.typeMeetingRoomService.getTypesMeetingRoom().subscribe((data) => {
+      this.meetingRoomService.getTypeMeetingRoom().subscribe((data) => {
         this.typeMeetingRoomList = data;
         // danh sách trạng thái
-        this.statusRoomService.getStatusRoom().subscribe((data) => {
+        this.meetingRoomService.getRoomStatus().subscribe((data) => {
           this.statusRoomList = data;
           //danh sách phòng họp
           this.meetingRoomService.getMeetingRoom().subscribe((data) => {

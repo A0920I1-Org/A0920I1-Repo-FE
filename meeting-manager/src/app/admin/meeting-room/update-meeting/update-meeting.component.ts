@@ -38,9 +38,6 @@ export class UpdateMeetingComponent implements OnInit {
   defaultImage = 'https://epicattorneymarketing.com/wp-content/uploads/2016/07/Headshot-Placeholder-1.png';
   constructor(
     private fb: FormBuilder,
-    private typeMeetingRoomService: TypeMeetingRoomService,
-    private areaService: AreaMeetingRoomService,
-    private statusRoomService: StatusRoomService,
     private equipmentService: EquipmentService,
     private meetingRoomService: MeetingRoomService,
     private snackBar: MatSnackBar,
@@ -70,15 +67,15 @@ export class UpdateMeetingComponent implements OnInit {
 
 
     //list khu vực
-    this.areaService.getAllArea().subscribe((data) => {
+    this.meetingRoomService.getArea().subscribe((data) => {
       this.areaList = data;
 
       //list trạng thái phòng
-      this.statusRoomService.getStatusRoom().subscribe((data) => {
+      this.meetingRoomService.getRoomStatus().subscribe((data) => {
         this.statusRoomList = data;
 
         // list loại phòng
-        this.typeMeetingRoomService.getTypesMeetingRoom().subscribe((data) => {
+        this.meetingRoomService.getTypeMeetingRoom().subscribe((data) => {
 
           this.typeMeetingRoom = data;
 

@@ -8,6 +8,8 @@ import {RoomStatus} from '../../../../model/entity/RoomStatus';
 import {OrderMeeting} from '../../../../model/entity/OrderMeeting';
 import {ToastrService} from 'ngx-toastr';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import {AuthenticationService} from '../../../../service/authentication.service';
+import {Account} from '../../../../model/entity/Account';
 
 @Component({
   selector: 'app-register-meeting',
@@ -28,6 +30,7 @@ export class RegisterMeetingComponent implements OnInit {
   dayNowSys: Date = new Date();
   dayNow: string;
   isResult = true;
+  account: Account;
 
   constructor(
     private registerHistoryService: RegisterHistoryService,

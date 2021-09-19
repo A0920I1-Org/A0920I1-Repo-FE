@@ -36,7 +36,14 @@ import {ListFeedbackadminComponent} from './admin/feedback-manager/list-feedback
 import {DeleteFeedbackComponent} from './admin/feedback-manager/delete-feedback/delete-feedback.component';
 import {FeedbackTechnicalCreateComponent} from './client/employee/client-feedback/feedback-technical-create/feedback-technical-create.component';
 import {MatInputModule} from '@angular/material/input';
-import {ChartModule} from '@syncfusion/ej2-angular-charts';
+import {
+  CategoryService,
+  ChartModule, ColumnSeriesService,
+  DataLabelService,
+  LegendService,
+  LineSeriesService,
+  TooltipService
+} from '@syncfusion/ej2-angular-charts';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireAuthModule} from '@angular/fire/auth';
@@ -51,7 +58,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {environment} from '../environments/environment';
 import {RouterModule} from '@angular/router';
-import {ToastrModule} from 'ngx-toastr';
+import {ToastrModule, ToastrService} from 'ngx-toastr';
 import {RegisterMeetingComponent} from './client/employee/meeting/register-history/register-meeting.component';
 import {FeedbackComponent} from './client/employee/client-feedback/feedback/feedback.component';
 
@@ -129,7 +136,15 @@ import {FeedbackComponent} from './client/employee/client-feedback/feedback/feed
   ],
   providers: [{
     provide:HTTP_INTERCEPTORS, useClass:BasicAuthHttpInterceptorService, multi:true,
-  }],
+  },
+    LineSeriesService,
+    CategoryService,
+    LegendService,
+    DataLabelService,
+    TooltipService,
+    ColumnSeriesService,
+    ToastrService,
+  ],
 
   bootstrap: [AppComponent]
 })
