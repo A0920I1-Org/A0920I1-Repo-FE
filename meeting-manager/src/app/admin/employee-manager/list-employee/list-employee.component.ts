@@ -27,6 +27,7 @@ export class ListEmployeeComponent implements OnInit {
 
   getListEmployee(): void {
     this.employeeService.getAllEmployee(this.page).subscribe((data) => {
+      console.log(data);
       this.listEmployee = data.content;
       console.log(data);
       this.totalPage = data.totalPages;

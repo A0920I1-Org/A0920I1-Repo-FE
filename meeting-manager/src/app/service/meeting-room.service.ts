@@ -57,7 +57,7 @@ export class MeetingRoomService {
 
   //HueHV tạo ngày 16/9/2021, chức năng thêm mới phòng họp
   public addMeetingRoom(meetingRoom: MeetingRoom): Observable<void> {
-    return this.httpClient.post<void>(this.API_MEETINGROOM_URL , meetingRoom);
+    return this.httpClient.post<void>(this.API_MEETINGROOM_URL+'/create-meeting' , meetingRoom);
   }
 
   //HueHV tạo ngày 16/9/2021, chức năng tìm phòng phọng theo id

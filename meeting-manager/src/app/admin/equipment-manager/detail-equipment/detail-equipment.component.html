@@ -39,7 +39,7 @@
                   <h6 class="mb-0">Đang sử dụng</h6>
                 </div>
                 <div class="col-sm-4 text-secondary">
-                  <p>{{equipmentDetail.stock - equipmentDetail.quantityRepair}}</p>
+                  <p>{{equipmentDetail.stock - equipmentDetail.repairQuantity}}</p>
                 </div>
               </div>
               <hr>
@@ -48,30 +48,13 @@
                   <h6 class="mb-0">Đang sửa chữa</h6>
                 </div>
                 <div class="col-sm-4 text-secondary">
-                  <p>{{equipmentDetail.quantityRepair}}</p>
+                  <p>{{equipmentDetail.repairQuantity}}</p>
                 </div>
               </div>
             </div>
           </div>
           <hr>
-          <h5>Danh sách phòng đang sử dụng tài sản:</h5>
-          <table class="table table-hover" border="1">
-            <thead class="thead-dark">
-            <tr>
-              <th>Tên Phòng</th>
-              <th>Tên Tài Sản</th>
-              <th>Số lượng đang sử dụng</th>
-            </tr>
-            </thead>
-            <tbody class="table-active">
-            <tr *ngFor="let orders of orderEquipment">
-              <td>{{orders.meetingRoom.name}}</td>
-              <td>{{orders.equipment.name}}</td>
-              <td>{{orders.quantity}}</td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
+          </div>
         <div class="col-md-4">
           <div class="row">
             <div class="col-md-12 mb-6">
@@ -86,31 +69,30 @@
             </div>
           </div>
         </div>
-
-        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img [src]="equipmentDetail.imageUrl" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-              <img [src]="equipmentDetail.imageUrl" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-              <img [src]="equipmentDetail.imageUrl" class="d-block w-100" alt="...">
-            </div>
-          </div>
-          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
-        </div>
-
       </div>
     </div>
+
+    <div class="row justify-content-center" style="background-color: white;">
+      <h3>Danh sách phòng đang sử dụng tài sản:</h3>
+      <table class="table table-hover" border="1" style="margin: 0 20px">
+        <thead class="thead-dark">
+        <tr>
+          <th>Tên Phòng</th>
+          <th>Tên Tài Sản</th>
+          <th>Số lượng đang sử dụng</th>
+        </tr>
+        </thead>
+        <tbody class="table-active">
+        <tr *ngFor="let orders of orderEquipment|paginate: {itemsPerPage:5, currentPage: page}; let i = index">
+          <td>{{orders.meetingRoom.name}}</td>
+          <td>{{orders.equipment.name}}</td>
+          <td>{{orders.quantity}}</td>
+        </tr>
+        </tbody>
+      </table>
+      <pagination-controls (pageChange)="page = $event" style="text-align: center" previousLabel="Trước" nextLabel="Tiếp"></pagination-controls>
+    </div>
+
     <div class="justify-content-center text-center" style="margin-top: 15px">
       <input type="submit" value="Quay lại" class="btn btn-primary" style="margin-right: 15px"
              routerLink="/list-equipment">

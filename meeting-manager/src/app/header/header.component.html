@@ -20,15 +20,10 @@
                 *ngIf="(authService.isUserLoggedIn() && authService.checkRoleAdmin())">
               <li><a href="/list-meeting">Phòng Họp</a></li>
               <li><a href="/list-equipment">Tài Sản</a></li>
-              <li><a href="#">Người Dùng</a></li>
+              <li><a href="/emp-list">Người Dùng</a></li>
               <li><a href="/statistic">Thống Kê</a></li>
               <li class="has-children">
-                <a href="/list" class="nav-link" *ngIf="authService.isUserLoggedIn()">Xem Phản Hồi</a>
-                <ul class="dropdown arrow-top">
-                  <li><a href="#" class="nav-link">Phản Hồi Phòng Họp</a></li>
-                  <li><a href="#" class="nav-link">Phản Hồi Hệ Thống</a></li>
-                  <li><a href="#" class="nav-link">Danh Sách Phản Hồi</a></li>
-                </ul>
+                <a href="/list-feedback-admin" class="nav-link">Xem Phản Hồi</a>
               </li>
             </ul>
             <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block"

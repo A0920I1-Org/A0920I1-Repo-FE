@@ -105,7 +105,7 @@ export class CreateMeetingComponent implements OnInit {
           this.createMeetingRoom.patchValue({imageUrl: url});
 
           this.meetingService.addMeetingRoom(this.createMeetingRoom.value).subscribe(() => {
-            this.router.navigateByUrl('').then(e => this.toastService.success("Thêm mới thành công!", "Thông báo"))
+            this.router.navigateByUrl('/list-meeting').then(e => this.toastService.success("Thêm mới thành công!", "Thông báo"))
           }, error => this.toastService.error("Lỗi thêm mới!", "Thông báo"))
         })
       })

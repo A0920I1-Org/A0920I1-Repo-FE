@@ -54,4 +54,14 @@ export class ListFeedbackadminComponent implements OnInit {
       });
     });
   }
+
+  actionFeedbackType(id: number) {
+    if (id === 1){
+      this.router.navigateByUrl('handle-feedback/' + id);
+    }
+    else if (id === 2){
+      this.router.navigateByUrl('update-feedback-technical/' + id);
+    }
+
+  }
 }

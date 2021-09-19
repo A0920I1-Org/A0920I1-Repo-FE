@@ -29,7 +29,7 @@
         <th scope="row" *ngIf="feed.IsHandle ">Đã xử lý</th>
         <th scope="row" *ngIf="!feed.IsHandle "> Chưa xử lý</th>
         <td>
-          <button class="btn btn-primary  m-md-3 "  [routerLink]="['/handle-feedback/',feed.id]">Xử lý </button>
+          <button class="btn btn-primary  m-md-3 "  (click)="actionFeedbackType(feed.feedBackType.id)">Xử lý </button>
           <button (click)="openDialogDelete(feed.id)" class="btn btn-danger">Xóa</button>
         </td>
       </tr>

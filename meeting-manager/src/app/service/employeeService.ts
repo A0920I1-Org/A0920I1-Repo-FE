@@ -30,7 +30,7 @@ export class EmployeeService {
   }
 
   getAllEmployee(page: number): Observable<any>{
-    return this.httpClient.get<any>(this.url + '/account/list-page?page=' + page , this.httpOptions);
+    return this.httpClient.get<any>(this.url + '/account/list-page?page=' + page );
   }
 
   createEmployee(employee: any): Observable<any> {

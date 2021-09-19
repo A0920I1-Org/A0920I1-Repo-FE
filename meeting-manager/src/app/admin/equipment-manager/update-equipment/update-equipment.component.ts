@@ -44,7 +44,7 @@ export class UpdateEquipmentComponent implements OnInit {
           id: this.editEquipment.id,
           name: this.editEquipment.name,
           stock: this.editEquipment.stock,
-          repairQuantity: this.editEquipment.quantityRepair,
+          repairQuantity: this.editEquipment.repairQuantity,
           imageUrl: this.editEquipment.imageUrl
         });
       });

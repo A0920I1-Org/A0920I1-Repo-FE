@@ -35,7 +35,7 @@ export class HandlebarsMeetinghouseComponent implements OnInit {
     });
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       // tslint:disable-next-line:radix
-      this.idFeedback = parseInt(paramMap.get('idfeedback'));
+      this.idFeedback = parseInt(paramMap.get('idFeedback'));
       this.feedbackService.findById(this.idFeedback).subscribe((data) => {
         this.editFeedback = data;
         console.log(this.editFeedback);
@@ -57,7 +57,7 @@ export class HandlebarsMeetinghouseComponent implements OnInit {
 
   handle() {
     this.feedbackService.updateFeedback(this.handleFeedback.value).subscribe((data) => {
-      this.router.navigateByUrl('list-feedbackadmin');
+      this.router.navigateByUrl('list-feedback-admin');
     });
   }
 }
