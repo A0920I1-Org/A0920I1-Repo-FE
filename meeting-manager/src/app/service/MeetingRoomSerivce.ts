@@ -7,12 +7,12 @@ import {MeetingRoom} from '../model/entity/MeetingRoom';
 })
 export class MeetingRoomSerivce {
 
-  private readonly API_URL = 'http://localhost:3000/meeting-rooms';
+  private readonly API_URL = 'http://localhost:8080/api';
 
   constructor(private httpClient: HttpClient) {
   }
   // AnhLT
   public getMeetingRoom(): Observable<MeetingRoom[]>{
-    return this.httpClient.get<MeetingRoom[]>(this.API_URL);
+    return this.httpClient.get<MeetingRoom[]>(this.API_URL+'/list');
   }
 }

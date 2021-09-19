@@ -101,14 +101,16 @@
           <td>{{register.meetingRoom.typeMeetingRoom.name}}</td>
           <td>{{register.createDate|date: 'dd-MM-yyyy'}}</td>
           <td>{{register.meetingRoom.roomStatus.name}}</td>
+
           <td>
-            <!--            <span *ngIf="!((dayNow.valueOf()-register.dateCheckout.valueOf())>0)">-->
-            <!--              <button class="btn btn-danger">Đã huỷ</button>-->
-            <!--            </span>-->
-            <!--            <span *ngIf="((dayNow-register.dateCheckout|date:'dd/MM/yyyy')<0)">-->
+<!--                        <span *ngIf="!((dayNow.valueOf()-register.dateCheckout.valueOf())>0)">-->
+<!--                          <button class="btn btn-danger">Đã huỷ</button>-->
+<!--                        </span>-->
+<!--                        <span *ngIf="!((dayNow-register.dateCheckout|date:'dd/MM/yyyy')<0)">-->
             <button (click)="checkIsDelete(register.id)" class="btn btn-danger">Huỷ đăng kí</button>
-            <!--            </span>-->
+<!--                        </span>-->
           </td>
+
         </tr>
         </tbody>
       </table>

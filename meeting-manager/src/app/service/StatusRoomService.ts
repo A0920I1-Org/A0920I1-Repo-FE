@@ -12,6 +12,6 @@ export class StatusRoomService {
   }
   // AnhLT
   public getStatusRoom(): Observable<RoomStatus[]>{
-    return this.httpClient.get<RoomStatus[]>(this.API_URL);
+    return this.httpClient.get<RoomStatus[]>(this.API_URL+'/list');
   }
 }

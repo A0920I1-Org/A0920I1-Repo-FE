@@ -136,7 +136,7 @@ export class RegisterMeetingComponent implements OnInit {
           this.router.navigateByUrl('register');
         }
         if (data === false) {
-          this.router.navigate(['/deleteRegisterMeeting/', idOrder]);
+          this.router.navigate(['/delete-register-meeting/', idOrder]);
         }
       }
     );

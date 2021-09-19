@@ -13,6 +13,6 @@ export class TypeMeetingRoomService {
   }
   // AnhLT
   public getTypesMeetingRoom(): Observable<TypeMeetingRoom[]>{
-    return this.httpClient.get<TypeMeetingRoom[]>(this.API_URL);
+    return this.httpClient.get<TypeMeetingRoom[]>(this.API_URL+'/list');
   }
 }

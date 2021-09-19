@@ -10,7 +10,7 @@ import {Account} from '../model/entity/Account';
 export class AuthenticationService {
   account: Account;
 
-  loginURL = 'http://localhost:8080/login';
+  loginURL = 'http://localhost:8080/api';
 
   constructor(private httpClient: HttpClient, private jwtHelper: JwtHelperService) { }
 
