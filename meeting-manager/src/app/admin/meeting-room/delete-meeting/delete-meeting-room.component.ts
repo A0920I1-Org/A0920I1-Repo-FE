@@ -1,7 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {MeetingRoomService} from '../../../service/meeting-room.service';
-import {MatSnackBar} from '@angular/material/snack-bar';
 import {ToastrService} from 'ngx-toastr';
 
 @Component({
@@ -18,8 +17,7 @@ export class DeleteMeetingRoomComponent implements OnInit {
     public dialogRef: MatDialogRef<DeleteMeetingRoomComponent>,
     private toastrService: ToastrService,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private meetingRoomService: MeetingRoomService,
-    private snackBar: MatSnackBar
+    private meetingRoomService: MeetingRoomService
   ) { }
 
   ngOnInit(): void {

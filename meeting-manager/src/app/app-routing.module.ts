@@ -24,6 +24,7 @@ import {ListFeedbackadminComponent} from './admin/feedback-manager/list-feedback
 import {FeedbackListComponent} from './client/employee/client-feedback/feedback-list/feedback-list.component';
 import {FeedbackComponent} from './client/employee/client-feedback/feedback/feedback.component';
 import {CreateEmployeeComponent} from './admin/employee-manager/create-employee/create-employee.component';
+import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 
 //TuHC
 const routes: Routes = [
@@ -49,8 +50,8 @@ const routes: Routes = [
   {path: 'list-feedbackadmin', component: ListFeedbackadminComponent, canActivate:[AuthGuardService], data: {expectedRole: ['ROLE_ADMIN']}},
   {path: 'handle-feedback/:idfeedback', component: HandlebarsMeetinghouseComponent, canActivate:[AuthGuardService], data: {expectedRole: ['ROLE_ADMIN']}},
   {path : 'addFeedTechnical',component:FeedbackTechnicalCreateComponent, canActivate:[AuthGuardService], data: {expectedRole: ['ROLE_ADMIN', 'ROLE_USER']}},
-  {path : 'updateFeedTechnical/:id', component:FeedbackTechnicalUpdateComponent, canActivate:[AuthGuardService], data: {expectedRole: ['ROLE_ADMIN']}}
-
+  {path : 'updateFeedTechnical/:id', component:FeedbackTechnicalUpdateComponent, canActivate:[AuthGuardService], data: {expectedRole: ['ROLE_ADMIN']}},
+  {path: '**', component: PageNotFoundComponent, canActivate:[AuthGuardService], data: {expectedRole: ['ROLE_ADMIN', 'ROLE_USER']}}
   ];
 
 @NgModule({

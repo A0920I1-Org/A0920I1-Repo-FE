@@ -12,7 +12,6 @@ import {OrderEquipment} from '../../../model/entity/OrderEquipment';
   styleUrls: ['./detail-meeting.component.css']
 })
 export class DetailMeetingComponent implements OnInit {
-  id: number;
 
   constructor(
     private meetingService: MeetingRoomService,
@@ -25,10 +24,8 @@ export class DetailMeetingComponent implements OnInit {
   equipmentList: OrderEquipment[];
 
   ngOnInit(): void {
-    console.log(this.activatedRoute.snapshot.params.id);
     this.meetingService.findMeetingRoomById(this.activatedRoute.snapshot.params.id).subscribe((data) => {
       this.meetingDetails = data;
-      console.log(this.meetingDetails);
     }, error => console.log('error'))
 
     this.getEquipment();
@@ -37,7 +34,7 @@ export class DetailMeetingComponent implements OnInit {
   getEquipment(){
     this.meetingService.listEquipmentByIdMeetingRoom(this.activatedRoute.snapshot.params.id).subscribe((data) => {
       this.equipmentList = data;
-      console.log(this.equipmentList)
+
     })
 
   }

@@ -54,6 +54,7 @@ import {RouterModule} from '@angular/router';
 import {ToastrModule} from 'ngx-toastr';
 import {RegisterMeetingComponent} from './client/employee/meeting/register-history/register-meeting.component';
 import {FeedbackComponent} from './client/employee/client-feedback/feedback/feedback.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 
@@ -90,7 +91,8 @@ import {FeedbackComponent} from './client/employee/client-feedback/feedback/feed
     LoginComponent,
     LogoutComponent,
     RegisterMeetingComponent,
-    FeedbackComponent
+    FeedbackComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

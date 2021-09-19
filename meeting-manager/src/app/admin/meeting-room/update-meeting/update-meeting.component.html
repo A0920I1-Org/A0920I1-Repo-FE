@@ -19,7 +19,7 @@
                   <div>
                     <span style="margin-top: 20px"
                           class="btn btn-info btn-round btn-default btn-file btn__upload-custom">
-                      <span class="fileinput-new">Upload</span>
+                      <span class="fileinput-new">Chọn ảnh</span>
                       <input type="file" name="..." (change)="showImage($event)"/>
                     </span>
                   </div>
@@ -36,12 +36,12 @@
                 <h4><b>Chỉnh Sửa Phòng Họp</b></h4>
               </div>
               <div class="card-body">
-                <form [formGroup]="editMeetingRoom" (ngSubmit)="onSubmit(editMeetingRoom)">
+                <form [formGroup]="editMeetingRoom" (ngSubmit)="onSubmit()">
                   <div class="row">
                     <div class="col-md-12 pr-1">
                       <div class="form-group">
-                        <label>Tên phòng <span class="infomation__required">(*)</span></label>
-                        <input type="text" class="form-control" placeholder="Tên phòng" formControlName="name">
+                        <label for="name">Tên phòng <span class="infomation__required" style="color: red">*</span></label>
+                        <input id="name" type="text" class="form-control" placeholder="Tên phòng" formControlName="name">
                         <div class="text-danger" *ngFor="let validation of validation_messages.name">
                           <small *ngIf="editMeetingRoom.get('name').hasError(validation.type) && (editMeetingRoom.get('name').dirty || editMeetingRoom.get('name').touched)"
                                  class="text-danger"> {{validation.message}}</small>
@@ -52,8 +52,8 @@
                   <div class="row">
                     <div class="col-md-12 pr-1">
                       <div class="form-group">
-                        <label>Tầng <span class="infomation__required">(*)</span></label>
-                        <input type="number" class="form-control" placeholder="Nhập tầng" formControlName="floors" min="1">
+                        <label for="floor">Tầng <span class="infomation__required" style="color: red">*</span></label>
+                        <input id="floor" type="number" class="form-control" placeholder="Nhập tầng" formControlName="floors" min="1">
                         <div class="text-danger" *ngFor="let validation of validation_messages.floors">
                           <small *ngIf="editMeetingRoom.get('floors').hasError(validation.type) && (editMeetingRoom.get('floors').dirty || editMeetingRoom.get('floors').touched)"
                                  class="text-danger"> {{validation.message}}</small>
@@ -64,7 +64,7 @@
                   <div class="row">
                     <div class="col-md-12 pr-1">
                       <div class="form-group">
-                        <label for="area">Khu vực <span class="infomation__required">(*)</span></label>
+                        <label for="area">Khu vực <span class="infomation__required" style="color: red">*</span></label>
                         <select class="form-control" id="area" formControlName="area">
                           <option *ngFor="let area of areaList" [ngValue]="area.id"
                                   [selected]="area.name == editMeetingRoom.controls.area.value.name">{{area.name}}</option>
@@ -75,7 +75,7 @@
                   <div class="row">
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
-                        <label for="roomStatus">Trạng thái<span class="infomation__required">(*)</span></label>
+                        <label for="roomStatus">Trạng thái <span class="infomation__required" style="color: red">*</span></label>
                         <select class="form-control" id="roomStatus" formControlName="roomStatus">
                           <option *ngFor="let roomStatus of statusRoomList" [ngValue]="roomStatus.id"
                                   [selected]="roomStatus.name == editMeetingRoom.controls.roomStatus.value.name">{{roomStatus.name}}</option>
@@ -84,7 +84,7 @@
                     </div>
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
-                        <label for="typeMeetingRoom">Loại phòng <span class="infomation__required">(*)</span></label>
+                        <label for="typeMeetingRoom">Loại phòng <span class="infomation__required" style="color: red">*</span></label>
                         <select class="form-control" id="typeMeetingRoom" formControlName="typeMeetingRoom">
                           <option *ngFor="let typeMeetingRoom of typeMeetingRoom" [ngValue]="typeMeetingRoom.id"
                                   [selected]="typeMeetingRoom.name == editMeetingRoom.controls.typeMeetingRoom.value.name">{{typeMeetingRoom.name}}</option>
@@ -93,11 +93,14 @@
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-md-3 pr-1">
-                      <div class="form-group">
-                        <label for="roomStatus">Chọn tài sản<span class="infomation__required">(*)</span></label>
-                        <input type="button" class="form-control" value="Chọn tài sản">
+                    <div class="col-md-6 pr-1">
+                      <div class="row ">
+                        <label class="col-6 " >Chọn tài sản <span class="infomation__required" style="color: red">*</span></label>
+                        <button class="btn btn-light" style="background: #e9ecef; margin-bottom: 40px; margin-left: 20px" (click)="openDialogEquipment()">
+                          Chọn
+                        </button>
                       </div>
+
                     </div>
                   </div>
                   <div class="row">

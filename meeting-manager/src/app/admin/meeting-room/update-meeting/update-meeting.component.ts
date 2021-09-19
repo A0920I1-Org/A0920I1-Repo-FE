@@ -1,25 +1,19 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-
-import {AreaMeetingRoomService} from '../../../service/area-meeting-room.service';
-
 import {EquipmentService} from '../../../service/equipment.service';
 import {MeetingRoomService} from '../../../service/meeting-room.service';
-import {MatSnackBar} from '@angular/material/snack-bar';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
-
 import {AngularFireStorage} from '@angular/fire/storage';
 import {formatDate} from '@angular/common';
 import {finalize} from 'rxjs/operators';
-// @ts-ignore
 import {ToastrService} from 'ngx-toastr';
 import {TypeMeetingRoom} from '../../../model/entity/TypeMeetingRoom';
 import {RoomStatus} from '../../../model/entity/RoomStatus';
 import {OrderEquipment} from '../../../model/entity/OrderEquipment';
 import {MeetingRoom} from '../../../model/entity/MeetingRoom';
 import {Area} from '../../../model/entity/Area';
-import {TypeMeetingRoomService} from '../../../service/TypeMeetingRoomService';
-import {StatusRoomService} from '../../../service/StatusRoomService';
+import {ChooseEquipmentComponent} from "../create-meeting/choose-equipment/choose-equipment.component";
+import {MatDialog} from "@angular/material/dialog";
 @Component({
   selector: 'app-update-meeting',
   templateUrl: './update-meeting.component.html',
@@ -38,12 +32,9 @@ export class UpdateMeetingComponent implements OnInit {
   defaultImage = 'https://epicattorneymarketing.com/wp-content/uploads/2016/07/Headshot-Placeholder-1.png';
   constructor(
     private fb: FormBuilder,
-    private typeMeetingRoomService: TypeMeetingRoomService,
-    private areaService: AreaMeetingRoomService,
-    private statusRoomService: StatusRoomService,
     private equipmentService: EquipmentService,
     private meetingRoomService: MeetingRoomService,
-    private snackBar: MatSnackBar,
+    public dialog: MatDialog,
     private toastrService: ToastrService,
     private active: ActivatedRoute,
     private router: Router,
@@ -51,15 +42,12 @@ export class UpdateMeetingComponent implements OnInit {
   ) {
   }
 
-
-
-
   ngOnInit(): void {
 
     this.editMeetingRoom = this.fb.group({
       id: [''],
-      name:['', [Validators.required, Validators.pattern('^[a-zA-Z0-9\\+]*$'),Validators.minLength(4),Validators.maxLength(10)]],
-      floors: ['', [Validators.required, Validators.pattern('^[1-9]{0,2}$')]],
+      name: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9\\+]*$'), Validators.minLength(4), Validators.maxLength(10)]],
+      floors: ['', [Validators.required, Validators.pattern('^[0-9]{1,10}$')]],
       area: ['', [Validators.required]],
       roomStatus: ['', [Validators.required]],
       typeMeetingRoom: ['', [Validators.required]],
@@ -68,17 +56,16 @@ export class UpdateMeetingComponent implements OnInit {
       // orderEquipmentList: ['', Validators.required]
     });
 
-
     //list khu vực
-    this.areaService.getAllArea().subscribe((data) => {
+    this.meetingRoomService.getArea().subscribe((data) => {
       this.areaList = data;
 
       //list trạng thái phòng
-      this.statusRoomService.getStatusRoom().subscribe((data) => {
+      this.meetingRoomService.getRoomStatus().subscribe((data) => {
         this.statusRoomList = data;
 
         // list loại phòng
-        this.typeMeetingRoomService.getTypesMeetingRoom().subscribe((data) => {
+        this.meetingRoomService.getTypeMeetingRoom().subscribe((data) => {
 
           this.typeMeetingRoom = data;
 
@@ -88,9 +75,9 @@ export class UpdateMeetingComponent implements OnInit {
               this.meetingRoom = data;
               // console.log(this.editMeetingRoom);
               this.editMeetingRoom.patchValue({
-                id : this.meetingRoom.id,
+                id: this.meetingRoom.id,
                 name: this.meetingRoom.name,
-                floors: this.meetingRoom.floor,
+                floors: this.meetingRoom.floors,
                 area: this.meetingRoom.area.id,
                 roomStatus: this.meetingRoom.roomStatus.id,
                 typeMeetingRoom: this.meetingRoom.typeMeetingRoom.id,
@@ -106,15 +93,16 @@ export class UpdateMeetingComponent implements OnInit {
 
   validation_messages = {
     name: [
-      {type: 'required', message: 'Vui lòng nhập tên phòng!'},
-      {type: 'minlength', message: 'Vui lòng nhập tên phòng có ít nhất 4 kí tự!'},
-      {type: 'maxlength', message: 'Vui lòng nhập tên phòng có nhiều nhất 10 kí tự!'},
-      {type: 'pattern', message: 'Nhập tên không hợp lệ!'}
+      {type: 'required', message: 'Vui lòng nhập tên phòng.'},
+      {type: 'minlength', message: 'Vui lòng nhập tên phòng có ít nhất 4 kí tự.'},
+      {type: 'maxlength', message: 'Vui lòng nhập tên phòng có nhiều nhất 10 kí tự.'},
+      {type: 'pattern', message: 'Nhập tên phòng không hợp lệ, không được nhập số, kí tự đặc biệt. (abc, abc xyz)'}
     ],
     floors: [
-      {type: 'required', message: 'Vui lòng nhập số tầng!'},
-      {type: 'minlength', message: 'Vui lòng nhập ít nhất 1 số!'},
-      {type: 'pattern', message: 'Nhập tầng không hợp lệ!'}
+      {type: 'required', message: 'Vui lòng nhập số tầng.'},
+      {type: 'minlength', message: 'Vui lòng nhập ít nhất 1 số.'},
+      {type: 'maxlength', message: 'tối đa 10 số.'},
+      {type: 'pattern', message: 'Nhập tầng không hợp lệ.'}
 
     ],
     area: [
@@ -135,7 +123,7 @@ export class UpdateMeetingComponent implements OnInit {
   updateMeetingRoom() {
     this.meetingRoomService.updateMeetingRoom(this.editMeetingRoom.value).subscribe( data =>{
       this.toastrService.success('Bạn đã sửa thành công!');
-      this.router.navigateByUrl('');
+      this.router.navigateByUrl('/list-meeting');
       // this.snackBar.open('Đã sữa thành công !', 'xong',{duration:2000});
       }
     );
@@ -144,16 +132,15 @@ export class UpdateMeetingComponent implements OnInit {
   getCurrentDateTime(): string {
     return formatDate(new Date(), 'dd-MM-yyyyhhmmssa', 'en-US');
   }
-  onSubmit(editMeetingRoom: FormGroup){
+  onSubmit(){
     const nameImage = this.getCurrentDateTime() + this.imgUpdate.name;
     const fileRef = this.storage.ref(nameImage);
-    console.log(this.imgUpdate);
+
     // chưa set name khi up firebase
     this.storage.upload(nameImage, this.imgUpdate).snapshotChanges().pipe(
       finalize(() => {
         fileRef.getDownloadURL().subscribe((url) => {
           this.editMeetingRoom.patchValue({imageUrl: url});
-          console.log(this.imgUpdate);
           this.updateMeetingRoom();
         });
       })
@@ -161,6 +148,11 @@ export class UpdateMeetingComponent implements OnInit {
   }
   showImage($event: any) {
     this.imgUpdate = $event.target.files[0];
+  }
+
+  openDialogEquipment(){
+    const dialogRef = this.dialog.open(ChooseEquipmentComponent,
+      { width: '700px'});
   }
 
   getImageUrl(){

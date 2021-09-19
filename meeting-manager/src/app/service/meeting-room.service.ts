@@ -15,14 +15,11 @@ import {OrderEquipment} from '../model/entity/OrderEquipment';
 })
 
 export class MeetingRoomService {
-  private readonly API_MEETINGROOM_URL = 'http://localhost:8081/meeting';
-  private readonly API_MEETINGROOM_AREA_URL = 'http://localhost:8081/meeting/area';
-  private readonly API_TPYE_MEETINGROOM_URL = 'http://localhost:8081/meeting/typeMeetingRoom';
-  private readonly API_MEETINGROOM_STATUS_URL = 'http://localhost:8081/meeting/roomStatus';
-  private readonly API_EQUIPMENT_URL = 'http://localhost:8081/meeting/equipment';
-  private readonly API_URL = 'http://localhost:8080/meeting';
-  private readonly API_URL_UPDATE_MEETING = 'http://localhost:8080/meeting/update-meeting';
-
+  private readonly API_MEETINGROOM_URL = 'http://localhost:8081/api';// chu y doi port
+  private readonly API_MEETINGROOM_AREA_URL = 'http://localhost:8081/api/area';
+  private readonly API_TPYE_MEETINGROOM_URL = 'http://localhost:8081/api/typeMeetingRoom';
+  private readonly API_MEETINGROOM_STATUS_URL = 'http://localhost:8081/api/roomStatus';
+  private readonly API_EQUIPMENT_URL = 'http://localhost:8081/api/equipment';
   httpOptions = {
     header: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -32,7 +29,7 @@ export class MeetingRoomService {
   constructor(private httpClient: HttpClient) { }
 
   public getMeetingRoom(): Observable<MeetingRoom[]> {
-    return this.httpClient.get<MeetingRoom[]>(this.API_MEETINGROOM_URL);
+    return this.httpClient.get<MeetingRoom[]>(this.API_MEETINGROOM_URL+'/list');
   }
 
   //HueHV tạo ngày 16/9/2021, chức năng hiển thị danh sách tài sản
@@ -77,23 +74,23 @@ export class MeetingRoomService {
 
   // hiển phòng theo id (Hoàng)
   getMeetingById(id: number): Observable<MeetingRoom>{
-    return this.httpClient.get<MeetingRoom>(this.API_URL + '/' + id);
+    return this.httpClient.get<MeetingRoom>(this.API_MEETINGROOM_URL + '/' + id);
   }
 
   // xóa phòng họp (Hoàng)
   delete(id: number): Observable<any> {
-    return this.httpClient.delete(this.API_URL + '/' + id);
+    return this.httpClient.delete(this.API_MEETINGROOM_URL + '/' + id);
   }
 
   // tìm kiếm phòng họp (Hoàng)
   search(name: string ,floors: number ,area_id: number , room_status_id:number,
          type_meeting_room_id:number,capacity:number): Observable<any>{
     console.log(name,floors,area_id,room_status_id,type_meeting_room_id,capacity);
-    return  this.httpClient.get(`${this.API_URL +'/'+ 'search'}?name=${name}&&floors=${floors}&&area_id=${area_id}&&room_status_id=${room_status_id}&&type_meeting_room_id=${type_meeting_room_id}&&capacity=${capacity}`)
+    return  this.httpClient.get(`${this.API_MEETINGROOM_URL +'/'+ 'search'}?name=${name}&&floors=${floors}&&area_id=${area_id}&&room_status_id=${room_status_id}&&type_meeting_room_id=${type_meeting_room_id}&&capacity=${capacity}`)
   }
     // Hoàng update meeting
   updateMeetingRoom(meetingRoom: MeetingRoom): Observable<void>{
     // console.log(meetingRoom);
-    return this.httpClient.put<void>(this.API_URL_UPDATE_MEETING + '/'+ meetingRoom.id, meetingRoom );
+    return this.httpClient.patch<void>(this.API_MEETINGROOM_URL + '/update-meeting/'+ meetingRoom.id, meetingRoom );
   }
 }
