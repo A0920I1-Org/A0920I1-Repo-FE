@@ -126,6 +126,7 @@ import {FeedbackComponent} from './client/employee/client-feedback/feedback/feed
     ChartModule,
     HttpClientModule,
     MatInputModule,
+    MatDatepickerModule
   ],
   providers: [{
     provide:HTTP_INTERCEPTORS, useClass:BasicAuthHttpInterceptorService, multi:true,

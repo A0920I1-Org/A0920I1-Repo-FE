@@ -51,9 +51,9 @@
               <li class="has-children">
                 <a href="/list" class="nav-link" *ngIf="authService.isUserLoggedIn()">Xem Phản Hồi</a>
                 <ul class="dropdown arrow-top">
-                  <li><a href="#" class="nav-link">Phản Hồi Phòng Họp</a></li>
+                  <li><a href="/feedback" *ngIf="authService.isUserLoggedIn()" class="nav-link">Phản Hồi Phòng Họp</a></li>
                   <li><a href="#" class="nav-link">Phản Hồi Hệ Thống</a></li>
-                  <li><a href="#" class="nav-link">Danh Sách Phản Hồi</a></li>
+                  <li><a href="/list-feedbackadmin" *ngIf="authService.checkRoleAdmin()" class="nav-link">Danh Sách Phản Hồi</a></li>
                 </ul>
               </li>
             </ul>

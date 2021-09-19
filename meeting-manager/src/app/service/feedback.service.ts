@@ -12,33 +12,33 @@ import {FeedBackType} from '../model/entity/FeedBackType';
 })
 export class FeedbackService {
 
-  private baseURL = 'http://localhost:8080/feedback';
+  private baseURL = 'http://localhost:8080/api';
 
-  constructor(private  http: HttpClient) {
+  constructor(private  httpClient: HttpClient) {
   }
   /*VietNT Code lấy tất cả các feedback*/
   findAll(): Observable<FeedBack[]> {
-    return this.http.get<FeedBack[]>(this.baseURL + '/feedbacklist');
+    return this.httpClient.get<FeedBack[]>(this.baseURL + '/feedbacklist');
   }
   /*VietNT Code Lấy id feedback*/
   findById(id: number): Observable<FeedBack>{
-    return this.http.get<FeedBack>(this.baseURL + '/findById/' + id);
+    return this.httpClient.get<FeedBack>(this.baseURL + '/findById/' + id);
   }
   /*VietNT Code hiển thị danh sách  loại lỗi*/
 
   findAllFeedbackType(): Observable<FeedBackType[]> {
-    return this.http.get<FeedBackType[]>(this.baseURL + '/feedbacktypelist');
+    return this.httpClient.get<FeedBackType[]>(this.baseURL + '/feedbacktypelist');
   }
   /*VietNT Code Người dùng feedback*/
   create(feedback: FeedBack): Observable<FeedBack> {
     // @ts-ignore
-    return this.http.post(this.baseURL + '/createFeedback', feedback);
+    return this.httpClient.post(this.baseURL + '/createFeedback', feedback);
 
   }
   updateFeedback(feedback: FeedBack): Observable<FeedBack>{
-    return this.http.patch<FeedBack>(this.baseURL + '/update/' + feedback.id, feedback);
+    return this.httpClient.patch<FeedBack>(this.baseURL + '/update/' + feedback.id, feedback);
   }
   deleteFeedback(id: number){
-    return this.http.delete(this.baseURL + '/delete-feedback/' + id);
+    return this.httpClient.delete(this.baseURL + '/delete-feedback/' + id);
   }
 }

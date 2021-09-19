@@ -27,6 +27,7 @@ import {CreateEmployeeComponent} from './admin/employee-manager/create-employee/
 
 //TuHC
 const routes: Routes = [
+
   {path: 'login', component: LoginComponent},
   {path: 'logout', component: LogoutComponent, canActivate:[AuthGuardService], data: {expectedRole: ['ROLE_ADMIN', 'ROLE_USER']}},
   {path: 'emp-list', component: ListEmployeeComponent, canActivate:[AuthGuardService], data: {expectedRole: ['ROLE_ADMIN']}},
@@ -44,8 +45,8 @@ const routes: Routes = [
   {path: 'register-history/account/:idAccount', component: RegisterMeetingComponent, canActivate:[AuthGuardService], data: {expectedRole: ['ROLE_ADMIN']}},
   {path: 'delete-register-meeting/:idOrder', component: DeleteMeetingComponent, canActivate:[AuthGuardService], data: {expectedRole: ['ROLE_ADMIN']}},
   {path: 'register-history/meeting-room/:idMeetingRoom', component: RegisterMeetingComponent, canActivate:[AuthGuardService], data: {expectedRole: ['ROLE_ADMIN']}},
-  {path: 'feedback' , component : FeedbackComponent, canActivate:[AuthGuardService], data: {expectedRole: ['ROLE_ADMIN', 'ROLE_USER']}},
-  {path: 'list', component: FeedbackListComponent, canActivate:[AuthGuardService], data: {expectedRole: ['ROLE_ADMIN', 'ROLE_USER']}},
+  {path: 'feedback' , component : FeedbackComponent, canActivate:[AuthGuardService], data: {expectedRole: [ 'ROLE_USER']}},
+  {path: 'list', component: FeedbackListComponent, canActivate:[AuthGuardService], data: {expectedRole: [ 'ROLE_USER']}},
   {path: 'list-feedbackadmin', component: ListFeedbackadminComponent, canActivate:[AuthGuardService], data: {expectedRole: ['ROLE_ADMIN']}},
   {path: 'handle-feedback/:idfeedback', component: HandlebarsMeetinghouseComponent, canActivate:[AuthGuardService], data: {expectedRole: ['ROLE_ADMIN']}},
   {path : 'addFeedTechnical',component:FeedbackTechnicalCreateComponent, canActivate:[AuthGuardService], data: {expectedRole: ['ROLE_ADMIN', 'ROLE_USER']}},
