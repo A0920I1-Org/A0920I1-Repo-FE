@@ -1,44 +1,44 @@
 <div id="wrap">
-<div id="result" class="row table-responsive">
-  <h1 id="title" style="text-align: center; margin-top: 50px ; margin-bottom: 50px"><b>Danh sách phản hồi</b></h1>
-  <div class="table-responsive">
-    <table class="table table-hover" style="text-align: center">
-      <thead class="thead-dark">
-      <tr>
-        <th scope="col">STT</th>
-        <th scope="col">Tên người dùng</th>
-        <th scope="col">Tiêu đề</th>
-        <th scope="col">Thời gian phản hồi</th>
-        <th scope="col">Tên phòng</th>
-        <th scope="col">Nội dung</th>
-        <th scope="col">Loại lỗi</th>
-        <th scope="col">Trạng thái</th>
-        <th scope="col">Hành động</th>
-      </tr>
-      </thead>
-      <tbody class="table-active">
-      <tr *ngFor="let feed of feedback |paginate: {itemsPerPage:3, currentPage: page}; let i = index"
-          class="col-lg-4 border text-center mt-4 p-1">
-        <th scope="row">{{i+1}}</th>
-        <th scope="row">{{feed.account.fullname}}</th>
-        <th scope="row">{{feed.title}}</th>
-        <th scope="row">{{feed.dateFeedback}}</th>
-        <th scope="row">{{feed.meetingRoom.name}}</th>
-        <th scope="row">{{feed.description}}</th>
-        <th scope="row">{{feed.feedBackType.name}}</th>
-        <th scope="row" *ngIf="feed.IsHandle ">Đã xử lý</th>
-        <th scope="row" *ngIf="!feed.IsHandle "> Chưa xử lý</th>
-        <td>
-          <button class="btn btn-primary  m-md-3 "  [routerLink]="['/handle-feedback/',feed.id]">Xử lý </button>
-          <button (click)="openDialogDelete(feed.id)" class="btn btn-danger">Xóa</button>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+  <div id="result" class="row table-responsive">
+    <h1 id="title" style="text-align: left; margin-top: 50px ; margin-bottom: 50px"><b>Danh sách phản hồi</b></h1>
+    <div class="table-responsive">
+      <table class="table table-hover" style="text-align: center">
+        <thead class="thead-dark">
+        <tr>
+          <th scope="col">STT</th>
+          <th scope="col">Tên người dùng</th>
+          <th scope="col">Tiêu đề</th>
+          <th scope="col">Thời gian phản hồi</th>
+          <th scope="col">Tên phòng</th>
+          <th scope="col">Nội dung</th>
+          <th scope="col">Loại lỗi</th>
+          <th scope="col">Trạng thái</th>
+          <th scope="col">Hành động</th>
+        </tr>
+        </thead>
+        <tbody class="table-active">
+        <tr *ngFor="let feed of feedback |paginate: {itemsPerPage:8, currentPage: page}; let i = index"
+            class="col-lg-4 border text-center mt-4 p-1">
+          <th scope="row">{{i+1}}</th>
+          <th scope="row">{{feed.account.fullname}}</th>
+          <th scope="row">{{feed?.title}}</th>
+          <th scope="row">{{feed.dateFeedback}}</th>
+          <th scope="row">{{feed.meetingRoom.name}}</th>
+          <th scope="row">{{feed.description}}</th>
+          <th scope="row">{{feed.feedBackType.name}}</th>
+          <th scope="row" *ngIf="feed.handle ">{{feed.handle}}</th>
+          <th scope="row" *ngIf="!feed.handle "> {{feed.handle}}</th>
+          <td>
+            <button class="btn btn-primary  m-md-3 "  [routerLink]="['/handle-feedback/',feed.id]">Xử lý </button>
+            <button (click)="openDialogDelete(feed.id)" class="btn btn-danger">Xóa</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
 
+    </div>
+    <div>
+      <pagination-controls (pageChange)=" page = $event " style="text-align: center" previousLabel="Trước" nextLabel="Tiếp"></pagination-controls>
+    </div>
   </div>
-  <div>
-    <pagination-controls (pageChange)=" page = $event " style="text-align: center" previousLabel="Trước" nextLabel="Tiếp"></pagination-controls>
-  </div>
-</div>
 </div>

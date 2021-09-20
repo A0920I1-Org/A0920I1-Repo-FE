@@ -35,8 +35,8 @@ export class UpdateEquipmentComponent implements OnInit {
       imageUrl: [('')]
     });
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
-      // tslint:disable-next-line:radix
       this.idEquipment = parseInt(paramMap.get('id'));
+      console.log(this.idEquipment);
       this.equipmentManagerService.findById(this.idEquipment).subscribe((data) => {
         this.editEquipment = data;
         console.log(this.editEquipment);
@@ -44,7 +44,7 @@ export class UpdateEquipmentComponent implements OnInit {
           id: this.editEquipment.id,
           name: this.editEquipment.name,
           stock: this.editEquipment.stock,
-          repairQuantity: this.editEquipment.quantityRepair,
+          repairQuantity: this.editEquipment.repairQuantity,
           imageUrl: this.editEquipment.imageUrl
         });
       });

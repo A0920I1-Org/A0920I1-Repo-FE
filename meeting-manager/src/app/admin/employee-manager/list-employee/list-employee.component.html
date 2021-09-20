@@ -1,7 +1,8 @@
 
-<div id="wrap">
+<div id="wrap" style="margin-top: 20px">
   <section class="content" id="main-container">
     <div class="container-fluid content_style">
+      <h1 id="title" style="text-align: center; font-size: 40px">Danh sách tài sản</h1>
       <div class="card shadow">
         <div class="col-12 card-header d-flex justify-content-between">
           <div class="col-8 mt-auto mb-auto">
@@ -100,7 +101,7 @@
             <nav aria-label="Page navigation example">
               <ul class="pagination justify-content-center">
                 <li class="page-item">
-                  <a class="page-link click" tabindex="-1" (click)="paginate(0)">Đầu</a>
+                  <a class="page-link click" tabindex="-1" (click)="paginate(0)">Trước</a>
                 </li>
                 <li class="page-item ">
                   <button class="page-link text-dark click" (click)="paginate(page-1)"><i
@@ -123,7 +124,7 @@
                   </button>
                 </li>
                 <li class="page-item">
-                  <a class="page-link text-dark click" (click)="paginate(totalPage-1)">Cuối</a>
+                  <a class="page-link text-dark click" (click)="paginate(totalPage-1)">Tiếp</a>
                 </li>
               </ul>
             </nav>

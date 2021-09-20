@@ -10,7 +10,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {TypeMeetingRoom} from '../../../model/entity/TypeMeetingRoom';
 import {Area} from '../../../model/entity/Area';
 import {RoomStatus} from '../../../model/entity/RoomStatus';
-import { OrderEquipment } from 'src/app/model/entity/OrderEquipment';
+import {OrderEquipment} from 'src/app/model/entity/OrderEquipment';
 import {Router} from '@angular/router';
 
 @Component({
@@ -28,7 +28,7 @@ export class CreateMeetingComponent implements OnInit {
   ref: AngularFireStorageReference;
   defaultImage = 'https://epicattorneymarketing.com/wp-content/uploads/2016/07/Headshot-Placeholder-1.png';
   // createMeetingRoom: FormGroup;
-  filePath: string =  null;
+  filePath: string = null;
   inputImage: any = null;
 
   constructor(
@@ -36,7 +36,7 @@ export class CreateMeetingComponent implements OnInit {
     private meetingService: MeetingRoomService,
     private router: Router, private form: FormBuilder,
     public dialog: MatDialog,
-  @Inject(AngularFireStorage) private storage: AngularFireStorage
+    @Inject(AngularFireStorage) private storage: AngularFireStorage
   ) {
 
   }
@@ -72,14 +72,14 @@ export class CreateMeetingComponent implements OnInit {
     ]
   };
   createMeetingRoom = this.form.group({
-    name:['', [Validators.required, Validators.pattern(/^[^`|\~|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\+|\=|\[|\{|\]|\}|\||\\|\'|\<|\,|\.|\>|\?|\/|\""|\;|\:|0-9]*$/),
+    name: ['', [Validators.required, Validators.pattern(/^[^`|\~|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\+|\=|\[|\{|\]|\}|\||\\|\'|\<|\,|\.|\>|\?|\/|\""|\;|\:|0-9]*$/),
       Validators.maxLength(50), Validators.minLength(4)]],
-    floors:['', [Validators.required, Validators.pattern('^[0-9]{1,10}$'),
+    floors: ['', [Validators.required, Validators.pattern('^[0-9]{1,10}$'),
       Validators.maxLength(10), Validators.minLength(1)]],
-    area:['', [Validators.required]],
-    roomStatus:['', [Validators.required]],
-    typeMeetingRoom:['', [Validators.required]],
-    imageUrl:['', [Validators.required, Validators.pattern('')]],
+    area: ['', [Validators.required]],
+    roomStatus: ['', [Validators.required]],
+    typeMeetingRoom: ['', [Validators.required]],
+    imageUrl: ['', [Validators.required, Validators.pattern('')]],
     // equipment: this.form.array([''])
   });
 
@@ -95,42 +95,47 @@ export class CreateMeetingComponent implements OnInit {
     return formatDate(new Date(), 'dd-MM-yyyyhhmmssa', 'en-US');
   }
 
-  onSubmit(){
-    const nameImage = this.getCurrentDateTime() + this.inputImage.name;
-    const fileRef = this.storage.ref(nameImage);
+  onSubmit() {
+    if (this.inputImage != null) {
+      this.toastService.error("Bạn chưa chọn ảnh phòng họp.", "Thông báo lỗi");
+      this.router.navigateByUrl('/create-meeting');
+    } else {
+      const nameImage = this.getCurrentDateTime() + this.inputImage.name;
+      const fileRef = this.storage.ref(nameImage);
 
 
-    this.storage.upload(nameImage, this.inputImage).snapshotChanges().pipe(
-      finalize(() => {
-        fileRef.getDownloadURL().subscribe((url) => {
-          this.createMeetingRoom.patchValue({imageUrl: url});
+      this.storage.upload(nameImage, this.inputImage).snapshotChanges().pipe(
+        finalize(() => {
+          fileRef.getDownloadURL().subscribe((url) => {
+            this.createMeetingRoom.patchValue({imageUrl: url});
 
-          this.meetingService.addMeetingRoom(this.createMeetingRoom.value).subscribe(() => {
-            this.router.navigateByUrl('/list-meeting').then(e => this.toastService.success("Thêm mới thành công!", "Thông báo"))
-          }, error => this.toastService.error("Lỗi thêm mới!", "Thông báo"))
+            this.meetingService.addMeetingRoom(this.createMeetingRoom.value).subscribe(() => {
+              this.router.navigateByUrl('/list-meeting').then(e => this.toastService.success("Thêm mới thành công!", "Thông báo"))
+            }, error => this.toastService.error("Lỗi thêm mới!", "Thông báo"))
+          })
         })
-      })
-    ).subscribe();
+      ).subscribe();
+    }
   }
 
-  openDialogEquipment(){
+  openDialogEquipment() {
     const dialogRef = this.dialog.open(ChooseEquipmentComponent,
-      { width: '700px'});
+      {width: '700px'});
   }
 
-  getArea(){
+  getArea() {
     this.meetingService.getArea().subscribe((data) => {
       this.areaList = data;
     }, error => console.log('data area error'))
   }
 
-  getTypeMeetingRoom(){
+  getTypeMeetingRoom() {
     this.meetingService.getTypeMeetingRoom().subscribe((data) => {
       this.typeMeetingRoom = data;
     }, error => console.log('data type meeting room error'))
   }
 
-  getRoomStatus(){
+  getRoomStatus() {
     this.meetingService.getRoomStatus().subscribe((data) => {
       this.statusRoomList = data;
     }, error => console.log('data Room status error'))
@@ -147,11 +152,12 @@ export class CreateMeetingComponent implements OnInit {
     };
     reader.readAsDataURL(this.inputImage);
   }
-  getImageUrl(){
-    if (this.filePath != null){
+
+  getImageUrl() {
+    if (this.filePath != null) {
       return this.filePath;
     }
-    if (this.createMeetingRoom.value.imageUrl != null){
+    if (this.createMeetingRoom.value.imageUrl != null) {
       return this.createMeetingRoom.value.imageUrl;
     }
     console.log(this.defaultImage)

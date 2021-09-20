@@ -15,11 +15,14 @@ import {OrderEquipment} from '../model/entity/OrderEquipment';
 })
 
 export class MeetingRoomService {
-  private readonly API_MEETINGROOM_URL = 'http://localhost:8081/api';// chu y doi port
-  private readonly API_MEETINGROOM_AREA_URL = 'http://localhost:8081/api/area';
-  private readonly API_TPYE_MEETINGROOM_URL = 'http://localhost:8081/api/typeMeetingRoom';
-  private readonly API_MEETINGROOM_STATUS_URL = 'http://localhost:8081/api/roomStatus';
-  private readonly API_EQUIPMENT_URL = 'http://localhost:8081/api/equipment';
+
+  private readonly API_MEETINGROOM_URL = 'http://localhost:8080/api/meeting-room';
+  private readonly API_MEETINGROOM_AREA_URL = 'http://localhost:8080/api/meeting-room/area';
+  private readonly API_TPYE_MEETINGROOM_URL = 'http://localhost:8080/api/meeting-room/typeMeetingRoom';
+  private readonly API_MEETINGROOM_STATUS_URL = 'http://localhost:8080/api/meeting-room/roomStatus';
+  private readonly API_EQUIPMENT_URL = 'http://localhost:8080/api/meeting-room/equipment';
+
+
   httpOptions = {
     header: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -29,7 +32,8 @@ export class MeetingRoomService {
   constructor(private httpClient: HttpClient) { }
 
   public getMeetingRoom(): Observable<MeetingRoom[]> {
-    return this.httpClient.get<MeetingRoom[]>(this.API_MEETINGROOM_URL+'/list');
+    return this.httpClient.get<MeetingRoom[]>(this.API_MEETINGROOM_URL + '/list');
+
   }
 
   //HueHV tạo ngày 16/9/2021, chức năng hiển thị danh sách tài sản
@@ -64,6 +68,7 @@ export class MeetingRoomService {
 
   //HueHV tạo ngày 16/9/2021, chức năng hiển thị danh sách tài sản theo id phòng họp
   public listEquipmentByIdMeetingRoom(id: number): Observable<OrderEquipment[]>{
+    console.log(this.API_EQUIPMENT_URL +'/' + id)
     return this.httpClient.get<OrderEquipment[]>(this.API_EQUIPMENT_URL +'/' + id);
   }
 
@@ -90,7 +95,7 @@ export class MeetingRoomService {
   }
     // Hoàng update meeting
   updateMeetingRoom(meetingRoom: MeetingRoom): Observable<void>{
-    // console.log(meetingRoom);
     return this.httpClient.patch<void>(this.API_MEETINGROOM_URL + '/update-meeting/'+ meetingRoom.id, meetingRoom );
   }
+
 }

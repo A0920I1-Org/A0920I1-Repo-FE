@@ -4,6 +4,8 @@ import {FormBuilder} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
 import {MeetingRoom} from '../../../model/entity/MeetingRoom';
 import {OrderEquipment} from '../../../model/entity/OrderEquipment';
+import {EquipmentManagerService} from "../../../service/equipment-manager.service";
+import {OrderEquipmentServiceService} from "../../../service/order-equipment-service.service";
 
 
 @Component({
@@ -15,6 +17,7 @@ export class DetailMeetingComponent implements OnInit {
 
   constructor(
     private meetingService: MeetingRoomService,
+    private equipmentService: OrderEquipmentServiceService,
     private form: FormBuilder,
     private activatedRoute: ActivatedRoute
   ) { }
@@ -34,7 +37,7 @@ export class DetailMeetingComponent implements OnInit {
   getEquipment(){
     this.meetingService.listEquipmentByIdMeetingRoom(this.activatedRoute.snapshot.params.id).subscribe((data) => {
       this.equipmentList = data;
-
+    console.log(data);
     })
 
   }

@@ -1,129 +1,108 @@
-<!--
-feedTech TriNH
--->
-
 <div id="wrap">
-  <div class="container">
-    <h1 style="text-align: center; margin: 40px 0"><b>
-      Xử lý phản hồi hệ thống
-    </b>
-    </h1>
-  </div>
-  <div class="container">
-    <form [formGroup]="updateFeedbackTech" (ngSubmit)="editFeedbackTech()">
-      <div class="card-body ">
-        <div class="form-group row">
-          <div class="col-sm-3" align="right">
-            <h6 class="mb-0">Tiêu đề:</h6>
-          </div>
-          <div class="col-sm-6 text-secondary">
-            <input type="text" class="form-control border-1 shadow-1" formControlName="title" readonly="readonly"
-                   placeholder="Góp ý kiến hệ thống">
-          </div>
-        </div>
-        <br>
-        <div class="row">
-          <div class="col-sm-3" align="right">
-            <h6 class="mb-0">Người gửi phản hồi:</h6>
-          </div>
-          <div class="col-sm-6">
-            <select class="form-control" formControlName="account">
-              <option *ngFor="let AccountType of account" [ngValue]="AccountType.id">{{AccountType.fullname}}</option>
-            </select>
+  <div class="container ">
+    <h1 style="text-align: center; margin: 40px 0">Xử Lý Phản Hồi Hệ Thống</h1>
+    <hr>
+    <form [formGroup]="updateFeedbackTech" (ngSubmit)="editFeedbackTech(updateFeedbackTech)">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card card-user">
+            <div class="card-body">
+              <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                <div class="fileinput-new thumbnail img-raised" *ngIf="feedBackTech">
+                  <img src="{{feedBackTech.imageFeedBackList}}" style="width: 100%;" alt="..." rel="nofollow">
+                </div>
+                <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
+                <div>
+               <span class="btn btn-info btn-round btn-default btn-file btn__upload-custom">
+                                        <span class="fileinput-new">Chọn ảnh</span>
+                                        <input type="file" (change)="showImage($event)">
+               </span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <br>
-        <div class="form-group row">
-          <div class="col-sm-3" align="right">
-            <label class="mb-0" for="inputBirt">Ngày gửi:</label>
+        <div class="col-md-8">
+          <div class="form-group row">
+            <label for="inputTile" class="col-sm-3 col-md-5 col-form-label input-group-text"
+                   style="margin: 0 15px">Tiêu đề</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" id="inputTile" maxlength="10" formControlName="title"
+                     placeholder="Góp ý kiến hệ thống" readonly>
+            </div>
           </div>
-          <div class="col-sm-6 text-secondary">
-            <mat-form-field>
-              <mat-label>Choose a date</mat-label>
-              <input [max]="maxDate" [min]="minDate" formControlName="dateFeedback" readonly="readonly" id="inputBirt"
-                     matInput [matDatepicker]="myDatepicker">
-              <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
-              <mat-datepicker #myDatepicker></mat-datepicker>
-            </mat-form-field>
+          <div class="form-group row">
+            <label for="inputEm" class="col-sm-3 col-md-5 col-form-label input-group-text"
+                   style="margin: 0 15px">Người gửi phản hồi</label>
+            <div class="col-sm-6">
+              <select class="form-control" id="inputEm" formControlName="account" readonly>
+                <option *ngFor="let AccountType of account" [ngValue]="AccountType.id">{{AccountType.fullname}}</option>
+              </select>
+            </div>
           </div>
-        </div>
-        <br>
-        <div class="row">
-          <div class="col-sm-3" align="right">
-            <h6 class="mb-0">Tên phòng :</h6>
+          <div class="form-group row">
+            <label for="inputDate" class="col-sm-3 col-md-5 col-form-label input-group-text"
+                   style="margin: 0 15px">Ngày gửi</label>
+            <div class="col-sm-6">
+              <input id="inputDate"  class="form-control border-1 shadow-1" value="{{maxDate| date: 'dd/MM/yyyy'}}"readonly>
+            </div>
           </div>
-          <div class="col-sm-6">
-            <select class="form-control" readonly="readonly">
-              <option *ngFor="let RoomTypeId of meetingRoom" [ngValue]="RoomTypeId.id">{{RoomTypeId.name}}</option>
-            </select>
+          <div class="form-group row">
+            <label for="inputRoom" class="col-sm-3 col-md-5 col-form-label input-group-text"
+                   style="margin: 0 15px">Tên phòng</label>
+            <div class="col-sm-6">
+              <select class="form-control" readonly="readonly" id="inputRoom">
+                <option *ngFor="let RoomTypeId of meetingRoom" [ngValue]="RoomTypeId.id">{{RoomTypeId.name}}</option>
+              </select>
+            </div>
           </div>
-        </div>
-        <br>
-        <div class="form-group row">
-          <div class="col-sm-3" align="right">
-            <h6 class="mb-0">Nội dung :</h6>
-          </div>
-          <div class="col-sm-6 text-secondary">
-                    <textarea class="form-control" readonly="readonly" formControlName="description">Lỗi quản lý thống kê
+          <div class="form-group row">
+            <label for="inputND" class="col-sm-3 col-md-5 col-form-label input-group-text"
+                   style="margin: 0 15px">Nội dung lỗi</label>
+            <div class="col-sm-6">
+               <textarea id="inputND" class="form-control" readonly formControlName="description">Lỗi quản lý thống kê
                     </textarea>
+            </div>
           </div>
-        </div>
-        <br>
-        <!--<div class="form-group row">
-          <div class="col-sm-3" align="right">
-            <h6 class="mb-0">Ảnh:</h6>
+          <div class="form-group row">
+            <label for="inputNV" class="col-sm-3 col-md-5 col-form-label input-group-text"
+                   style="margin: 0 15px">Nhân viên xử lý</label>
+            <div class="col-sm-6">
+              <select class="form-control" id="inputNV" formControlName="account">
+                <option *ngFor="let AccountType of account" [ngValue]="AccountType.id">{{AccountType.fullname}}</option>
+              </select>
+            </div>
+            <ng-container *ngFor="let validation of validationMessage.account">
+              <small class="form-text text-danger"
+                     *ngIf="updateFeedbackTech.get('account').invalid && updateFeedbackTech.get('account').touched">
+                {{validation.message}}
+              </small>
+            </ng-container>
           </div>
-          <div class="col-sm-6 text-secondary">
-            <input type="file" class="form-control border-1 shadow-1" formControlName="imageFeedBackList"
-                   readonly="readonly" placeholder="hethong.png">
-            <span *ngFor="let item of feedBack.imageFeedBackList" formControlName="imageFeedBackList">
-              <img src="{{item.imageUrl}}">
-            </span>
+          <div class="form-group row">
+            <label for="inputNDXL" class="col-sm-3 col-md-5 col-form-label input-group-text"
+                   style="margin: 0 15px">Nội dung xử lý</label>
+            <div class="col-sm-6">
+              <textarea id="inputNDXL" class="form-control" formControlName="content">Xử lý hệ thống chức năng thống kê</textarea>
+            </div>
+            <ng-container *ngFor="let validation of validationMessage.content">
+              <small class="form-text text-danger"
+                     *ngIf="updateFeedbackTech.get('content').invalid && updateFeedbackTech.get('content').touched">
+                {{validation.message}}
+              </small>
+            </ng-container>
           </div>
-        </div>
-        <br>-->
-        <div class="form-group row">
-          <div class="col-sm-3" align="right">
-            <h6 class="mb-0">Nhân Viên xử lý :</h6>
-          </div>
-          <div class="col-sm-6">
-            <select class="form-control" formControlName="account">
-              <option *ngFor="let AccountType of account" [ngValue]="AccountType.id">{{AccountType.fullname}}</option>
-            </select>
-          </div>
-          <div class="text-danger" *ngFor="let validation of validation_messages.account">
-            <div class="error-message" style="padding: 0 300px"
-                 *ngIf="updateFeedbackTech.get('account').hasError(validation.type) && (updateFeedbackTech.get('account').dirty || updateFeedbackTech.get('account').touched)">
-              {{validation.message}}</div>
-          </div>
-        </div>
-        <br>
-        <div class="form-group row">
-          <div class="col-sm-3" align="right">
-            <h6 class="mb-0">Nội dung xử lý:</h6>
-          </div>
-          <p class="text-danger">*</p>
-          <div class="col-sm-6 text-secondary">
-            <textarea class="form-control" formControlName="content">Xử lý hệ thống chức năng thống kê</textarea>
-          </div>
-          <div class="text-danger" *ngFor="let validation of validation_messages.content">
-            <div class="error-message" style="padding: 0 300px"
-                 *ngIf="updateFeedbackTech.get('content').hasError(validation.type) && (updateFeedbackTech.get('content').dirty || updateFeedbackTech.get('content').touched)">
-              {{validation.message}}</div>
-          </div>
-        </div>
-        <br>
-        <div class="form-group row">
-          <div class="col-sm-12" align="center">
-            <button type="submit" class="btn btn-primary" (click)="onSubmit(updateFeedbackTech)">Xử lý phản hồi</button>
-            <button class="btn btn-danger" style="margin: 0 50px">Huỷ phản hồi</button>
+
+          <div class="row">
+            <div style="margin-left: 255px">
+              <input type="submit" value="Quay lại" class="btn btn-info" routerLink="/list-feedback-admin"
+                     style="margin-right: 15px">
+              style="margin-right: 15px">
+              <input type="submit" value="Cập nhật" class="btn btn-secondary" style="margin-right: 30px; color: white">
+            </div>
           </div>
         </div>
       </div>
     </form>
   </div>
 </div>
-
-
-
-

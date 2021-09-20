@@ -28,7 +28,6 @@ export class ListEmployeeComponent implements OnInit {
   getListEmployee(): void {
     this.employeeService.getAllEmployee(this.page).subscribe((data) => {
       this.listEmployee = data.content;
-      console.log(data);
       this.totalPage = data.totalPages;
     });
   }
@@ -44,7 +43,6 @@ export class ListEmployeeComponent implements OnInit {
     this.employeeService.deleteEmployeeById(id).subscribe(
       (response: void) => {
         this.ngOnInit();
-        console.log(id);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -53,7 +51,6 @@ export class ListEmployeeComponent implements OnInit {
   }
 
   public searchStaffByKey(key: string): void {
-    console.log(key);
     const results: IEmployeeDto[] = [];
     for (const employee of this.listEmployee) {
       if (employee.fullName.toLowerCase().indexOf(key.toLowerCase()) !== -1

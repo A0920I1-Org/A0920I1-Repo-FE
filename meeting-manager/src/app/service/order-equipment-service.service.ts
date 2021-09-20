@@ -15,6 +15,6 @@ export class OrderEquipmentServiceService {
     return this.httpClient.get<OrderEquipment[]>(this.API_ORDER_EQUIPMENT + '/order-equipment');
   }
   getByOrderEquipment(id: number): Observable<OrderEquipment[]>{
-    return this.httpClient.get<OrderEquipment[]>(this.API_ORDER_EQUIPMENT + '/byOrder-equipment/+id');
+    return this.httpClient.get<OrderEquipment[]>(this.API_ORDER_EQUIPMENT + '/byOrder-equipment/'+id);
   }
 }
