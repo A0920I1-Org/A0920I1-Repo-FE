@@ -54,6 +54,7 @@ import {RouterModule} from '@angular/router';
 import {ToastrModule} from 'ngx-toastr';
 import {RegisterMeetingComponent} from './client/employee/meeting/register-history/register-meeting.component';
 import {FeedbackComponent} from './client/employee/client-feedback/feedback/feedback.component';
+import {MatNativeDateModule} from "@angular/material/core";
 
 
 
@@ -75,6 +76,7 @@ import {FeedbackComponent} from './client/employee/client-feedback/feedback/feed
     HandlebarsMeetinghouseComponent,
     DeleteFeedbackComponent,
     FeedbackTechnicalCreateComponent,
+    FeedbackComponent,
 
     UpdateMeetingComponent,
     DetailMeetingComponent,
@@ -126,13 +128,16 @@ import {FeedbackComponent} from './client/employee/client-feedback/feedback/feed
     ChartModule,
     HttpClientModule,
     MatInputModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [{
     provide:HTTP_INTERCEPTORS, useClass:BasicAuthHttpInterceptorService, multi:true,
-  }],
+  }, MatNativeDateModule, MatDatepickerModule],
 
   bootstrap: [AppComponent]
 })
+
 export class AppModule {
 }

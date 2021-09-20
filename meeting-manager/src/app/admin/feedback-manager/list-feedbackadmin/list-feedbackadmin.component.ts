@@ -31,7 +31,7 @@ export class ListFeedbackadminComponent implements OnInit {
   ngOnInit(): void {
     this.feedbackService.findAll().subscribe(data => {
       this.feedback = data;
-      console.log(data);
+
      /* this.toastrService.success('thành công');*/
 
 
@@ -43,10 +43,10 @@ export class ListFeedbackadminComponent implements OnInit {
 
   openDialogDelete(feedbackId): void {
     this.feedbackService.findById(feedbackId).subscribe(data => {
-      console.log(data);
+
       const dialogReg = this.dialog.open(DeleteFeedbackComponent, {
         width: '500px',
-        data: {data1: data},
+        data: {dataFeedback: data},
         disableClose: true
       });
       dialogReg.afterClosed().subscribe(result => {

@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {FeedBack} from '../model/entity/FeedBack';
 import {FeedBackType} from '../model/entity/FeedBackType';
+import {MeetingRoom} from "../model/entity/MeetingRoom";
 
 
 
@@ -22,7 +23,7 @@ export class FeedbackService {
   }
   /*VietNT Code Lấy id feedback*/
   findById(id: number): Observable<FeedBack>{
-    return this.httpClient.get<FeedBack>(this.baseURL + '/findById/' + id);
+    return this.httpClient.get<FeedBack>(this.baseURL + '/findFeedbackById/' + id);
   }
   /*VietNT Code hiển thị danh sách  loại lỗi*/
 
@@ -36,9 +37,18 @@ export class FeedbackService {
 
   }
   updateFeedback(feedback: FeedBack): Observable<FeedBack>{
-    return this.httpClient.patch<FeedBack>(this.baseURL + '/update/' + feedback.id, feedback);
+    return this.httpClient.put<FeedBack>(this.baseURL + '/update/' + feedback.id, feedback);
   }
+  //VietNT delete feedback
   deleteFeedback(id: number){
     return this.httpClient.delete(this.baseURL + '/delete-feedback/' + id);
+  }
+  //VietNT lấy phòng họp
+  public getMeetingRoom(): Observable<MeetingRoom[]>{
+    return this.httpClient.get<MeetingRoom[]>(this.baseURL+ '/feedbackMeetingRoom');
+  }
+  //VietNT lấy accout
+  public getAccount(): Observable<Account[]> {
+    return this.httpClient.get<Account[]>(this.baseURL+ '/feedbackAccount');
   }
 }

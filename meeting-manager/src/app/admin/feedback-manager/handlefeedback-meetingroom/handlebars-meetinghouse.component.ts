@@ -4,6 +4,8 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {FeedBack} from '../../../model/entity/FeedBack';
 
+import {MeetingRoom} from "../../../model/entity/MeetingRoom";
+
 @Component({
   selector: 'app-handlefeedback-meetingroom',
   templateUrl: './handlebars-meetinghouse.component.html',
@@ -13,7 +15,8 @@ export class HandlebarsMeetinghouseComponent implements OnInit {
   handleFeedback: FormGroup;
   idFeedback: number;
   editFeedback: FeedBack;
-
+   account : Account[];
+  meetingRoom:MeetingRoom[];
 
   constructor(private feedbackService: FeedbackService,
               private router: Router,
@@ -22,12 +25,13 @@ export class HandlebarsMeetinghouseComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getAllAccount();
     this.handleFeedback = this.fb.group({
       id: [('')],
       title: [('')],
       description: [('')],
       dateFeedback: [('')],
-      IsHandle: [('')],
+      handle: [('')],
       feedBackType: [('')],
       account: [('')],
       meetingRoom: [('')],
@@ -44,7 +48,7 @@ export class HandlebarsMeetinghouseComponent implements OnInit {
           title: this.editFeedback.title,
           description: this.editFeedback.description,
           dateFeedback: this.editFeedback.dateFeedback,
-          IsHandle: this.editFeedback.IsHandle,
+          IsHandle: this.editFeedback.handle,
           feedBackType: this.editFeedback.feedBackType.name,
           account: this.editFeedback.account.fullname,
           meetingRoom: this.editFeedback.meetingRoom.name,
@@ -54,7 +58,12 @@ export class HandlebarsMeetinghouseComponent implements OnInit {
       });
     });
   }
+  getAllAccount(){
+    this.feedbackService.getAccount().subscribe((data) =>{
+      this.account =data;
 
+    })
+  }
   handle() {
     this.feedbackService.updateFeedback(this.handleFeedback.value).subscribe((data) => {
       this.router.navigateByUrl('list-feedbackadmin');

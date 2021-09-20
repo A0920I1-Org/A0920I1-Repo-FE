@@ -45,10 +45,10 @@ const routes: Routes = [
   {path: 'register-history/account/:idAccount', component: RegisterMeetingComponent, canActivate:[AuthGuardService], data: {expectedRole: ['ROLE_ADMIN']}},
   {path: 'delete-register-meeting/:idOrder', component: DeleteMeetingComponent, canActivate:[AuthGuardService], data: {expectedRole: ['ROLE_ADMIN']}},
   {path: 'register-history/meeting-room/:idMeetingRoom', component: RegisterMeetingComponent, canActivate:[AuthGuardService], data: {expectedRole: ['ROLE_ADMIN']}},
-  {path: 'feedback' , component : FeedbackComponent, canActivate:[AuthGuardService], data: {expectedRole: [ 'ROLE_USER']}},
+  {path: 'feedback', component: FeedbackComponent},
   {path: 'list', component: FeedbackListComponent, canActivate:[AuthGuardService], data: {expectedRole: [ 'ROLE_USER']}},
-  {path: 'list-feedbackadmin', component: ListFeedbackadminComponent, canActivate:[AuthGuardService], data: {expectedRole: ['ROLE_ADMIN']}},
-  {path: 'handle-feedback/:idfeedback', component: HandlebarsMeetinghouseComponent, canActivate:[AuthGuardService], data: {expectedRole: ['ROLE_ADMIN']}},
+  {path: 'list-feedbackadmin', component: ListFeedbackadminComponent/*, canActivate:[AuthGuardService], data: {expectedRole: ['ROLE_ADMIN']}*/},
+  {path: 'handle-feedback/:idfeedback', component: HandlebarsMeetinghouseComponent/*, canActivate:[AuthGuardService], data: {expectedRole: ['ROLE_ADMIN']}*/},
   {path : 'addFeedTechnical',component:FeedbackTechnicalCreateComponent, canActivate:[AuthGuardService], data: {expectedRole: ['ROLE_ADMIN', 'ROLE_USER']}},
   {path : 'updateFeedTechnical/:id', component:FeedbackTechnicalUpdateComponent, canActivate:[AuthGuardService], data: {expectedRole: ['ROLE_ADMIN']}}
 

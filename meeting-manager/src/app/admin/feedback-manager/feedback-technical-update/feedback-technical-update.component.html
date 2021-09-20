@@ -87,8 +87,8 @@ feedTech TriNH
             <h6 class="mb-0">Nhân Viên xử lý :</h6>
           </div>
           <div class="col-sm-6">
-            <select class="form-control" formControlName="account">
-              <option *ngFor="let AccountType of account" [ngValue]="AccountType.id">{{AccountType.fullname}}</option>
+            <select class="form-control" formControlName="accounts">
+              <option *ngFor="let AccountType of account" [ngValue]="AccountType.id">{{AccountType.username}}</option>
             </select>
           </div>
           <div class="text-danger" *ngFor="let validation of validation_messages.account">

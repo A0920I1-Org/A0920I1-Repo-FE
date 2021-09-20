@@ -1,4 +1,3 @@
-<<<<<<< HEAD:meeting-manager/src/app/admin/equipment-manager/delete-equipment/delete-equipment.component.spec.ts
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DeleteEquipmentComponent } from './delete-equipment.component';
@@ -24,7 +23,8 @@ describe('DeleteEquipmentComponent', () => {
     expect(component).toBeTruthy();
   });
 });
-=======
+
+/*
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ListEquipmentComponent } from './list-equipment.component';
@@ -50,4 +50,5 @@ describe('ListEquipmentComponent', () => {
     expect(component).toBeTruthy();
   });
 });
->>>>>>> meeting-room:meeting-manager/src/app/admin/equipment-manager/list-equipment/list-equipment.component.spec.ts
+*/
+

@@ -1,6 +1,6 @@
 <div id="wrap">
 <div class="container-fluid">
-  <h1 id="title" style="text-align: center; margin-top: 50px ; margin-bottom: 50px"><b>Danh sách phản hồi</b></h1>
+  <h1 id="title" style="text-align: left; margin-top: 50px ; margin-bottom: 50px"><b>DANH SÁCH PHẢN HỒI</b></h1>
 </div>
 <div id="result" class="row table-responsive">
   <div class="table-responsive">
@@ -26,9 +26,9 @@
         <th scope="row">{{feed.dateFeedback}}</th>
         <th scope="row">{{feed.meetingRoom.name}}</th>
         <th scope="row">{{feed.description}}</th>
-      <th scope="row">{{feed.feedBackType.name}}</th>
-        <th scope="row" *ngIf="feed.IsHandle ">Đã xử lý</th>
-        <th scope="row" *ngIf="!feed.IsHandle "> Chưa xử lý</th>
+        <th scope="row">{{feed.feedBackType.name}}</th>
+        <th scope="row" *ngIf="!(feed.handle) ">Đã xử lý</th>
+        <th scope="row" *ngIf="(feed.handle) "> Chưa xử lý</th>
 
 
       </tr>

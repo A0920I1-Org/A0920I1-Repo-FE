@@ -8,7 +8,7 @@ export class FeedBack {
   id: number;
   description: string;
   dateFeedback: Date;
-  IsHandle: boolean;
+  handle: boolean;
   feedBackType: FeedBackType;
   account: Account;
   imageFeedBackList: ImageFeedBack[];

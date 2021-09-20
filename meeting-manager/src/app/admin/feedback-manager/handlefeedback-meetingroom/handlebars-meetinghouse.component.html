@@ -71,12 +71,8 @@
             <h6 class="mb-0">nhân viên xử lý :</h6>
           </div>
           <div class="col-sm-6">
-            <select class="form-control" formControlName="account" >
-
-              <option value="1">a</option>
-              <option value="2">b </option>
-              <option value="3">c</option>
-
+            <select class="form-control" formControlName="account">
+              <option *ngFor="let AccountType of account" [ngValue]="AccountType.id">{{AccountType.username}}</option>
             </select>
           </div>
         </div>

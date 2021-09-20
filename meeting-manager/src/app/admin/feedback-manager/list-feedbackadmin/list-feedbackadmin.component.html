@@ -1,6 +1,6 @@
 <div id="wrap">
 <div id="result" class="row table-responsive">
-  <h1 id="title" style="text-align: center; margin-top: 50px ; margin-bottom: 50px"><b>Danh sách phản hồi</b></h1>
+  <h1 id="title" style="text-align: left; margin-top: 50px ; margin-bottom: 50px"><b>Danh sách phản hồi</b></h1>
   <div class="table-responsive">
     <table class="table table-hover" style="text-align: center">
       <thead class="thead-dark">
@@ -21,13 +21,13 @@
           class="col-lg-4 border text-center mt-4 p-1">
         <th scope="row">{{i+1}}</th>
         <th scope="row">{{feed.account.fullname}}</th>
-        <th scope="row">{{feed.title}}</th>
+        <th scope="row">{{feed?.title}}</th>
         <th scope="row">{{feed.dateFeedback}}</th>
         <th scope="row">{{feed.meetingRoom.name}}</th>
         <th scope="row">{{feed.description}}</th>
         <th scope="row">{{feed.feedBackType.name}}</th>
-        <th scope="row" *ngIf="feed.IsHandle ">Đã xử lý</th>
-        <th scope="row" *ngIf="!feed.IsHandle "> Chưa xử lý</th>
+        <th scope="row" *ngIf="feed.handle ">Đã xử lý</th>
+        <th scope="row" *ngIf="!feed.handle "> Chưa xử lý</th>
         <td>
           <button class="btn btn-primary  m-md-3 "  [routerLink]="['/handle-feedback/',feed.id]">Xử lý </button>
           <button (click)="openDialogDelete(feed.id)" class="btn btn-danger">Xóa</button>
