@@ -46,10 +46,10 @@
             <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
               <li><a routerLink="/login" class="" *ngIf="!authService.isUserLoggedIn()">Đăng nhập</a></li>
               <li class="has-children" *ngIf="authService.isUserLoggedIn()">
-                <a href="#" class="nav-link" style="margin: 0px">Xin</a>
+                <a href="#" style="margin: 0px">{{username}}</a>
                 <ul class="dropdown arrow-top">
                   <li><a href="#" class="nav-link">Thông tin</a></li>
-                  <li><a routerLink="/logout" class="nav-link">Đăng xuất</a></li>
+                  <li><a (click)="logout()" class="nav-link">Đăng xuất</a></li>
                 </ul>
               </li>
             </ul>

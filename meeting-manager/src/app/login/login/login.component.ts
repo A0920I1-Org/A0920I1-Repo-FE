@@ -13,6 +13,10 @@ export class LoginComponent implements OnInit {
   submitted = false;
   showErrorMessage = false;
   loginForm: FormGroup;
+  @Input('incomingmsg') newrandmsg: string;
+
+  message: string;
+  editedmsg: string;
 
   constructor(private router: Router, private authService: AuthenticationService, private fb: FormBuilder) {
   }
@@ -30,12 +34,14 @@ export class LoginComponent implements OnInit {
 
   //kiem tra username va password - [TuHC]
   checkLogin() {
-    if (this.loginForm.invalid) {
-      this.validateAllFields(this.loginForm);
+    this.submitted = true;
+    if (!this.loginForm.valid) {
+      return;
     } else {
       //dung format du lieu, gui ve backend kiem tra username va password - [TuHC]
       this.authService.authenticate(this.loginForm.get('username').value, this.loginForm.get('password').value).subscribe(
         data => {
+          this.authService.editMsg(this.loginForm.get('username').value);
           this.router.navigateByUrl('/list-meeting');
           this.invalidLogin = false;
         },
@@ -44,21 +50,6 @@ export class LoginComponent implements OnInit {
           this.showErrorMessage = true;
         }
       );
-
     }
-
   }
-
-
-  validateAllFields(formGroup: FormGroup) {
-    Object.keys(formGroup.controls).forEach(field => {
-      const control = formGroup.get(field);
-      if (control instanceof FormControl) {
-        control.markAsTouched({onlySelf: true});
-      } else if (control instanceof FormGroup) {
-        this.validateAllFields(control);
-      }
-    });
-  }
-
 }
