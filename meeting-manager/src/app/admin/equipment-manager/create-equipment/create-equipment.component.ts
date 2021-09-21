@@ -4,11 +4,10 @@ import {EquipmentManagerService} from '../../../service/equipment-manager.servic
 import {Router} from '@angular/router';
 import {formatDate} from '@angular/common';
 import {finalize} from 'rxjs/operators';
-import {MatSnackBar} from '@angular/material/snack-bar';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {ToastrService} from 'ngx-toastr';
-import {Equipment} from '../../../model/Equipment';
 import {HttpErrorResponse} from '@angular/common/http';
+import {Equipment} from '../../../model/entity/Equipment';
 @Component({
   selector: 'app-create-equipment',
   templateUrl: './create-equipment.component.html',
@@ -16,10 +15,9 @@ import {HttpErrorResponse} from '@angular/common/http';
 })
 export class CreateEquipmentComponent implements OnInit {
   createEquipment: FormGroup;
-  filePath: string =  null;
+  filePath: string = null;
   inputImage: any = null;
   equipment: Equipment;
-  uploading: boolean;
   listError: any = '';
   defaultImage = 'https://doanhnhanplus.vn/wp-content/uploads/2020/03/Dnp-Plus-Default-Avatar.png';
 
@@ -27,40 +25,38 @@ export class CreateEquipmentComponent implements OnInit {
   constructor(private equipmentManagerService: EquipmentManagerService, private router: Router,
               @Inject(AngularFireStorage) private storage: AngularFireStorage,
               private toastrService: ToastrService,
-              private formBuilder: FormBuilder,) { }
+              private formBuilder: FormBuilder,) {
+  }
+
   validationMessage = {
     name: [
-      { type: 'required', message: 'Tên tài sản không được để trống.' },
-      { type: 'minlength', message: 'Tên tài sản phải tối thiểu 4 ký tự.' },
-      { type: 'maxlength', message: 'Tên tài sản tối đa 32 ký tự.' },
-      {type: 'pattern', message: 'Vui lòng nhập tên không có ký tự số.'}
+      {type: 'required', message: 'Tên tài sản không được để trống.'},
+      {type: 'minlength', message: 'Tên tài sản phải tối thiểu 4 ký tự.'},
+      {type: 'maxlength', message: 'Tên tài sản tối đa 32 ký tự.'},
+      {type: 'pattern', message: 'Tên tài sản không được nhập số.'}
     ],
     stock: [
-      { type: 'required', message: 'Số lượng không được để trống.' },
-      {type: 'pattern', message: 'Vui lòng nhập số.'}
+      {type: 'required', message: 'Số lượng không được để trống.'},
+      {type: 'pattern', message: 'Vui lòng nhập ký tự số.'}
+
     ],
     repairQuantity: [
-      { type: 'required', message: 'Số lượng không được để trống.' },
-      {type: 'pattern', message: 'Vui lòng nhập số.'}
-    ],
-    imageURL:[
-      {type:'required',message:'Ảnh Không để trống.'}
+      {type: 'required', message: 'Số lượng không được để trống.'},
+      {type: 'pattern', message: 'Vui lòng nhập ký tự số.'}
     ]
   };
 
-  ngOnInit(): void { this.initForm();
+  ngOnInit(): void {
+    this.initForm();
   }
+
   onSubmit() {
-    this.equipmentManagerService.addNewEquipment(this.createEquipment.value).subscribe(data => {
-      this.router.navigateByUrl('/list-equipment');
-    });
     if (this.inputImage != null) {
       const imageName = formatDate(new Date(), 'dd-MM-yyyyhhmmssa', 'en-US') + this.inputImage.name;
       const fileRef = this.storage.ref(imageName);
       this.storage.upload(imageName, this.inputImage).snapshotChanges().pipe(
         finalize(() => {
           fileRef.getDownloadURL().subscribe((url) => {
-            this.createEquipment.patchValue({imageUrl: url});
 
             this.equipmentManagerService.addNewEquipment({...this.createEquipment.value, imageUrl: url}).subscribe(
               () => {
@@ -73,7 +69,7 @@ export class CreateEquipmentComponent implements OnInit {
               },
               (error: HttpErrorResponse) => {
                 console.log(error);
-                if (error.status == 400) {
+                if (error.status === 400) {
                   console.log(error.error);
                   this.listError = error.error;
                 }
@@ -118,14 +114,15 @@ export class CreateEquipmentComponent implements OnInit {
         Validators.required,
         Validators.minLength(4),
         Validators.maxLength(32),
-        Validators.pattern("\\D+")
+        Validators.pattern("^[\\D]+$")
       ]),
       stock: this.formBuilder.control('', [
-        Validators.required,Validators.pattern("^[0-9]+$")]),
+        Validators.required, Validators.pattern('^[0-9]+$')],
+      ),
       repairQuantity: this.formBuilder.control('', [
-        Validators.required,Validators.pattern("^[0-9]+$")
+        Validators.required,Validators.pattern('^[0-9]+$')
       ]),
-      imageURL: this.formBuilder.control('',Validators.required)
+      imageURL: this.formBuilder.control('')
     });
   }
 

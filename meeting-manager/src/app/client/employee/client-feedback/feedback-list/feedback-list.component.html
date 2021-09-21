@@ -1,0 +1,41 @@
+<div id="wrap">
+<div class="container-fluid">
+  <h1 style="text-align: center; margin-top: 50px ; margin-bottom: 50px">Danh sách phản hồi</h1>
+</div>
+<div id="result" class="row table-responsive">
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">STT</th>
+        <th scope="col">Tên người dùng</th>
+        <th scope="col">Tiêu đề</th>
+        <th scope="col">Thời gian phản hồi</th>
+        <th scope="col">Tên phòng</th>
+        <th scope="col">Nội dung</th>
+        <th scope="col">Loại lỗi</th>
+        <th scope="col">Trạng thái</th>
+
+      </tr>
+      </thead>
+      <tbody class="table-active">
+      <tr *ngFor="let feed of feedback let i= index">
+        <th scope="row">{{i+1}}</th>
+        <th scope="row">{{feed.account.fullname}}</th>
+        <th scope="row">{{feed.title}}</th>
+        <th scope="row">{{feed.dateFeedback}}</th>
+        <th scope="row">{{feed.meetingRoom.name}}</th>
+        <th scope="row">{{feed.description}}</th>
+      <th scope="row">{{feed.feedBackType.name}}</th>
+        <th scope="row" *ngIf="feed.IsHandle ">Đã xử lý</th>
+        <th scope="row" *ngIf="!feed.IsHandle "> Chưa xử lý</th>
+
+
+      </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+</div>
+

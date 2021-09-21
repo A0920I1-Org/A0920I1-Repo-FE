@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {EquipmentManagerService} from '../../../service/equipment-manager.service';
-import {Equipment} from '../../../model/Equipment';
 import {MatDialog} from '@angular/material/dialog';
 import {DeleteEquipmentComponent} from '../delete-equipment/delete-equipment.component';
 import {ToastrService} from 'ngx-toastr';
+import {Equipment} from '../../../model/entity/Equipment';
 
 
 @Component({
@@ -13,7 +13,7 @@ import {ToastrService} from 'ngx-toastr';
 })
 export class ListEquipmentComponent implements OnInit {
   equipment: Equipment[];
-  nameEquipment: String;
+  nameEquipment: string;
   page = 1;
   totalPage: number;
 
@@ -46,10 +46,9 @@ export class ListEquipmentComponent implements OnInit {
     });
   }
   searchName(): void {
-    // @ts-ignore
     this.equipmentManagerService.findByName(this.nameEquipment).subscribe(data => {
         this.equipment = data;
-      this.page = 1;
+        this.page = 1;
       });
   }
   paginate(page: number) {

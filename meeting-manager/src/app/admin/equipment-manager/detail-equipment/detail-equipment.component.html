@@ -1,61 +1,80 @@
-
 <div id="wrap">
-<div class="container ">
-  <h2 style="text-align: center">Chi Tiết Tài Sản</h2><hr>
-  <div *ngIf="equipmentDetail">
-  <div class="row">
-    <div class="col-md-8">
-      <div class="card mb-0">
-        <div class="card-body">
-          <div class="row">
-            <div class="col-sm-5">
-              <h6 class="mb-0">Mã tài sản</h6>
-            </div>
-            <div class="col-sm-4 text-secondary">
-              <p>{{equipmentDetail.id}}</p>
+  <div class="container ">
+    <h1 style="text-align: center">Chi Tiết Tài Sản</h1>
+    <hr>
+    <div *ngIf="equipmentDetail">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="card mb-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-5">
+                  <h4 class="mb-0">Mã tài sản</h4>
+                </div>
+                <div class="col-sm-4 text-secondary" >
+                  <p style="font-size: 20px">{{equipmentDetail.id}}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-5">
+                  <h4 class="mb-0">Tên tài sản</h4>
+                </div>
+                <div class="col-sm-4 text-secondary">
+                  <p style="font-size: 20px">{{equipmentDetail.name}}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-5">
+                  <h4 class="mb-0">Tổng số lượng</h4>
+                </div>
+                <div class="col-sm-4 text-secondary">
+                  <p style="font-size: 20px">{{equipmentDetail.stock}}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-5">
+                  <h4 class="mb-0">Đang sử dụng</h4>
+                </div>
+                <div class="col-sm-4 text-secondary">
+                  <p style="font-size: 20px">{{equipmentDetail.stock - equipmentDetail.repairQuantity}}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-5">
+                  <h4 class="mb-0">Đang sửa chữa</h4>
+                </div>
+                <div class="col-sm-4 text-secondary">
+                  <p style="font-size: 20px">{{equipmentDetail.repairQuantity}}</p>
+                </div>
+              </div>
             </div>
           </div>
           <hr>
-          <div class="row">
-            <div class="col-sm-5">
-              <h6 class="mb-0">Tên tài sản</h6>
-            </div>
-            <div class="col-sm-4 text-secondary">
-              <p>{{equipmentDetail.name}}</p>
-            </div>
           </div>
-          <hr>
+        <div class="col-md-4">
           <div class="row">
-            <div class="col-sm-5">
-              <h6 class="mb-0">Tổng số lượng</h6>
-            </div>
-            <div class="col-sm-4 text-secondary">
-              <p>{{equipmentDetail.stock}}</p>
-            </div>
-          </div>
-          <hr>
-          <div class="row">
-            <div class="col-sm-5">
-              <h6 class="mb-0">Đang sử dụng</h6>
-            </div>
-            <div class="col-sm-4 text-secondary">
-              <p>{{equipmentDetail.stock - equipmentDetail.repairQuantity}}</p>
-            </div>
-          </div>
-          <hr>
-          <div class="row">
-            <div class="col-sm-5">
-              <h6 class="mb-0">Đang sửa chữa</h6>
-            </div>
-            <div class="col-sm-4 text-secondary">
-              <p>{{equipmentDetail.repairQuantity}}</p>
+            <div class="col-md-12 mb-6">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex flex-column align-items-center text-center">
+                    <img [src]="equipmentDetail.imageUrl"
+                         width="310" height="250">
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <hr>
-      <h5 >Danh sách phòng đang sử dụng tài sản:</h5>
-      <table class="table table-hover" border="1">
+    </div>
+
+    <div class="row justify-content-center" style="background-color: white;">
+      <h2>Danh sách phòng đang sử dụng tài sản:</h2>
+      <table class="table table-hover" border="1" style="margin: 0 20px">
         <thead class="thead-dark">
         <tr>
           <th>Tên Phòng</th>
@@ -64,36 +83,20 @@
         </tr>
         </thead>
         <tbody class="table-active">
-        <tr *ngFor="let orders of orderEquipment">
+        <tr *ngFor="let orders of orderEquipment|paginate: {itemsPerPage:5, currentPage: page}; let i = index">
           <td>{{orders.meetingRoom.name}}</td>
           <td>{{orders.equipment.name}}</td>
           <td>{{orders.quantity}}</td>
         </tr>
         </tbody>
       </table>
+      <pagination-controls (pageChange)="page=$event" style="text-align: center" previousLabel="Trước" nextLabel="Tiếp"></pagination-controls>
     </div>
-    <div class="col-md-4">
-      <div class="row">
-        <div class="col-md-12 mb-6">
-          <div class="card">
-            <div class="card-body">
-              <div class="d-flex flex-column align-items-center text-center">
-                <img [src]="equipmentDetail.imageUrl"
-                     width="310" height="250">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+
+    <div class="justify-content-center text-center" style="margin-top: 15px">
+      <input type="submit" value="Quay lại" class="btn btn-primary" style="margin-right: 15px"
+             routerLink="/list-equipment">
     </div>
 
   </div>
 </div>
-  <div class="justify-content-center text-center" style="margin-top: 15px">
-    <input type="submit" value="Quay lại" class="btn btn-primary"  style="margin-right: 15px" routerLink="/list-equipment">
-  </div>
-</div>
-</div>
-
-
-

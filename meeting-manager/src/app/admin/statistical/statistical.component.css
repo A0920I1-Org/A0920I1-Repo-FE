@@ -1,0 +1,47 @@
+#findByDate{
+  border: 1px solid black;
+  height: 280px;
+  margin-top: 20px;
+
+}
+
+#findByRoom{
+  border: 1px solid black;
+  height: 280px;
+  margin-top: 20px;
+}
+.container{
+  display: grid;
+}
+
+#result{
+  border: 1px solid black;
+  margin-top: 50px;
+  width: 90%;
+  background-color: whitesmoke;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+label{
+  width: 144px;
+}
+
+select{
+  width: 150px;
+}
+#chartStatistical{
+
+}
+ejs-chart{
+  width: 700px;
+  height: 500px;
+}
+#wrap{
+  padding: 50px 50px 50px 50px;
+  background-image: url("https://img4.thuthuatphanmem.vn/uploads/2020/05/12/hinh-anh-xam-khoi_103624490.jpg");
+}
+
+button{
+  border-radius: 9px;
+}
