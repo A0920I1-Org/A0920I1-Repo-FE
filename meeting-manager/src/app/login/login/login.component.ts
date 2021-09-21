@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   submitted = false;
   showErrorMessage = false;
   loginForm: FormGroup;
-  @Input('incomingmsg') newrandmsg: string;
+  // @Input('incomingmsg') newrandmsg: string;
 
   message: string;
   editedmsg: string;
@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
       //dung format du lieu, gui ve backend kiem tra username va password - [TuHC]
       this.authService.authenticate(this.loginForm.get('username').value, this.loginForm.get('password').value).subscribe(
         data => {
-          this.authService.editMsg(this.loginForm.get('username').value);
+          // this.authService.editMsg(this.loginForm.get('username').value);
           this.router.navigateByUrl('/list-meeting');
           this.invalidLogin = false;
         },

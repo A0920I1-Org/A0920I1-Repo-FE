@@ -11,20 +11,20 @@ import {BehaviorSubject, Observable, Subject} from 'rxjs';
 export class AuthenticationService {
   account: Account;
   username: string;
-  private currentUser: BehaviorSubject<any>;
-  newUsername: Observable<any>;
+  // private currentUser: BehaviorSubject<any>;
+  // newUsername: Observable<any>;
 
   loginURL = 'http://localhost:8080/api';
 
   constructor(private httpClient: HttpClient, private jwtHelper: JwtHelperService) {
-    if (this.isUserLoggedIn) {
-      const token = sessionStorage.getItem('token');
-      const tokenPayload = this.jwtHelper.decodeToken(token);
-
-      let username = tokenPayload.sub;
-      this.currentUser = new BehaviorSubject<any>(username);
-      this.newUsername = this.currentUser.asObservable();
-    }
+    // if (this.isUserLoggedIn) {
+    //   const token = sessionStorage.getItem('token');
+    //   const tokenPayload = this.jwtHelper.decodeToken(token);
+    //
+    //   let username = tokenPayload.sub;
+    //   this.currentUser = new BehaviorSubject<any>(username);
+    //   this.newUsername = this.currentUser.asObservable();
+    // }
   }
 
   //sau khi xac thuc thanh cong, luu username, token va role vao sessionStorage - [TuHC]
@@ -43,9 +43,9 @@ export class AuthenticationService {
     );
   }
 
-  editMsg(message) {
-    this.currentUser.next(message);
-  }
+  // editMsg(message) {
+  //   this.currentUser.next(message);
+  // }
 
 // kiem tra da login hay chua - [TuHC  ]
   isUserLoggedIn() {
