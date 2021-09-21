@@ -6,8 +6,8 @@ import {formatDate} from '@angular/common';
 import {finalize} from 'rxjs/operators';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {ToastrService} from 'ngx-toastr';
-import {Equipment} from '../../../model/Equipment';
 import {HttpErrorResponse} from '@angular/common/http';
+import {Equipment} from '../../../model/entity/Equipment';
 @Component({
   selector: 'app-create-equipment',
   templateUrl: './create-equipment.component.html',
@@ -30,20 +30,19 @@ export class CreateEquipmentComponent implements OnInit {
 
   validationMessage = {
     name: [
-      {type: 'required', message: 'Tên tài sản không được để trống!'},
-      {type: 'minlength', message: 'Tên tài sản phải tối thiểu 4 ký tự'},
-      {type: 'maxlength', message: 'Tên tài sản tối đa 32 ký tự'}
+      {type: 'required', message: 'Tên tài sản không được để trống.'},
+      {type: 'minlength', message: 'Tên tài sản phải tối thiểu 4 ký tự.'},
+      {type: 'maxlength', message: 'Tên tài sản tối đa 32 ký tự.'},
+      {type: 'pattern', message: 'Tên tài sản không được nhập số.'}
     ],
     stock: [
-      {type: 'required', message: 'Số lượng không được để trống!'},
+      {type: 'required', message: 'Số lượng không được để trống.'},
+      {type: 'pattern', message: 'Vui lòng nhập ký tự số.'}
 
     ],
     repairQuantity: [
-      {type: 'required', message: 'Số lượng không được để trống!'},
-
-    ],
-    imageUrl: [
-      {type: 'pattern', message: 'Chỉ chấp nhận file jpg, png, jpeg'}
+      {type: 'required', message: 'Số lượng không được để trống.'},
+      {type: 'pattern', message: 'Vui lòng nhập ký tự số.'}
     ]
   };
 
@@ -52,9 +51,6 @@ export class CreateEquipmentComponent implements OnInit {
   }
 
   onSubmit() {
-    this.equipmentManagerService.addNewEquipment(this.createEquipment.value).subscribe(data => {
-      this.router.navigateByUrl('/list-equipment');
-    });
     if (this.inputImage != null) {
       const imageName = formatDate(new Date(), 'dd-MM-yyyyhhmmssa', 'en-US') + this.inputImage.name;
       const fileRef = this.storage.ref(imageName);
@@ -73,7 +69,7 @@ export class CreateEquipmentComponent implements OnInit {
               },
               (error: HttpErrorResponse) => {
                 console.log(error);
-                if (error.status == 400) {
+                if (error.status === 400) {
                   console.log(error.error);
                   this.listError = error.error;
                 }
@@ -118,15 +114,15 @@ export class CreateEquipmentComponent implements OnInit {
         Validators.required,
         Validators.minLength(4),
         Validators.maxLength(32),
+        Validators.pattern("^[\\D]+$")
       ]),
       stock: this.formBuilder.control('', [
-        Validators.required]),
+        Validators.required, Validators.pattern('^[0-9]+$')],
+       ),
       repairQuantity: this.formBuilder.control('', [
-        Validators.required
+        Validators.required,Validators.pattern('^[0-9]+$')
       ]),
-      imageURL: this.formBuilder.control(null, [
-        Validators.required
-      ])
+      imageURL: this.formBuilder.control('')
     });
   }
 
@@ -148,8 +144,5 @@ export class CreateEquipmentComponent implements OnInit {
       return this.createEquipment.value.imageUrl;
     }
     return this.defaultImage;
-  }
-  uploadImage(){
-    this.storage.upload("/files" + Math.random() + this.inputImage, this.inputImage)
   }
 }

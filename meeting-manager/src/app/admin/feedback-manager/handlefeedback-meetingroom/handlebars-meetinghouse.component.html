@@ -1,0 +1,104 @@
+<div id="wrap">
+  <div class="container">
+    <h1 style="text-align: center; margin: 40px 0"><b>
+          Xử lý phản hồi phòng họp
+    </b>
+    </h1>
+    <form [formGroup]="handleFeedback" (ngSubmit)="handle() " >
+      <div class="card-body ">
+        <div class="row">
+          <div class="col-sm-3" align="right">
+            <h3 class="mb-0">Tiêu đề:</h3>
+          </div>
+          <div class="col-sm-6 text-secondary">
+
+            <input type="text"  aria-describedby="button-addon1"
+                   class="form-control border-1 shadow-1" formControlName="title" readonly>
+          </div>
+        </div>
+        <br>
+        <div class=" row">
+          <div class="col-sm-3" align="right">
+            <h3 class="mb-0">Ngày phản hồi:</h3>
+          </div>
+          <div  class="col-sm-6 text-secondary">
+            <input type="date"  aria-describedby="button-addon1"
+                   class="form-control border-1 shadow-1" formControlName="dateFeedback" readonly>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-sm-3" align="right">
+            <h3 class="mb-0">Tên người dùng:</h3>
+          </div>
+          <div class="col-sm-6 text-secondary">
+            <input type="text"  aria-describedby="button-addon1" class="form-control border-1 shadow-1" formControlName="account"readonly>
+
+          </div>
+        </div>
+        <br>
+
+        <div class="row">
+          <div class="col-sm-3" align="right">
+            <h3 class="mb-0">Tên phòng :</h3>
+          </div>
+          <div class="col-sm-6">
+            <input type="text"  aria-describedby="button-addon1" class="form-control border-1 shadow-1" formControlName="meetingRoom" readonly>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-sm-3" align="right">
+            <h3 class="mb-0">Loại lỗi :</h3>
+          </div>
+          <div class="col-sm-6">
+            <input type="text"  aria-describedby="button-addon1" class="form-control border-1 shadow-1" formControlName="feedBackType" readonly>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-sm-3" align="right">
+            <h3 class="mb-0">Mô tả :</h3>
+          </div>
+          <div class="col-sm-6 text-secondary">
+                    <textarea class="form-control"  formControlName="description" readonly>
+                    </textarea>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-sm-3" align="right">
+            <h3 class="mb-0">nhân viên xử lý :</h3>
+          </div>
+          <div class="col-sm-6">
+            <select class="form-control" id="inputNV" formControlName="account">
+              <option *ngFor="let AccountType of account" [ngValue]="AccountType.id">{{AccountType.fullname}}</option>
+            </select>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-sm-3" align="right">
+            <h3 class="mb-0">Nội dung :</h3>
+          </div>
+          <div class="col-sm-6 text-secondary">
+                    <textarea class="form-control"  formControlName="content" >
+                    </textarea>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-sm-12" align="center" >
+            <button class="btn btn-primary" type="submit">Xử lý phản hồi</button>
+            <button type="submit" class="btn btn-danger"  style="margin: 0 50px" routerLink="/list-feedback-admin">Huỷ phản hồi</button>
+          </div>
+        </div>
+
+
+      </div>
+    </form>
+    <div class="col-sm-5" align="right"><p>Dấu(<span style="color: red">*</span>)Vui lòng nhập không được để trống!</p></div>
+
+  </div>
+</div>
+

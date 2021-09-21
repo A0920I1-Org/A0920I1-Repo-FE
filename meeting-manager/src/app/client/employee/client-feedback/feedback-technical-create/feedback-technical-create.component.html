@@ -1,0 +1,113 @@
+<div id="wrap">
+  <div class="content">
+    <section class="content" style="font-family: 'Poppins', sans-serif;">
+      <div class="container-fluid">
+        <form [formGroup]="createFeedbackTech" (ngSubmit)="addFeedbackTech(createFeedbackTech)">
+          <!-- Create new user account -->
+          <div class="row content_style">
+            <div class="col-md-3">
+              <div class="card card-user">
+                <div class="card-body">
+                  <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                    <div class="fileinput-new thumbnail img-raised">
+                      <img [src]="getImageUrl()" style="width: 100%;" alt="..." rel="nofollow">
+                    </div>
+                    <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
+                    <div>
+                    <span style="margin-top: 20px"
+                          class="btn btn-info btn-round btn-default btn-file btn__upload-custom">
+                      <span class="fileinput-new" >Chọn ảnh</span>
+                      <input type="file" name="..." (change)="selectImage($event)"/>
+                      <ng-container *ngFor="let validation of validationMessage.imageFeedBackList">
+                        <small class="form-text text-danger"
+                               *ngIf="createFeedbackTech.get('imageFeedBackList').hasError(validation.type)&& createFeedbackTech.get('imageFeedBackList').touched">
+                          {{validation.message}}
+                        </small>
+                      </ng-container>
+                    </span>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--End table information-->
+
+            <div class="col-md-9">
+              <div class="card-user">
+                <div class="card-header card-background-color ">
+                  <h4><b>Xử Lý Phản Hồi Hệ Thống</b></h4>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-12 pr-1">
+                      <div class="form-group">
+                        <label>Tiêu đề <span class="infomation__required">(*)</span></label>
+                        <input type="text" class="form-control" placeholder="Góp ý kiến hệ thống" formControlName="title">
+                        <ng-container *ngFor="let validation of validationMessage.title">
+                          <small class="form-text text-danger"
+                                 *ngIf="createFeedbackTech.get('title').invalid && createFeedbackTech.get('title').touched">
+                            {{validation.message}}
+                          </small>
+                        </ng-container>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 pr-1">
+                      <div class="form-group">
+                        <label>Ngày gửi <span class="infomation__required">(*)</span></label>
+                        <input   class="form-control border-1 shadow-1" value="{{maxDate| date: 'dd/MM/yyyy'}}" readonly>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 pr-1">
+                      <div class="form-group">
+                        <label>Loại lỗi <span class="infomation__required">(*)</span></label>
+                        <textarea class="form-control" formControlName="description"></textarea>
+                        <ng-container *ngFor="let validation of validationMessage.description">
+                          <small class="form-text text-danger"
+                                 *ngIf="createFeedbackTech.get('description').invalid && createFeedbackTech.get('description').touched">
+                            {{validation.message}}
+                          </small>
+                        </ng-container>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 pr-1">
+                      <div class="form-group">
+                        <label>Nội dung lỗi <span class="infomation__required">(*)</span></label>
+                        <textarea class="form-control" formControlName="content"></textarea>
+                        <ng-container *ngFor="let validation of validationMessage.content">
+                          <small class="form-text text-danger"
+                                 *ngIf="createFeedbackTech.get('content').invalid && createFeedbackTech.get('content').touched">
+                            {{validation.message}}
+                          </small>
+                        </ng-container>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="row">
+                      <div class="" style="margin-left: 200px">
+                        <button class="btn btn-info" routerLink="/list-feedback-admin">Quay Lại
+                        </button>
+                      </div>
+                      <div class="">
+                      </div>
+                      <div class="">
+                        <button class="btn btn-secondary" style="margin: 0 30px">Xử lý phản hồi</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+  </div>
+</div>
