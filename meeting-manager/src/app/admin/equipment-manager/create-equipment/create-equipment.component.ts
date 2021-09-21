@@ -4,7 +4,6 @@ import {EquipmentManagerService} from '../../../service/equipment-manager.servic
 import {Router} from '@angular/router';
 import {formatDate} from '@angular/common';
 import {finalize} from 'rxjs/operators';
-import {MatSnackBar} from '@angular/material/snack-bar';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {ToastrService} from 'ngx-toastr';
 import {HttpErrorResponse} from '@angular/common/http';
@@ -93,9 +92,6 @@ export class CreateEquipmentComponent implements OnInit {
   //   this.imgCreate = $event.target.files[0];
   // }
   onSubmit() {
-    this.equipmentManagerService.addNewEquipment(this.createEquipment.value).subscribe(data => {
-      this.router.navigateByUrl('/list-equipment');
-    });
     if (this.inputImage != null) {
       const imageName = formatDate(new Date(), 'dd-MM-yyyyhhmmssa', 'en-US') + this.inputImage.name;
       const fileRef = this.storage.ref(imageName);

@@ -7,7 +7,7 @@ import {MeetingRoom} from '../model/entity/MeetingRoom';
 })
 export class MeetingRoomSerivce {
 
-  private readonly API_URL = 'http://localhost:8080/api/meeting-room';
+  private readonly API_URL = 'http://localhost:8081/api/meeting-room';
 
   constructor(private httpClient: HttpClient) {
   }

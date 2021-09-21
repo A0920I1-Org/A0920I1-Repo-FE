@@ -1,10 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {FeedbackTechnicalService} from "../../../service/FeedbackTechnical/feedback-technical.service";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {MeetingRoom} from '../../../model/entity/MeetingRoom';
 import {FeedBack} from '../../../model/entity/FeedBack';
 import {Account} from '../../../model/entity/Account';
+import {AngularFireStorage} from "@angular/fire/storage";
+import {ToastrService} from "ngx-toastr";
+import {formatDate} from "@angular/common";
+import {finalize} from "rxjs/operators";
 
 
 @Component({
@@ -15,90 +19,100 @@ import {Account} from '../../../model/entity/Account';
 export class FeedbackTechnicalUpdateComponent implements OnInit {
 //feedBackTech TriNH
   public maxDate = new Date();
-  public minDate = new Date(1900, 1,1);
-  account : Account[];
-  meetingRoom:MeetingRoom[];
-  IdFeedback:any;
-  feedBack: FeedBack;
+  account: Account[];
+  meetingRoom: MeetingRoom[];
+  idFeedback: number;
+  feedBackTech: FeedBack;
+  imgUpdate: any;
+  updateFeedbackTech: FormGroup;
 
   constructor(
-    private feedBacks:FeedbackTechnicalService,
-    private router: ActivatedRoute,
-  ) { }
+      private feedbackTechnicalService: FeedbackTechnicalService,
+      private activatedRoute: ActivatedRoute,
+      private router: Router,
+      @Inject(AngularFireStorage) private storage: AngularFireStorage, private fb: FormBuilder,
+      private toastrService: ToastrService
+  ) {
+  }
 
   ngOnInit(): void {
-//feedBackTech TriNH
-
+    this.updateFeedbackTech = this.fb.group({
+      id: [('')],
+      title: [('')],
+      description: [('')],
+      dateFeedback: [('')],
+      IsHandle: [('')],
+      feedBackType: [('')],
+      account: [('')],
+      meetingRoom: [('')],
+      content: [('')],
+      imageFeedBackList: [('')]
+    });
+    this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
+      this.idFeedback = parseInt(paramMap.get('idFeedback'));
+      this.feedbackTechnicalService.findFeedbackById(this.idFeedback).subscribe((data) => {
+        this.feedBackTech = data;
+        this.updateFeedbackTech.patchValue({
+          id: this.feedBackTech.id,
+          title: this.feedBackTech.title,
+          description: this.feedBackTech.description,
+          dateFeedback: this.feedBackTech.dateFeedback,
+          IsHandle: this.feedBackTech.IsHandle,
+          feedBackType: this.feedBackTech.feedBackType.name,
+          account: this.feedBackTech.account.fullname,
+          meetingRoom: this.feedBackTech.meetingRoom.name,
+          content: this.feedBackTech.content,
+          imageFeedBackList: this.feedBackTech.imageFeedBackList
+        });
+      });
+    });
     this.getAllNameMeetingList();
     this.getAllAccountList();
-
-    this.router.paramMap.subscribe((paramMap: ParamMap) => {
-        this.IdFeedback = (paramMap.get('id'));
-        console.log(this.IdFeedback);
-        // neu IdFeedback co gia tri
-      }
-    );
-    this.feedBacks.findFeedbackById(this.router.snapshot.params.id).subscribe((result) => {
-      this.updateFeedbackTech.setValue(result);
-      this.feedBack = result;
-      console.log(this.feedBack);
-    });
   }
-//feedBackTech TriNH
 
-  updateFeedbackTech = new FormGroup({
-    id: new FormControl('',[Validators.required]),
-    title:new FormControl('',[Validators.required]),
-    description:new FormControl('',[Validators.required]),
-   /* IsHandle:new FormControl('',[Validators.required]),*/
-    feedBackType:new FormControl('',[Validators.required]),
-    dateFeedback:new FormControl('',[Validators.required]),
-    meetingRoom:new FormControl('',[Validators.required]),
-    /*imageFeedBackList:new FormControl('',[Validators.required]),*/
-    account:new FormControl('',[Validators.required]),
-    content:new FormControl('',[Validators.required])
 
-  });
-  //feedBackTech TriNH
-
-  onSubmit(updateFeedbackTech: FormGroup) {
-    // @ts-ignore
-    this.feedBacks.updateFeedbackTech(updateFeedbackTech.value).subscribe(
-      (data) => {
-        /*this.route.navigateByUrl('list');*/
-      }, error => console.log(error)
-    );
+  editFeedbackTech(updateFeedbackTech: FormGroup) {
+    console.log(updateFeedbackTech.value);
+    const nameImage = this.getCurrentDateTime() + this.imgUpdate.name;
+    const fileRef = this.storage.ref(nameImage);
+    this.storage.upload(nameImage, this.imgUpdate).snapshotChanges().pipe(
+        finalize(() => {
+          fileRef.getDownloadURL().subscribe((url) => {
+            this.updateFeedbackTech.patchValue({imageUrl: url});
+            this.getEdit();
+          });
+        })
+    ).subscribe();
   }
-//feedBackTech TriNH
 
-  editFeedbackTech(){
+  getEdit() {
     // @ts-ignore
-    this.feedBacks.updateFeedbackTech(this.router.snapshot.params.id).subscribe((result) =>{
-      console.log(result,'data update success');
+    this.feedbackTechnicalService.updateFeedbackTech(this.updateFeedbackTech.value).subscribe((data) => {
+      this.router.navigateByUrl('list-feedback-admin').then(e => this.toastrService.success('Bạn đã cập nhật thành công!', 'Thông báo'));
     })
   }
-//feedBackTech TriNH
 
-  getAllAccountList(){
-    this.feedBacks.getAccount().subscribe((data )=> {
-      console.log(data);
+  getCurrentDateTime(): string {
+    return formatDate(new Date(), 'dd-MM-yyyyhhmmssa', 'en-US');
+  }
+  getAllAccountList() {
+    this.feedbackTechnicalService.getAccount().subscribe((data) => {
       // @ts-ignore
       this.account = data;
     });
   }
-//feedBackTech TriNH
 
-  getAllNameMeetingList(){
-    this.feedBacks.getMeetingRoom().subscribe((data )=> {
-      console.log(data);
+  getAllNameMeetingList() {
+    this.feedbackTechnicalService.getMeetingRoom().subscribe((data) => {
       this.meetingRoom = data;
     });
   }
 
+  showImage($event: any) {
+    this.imgUpdate = $event.target.files[0];
+  }
 
-//feedBackTech TriNH
-
-  validation_messages = {
+  validationMessage = {
     content: [
       {type: 'required', message: 'Vui lòng nhập nội dung xử lý!'},
       {type: 'minlength', message: 'Vui lòng nhập nội dung có ít nhất 4 kí tự!'},
@@ -107,7 +121,6 @@ export class FeedbackTechnicalUpdateComponent implements OnInit {
     account: [
       {type: 'required', message: 'Vui lòng chọn nhân viên xử lý!'}
     ]
-
   };
 
 }

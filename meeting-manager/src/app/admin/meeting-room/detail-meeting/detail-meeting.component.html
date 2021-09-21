@@ -1,7 +1,7 @@
 <div id="wrap" style="font-size: 18px">
   <div class="container">
     <div class="head">
-      <h1 style="text-align: center; margin: 30px 0">
+      <h1 style="text-align: center; margin: 35px 0">
         Thông tin chi tiết phòng họp
       </h1>
     </div>
@@ -9,59 +9,59 @@
       <div class="col-md-4">
         <div class="card mb-3">
           <div class="card-body">
-            <a routerLink="" >
-              <span class="material-icons" style="margin-bottom: 20px">arrow_back</span>
+            <a routerLink="/list-meeting" >
+              <span class="material-icons" c>arrow_back</span>
             </a>
             <div class="row">
               <div class="col-sm-5">
-                <h6 class="mb-0">Tên phòng:</h6>
+                <h4 class="mb-0">Tên phòng:</h4>
               </div>
-              <div class="col-sm-7 text-secondary">
+              <div class="col-sm-7 text-secondary" style="font-size: 20px">
                 {{meetingDetails.name}}
               </div>
             </div>
             <hr>
             <div class="row">
               <div class="col-sm-5">
-                <h6 class="mb-0">Tầng:</h6>
+                <h4 class="mb-0">Tầng:</h4>
               </div>
-              <div class="col-sm-7 text-secondary">
+              <div class="col-sm-7 text-secondary" style="font-size: 20px">
                 {{meetingDetails.floors}}
               </div>
             </div>
             <hr>
             <div class="row">
               <div class="col-sm-5">
-                <h6 class="mb-0">Khu vực:</h6>
+                <h4 class="mb-0">Khu vực:</h4>
               </div>
-              <div class="col-sm-7 text-secondary">
+              <div class="col-sm-7 text-secondary" style="font-size: 20px">
                 {{meetingDetails.area.name}}
               </div>
             </div>
             <hr>
             <div class="row">
               <div class="col-sm-5">
-                <h6 class="mb-0">Sức chứa:</h6>
+                <h4 class="mb-0">Sức chứa:</h4>
               </div>
-              <div class="col-sm-7 text-secondary">
+              <div class="col-sm-7 text-secondary" style="font-size: 20px">
                 {{meetingDetails.typeMeetingRoom.capacity}} người
               </div>
             </div>
             <hr>
             <div class="row">
               <div class="col-sm-5">
-                <h6 class="mb-0">Loại phòng:</h6>
+                <h4 class="mb-0">Loại phòng:</h4>
               </div>
-              <div class="col-sm-7 text-secondary">
+              <div class="col-sm-7 text-secondary" style="font-size: 20px">
                 {{meetingDetails.typeMeetingRoom.name}}
               </div>
             </div>
             <hr>
             <div class="row">
               <div class="col-sm-5">
-                <h6 class="mb-0">Trạng thái:</h6>
+                <h4 class="mb-0">Trạng thái:</h4>
               </div>
-              <div class="col-sm-7 text-secondary">
+              <div class="col-sm-7 text-secondary" style="font-size: 20px">
                 {{meetingDetails.roomStatus.name}}
               </div>
             </div>
@@ -69,9 +69,9 @@
             <hr>
             <div class="row">
               <div class="col-sm-5">
-                <h6 class="mb-0">Tài sản:</h6>
+                <h4 class="mb-0">Tài sản:</h4>
               </div>
-              <div class="col-sm-7 text-secondary">
+              <div class="col-sm-7 text-secondary" style="font-size: 20px">
                 <ul *ngFor="let items of equipmentList">
                   <li>{{items.quantity}}, {{items.equipment.name}}</li>
                 </ul>
@@ -80,7 +80,7 @@
             <hr>
             <div class="row">
               <div class="col-sm-12">
-                <a class="btn btn-info" [routerLink]="['register-history/meeting-room/', id]">Xem lịch sử đăng kí</a>
+                <a class="btn btn-info" routerLink="/register-history/meeting-room/{{meetingDetails.id}}">Xem lịch sử đăng kí</a>
               </div>
             </div>
           </div>
@@ -94,7 +94,7 @@
             <img class="img-meeting" [src]="meetingDetails.imageUrl" >
           </div>
           <div class="col-md-6 mb-3" *ngFor="let equipment of equipmentList" style="padding-left: 30px">
-            <img class="img-meeting" [src]="equipment.equipment.imageUrl">
+            <img class="img-meeting2" [src]="equipment.equipment.imageUrl">
 <!--            <div class="row" style="justify-content: center; padding: 20px 0;font-size: 20px">{{equipment.equipment.name}}</div>-->
           </div>
         </div>

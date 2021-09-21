@@ -122,9 +122,10 @@ export class UpdateMeetingComponent implements OnInit {
 
   updateMeetingRoom() {
     this.meetingRoomService.updateMeetingRoom(this.editMeetingRoom.value).subscribe( data =>{
-        this.toastrService.success('Bạn đã sửa thành công!');
-        this.router.navigateByUrl('/list-meeting');
-        // this.snackBar.open('Đã sữa thành công !', 'xong',{duration:2000});
+
+      this.toastrService.success('Bạn đã sửa thành công!', 'Thông báo');
+      this.router.navigateByUrl('/list-meeting');
+
       }
     );
 

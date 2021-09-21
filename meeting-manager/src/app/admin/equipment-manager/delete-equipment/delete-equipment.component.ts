@@ -32,4 +32,7 @@ export class DeleteEquipmentComponent implements OnInit {
     });
   }
 
+  closeDialog() {
+    this.dialogRef.close();
+  }
 }

@@ -9,4 +9,10 @@
 button{
   border-radius: 10px;
 }
+div#wrap > .container > h1{
+  justify-content: center;
+  border-radius: 10px;
+  background: #4876FF;
+  color: white;
+}
 

@@ -61,7 +61,11 @@ import {RouterModule} from '@angular/router';
 import {ToastrModule, ToastrService} from 'ngx-toastr';
 import {RegisterMeetingComponent} from './client/employee/meeting/register-history/register-meeting.component';
 import {FeedbackComponent} from './client/employee/client-feedback/feedback/feedback.component';
-
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { HomeComponent } from './home/home.component';
+import {MatNativeDateModule} from "@angular/material/core";
+import {ListMeetingComponentAdmin} from "./admin/meeting-room/list-meeting/list-meeting.component";
+import {DeleteEquipmentComponent} from "./admin/equipment-manager/delete-equipment/delete-equipment.component";
 
 @NgModule({
   declarations: [
@@ -96,7 +100,11 @@ import {FeedbackComponent} from './client/employee/client-feedback/feedback/feed
     LoginComponent,
     LogoutComponent,
     RegisterMeetingComponent,
-    FeedbackComponent
+    FeedbackComponent,
+    PageNotFoundComponent,
+    HomeComponent,
+    DeleteEquipmentComponent,
+    ListMeetingComponentAdmin
   ],
   imports: [
     BrowserModule,
@@ -132,6 +140,8 @@ import {FeedbackComponent} from './client/employee/client-feedback/feedback/feed
     ChartModule,
     HttpClientModule,
     MatInputModule,
+    MatNativeDateModule,
+
   ],
   providers: [{
     provide:HTTP_INTERCEPTORS, useClass:BasicAuthHttpInterceptorService, multi:true,

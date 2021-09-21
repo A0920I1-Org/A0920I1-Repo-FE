@@ -109,6 +109,7 @@ export class StatisticalComponent implements OnInit {
   }
 
   onSubmitDateForm(statisticByDateForm: FormGroup) {
+    this.dataCharts = [];
     this.isMonth = true;
     this.isDateCheckin = true;
     this.isDateCheckout = true;
@@ -151,6 +152,7 @@ export class StatisticalComponent implements OnInit {
   }
 
   onSubmitRoomForm(statisticByRoomForm: FormGroup) {
+    this.dataCharts = [];
     console.log(statisticByRoomForm.value);
     this.month = statisticByRoomForm.get('month').value;
 

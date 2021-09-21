@@ -3,15 +3,12 @@ import {Component, OnInit} from '@angular/core';
 import {MeetingRoomService} from '../../../../service/meeting-room.service';
 import {MatDialog} from '@angular/material/dialog';
 
-import {AreaMeetingRoomService} from '../../../../service/area-meeting-room.service';
 import {Router} from '@angular/router';
 import {DeleteMeetingRoomComponent} from '../../../../admin/meeting-room/delete-meeting/delete-meeting-room.component';
 import {Area} from '../../../../model/entity/Area';
 import {TypeMeetingRoom} from '../../../../model/entity/TypeMeetingRoom';
 import {RoomStatus} from '../../../../model/entity/RoomStatus';
 import {MeetingRoom} from '../../../../model/entity/MeetingRoom';
-import {TypeMeetingRoomService} from '../../../../service/TypeMeetingRoomService';
-import {StatusRoomService} from '../../../../service/StatusRoomService';
 
 @Component({
   selector: 'app-list-meeting',
@@ -36,7 +33,6 @@ export class ListMeetingComponent implements OnInit {
 
   key: string = 'id';
   reverse: boolean = false;
-  private totalPage: any;
 
   constructor(
     private meetingRoomService: MeetingRoomService,
@@ -104,6 +100,6 @@ export class ListMeetingComponent implements OnInit {
   // }
 
   backToListMeeting():void {
-  window.location.reload();
-}
+     window.location.reload();
+  }
 }

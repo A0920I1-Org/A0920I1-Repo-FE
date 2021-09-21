@@ -14,7 +14,7 @@ export class AuthenticationService {
   // private currentUser: BehaviorSubject<any>;
   // newUsername: Observable<any>;
 
-  loginURL = 'http://localhost:8080/api';
+  loginURL = 'http://localhost:8081/api';
 
   constructor(private httpClient: HttpClient, private jwtHelper: JwtHelperService) {
     // if (this.isUserLoggedIn) {
@@ -84,6 +84,4 @@ export class AuthenticationService {
     // console.log(`${this.loginURL + '/findAccount'}?username=${username}`);
     return this.httpClient.get<Account>(`${this.loginURL + '/findAccount'}?username=${username}`);
   }
-
 }
-
