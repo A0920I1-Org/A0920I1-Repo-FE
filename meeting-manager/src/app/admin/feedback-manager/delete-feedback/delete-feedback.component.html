@@ -1,0 +1,7 @@
+<h3 style="text-align: center">Xác nhận xóa !</h3>
+<hr>
+<p class="my-3">Bạn chắc chắn muốn xóa phản hồi có id là <span class="text-danger font-weight-bold">{{idFeedback}}</span>Không?</p>
+<div class="justify-content-center text-center">
+  <button  mat-button [mat-dialog-close]="false" class="btn btn-primary mr-3">Hủy</button>
+  <button (click)="deleteFeedback( )" class="btn btn-warning" >Xóa</button>
+</div>

@@ -1,1 +1,115 @@
-<p>delete-meeting works!</p>
+<div id="wrap">
+  <div class="container">
+    <br>
+    <p style="text-align: center; margin: 35px; font-size: 40px;">
+      Huỷ đăng kí phòng họp
+    </p>
+    <div class="row" id="content">
+      <div class="col-sm-7">
+
+        <form class="border-info" *ngIf="registerHistory != null"
+              [formGroup]="deleteForm" (ngSubmit)="onSubmitDelete(deleteForm)">
+          <div class="card-body ">
+            <div class="row">
+              <div class="col-sm-5">
+                <h4 class="mb-0">Tên phòng:</h4>
+              </div>
+              <div class="col-sm-3 text-secondary">
+                {{registerHistory.meetingRoom.name}}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-5">
+                <h4 class="mb-0">Loại phòng họp:</h4>
+              </div>
+              <div class="col-sm-3 text-secondary">
+                {{registerHistory.meetingRoom.typeMeetingRoom.name}}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-5">
+                <h4 class="mb-0">Ngày đăng kí:</h4>
+              </div>
+              <div class="col-sm-3 text-secondary">
+                {{registerHistory.createDate|date: 'dd-MM-yyyy'}}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-5">
+                <h4 class="mb-0">Ngày bắt đầu:</h4>
+              </div>
+              <div class="col-sm-3 text-secondary">
+                {{registerHistory.dateCheckin|date: 'dd-MM-yyyy'}}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-5">
+                <h4 class="mb-0">Ngày kết thúc:</h4>
+              </div>
+              <div class="col-sm-3 text-secondary">
+                {{registerHistory.dateCheckout|date: 'dd-MM-yyyy'}}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-5">
+                <h4 class="mb-0">Giờ bắt đầu:</h4>
+              </div>
+              <div class="col-sm-3 text-secondary">
+                {{registerHistory.timeStart}}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-5">
+                <h4 class="mb-0">Giờ kết thúc:</h4>
+              </div>
+              <div class="col-sm-3 text-secondary">
+                {{registerHistory.timeEnd}}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-5">
+                <h4 class="mb-0">Nội dung cuộc họp:</h4>
+              </div>
+              <div class="col-sm-3 text-secondary">
+                {{registerHistory.description}}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-5">
+                <h4 class="mb-0">Lý do huỷ :</h4>
+              </div>
+              <div class="col-sm-3 text-secondary">
+                    <textarea formControlName="reasonDelete" style="height: 200px; width: 350px">
+                    </textarea>
+              </div>
+            </div>
+            <hr>
+            <br>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12 row justify-content-center">
+              <!--            <a [routerLink]="['/register-history']" class="btn btn-primary">Quay lại</a>-->
+              <button type="button" class="btn btn-primary" (click)="comebackRegisterHistory()">Quay lại</button>
+              <button type="submit" class="btn btn-danger" style="margin: 0 70px">Huỷ đăng kí</button>
+            </div>
+          </div>
+          <br>
+        </form>
+      </div>
+      <div class="col-sm-4">
+        <div class="col-4">
+          <img [src]="registerHistory.meetingRoom.imageUrl"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
