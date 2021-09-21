@@ -7,7 +7,7 @@ import {Equipment} from '../model/entity/Equipment';
   providedIn: 'root'
 })
 export class EquipmentManagerService {
-  private readonly API_EQUIPMENT = 'http://localhost:8081/api';
+  private readonly API_EQUIPMENT = 'http://localhost:8080/api';
   constructor(private httpClient: HttpClient) {
   }
   // listEquipment- PhapNT

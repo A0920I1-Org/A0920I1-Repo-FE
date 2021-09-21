@@ -14,8 +14,8 @@
         <div class="site-logo ">
           <a routerLink="" class="text-black"><span class="text-white">CODEGYM</span></a>
         </div>
-        <div class="col-11">
-          <nav class="site-navigation text-right ml-auto " role="navigation">
+        <div class="col-10">
+          <nav class="site-navigation text-center ml-auto" role="navigation">
             <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block"
                 *ngIf="(authService.isUserLoggedIn() && authService.checkRoleAdmin())">
               <li><a routerLink="/list-meeting-admin">Phòng Họp</a></li>
@@ -23,7 +23,7 @@
               <li><a routerLink="/emp-list">Người Dùng</a></li>
               <li><a routerLink="/statistic">Thống Kê</a></li>
               <li >
-                <a routerLink="/list-feedback-admin" class="nav-link" *ngIf="authService.isUserLoggedIn()">Xem Phản Hồi</a>
+                <a routerLink="/list-feedback-admin" class="nav-link">Xem Phản Hồi</a>
 <!--                <ul class="dropdown arrow-top">-->
 <!--                  <li><a routerLink="/list-feedback-admin" class="nav-link">Phản Hồi Phòng Họp</a></li>-->
 <!--                  <li><a routerLink="/add-feed-technical" class="nav-link">Phản Hồi Hệ Thống</a></li>-->
@@ -54,7 +54,7 @@
             </ul>
           </nav>
         </div>
-        <div class="col-1" style="padding: 0px">
+        <div class="col-2" style="padding: 0px">
           <nav class="site-navigation text-right ml-auto " role="navigation">
             <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
               <li><a routerLink="/login" class="" *ngIf="!authService.isUserLoggedIn()">Đăng nhập</a></li>

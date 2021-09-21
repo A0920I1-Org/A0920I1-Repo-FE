@@ -8,7 +8,7 @@ import {Area} from '../model/entity/Area';
 })
 export class AreaMeetingRoomService {
 
-  private readonly API_AREA_URL = 'http://localhost:8081/meeting/area';
+  private readonly API_AREA_URL = 'http://localhost:8080/meeting/area';
 
   constructor(private httpClient: HttpClient) {
   }

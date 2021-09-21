@@ -11,20 +11,12 @@ import {BehaviorSubject, Observable, Subject} from 'rxjs';
 export class AuthenticationService {
   account: Account;
   username: string;
-  // private currentUser: BehaviorSubject<any>;
-  // newUsername: Observable<any>;
+  private currentUser = new BehaviorSubject<any>('');
+  newUsername = this.currentUser.asObservable();
 
-  loginURL = 'http://localhost:8081/api';
+  loginURL = 'http://localhost:8080/api';
 
   constructor(private httpClient: HttpClient, private jwtHelper: JwtHelperService) {
-    // if (this.isUserLoggedIn) {
-    //   const token = sessionStorage.getItem('token');
-    //   const tokenPayload = this.jwtHelper.decodeToken(token);
-    //
-    //   let username = tokenPayload.sub;
-    //   this.currentUser = new BehaviorSubject<any>(username);
-    //   this.newUsername = this.currentUser.asObservable();
-    // }
   }
 
   //sau khi xac thuc thanh cong, luu username, token va role vao sessionStorage - [TuHC]
@@ -38,14 +30,16 @@ export class AuthenticationService {
           const token = sessionStorage.getItem('token');
           const tokenPayload = this.jwtHelper.decodeToken(token);
           let username = tokenPayload.sub;
+          this.currentUser.next(username);
           return userData;
         })
     );
   }
+  //lay username hien tai
+  public get currentUserValue() {
+    return this.currentUser.value;
+  }
 
-  // editMsg(message) {
-  //   this.currentUser.next(message);
-  // }
 
 // kiem tra da login hay chua - [TuHC  ]
   isUserLoggedIn() {
@@ -69,10 +63,9 @@ export class AuthenticationService {
 // //kiem tra role co phai admin hay ko, neu co hien thi man hinh admin va nguoc lai - [TuHC]
   checkRoleAdmin() {
     const token = sessionStorage.getItem('token');
-    // decode the token to get its payload
+    // giai ma token de lay thong tin
     const tokenPayload = this.jwtHelper.decodeToken(token);
     let roleAdmin = tokenPayload.role;
-    // console.log(roleAdmin === 'ROLE_ADMIN');
     return (roleAdmin === 'ROLE_ADMIN');
   }
 
@@ -81,7 +74,6 @@ export class AuthenticationService {
     const token = sessionStorage.getItem('token');
     const tokenPayload = this.jwtHelper.decodeToken(token);
     let username = tokenPayload.sub;
-    // console.log(`${this.loginURL + '/findAccount'}?username=${username}`);
     return this.httpClient.get<Account>(`${this.loginURL + '/findAccount'}?username=${username}`);
   }
 }

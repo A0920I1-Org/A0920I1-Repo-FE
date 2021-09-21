@@ -10,9 +10,9 @@ import {FeedBack} from '../../model/entity/FeedBack';
 export class FeedbackTechnicalService {
 
   //service TriNH
-  private readonly API_FEEDBACK_URL = 'http://localhost:8081/api/feedback';
-  private readonly API_Account_URL = 'http://localhost:8081/account/list';
-  private readonly API_MeetRoom_URL = 'http://localhost:8081/meetingroom';
+  private readonly API_FEEDBACK_URL = 'http://localhost:8080/api/feedback';
+  private readonly API_Account_URL = 'http://localhost:8080/account/list';
+  private readonly API_MeetRoom_URL = 'http://localhost:8080/meetingroom';
   constructor(private httpClient: HttpClient) {
   }
 
