@@ -4,7 +4,6 @@ import {EquipmentManagerService} from '../../../service/equipment-manager.servic
 import {Router} from '@angular/router';
 import {formatDate} from '@angular/common';
 import {finalize} from 'rxjs/operators';
-import {MatSnackBar} from '@angular/material/snack-bar';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {ToastrService} from 'ngx-toastr';
 import {Equipment} from '../../../model/Equipment';
@@ -16,12 +15,9 @@ import {HttpErrorResponse} from '@angular/common/http';
 })
 export class CreateEquipmentComponent implements OnInit {
   createEquipment: FormGroup;
-  imgCreate: any;
-  filePath: string =  null;
+  filePath: string = null;
   inputImage: any = null;
   equipment: Equipment;
-  uploading: boolean;
-  roles = [];
   listError: any = '';
   defaultImage = 'https://doanhnhanplus.vn/wp-content/uploads/2020/03/Dnp-Plus-Default-Avatar.png';
 
@@ -29,69 +25,32 @@ export class CreateEquipmentComponent implements OnInit {
   constructor(private equipmentManagerService: EquipmentManagerService, private router: Router,
               @Inject(AngularFireStorage) private storage: AngularFireStorage,
               private toastrService: ToastrService,
-              private formBuilder: FormBuilder,) { }
+              private formBuilder: FormBuilder,) {
+  }
+
   validationMessage = {
     name: [
-      { type: 'required', message: 'Tên tài sản không được để trống!' },
-      { type: 'minlength', message: 'Tên tài sản phải tối thiểu 4 ký tự' },
-      { type: 'maxlength', message: 'Tên tài sản tối đa 32 ký tự' }
+      {type: 'required', message: 'Tên tài sản không được để trống!'},
+      {type: 'minlength', message: 'Tên tài sản phải tối thiểu 4 ký tự'},
+      {type: 'maxlength', message: 'Tên tài sản tối đa 32 ký tự'}
     ],
     stock: [
-      { type: 'required', message: 'Số lượng không được để trống!' },
+      {type: 'required', message: 'Số lượng không được để trống!'},
 
     ],
     repairQuantity: [
-      { type: 'required', message: 'Số lượng không được để trống!' },
+      {type: 'required', message: 'Số lượng không được để trống!'},
 
     ],
     imageUrl: [
-      { type: 'pattern', message: 'Chỉ chấp nhận file jpg, png, jpeg' }
+      {type: 'pattern', message: 'Chỉ chấp nhận file jpg, png, jpeg'}
     ]
   };
 
-  ngOnInit(): void { this.initForm();
-    // this.createEquipment = new FormGroup({
-    //   id: new FormControl(''),
-    //   name: new FormControl('', [Validators.required]),
-    //   repairQuantity: new FormControl('', [Validators.required]),
-    //   stock: new FormControl('', [Validators.required]),
-    //   image: new FormControl('')
-    // });
+  ngOnInit(): void {
+    this.initForm();
   }
-  // getForm() {
-  //   this.equipmentManagerService.addNewEquipment(this.createEquipment.value).subscribe((data) => {
-  //     this.router.navigate(['/list-equipment']);
-  //   });
-  // }
-  // getAdd() {
-  //   this.equipmentManagerService.addNewEquipment(this.createEquipment.value).subscribe((data) => {
-  //     console.log(data);
-  //     this.router.navigate(['/list-equipment']).then(e => this.toastrService.success("Bạn đã thêm mới thành công!", "Ok"));
-  //   });
-  // }
-  //
-  // getCurrentDateTime(): string {
-  //   return formatDate(new Date(), 'dd-MM-yyyyhhmmssa', 'en-US');
-  // }
-  //
-  // onSubmit(createEquipment: FormGroup){
-  //   console.log(createEquipment.value);
-  //   const nameImage = this.getCurrentDateTime() + this.imgCreate.name;
-  //   const fileRef = this.storage.ref(nameImage);
-  //
-  //   // chưa set name khi up firebase
-  //   this.storage.upload(nameImage, this.imgCreate).snapshotChanges().pipe(
-  //     finalize(() => {
-  //       fileRef.getDownloadURL().subscribe((url) => {
-  //         this.createEquipment.patchValue({imageUrl: url});
-  //         this.getAdd();
-  //       });
-  //     })
-  //   ).subscribe();
-  // }
-  // showImage($event: any) {
-  //   this.imgCreate = $event.target.files[0];
-  // }
+
   onSubmit() {
     this.equipmentManagerService.addNewEquipment(this.createEquipment.value).subscribe(data => {
       this.router.navigateByUrl('/list-equipment');

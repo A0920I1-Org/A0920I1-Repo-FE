@@ -61,7 +61,7 @@ export class UpdateEquipmentComponent implements OnInit {
     return formatDate(new Date(), 'dd-MM-yyyyhhmmssa', 'en-US');
   }
 
-   onSubmit(updateEquipment: FormGroup){
+  onSubmit(updateEquipment: FormGroup){
     console.log(updateEquipment.value);
     const nameImage = this.getCurrentDateTime() + this.imgUpdate.name;
     const fileRef = this.storage.ref(nameImage);
@@ -80,4 +80,4 @@ export class UpdateEquipmentComponent implements OnInit {
     this.imgUpdate = $event.target.files[0];
   }
 
- }
+}
