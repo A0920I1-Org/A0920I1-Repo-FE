@@ -31,7 +31,7 @@ export class ListFeedbackadminComponent implements OnInit {
   ngOnInit(): void {
     this.feedbackService.findAll().subscribe(data => {
       this.feedback = data
-
+    console.log(data);
     });
   }
 
@@ -47,5 +47,13 @@ export class ListFeedbackadminComponent implements OnInit {
         this.ngOnInit();
       });
     });
+  }
+
+  actionHandle(id: number) {
+    if(id === 1){
+      this.router.navigateByUrl('/update-feedback-technical/'+ id);
+    }else if(id === 2){
+      this.router.navigateByUrl('/handle-feedback/'+ id);
+    }
   }
 }

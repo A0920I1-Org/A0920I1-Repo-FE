@@ -78,7 +78,6 @@ export class UpdateEmployeeComponent implements OnInit {
   getStaffById(id: number) {
     this.employeeService.getByEmployeeId(id).subscribe((data) => {
       this.employeeUpdate = data;
-      console.log(data);
       this.initForm();
       // console.log(this.staffUpdate.imageURL);
       // console.log(this.staffUpdate.account.username);

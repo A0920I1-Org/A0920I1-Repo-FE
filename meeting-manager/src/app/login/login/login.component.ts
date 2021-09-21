@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthenticationService} from '../../service/authentication.service';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
@@ -13,6 +13,10 @@ export class LoginComponent implements OnInit {
   submitted = false;
   showErrorMessage = false;
   loginForm: FormGroup;
+  // @Input('incomingmsg') newrandmsg: string;
+
+  message: string;
+  editedmsg: string;
 
   constructor(private router: Router, private authService: AuthenticationService, private fb: FormBuilder) {
   }
@@ -31,36 +35,21 @@ export class LoginComponent implements OnInit {
   //kiem tra username va password - [TuHC]
   checkLogin() {
     this.submitted = true;
-
-    //neu khong dung format du lieu thi ko gui request ve backend - [TuHC]
-    if (this.loginForm.invalid) {
+    if (!this.loginForm.valid) {
       return;
+    } else {
+      //dung format du lieu, gui ve backend kiem tra username va password - [TuHC]
+      this.authService.authenticate(this.loginForm.get('username').value, this.loginForm.get('password').value).subscribe(
+        data => {
+          // this.authService.editMsg(this.loginForm.get('username').value);
+          this.router.navigateByUrl('/list-meeting');/
+          this.invalidLogin = false;
+        },
+        error => {
+          this.invalidLogin = true;
+          this.showErrorMessage = true;
+        }
+      );
     }
-    //dung format du lieu, gui ve backend kiem tra username va password - [TuHC]
-    this.authService.authenticate(this.loginForm.get('username').value, this.loginForm.get('password').value).subscribe(
-      data => {
-        this.router.navigateByUrl('/list-meeting');
-        this.invalidLogin = false;
-      },
-      error => {
-        this.invalidLogin = true;
-        this.showErrorMessage = true;
-      }
-    );
-
-  }
-
-
-
-
-  validateAllFields(formGroup: FormGroup) {
-    Object.keys(formGroup.controls).forEach(field => {
-      const control = formGroup.get(field);
-      if (control instanceof FormControl) {
-        control.markAsTouched({onlySelf: true});
-      } else if (control instanceof FormGroup) {
-        this.validateAllFields(control);
-      }
-    });
   }
 }

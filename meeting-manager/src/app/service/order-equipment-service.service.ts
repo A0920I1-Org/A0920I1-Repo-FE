@@ -7,7 +7,7 @@ import {OrderEquipment} from '../model/entity/OrderEquipment';
   providedIn: 'root'
 })
 export class OrderEquipmentServiceService {
-  private readonly API_ORDER_EQUIPMENT = 'http://localhost:8080/api';
+  private readonly API_ORDER_EQUIPMENT = 'http://localhost:8081/api';
 
   constructor(private httpClient: HttpClient) { }
 

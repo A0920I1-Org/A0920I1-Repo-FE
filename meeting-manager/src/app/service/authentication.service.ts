@@ -1,8 +1,9 @@
-import {Injectable} from '@angular/core';
+import {EventEmitter, Injectable, Output} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {Account} from '../model/entity/Account';
+import {BehaviorSubject, Observable, Subject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +11,20 @@ import {Account} from '../model/entity/Account';
 export class AuthenticationService {
   account: Account;
   username: string;
+  // private currentUser: BehaviorSubject<any>;
+  // newUsername: Observable<any>;
 
-
-  loginURL = 'http://localhost:8080/api';
+  loginURL = 'http://localhost:8081/api';
 
   constructor(private httpClient: HttpClient, private jwtHelper: JwtHelperService) {
+    // if (this.isUserLoggedIn) {
+    //   const token = sessionStorage.getItem('token');
+    //   const tokenPayload = this.jwtHelper.decodeToken(token);
+    //
+    //   let username = tokenPayload.sub;
+    //   this.currentUser = new BehaviorSubject<any>(username);
+    //   this.newUsername = this.currentUser.asObservable();
+    // }
   }
 
   //sau khi xac thuc thanh cong, luu username, token va role vao sessionStorage - [TuHC]
@@ -24,15 +34,22 @@ export class AuthenticationService {
         userData => {
           let tokenStr = 'Bearer ' + userData.token;
           sessionStorage.setItem('token', tokenStr);
+
+          const token = sessionStorage.getItem('token');
+          const tokenPayload = this.jwtHelper.decodeToken(token);
+          let username = tokenPayload.sub;
           return userData;
         })
     );
   }
 
+  // editMsg(message) {
+  //   this.currentUser.next(message);
+  // }
+
 // kiem tra da login hay chua - [TuHC  ]
   isUserLoggedIn() {
     const token = sessionStorage.getItem('token');
-
     if (token) {
       // decode the token to get its payload
       const tokenPayload = this.jwtHelper.decodeToken(token);
@@ -40,8 +57,7 @@ export class AuthenticationService {
       // console.log(!(user === null))
       return !(user === null);
     }
-    return;
-    false;
+    return false;
   }
 
 //chuc nang logout - [TuHC]
@@ -68,5 +84,5 @@ export class AuthenticationService {
     // console.log(`${this.loginURL + '/findAccount'}?username=${username}`);
     return this.httpClient.get<Account>(`${this.loginURL + '/findAccount'}?username=${username}`);
   }
-}
 
+}

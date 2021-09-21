@@ -106,7 +106,7 @@ export class CreateEmployeeComponent implements OnInit {
     }else {
       this.employeeService.createEmployee(this.employeeCreateForm.value).subscribe(
         () => {
-          this.router.navigateByUrl('/empList').then(
+          this.router.navigateByUrl('/emp-list').then(
             r => this.toastrService.success(
               'Tạo mới thành công',
               'Thông báo',

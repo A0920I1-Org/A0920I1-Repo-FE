@@ -16,11 +16,11 @@ import {OrderEquipment} from '../model/entity/OrderEquipment';
 
 export class MeetingRoomService {
 
-  private readonly API_MEETINGROOM_URL = 'http://localhost:8080/api/meeting-room';
-  private readonly API_MEETINGROOM_AREA_URL = 'http://localhost:8080/api/meeting-room/area';
-  private readonly API_TPYE_MEETINGROOM_URL = 'http://localhost:8080/api/meeting-room/typeMeetingRoom';
-  private readonly API_MEETINGROOM_STATUS_URL = 'http://localhost:8080/api/meeting-room/roomStatus';
-  private readonly API_EQUIPMENT_URL = 'http://localhost:8080/api/meeting-room/equipment';
+  private readonly API_MEETINGROOM_URL = 'http://localhost:8081/api/meeting-room';
+  private readonly API_MEETINGROOM_AREA_URL = 'http://localhost:8081/api/meeting-room/area';
+  private readonly API_TPYE_MEETINGROOM_URL = 'http://localhost:8081/api/meeting-room/typeMeetingRoom';
+  private readonly API_MEETINGROOM_STATUS_URL = 'http://localhost:8081/api/meeting-room/roomStatus';
+  private readonly API_EQUIPMENT_URL = 'http://localhost:8081/api/meeting-room/equipment';
 
 
   httpOptions = {

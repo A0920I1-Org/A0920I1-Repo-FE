@@ -11,7 +11,7 @@ import {Account} from "../model/entity/Account";
 })
 export class FeedbackService {
 
-  private baseURL = 'http://localhost:8080/api/feedback';
+  private baseURL = 'http://localhost:8081/api/feedback';
 
   constructor(private  httpClient: HttpClient) {
   }
@@ -35,7 +35,6 @@ export class FeedbackService {
 
   }
   updateFeedback(feedback: FeedBack): Observable<FeedBack>{
-    console.log(this.baseURL + '/update/' + feedback.id, feedback);
     return this.httpClient.patch<FeedBack>(this.baseURL + '/update/' + feedback.id, feedback);
   }
   //VietNT delete feedback

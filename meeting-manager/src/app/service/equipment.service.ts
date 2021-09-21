@@ -7,7 +7,7 @@ import {Equipment} from '../model/entity/Equipment';
   providedIn: 'root'
 })
 export class EquipmentService {
-  private readonly API_URL = 'http://localhost:8080/meeting/equipment';
+  private readonly API_URL = 'http://localhost:8081/meeting/equipment';
 
   constructor(private httpClient: HttpClient) {
   }

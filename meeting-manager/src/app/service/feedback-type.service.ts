@@ -8,7 +8,7 @@ import {FeedBackType} from '../model/entity/FeedBackType';
 })
 export class FeedbackTypeService {
   /*VietNT Code*/
-  private baseURL = 'http://localhost:8080/api/public/feedbacktypelist';
+  private baseURL = 'http://localhost:8081/api/public/feedbacktypelist';
 
   constructor(private  http: HttpClient) {
   }

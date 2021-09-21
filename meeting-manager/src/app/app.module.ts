@@ -63,7 +63,9 @@ import {RegisterMeetingComponent} from './client/employee/meeting/register-histo
 import {FeedbackComponent} from './client/employee/client-feedback/feedback/feedback.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HomeComponent } from './home/home.component';
-
+import {MatNativeDateModule} from "@angular/material/core";
+import {ListMeetingComponentAdmin} from "./admin/meeting-room/list-meeting/list-meeting.component";
+import {DeleteEquipmentComponent} from "./admin/equipment-manager/delete-equipment/delete-equipment.component";
 
 
 @NgModule({
@@ -101,7 +103,9 @@ import { HomeComponent } from './home/home.component';
     RegisterMeetingComponent,
     FeedbackComponent,
     PageNotFoundComponent,
-    HomeComponent
+    HomeComponent,
+    DeleteEquipmentComponent,
+    ListMeetingComponentAdmin
   ],
   imports: [
     BrowserModule,
@@ -137,6 +141,8 @@ import { HomeComponent } from './home/home.component';
     ChartModule,
     HttpClientModule,
     MatInputModule,
+    MatNativeDateModule,
+
   ],
   providers: [{
     provide:HTTP_INTERCEPTORS, useClass:BasicAuthHttpInterceptorService, multi:true,

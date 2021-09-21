@@ -8,12 +8,11 @@ import {Statistic} from '../model/dto/Statistic';
 })
 export class StatisticalService {
   // AnhLT
-  private readonly API_URL = 'http://localhost:8080/api/statistical';
+  private readonly API_URL = 'http://localhost:8081/api/statistical';
   constructor(private httpClient: HttpClient) {
   }
   // AnhLT
   public statisticByDate(statistic: Statistic): Observable<OrderMeeting[]>{
-    console.log(this.API_URL + '/statisticByDate');
     return this.httpClient.put<OrderMeeting[]>(this.API_URL + '/statistic-by-date', statistic);
   }
   // AnhLT

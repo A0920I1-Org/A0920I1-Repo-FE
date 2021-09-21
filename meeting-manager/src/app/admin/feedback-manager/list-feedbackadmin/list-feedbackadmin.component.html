@@ -1,6 +1,6 @@
 <div id="wrap">
   <div id="result" class="row table-responsive">
-    <h1 id="title" style="text-align: left; margin-top: 50px ; margin-bottom: 50px"><b>Danh sách phản hồi</b></h1>
+    <h2 id="title" style="text-align: center; margin-top: 50px;font-size: 40px; margin-bottom: 50px">Danh sách phản hồi</h2>
     <div class="table-responsive">
       <table class="table table-hover" style="text-align: center">
         <thead class="thead-dark">
@@ -26,10 +26,10 @@
           <th scope="row">{{feed.meetingRoom.name}}</th>
           <th scope="row">{{feed.description}}</th>
           <th scope="row">{{feed.feedBackType.name}}</th>
-          <th scope="row" *ngIf="feed.handle ">{{feed.handle}}</th>
-          <th scope="row" *ngIf="!feed.handle "> {{feed.handle}}</th>
+          <th scope="row" *ngIf="feed.IsHandle ">{{feed.IsHandle}}</th>
+          <th scope="row" *ngIf="!feed.IsHandle "> {{feed.IsHandle}}</th>
           <td>
-            <button class="btn btn-primary  m-md-3 "  [routerLink]="['/handle-feedback/',feed.id]">Xử lý </button>
+            <button class="btn btn-primary  m-md-3 " (click)="actionHandle(feed.feedBackType.id)">Xử lý </button>
             <button (click)="openDialogDelete(feed.id)" class="btn btn-danger">Xóa</button>
           </td>
         </tr>

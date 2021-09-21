@@ -26,6 +26,7 @@ import {FeedbackComponent} from './client/employee/client-feedback/feedback/feed
 import {CreateEmployeeComponent} from './admin/employee-manager/create-employee/create-employee.component';
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import {HomeComponent} from "./home/home.component";
+import {ListMeetingComponentAdmin} from "./admin/meeting-room/list-meeting/list-meeting.component";
 
 const routes: Routes = [
   //TuHC
@@ -42,6 +43,7 @@ const routes: Routes = [
   {path: 'update-equipment/:id', component: UpdateEquipmentComponent, canActivate:[AuthGuardService], data: {expectedRole: ['ROLE_ADMIN']}},
 
   {path: 'list-meeting', component: ListMeetingComponent, canActivate:[AuthGuardService], data: {expectedRole: ['ROLE_ADMIN', 'ROLE_USER']}},
+  {path: 'list-meeting-admin', component: ListMeetingComponentAdmin, canActivate:[AuthGuardService], data: {expectedRole: ['ROLE_ADMIN']}},
   {path: 'update-meeting/:id', component: UpdateMeetingComponent, canActivate:[AuthGuardService], data: {expectedRole: ['ROLE_ADMIN']}},
   {path: 'create-meeting', component: CreateMeetingComponent, canActivate:[AuthGuardService], data: {expectedRole: ['ROLE_ADMIN']}},
   {path: 'show-details-meeting/:id', component: DetailMeetingComponent, canActivate:[AuthGuardService], data: {expectedRole: ['ROLE_ADMIN', 'ROLE_USER']}},
@@ -49,9 +51,9 @@ const routes: Routes = [
   {path: 'statistic', component: StatisticalComponent, canActivate:[AuthGuardService], data: {expectedRole: ['ROLE_ADMIN']}},
   {path: 'register-history/account/:idAccount', component: RegisterMeetingComponent, canActivate:[AuthGuardService], data: {expectedRole: ['ROLE_USER']}},
   {path: 'delete-register-meeting/:idOrder', component: DeleteMeetingComponent, canActivate:[AuthGuardService], data: {expectedRole: ['ROLE_USER']}},
-  {path: 'register-history/meeting-room/:idMeetingRoom', component: RegisterMeetingComponent, canActivate:[AuthGuardService], data: {expectedRole: ['ROLE_ADMIN']}},
+  {path: 'register-history/meeting-room/:idMeetingRoom', component: RegisterMeetingComponent, canActivate:[AuthGuardService], data: {expectedRole: ['ROLE_ADMIN', 'ROLE_USER']}},
 
-  {path: 'feedback-meeting-room' , component : FeedbackComponent, canActivate:[AuthGuardService], data: {expectedRole: ['ROLE_ADMIN', 'ROLE_USER']}},
+  {path: 'create-feedback-meeting-room' , component : FeedbackComponent, canActivate:[AuthGuardService], data: {expectedRole: ['ROLE_ADMIN', 'ROLE_USER']}},
   {path: 'list-feedback-user', component: FeedbackListComponent, canActivate:[AuthGuardService], data: {expectedRole: ['ROLE_ADMIN', 'ROLE_USER']}},
   {path: 'list-feedback-admin', component: ListFeedbackadminComponent, canActivate:[AuthGuardService], data: {expectedRole: ['ROLE_ADMIN']}},
   {path: 'handle-feedback/:idFeedback', component: HandlebarsMeetinghouseComponent, canActivate:[AuthGuardService], data: {expectedRole: ['ROLE_ADMIN']}},
