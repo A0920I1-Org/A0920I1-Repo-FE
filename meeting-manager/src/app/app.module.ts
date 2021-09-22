@@ -66,6 +66,7 @@ import { HomeComponent } from './home/home.component';
 import {MatNativeDateModule} from "@angular/material/core";
 import {ListMeetingComponentAdmin} from "./admin/meeting-room/list-meeting/list-meeting.component";
 import {DeleteEquipmentComponent} from "./admin/equipment-manager/delete-equipment/delete-equipment.component";
+import {SchedulerComponent} from './scheduler/scheduler.component';
 
 @NgModule({
   declarations: [
@@ -104,7 +105,8 @@ import {DeleteEquipmentComponent} from "./admin/equipment-manager/delete-equipme
     PageNotFoundComponent,
     HomeComponent,
     DeleteEquipmentComponent,
-    ListMeetingComponentAdmin
+    ListMeetingComponentAdmin,
+    SchedulerComponent
   ],
   imports: [
     BrowserModule,
@@ -140,7 +142,7 @@ import {DeleteEquipmentComponent} from "./admin/equipment-manager/delete-equipme
     ChartModule,
     HttpClientModule,
     MatInputModule,
-    MatNativeDateModule,
+    MatNativeDateModule
 
   ],
   providers: [{
@@ -152,7 +154,7 @@ import {DeleteEquipmentComponent} from "./admin/equipment-manager/delete-equipme
     DataLabelService,
     TooltipService,
     ColumnSeriesService,
-    ToastrService,
+    ToastrService
   ],
 
   bootstrap: [AppComponent]

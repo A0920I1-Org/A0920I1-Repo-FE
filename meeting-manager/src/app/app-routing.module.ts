@@ -27,11 +27,13 @@ import {CreateEmployeeComponent} from './admin/employee-manager/create-employee/
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import {HomeComponent} from "./home/home.component";
 import {ListMeetingComponentAdmin} from "./admin/meeting-room/list-meeting/list-meeting.component";
+import {SchedulerComponent} from './scheduler/scheduler.component';
 
 const routes: Routes = [
   //TuHC
   {path: 'login', component: LoginComponent},
   {path: 'logout', component: LogoutComponent, canActivate:[AuthGuardService], data: {expectedRole: ['ROLE_ADMIN', 'ROLE_USER']}},
+  {path: 'scheduler', component: SchedulerComponent, canActivate:[AuthGuardService], data: {expectedRole: ['ROLE_ADMIN', 'ROLE_USER']}},
 
   {path: 'emp-list', component: ListEmployeeComponent, canActivate:[AuthGuardService], data: {expectedRole: ['ROLE_ADMIN']}},
   {path: 'emp-create', component: CreateEmployeeComponent, canActivate:[AuthGuardService], data: {expectedRole: ['ROLE_ADMIN']}},
@@ -62,6 +64,7 @@ const routes: Routes = [
 
   {path: '', component: HomeComponent},
   {path: '**', component: PageNotFoundComponent, canActivate:[AuthGuardService], data: {expectedRole: ['ROLE_ADMIN', 'ROLE_USER']}}
+
 
 ];
 

@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthenticationService} from '../../service/authentication.service';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {Account} from '../../model/entity/Account';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
   submitted = false;
   showErrorMessage = false;
   loginForm: FormGroup;
-  username: string;
+  account: Account;
 
   constructor(private router: Router, private authService: AuthenticationService, private fb: FormBuilder) {
   }
@@ -24,9 +25,9 @@ export class LoginComponent implements OnInit {
       password: this.fb.control('', [Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,32}$')])
     });
 
-    if(this.authService.currentUserValue){
-      this.router.navigateByUrl('http://localhost:4200/')
-    }
+    this.authService.newUser.subscribe(data =>{
+      this.account = data;
+    })
   }
 
   get f() {
@@ -42,9 +43,6 @@ export class LoginComponent implements OnInit {
       //dung format du lieu, gui ve backend kiem tra username va password - [TuHC]
       this.authService.authenticate(this.loginForm.get('username').value, this.loginForm.get('password').value).subscribe(
         data => {
-          this.authService.newUsername.subscribe(data =>{
-            this.username = this.loginForm.get('username').value;
-          });
           this.router.navigateByUrl('/list-meeting');
           this.invalidLogin = false;
         },

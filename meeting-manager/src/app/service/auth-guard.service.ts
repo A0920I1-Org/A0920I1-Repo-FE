@@ -18,7 +18,7 @@ export class AuthGuardService implements CanActivate{
     // on the data property
     const expectedRole = route.data.expectedRole;
     // console.log(expectedRole);
-    const token = sessionStorage.getItem('token');
+    const token = localStorage.getItem('token');
     // decode the token to get its payload
     const tokenPayload = this.jwtHelper.decodeToken(token);
     // console.log(tokenPayload.role);
@@ -27,5 +27,6 @@ export class AuthGuardService implements CanActivate{
       return false;
     }
     return true;
+
     }
 }

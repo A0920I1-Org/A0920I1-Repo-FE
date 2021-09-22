@@ -130,10 +130,6 @@
   },
   "defaultProject": "meeting-manager",
   "cli": {
-    "analytics": false,
-
-    "analytics": "1141913a-46c4-446c-bf2d-8204db785cb1",
     "analytics": "be1afd35-eb80-4117-a268-f1ed9f970e73"
-
   }
 }

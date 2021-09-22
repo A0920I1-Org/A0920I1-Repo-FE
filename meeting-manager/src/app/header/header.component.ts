@@ -13,21 +13,20 @@ export class HeaderComponent implements OnInit {
   account: Account;
   idAccount: number;
 
+
   constructor(public authService: AuthenticationService, private router: Router) {
+    this.authService.newUser.subscribe(data =>{
+      if(data != null) {
+        this.account = data;
+        this.username = this.account.username;
+        this.idAccount = this.account.id;
+      }
+    });
   }
 
 // - [TuHC]
   ngOnInit(): void {
-    if (this.authService.isUserLoggedIn()) {
-      this.authService.newUsername.subscribe(data => {
-        this.authService.findAccountByUser().subscribe(data => {
-          this.account = data;
-          this.idAccount = this.account.id;
-          this.username = this.account.username;
-        });
 
-      });
-    }
   }
 
   logout() {

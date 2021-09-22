@@ -11,12 +11,14 @@ import {BehaviorSubject, Observable, Subject} from 'rxjs';
 export class AuthenticationService {
   account: Account;
   username: string;
-  private currentUser = new BehaviorSubject<any>('');
-  newUsername = this.currentUser.asObservable();
+  currentUser: BehaviorSubject<any>;
+  newUser: Observable<any>;
 
   loginURL = 'http://localhost:8080/api';
 
   constructor(private httpClient: HttpClient, private jwtHelper: JwtHelperService) {
+    this.currentUser = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('account')));
+    this.newUser = this.currentUser.asObservable();
   }
 
   //sau khi xac thuc thanh cong, luu username, token va role vao sessionStorage - [TuHC]
@@ -25,17 +27,21 @@ export class AuthenticationService {
       map(
         userData => {
           let tokenStr = 'Bearer ' + userData.token;
-          sessionStorage.setItem('token', tokenStr);
+          localStorage.setItem('token', tokenStr);
 
-          const token = sessionStorage.getItem('token');
+          const token = localStorage.getItem('token');
           const tokenPayload = this.jwtHelper.decodeToken(token);
           let username = tokenPayload.sub;
-          this.currentUser.next(username);
+          this.findAccountByUser(username).subscribe(data =>{
+            this.account = data;
+            this.currentUser.next(this.account);
+            localStorage.setItem("account", JSON.stringify(this.account));
+          })
+
           return userData;
         })
     );
   }
-  //lay username hien tai
   public get currentUserValue() {
     return this.currentUser.value;
   }
@@ -43,7 +49,7 @@ export class AuthenticationService {
 
 // kiem tra da login hay chua - [TuHC  ]
   isUserLoggedIn() {
-    const token = sessionStorage.getItem('token');
+    const token = localStorage.getItem('token');
     if (token) {
       // decode the token to get its payload
       const tokenPayload = this.jwtHelper.decodeToken(token);
@@ -56,13 +62,13 @@ export class AuthenticationService {
 
 //chuc nang logout - [TuHC]
   logOut() {
-    sessionStorage.clear();
+    localStorage.clear();
   }
 
 
 // //kiem tra role co phai admin hay ko, neu co hien thi man hinh admin va nguoc lai - [TuHC]
   checkRoleAdmin() {
-    const token = sessionStorage.getItem('token');
+    const token = localStorage.getItem('token');
     // giai ma token de lay thong tin
     const tokenPayload = this.jwtHelper.decodeToken(token);
     let roleAdmin = tokenPayload.role;
@@ -70,10 +76,7 @@ export class AuthenticationService {
   }
 
 // //lay account bang username - [TuHC]
-  findAccountByUser() {
-    const token = sessionStorage.getItem('token');
-    const tokenPayload = this.jwtHelper.decodeToken(token);
-    let username = tokenPayload.sub;
+  findAccountByUser(username: string) {
     return this.httpClient.get<Account>(`${this.loginURL + '/findAccount'}?username=${username}`);
   }
 }
