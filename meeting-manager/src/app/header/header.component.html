@@ -14,7 +14,7 @@
         <div class="site-logo ">
           <a routerLink="" class="text-black"><span class="text-white">CODEGYM</span></a>
         </div>
-        <div class="col-11">
+        <div class="col-10">
           <nav class="site-navigation text-right ml-auto " role="navigation">
             <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block"
                 *ngIf="(authService.isUserLoggedIn() && authService.checkRoleAdmin())">
@@ -47,19 +47,19 @@
                 <a class="nav-link">Phản hồi</a>
                 <ul class="dropdown arrow-top">
                   <li><a routerLink="/create-feedback-meeting-room" class="nav-link">Tạo phản hồi phòng họp</a></li>
-                  <li><a routerLink="/add-feed-technical" class="nav-link">Tạo hản Hồi Hệ Thống</a></li>
+                  <li><a routerLink="/add-feed-technical" class="nav-link">Tạo phản Hồi Hệ Thống</a></li>
                   <li><a routerLink="/list-feedback-user" class="nav-link">Danh Sách Phản Hồi</a></li>
                 </ul>
               </li>
             </ul>
           </nav>
         </div>
-        <div class="col-1" style="padding: 0px">
+        <div class="col-2" style="padding: 0px">
           <nav class="site-navigation text-right ml-auto " role="navigation">
             <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
               <li><a routerLink="/login" class="" *ngIf="!authService.isUserLoggedIn()">Đăng nhập</a></li>
               <li class="has-children" *ngIf="authService.isUserLoggedIn()">
-                <a href="#" class="nav-link" style="margin: 0px">Xin chào</a>
+                <p style="margin: 0px">{{account.fullname}}</p>
                 <ul class="dropdown arrow-top">
                   <li><a href="#" class="nav-link">Thông tin</a></li>
                   <li><a routerLink="/logout" class="nav-link">Đăng xuất</a></li>

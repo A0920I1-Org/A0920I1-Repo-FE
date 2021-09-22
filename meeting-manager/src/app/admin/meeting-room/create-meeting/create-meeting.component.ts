@@ -74,7 +74,7 @@ export class CreateMeetingComponent implements OnInit {
   createMeetingRoom = this.form.group({
     name: ['', [Validators.required, Validators.pattern(/^[^`|\~|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\+|\=|\[|\{|\]|\}|\||\\|\'|\<|\,|\.|\>|\?|\/|\""|\;|\:|0-9]*$/),
       Validators.maxLength(50), Validators.minLength(4)]],
-    floors: ['', [Validators.required, Validators.pattern('^[0-9]{1,10}$'),
+    floors: ['', [Validators.required, Validators.pattern('^[1-9]{1,10}$'),
       Validators.maxLength(10), Validators.minLength(1)]],
     area: ['', [Validators.required]],
     roomStatus: ['', [Validators.required]],
@@ -96,13 +96,8 @@ export class CreateMeetingComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.inputImage != null) {
-      this.toastService.error("Bạn chưa chọn ảnh phòng họp.", "Thông báo lỗi");
-      this.router.navigateByUrl('/create-meeting');
-    } else {
       const nameImage = this.getCurrentDateTime() + this.inputImage.name;
       const fileRef = this.storage.ref(nameImage);
-
 
       this.storage.upload(nameImage, this.inputImage).snapshotChanges().pipe(
         finalize(() => {
@@ -110,11 +105,16 @@ export class CreateMeetingComponent implements OnInit {
             this.createMeetingRoom.patchValue({imageUrl: url});
 
             this.meetingService.addMeetingRoom(this.createMeetingRoom.value).subscribe(() => {
-              this.router.navigateByUrl('/list-meeting').then(e => this.toastService.success("Thêm mới thành công!", "Thông báo"))
+              this.router.navigateByUrl('/list-meeting-admin').then(e => this.toastService.success("Thêm mới thành công!", "Thông báo"))
             }, error => this.toastService.error("Lỗi thêm mới!", "Thông báo"))
           })
         })
       ).subscribe();
+    // @ts-ignore
+    if(this.createMeetingRoom.get('imageUrl') === this.defaultImage){
+      this.toastService.error("Bạn chưa chọn ảnh phòng họp.", "Thông báo lỗi");
+      this.router.navigateByUrl('/create-meeting-admin');
+      this.createMeetingRoom.setValue(this.createMeetingRoom.value);
     }
   }
 

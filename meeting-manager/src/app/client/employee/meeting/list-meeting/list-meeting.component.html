@@ -87,24 +87,24 @@
               </tr>
               </thead>
               <tbody>
-              <tr
-                *ngFor="let meetingRoom of meetingRoomList | paginate: {itemsPerPage:10, currentPage: page}; let i = index"
+              <tr *ngFor="let meetingRoom of meetingRoomList| paginate: {itemsPerPage:10, currentPage: page}; let i = index"
                 class="col-lg-4 border text-center mt-4 p-1">
-
-                <td class="text-left"> {{i + 1}}</td>
-                <td class="text-left">{{meetingRoom.name}}</td>
-                <td class="text-left">{{meetingRoom.floors }}</td>
-                <td class="text-left">{{meetingRoom.area.name |titlecase}}</td>
-                <td class="text-left">{{meetingRoom.roomStatus.name}}</td>
-                <td class="text-left">{{meetingRoom.typeMeetingRoom.name}}</td>
-                <td class="text-left">{{meetingRoom.typeMeetingRoom.capacity}}</td>
-                <td class="text-center">
-                  <div class="row justify-content-around">
-                  <a [routerLink]="['/show-details-meeting/',meetingRoom.id]">
-                    <i style="font-size: 20px;" class="fa fa-info-circle" aria-hidden="true"></i>
-                  </a>
-                  </div>
-                </td>
+                <ng-container *ngIf="meetingRoom.roomStatus.id == 2">
+                  <td class="text-left"> {{i + 1}}</td>
+                  <td class="text-left">{{meetingRoom.name}}</td>
+                  <td class="text-left">{{meetingRoom.floors }}</td>
+                  <td class="text-left">{{meetingRoom.area.name |titlecase}}</td>
+                  <td class="text-left">{{meetingRoom.roomStatus.name}}</td>
+                  <td class="text-left">{{meetingRoom.typeMeetingRoom.name}}</td>
+                  <td class="text-left">{{meetingRoom.typeMeetingRoom.capacity}}</td>
+                  <td class="text-center">
+                    <div class="row justify-content-around">
+                    <a [routerLink]="['/show-details-meeting/',meetingRoom.id]">
+                      <i style="font-size: 20px;" class="fa fa-info-circle" aria-hidden="true"></i>
+                    </a>
+                    </div>
+                  </td>
+                </ng-container>
               </tr>
               </tbody>
             </table>

@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
       this.authService.authenticate(this.loginForm.get('username').value, this.loginForm.get('password').value).subscribe(
         data => {
           // this.authService.editMsg(this.loginForm.get('username').value);
-          this.router.navigateByUrl('/list-meeting');/
+          this.router.navigateByUrl('/list-meeting');
           this.invalidLogin = false;
         },
         error => {

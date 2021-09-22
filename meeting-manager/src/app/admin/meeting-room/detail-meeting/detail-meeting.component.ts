@@ -4,7 +4,6 @@ import {FormBuilder} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
 import {MeetingRoom} from '../../../model/entity/MeetingRoom';
 import {OrderEquipment} from '../../../model/entity/OrderEquipment';
-import {EquipmentManagerService} from "../../../service/equipment-manager.service";
 import {OrderEquipmentServiceService} from "../../../service/order-equipment-service.service";
 
 
@@ -15,16 +14,17 @@ import {OrderEquipmentServiceService} from "../../../service/order-equipment-ser
 })
 export class DetailMeetingComponent implements OnInit {
 
+  meetingDetails: MeetingRoom;
+  numberOfUses: '10 lần';
+  equipmentList: OrderEquipment[];
+  images = ['../../assets/images/meeting-room.jpeg','../../assets/images/meeting-room1.jpeg','../../assets/images/meeting-room3.jpeg'];
+
   constructor(
     private meetingService: MeetingRoomService,
     private equipmentService: OrderEquipmentServiceService,
     private form: FormBuilder,
     private activatedRoute: ActivatedRoute
   ) { }
-
-  meetingDetails: MeetingRoom;
-  numberOfUses: '10 lần';
-  equipmentList: OrderEquipment[];
 
   ngOnInit(): void {
     this.meetingService.findMeetingRoomById(this.activatedRoute.snapshot.params.id).subscribe((data) => {

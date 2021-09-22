@@ -66,6 +66,7 @@ import { HomeComponent } from './home/home.component';
 import {MatNativeDateModule} from "@angular/material/core";
 import {ListMeetingComponentAdmin} from "./admin/meeting-room/list-meeting/list-meeting.component";
 import {DeleteEquipmentComponent} from "./admin/equipment-manager/delete-equipment/delete-equipment.component";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -142,6 +143,7 @@ import {DeleteEquipmentComponent} from "./admin/equipment-manager/delete-equipme
     HttpClientModule,
     MatInputModule,
     MatNativeDateModule,
+    NgbModule,
 
   ],
   providers: [{

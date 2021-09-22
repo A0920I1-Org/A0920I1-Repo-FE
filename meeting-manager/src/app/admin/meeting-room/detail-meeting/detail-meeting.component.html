@@ -73,7 +73,7 @@
               </div>
               <div class="col-sm-7 text-secondary" style="font-size: 20px">
                 <ul *ngFor="let items of equipmentList">
-                  <li>{{items.quantity}}, {{items.equipment.name}}</li>
+                  <li>{{items.equipment.name}}: {{items.quantity}}</li>
                 </ul>
               </div>
             </div>
@@ -89,16 +89,33 @@
 
       <div class="col-md-8 p-3">
         <div class="row">
+          <div class="col-sm-12 justify-content-center" style="padding-bottom: 100px; padding-left: 50px">
+            <ngb-carousel *ngIf="images">
+              <ng-template ngbSlide>
+                <div class="picsum-img-wrapper">
+                  <img [src]="meetingDetails.imageUrl" style="width: 680px" alt="Random first slide">
+                </div>
+                <div class="carousel-caption">
+                  <h3>Phòng họp {{meetingDetails.name}}</h3>
+                  <p></p>
+                </div>
+              </ng-template>
+              <ng-template ngbSlide *ngFor="let image of equipmentList">
+                <div class="picsum-img-wrapper">
+                  <img [src]="image.equipment.imageUrl" style="width: 650px">
+                </div>
+                <div class="carousel-caption">
+                  <h3>{{image.equipment.name}}</h3>
 
-          <div class="col-sm-12 justify-content-center" style="padding-bottom: 100px;">
-            <img class="img-meeting" [src]="meetingDetails.imageUrl" >
+                </div>
+              </ng-template>
+
+            </ngb-carousel>
           </div>
-          <div class="col-md-6 mb-3" *ngFor="let equipment of equipmentList" style="padding-left: 30px">
-            <img class="img-meeting2" [src]="equipment.equipment.imageUrl">
-<!--            <div class="row" style="justify-content: center; padding: 20px 0;font-size: 20px">{{equipment.equipment.name}}</div>-->
-          </div>
+
         </div>
       </div>
+
     </div>
   </div>
 </div>
