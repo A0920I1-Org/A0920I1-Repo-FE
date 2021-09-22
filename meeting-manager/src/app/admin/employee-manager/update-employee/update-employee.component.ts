@@ -78,7 +78,6 @@ export class UpdateEmployeeComponent implements OnInit {
   getStaffById(id: number) {
     this.employeeService.getByEmployeeId(id).subscribe((data) => {
       this.employeeUpdate = data;
-      console.log(data);
       this.initForm();
       // console.log(this.staffUpdate.imageURL);
       // console.log(this.staffUpdate.account.username);
@@ -144,7 +143,7 @@ export class UpdateEmployeeComponent implements OnInit {
 
             this.employeeService.update({...this.employeeCreateForm.value, imageUrl: url}).subscribe(
               () => {
-                this.router.navigateByUrl('/empList').then(
+                this.router.navigateByUrl('/emp-list').then(
                   r => this.toastrService.success(
                     'Chỉnh sửa thành công',
                     'Thông báo',
@@ -152,7 +151,7 @@ export class UpdateEmployeeComponent implements OnInit {
                 );
               },
               (error: HttpErrorResponse) => {
-                this.router.navigateByUrl('/empList').then(
+                this.router.navigateByUrl('/emp-list').then(
                   r => this.toastrService.error(
                     'Chỉnh sửa thất bại',
                     'Thông báo',
@@ -165,7 +164,7 @@ export class UpdateEmployeeComponent implements OnInit {
     }else {
       this.employeeService.update(this.employeeCreateForm.value).subscribe(
         () => {
-          this.router.navigateByUrl('/empList').then(
+          this.router.navigateByUrl('/emp-list').then(
             r => this.toastrService.success(
               'Chỉnh sửa thành công',
               'Thông báo',
@@ -173,7 +172,7 @@ export class UpdateEmployeeComponent implements OnInit {
           );
         },
         (error: HttpErrorResponse) => {
-          this.router.navigateByUrl('/empList').then(
+          this.router.navigateByUrl('/emp-list').then(
             r => this.toastrService.error(
               'Chỉnh sửa thất bại',
               'Thông báo',

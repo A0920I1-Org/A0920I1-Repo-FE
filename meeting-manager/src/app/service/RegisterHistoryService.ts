@@ -8,7 +8,7 @@ import {SearchRegistrationDTO} from '../model/dto/SearchRegistrationDTO';
 })
 export class RegisterHistoryService {
   // AnhLT
-  private readonly API_URL = 'http://localhost:8080/registerHistory';
+  private readonly API_URL = 'http://localhost:8081/api/registerHistory';
   constructor(private httpClient: HttpClient) {
   }
   // AnhLT

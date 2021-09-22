@@ -1,12 +1,12 @@
-
 <div id="wrap">
   <section class="content" id="main-container">
     <div class="container-fluid content_style">
+      <h1 id="title" style="text-align: center; font-size: 40px; margin-bottom: 50px; margin-top: 50px;"> <b> DANH SÁCH NGƯỜI DÙNG </b> </h1>
       <div class="card shadow">
         <div class="col-12 card-header d-flex justify-content-between">
           <div class="col-8 mt-auto mb-auto">
             <a style="color: white;" class=" btn btn-primary" [routerLink]="['/emp-create']">
-              <i class="fa fa-plus-circle" aria-hidden="true"></i> Thêm Tài Khoản
+              <i class="fa fa-plus-circle" aria-hidden="true"></i> Thêm Tài Sản
             </a>
           </div>
           <div class="col-4 input-group mt-auto mb-auto">
@@ -62,7 +62,9 @@
                   </a>
                 </td>
                 <td class="text-center"><a href="#">
+                  <span class="material-icons">
                   <i style="font-size: 20px;" class="fa fa-info-circle" aria-hidden="true"></i>
+                </span>
                 </a>
                 </td>
               </tr>
@@ -89,7 +91,7 @@
                 </div>
                 <div class="modal-footer justify-content-center">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy Bỏ</button>
-                  <button (click)="deleteEmployeeById(deleteEmployee?.id)" type="button" class="btn btn-danger">Xóa
+                  <button (click)="deleteEmployeeById(deleteEmployee?.id)" type="button" data-dismiss="modal" class="btn btn-danger">Xóa
                   </button>
                 </div>
               </div>

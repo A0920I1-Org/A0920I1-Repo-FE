@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { EmployeeService } from './../../../service/employeeService';
 import { IEmployeeDto } from './../employeeDTO/EmployeeListDto';
 import { Component, OnInit } from '@angular/core';
@@ -19,7 +20,8 @@ export class ListEmployeeComponent implements OnInit {
   public listEmployee: IEmployeeDto[] = [];
 
 
-  constructor(private employeeService: EmployeeService) { }
+  constructor(private employeeService: EmployeeService,
+              private toastrService: ToastrService) { }
 
   ngOnInit(): void {
     this.getListEmployee();
@@ -28,7 +30,6 @@ export class ListEmployeeComponent implements OnInit {
   getListEmployee(): void {
     this.employeeService.getAllEmployee(this.page).subscribe((data) => {
       this.listEmployee = data.content;
-      console.log(data);
       this.totalPage = data.totalPages;
     });
   }
@@ -36,7 +37,8 @@ export class ListEmployeeComponent implements OnInit {
   paginate(page: number) {
     if (page >= 0 && page < this.totalPage) {
       this.page = page;
-      this.ngOnInit();
+      // this.ngOnInit();
+      this.getListEmployee();
     }
   }
 
@@ -44,7 +46,6 @@ export class ListEmployeeComponent implements OnInit {
     this.employeeService.deleteEmployeeById(id).subscribe(
       (response: void) => {
         this.ngOnInit();
-        console.log(id);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -53,7 +54,6 @@ export class ListEmployeeComponent implements OnInit {
   }
 
   public searchStaffByKey(key: string): void {
-    console.log(key);
     const results: IEmployeeDto[] = [];
     for (const employee of this.listEmployee) {
       if (employee.fullName.toLowerCase().indexOf(key.toLowerCase()) !== -1
@@ -64,6 +64,9 @@ export class ListEmployeeComponent implements OnInit {
     }
     this.listEmployee = results;
     if (results == null || !key) {
+      // this.toastrService.info(
+      //   'Không có kết quả !'
+      // )
       this.getListEmployee();
     }
 

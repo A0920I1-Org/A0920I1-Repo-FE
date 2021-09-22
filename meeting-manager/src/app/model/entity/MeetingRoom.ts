@@ -7,7 +7,7 @@ import {OrderEquipment} from './OrderEquipment';
 export class MeetingRoom {
   id: number;
   name: string;
-  floor: number;
+  floors: number;
   imageUrl: string;
   roomStatus: RoomStatus;
   orderMeetingList: OrderMeeting[];
@@ -22,7 +22,7 @@ export class MeetingRoom {
               orderEquipmentList: OrderEquipment[]) {
     this.id = id;
     this.name = name;
-    this.floor = floor;
+    this.floors = floor;
 
     this.imageUrl = imageUrl;
     this.roomStatus = roomStatus;

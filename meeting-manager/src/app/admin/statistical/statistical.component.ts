@@ -9,6 +9,7 @@ import {MeetingRoomSerivce} from '../../service/MeetingRoomSerivce';
 import {ToastrService} from 'ngx-toastr';
 import {Statistic} from '../../model/dto/Statistic';
 
+
 @Component({
   selector: 'app-statistical',
   templateUrl: './statistical.component.html',
@@ -18,7 +19,7 @@ import {Statistic} from '../../model/dto/Statistic';
     MeetingRoomSerivce]
 })
 export class StatisticalComponent implements OnInit {
-  statistic : Statistic;
+  statistic: Statistic;
   statistics: OrderMeeting[];
   statisticByDateForm: FormGroup;
   statisticByRoomForm: FormGroup;
@@ -35,19 +36,22 @@ export class StatisticalComponent implements OnInit {
   yAxisTotalsOfUses: any;
   usesChartTitle: any;
   isResult = false;
-  isMonth = false;
-  isDateCheckin = false;
-  isDateCheckout = false;
-  // tslint:disable-next-line:ban-types
+
+  isMonth = true;
+  isDateCheckin = true;
+  isDateCheckout = true;
+
+  onInit= true;
+
   public dataCharts: Object[];
   private month: any;
+
   constructor(
     private statisticalService: StatisticalService,
     private typeMeetingRoomService: TypeMeetingRoomService,
     private toastrService: ToastrService,
     private meetingRoomService: MeetingRoomSerivce,
   ) {
-
   }
 
   ngOnInit(): void {
@@ -100,40 +104,40 @@ export class StatisticalComponent implements OnInit {
         this.meetingRooms = data;
       }
     );
-    this.statistic = {
-      dateCheckin : "01-08-2021",
-      dateCheckout: "01-09-2021"
-    };
     this.dataCharts = [];
-    this.statisticalService.statisticByDate(this.statistic).subscribe(
-      (data) => {
-        this.dataCharts = data;
-        this.isResult = true;
-        this.isDateCheckin = true;
-      }
-    )
+
   }
 
   onSubmitDateForm(statisticByDateForm: FormGroup) {
+    this.dataCharts = [];
+    this.isMonth = true;
+    this.isDateCheckin = true;
+    this.isDateCheckout = true;
+    this.dataCharts = [];
+
     console.log(statisticByDateForm.value);
     this.isDateCheckin = statisticByDateForm.get('dateCheckin').value;
     this.isDateCheckout = statisticByDateForm.get('dateCheckout').value;
+
     console.log(this.isDateCheckout);
     // @ts-ignore
-    if (this.isDateCheckin == null || this.isDateCheckout == null || this.isDateCheckout === '' || this.isDateCheckin === ''){
-        this.isDateCheckout = false;
-        this.isMonth = false;
-    }else {
+    if (this.isDateCheckin == null || this.isDateCheckout == null || this.isDateCheckout === '' || this.isDateCheckin === '') {
+      console.log('khong du date');
+      this.isDateCheckout = false;
+      this.isMonth = false
+    } else {
+      console.log('du date');
       this.isDateCheckout = true;
+      this.isMonth = true;
     }
     this.statisticalService.statisticByDate(statisticByDateForm.value).subscribe(
       (data) => {
         console.log(data);
-        if (data.length === 0){
+        if (data.length === 0) {
           this.isResult = false;
           this.statistics = data;
           this.toastrService.info('Không tìm thấy kết quả phù hợp', 'Thông báo');
-        }else {
+        } else {
           this.isResult = true;
           this.statistics = data;
           this.statisticalService.calculateTotalsOfUses().subscribe(
@@ -148,20 +152,25 @@ export class StatisticalComponent implements OnInit {
   }
 
   onSubmitRoomForm(statisticByRoomForm: FormGroup) {
+    this.dataCharts = [];
     console.log(statisticByRoomForm.value);
     this.month = statisticByRoomForm.get('month').value;
+
     console.log(this.month);
-    if (this.month == null){
-      this.isDateCheckin = false;
+    if (this.month == null) {
+      this.isDateCheckout = false;
       this.isMonth = false;
-    }else {this.isMonth = true; }
+    } else {
+      this.isDateCheckout = true;
+      this.isMonth = true;
+    }
     this.statisticalService.statisticByRoom(statisticByRoomForm.value).subscribe(
       (data) => {
-        if (data.length === 0){
+        if (data.length === 0) {
           this.isResult = false;
           this.statistics = data;
           this.toastrService.info('Không tìm thấy kết quả phù hợp', 'Thông báo');
-        }else {
+        } else {
           this.isResult = true;
           console.log(data);
           this.statistics = data;

@@ -67,8 +67,8 @@ export class CreateEmployeeComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
-    this.roles = [{id: 1, name: 'admin'},
-      {id: 2, name: 'user'}];
+    this.roles = [{id: 1, name: 'Admin'},
+      {id: 2, name: 'User'}];
   }
 
   onSubmit() {
@@ -80,7 +80,7 @@ export class CreateEmployeeComponent implements OnInit {
           fileRef.getDownloadURL().subscribe((url) => {
             this.employeeService.createEmployee({...this.employeeCreateForm.value, imageUrl: url}).subscribe(
               () => {
-                this.router.navigateByUrl('/empList').then(
+                this.router.navigateByUrl('/emp-list').then(
                   r => this.toastrService.success(
                     'Tạo mới thành công',
                     'Thông báo',
@@ -106,7 +106,7 @@ export class CreateEmployeeComponent implements OnInit {
     }else {
       this.employeeService.createEmployee(this.employeeCreateForm.value).subscribe(
         () => {
-          this.router.navigateByUrl('/empList').then(
+          this.router.navigateByUrl('/emp-list').then(
             r => this.toastrService.success(
               'Tạo mới thành công',
               'Thông báo',

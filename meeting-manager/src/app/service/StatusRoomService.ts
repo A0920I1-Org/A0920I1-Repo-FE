@@ -6,12 +6,12 @@ import {Injectable} from '@angular/core';
   providedIn: 'root'
 })
 export class StatusRoomService {
-  private readonly API_URL = 'http://localhost:8080/status-room';
+  private readonly API_URL = 'http://localhost:8081/api/status-room';
 
   constructor(private httpClient: HttpClient) {
   }
   // AnhLT
   public getStatusRoom(): Observable<RoomStatus[]>{
-    return this.httpClient.get<RoomStatus[]>(this.API_URL);
+    return this.httpClient.get<RoomStatus[]>(this.API_URL+'/list');
   }
 }

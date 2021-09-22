@@ -1,5 +1,8 @@
-import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthenticationService} from '../service/authentication.service';
+import {Account} from '../model/entity/Account';
+import {Router} from '@angular/router';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -7,18 +10,24 @@ import {AuthenticationService} from '../service/authentication.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit{
-  username = '';
+  username: string;
   account: Account;
-  constructor(public authService: AuthenticationService) { }
+  idAccount: number;
+
+  constructor(public authService: AuthenticationService, private router: Router) {
+  }
 
 // - [TuHC]
   ngOnInit(): void {
-    // if (this.authService.isUserLoggedIn()) {
-    //   this.authService.findAccountByUser().subscribe(data =>{
-    //     this.account = data;
-    //     this.username = this.account.username;
-    //   })
-    // }
+    if (this.authService.isUserLoggedIn()) {
+      this.authService.findAccountByUser().subscribe(data => {
+        this.account = data;
+        this.idAccount = this.account.id;
+      })
+    }
+  }
+  logout() {
+    this.authService.logOut();
   }
 
 }

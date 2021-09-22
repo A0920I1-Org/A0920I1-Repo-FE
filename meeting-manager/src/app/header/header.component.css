@@ -129,7 +129,7 @@ a, a:hover {
   color: white !important;
   display: inline-block;
   text-decoration: none !important;
-  font-size: 16px;
+  font-size: 20px;
 }
 
 .site-navbar .site-navigation .site-menu > li > a:hover {
@@ -718,7 +718,20 @@ a, a:hover {
 
 #nav {
   background: midnightblue;
+  border: none;
 }
+
+.login__aria{
+  display: flex;
+  min-width: 200px;
+  justify-content: center;
+  float: right;
+}
+
+
+
+
+
 /*.fixed {*/
 /*  height: 20px;*/
 /*  line-height: 30px;*/

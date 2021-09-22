@@ -29,8 +29,6 @@ export class FeedbackListComponent implements OnInit {
       console.log(data);
 
     });
-    this.feedbackService.findAllFeedbackType().subscribe(data => {
-      console.log(data);
-    });
+
   }
 }

@@ -14,6 +14,7 @@ export class DetailEquipmentComponent implements OnInit {
   idEquipment: number;
   equipmentDetail: Equipment;
   orderEquipment: OrderEquipment[];
+  page: 1;
 
   constructor(private equipmentManagerService: EquipmentManagerService, private orderEquipmentServiceService: OrderEquipmentServiceService,
               private activatedRoute: ActivatedRoute) {

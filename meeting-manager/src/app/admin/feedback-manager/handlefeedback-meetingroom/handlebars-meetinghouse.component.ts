@@ -3,6 +3,7 @@ import {FeedbackService} from '../../../service/feedback.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {FeedBack} from '../../../model/entity/FeedBack';
+import {Account} from "../../../model/entity/Account";
 
 @Component({
   selector: 'app-handlefeedback-meetingroom',
@@ -13,6 +14,7 @@ export class HandlebarsMeetinghouseComponent implements OnInit {
   handleFeedback: FormGroup;
   idFeedback: number;
   editFeedback: FeedBack;
+  account: Account[];
 
 
   constructor(private feedbackService: FeedbackService,
@@ -22,6 +24,7 @@ export class HandlebarsMeetinghouseComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getAllAccountList();
     this.handleFeedback = this.fb.group({
       id: [('')],
       title: [('')],
@@ -35,7 +38,7 @@ export class HandlebarsMeetinghouseComponent implements OnInit {
     });
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       // tslint:disable-next-line:radix
-      this.idFeedback = parseInt(paramMap.get('idfeedback'));
+      this.idFeedback = parseInt(paramMap.get('idFeedback'));
       this.feedbackService.findById(this.idFeedback).subscribe((data) => {
         this.editFeedback = data;
         console.log(this.editFeedback);
@@ -57,7 +60,14 @@ export class HandlebarsMeetinghouseComponent implements OnInit {
 
   handle() {
     this.feedbackService.updateFeedback(this.handleFeedback.value).subscribe((data) => {
-      this.router.navigateByUrl('list-feedbackadmin');
+      this.router.navigateByUrl('list-feedback-admin');
+    });
+  }
+
+  getAllAccountList() {
+    this.feedbackService.getAccount().subscribe((data) => {
+      // @ts-ignore
+      this.account = data;
     });
   }
 }

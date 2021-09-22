@@ -9,12 +9,12 @@
   color: #495057;
 }
 /*tiêu đề*/
-/*#wrap > .container-fluid > div.head> h4{*/
-/*  justify-content: center;*/
-/*  border-radius: 10px;*/
-/*  background: navy;*/
-/*  color: white;*/
-/*}*/
+div#wrap > .container> div.head> h1{
+  justify-content: center;
+  border-radius: 10px;
+  background: #4876FF;
+  color: white;
+}
 #wrap{
   padding: 50px;
   background-image: url("https://img4.thuthuatphanmem.vn/uploads/2020/05/12/hinh-anh-xam-khoi_103624490.jpg");
@@ -37,3 +37,18 @@ img[class="img-meeting"]:hover {
   height: auto;
 }
 
+img[class="img-meeting2"] {
+  width: 300px;
+  transition-property: all;
+
+}
+
+img[class="img-meeting2"]:hover {
+  /*width: 400px;*/
+  transition: 0.5s;
+  width: 400px;
+  height: auto;
+}
+@media img-meeting2 {
+
+}

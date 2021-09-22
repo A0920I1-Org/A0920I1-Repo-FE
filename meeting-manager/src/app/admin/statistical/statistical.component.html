@@ -1,6 +1,6 @@
 <div id="wrap">
   <div class="container">
-    <p class="row justify-content-center" style="margin-top: 20px; font-size: 40px">Thống kê</p>
+    <h3 class="row justify-content-center" style="text-align: center; font-size: 40px; margin-bottom: 50px; margin-top: 50px;"><b>THỐNG KÊ</b></h3>
     <div style="display: flex">
 
 
@@ -9,7 +9,7 @@
 
           <div style="height: 260px">
 
-            <legend>Theo thời gian</legend>
+            <legend style="margin-bottom: 25px"><u>Theo thời gian: </u></legend>
             <div class="input-group ">
               <label class="input-group-text" for="startDate">Từ ngày</label>
               <input formControlName="dateCheckin" class="form-control" id="startDate" name="date"
@@ -38,7 +38,7 @@
         <form [formGroup]="statisticByRoomForm" (ngSubmit)="onSubmitRoomForm(statisticByRoomForm)">
 
           <div style="height: 260px">
-            <legend>Theo phòng</legend>
+            <legend style="margin-bottom: 25px"> <u> Theo phòng: </u> </legend>
 
             <div class="input-group mb-3">
               <label class="input-group-text" for="inputGroupSelect01">Chọn loại phòng</label>
@@ -133,10 +133,11 @@
     </div>
   </div>
   <br>
-  <span *ngIf="isResult">
-<div id="chartStatistical">
-  <div class="row justify-content-center">
-    <span *ngIf="isMonth || isDateCheckout">
+
+  <div id="chartStatistical">
+    <div class="row justify-content-center">
+
+    <span *ngIf=" isMonth || isDateCheckout">
     <div class="float-left">
       <ejs-chart [primaryXAxis]='xAxisPerformance' [primaryYAxis]='yAxisPerformance'
                  [title]="performanceChartTitle"
@@ -144,7 +145,6 @@
         <e-series-collection>
           <e-series type="Line" [dataSource]="dataCharts"
                     xName="nameMeetingRoom" yName="performance"
-
                     name="Đồ thị thống kê hiệu suất">
           </e-series>
         </e-series-collection>
@@ -153,23 +153,21 @@
     </span>
 
 
-    <div class="float-right">
-      <ejs-chart [primaryXAxis]='xAxisTotalsOfUses'
-                 [primaryYAxis]='yAxisTotalsOfUses'
-                 [title]="usesChartTitle"
-                 [legendSettings]='legend' [tooltip]='toolTipSettings'>
-        <e-series-collection>
-          <e-series type='Column' fill="#4472c4" [dataSource]="dataCharts"
-                    xName='nameMeetingRoom' yName="uses"
-                    [marker]="markerSettings"
-                    name="Đồ thị thống kê số lần sử dụng">
-          </e-series>
-        </e-series-collection>
+      <div class="float-right">
+        <ejs-chart [primaryXAxis]='xAxisTotalsOfUses'
+                   [primaryYAxis]='yAxisTotalsOfUses'
+                   [title]="usesChartTitle"
+                   [legendSettings]='legend' [tooltip]='toolTipSettings'>
+          <e-series-collection>
+            <e-series type='Column' fill="#4472c4" [dataSource]="dataCharts"
+                      xName='nameMeetingRoom' yName="uses"
+                      [marker]="markerSettings"
+                      name="Đồ thị thống kê số lần sử dụng">
+            </e-series>
+          </e-series-collection>
 
-      </ejs-chart>
+        </ejs-chart>
+      </div>
     </div>
   </div>
 </div>
-  </span>
-</div>
-

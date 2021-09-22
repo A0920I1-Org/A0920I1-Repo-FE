@@ -8,7 +8,7 @@
       <div class="card-body ">
         <div class="row">
           <div class="col-sm-3" align="right">
-            <h6 class="mb-0">Tiêu đề:</h6>
+            <h3 class="mb-0">Tiêu đề:</h3>
           </div>
           <div class="col-sm-6 text-secondary">
 
@@ -19,7 +19,7 @@
         <br>
         <div class=" row">
           <div class="col-sm-3" align="right">
-            <h6 class="mb-0">Ngày phản hồi:</h6>
+            <h3 class="mb-0">Ngày phản hồi:</h3>
           </div>
           <div  class="col-sm-6 text-secondary">
             <input type="date"  aria-describedby="button-addon1"
@@ -29,7 +29,7 @@
         <br>
         <div class="row">
           <div class="col-sm-3" align="right">
-            <h6 class="mb-0">Tên người dùng:</h6>
+            <h3 class="mb-0">Tên người dùng:</h3>
           </div>
           <div class="col-sm-6 text-secondary">
             <input type="text"  aria-describedby="button-addon1" class="form-control border-1 shadow-1" formControlName="account"readonly>
@@ -40,7 +40,7 @@
 
         <div class="row">
           <div class="col-sm-3" align="right">
-            <h6 class="mb-0">Tên phòng :</h6>
+            <h3 class="mb-0">Tên phòng :</h3>
           </div>
           <div class="col-sm-6">
             <input type="text"  aria-describedby="button-addon1" class="form-control border-1 shadow-1" formControlName="meetingRoom" readonly>
@@ -49,16 +49,16 @@
         <br>
         <div class="row">
           <div class="col-sm-3" align="right">
-            <h6 class="mb-0">Loại lỗi :</h6>
+            <h3 class="mb-0">Loại lỗi :</h3>
           </div>
           <div class="col-sm-6">
-            <input type="text"  aria-describedby="button-addon1" class="form-control border-1 shadow-1" formControlName="feedBackType"readonly>
+            <input type="text"  aria-describedby="button-addon1" class="form-control border-1 shadow-1" formControlName="feedBackType" readonly>
           </div>
         </div>
         <br>
         <div class="row">
           <div class="col-sm-3" align="right">
-            <h6 class="mb-0">Nội dung :</h6>
+            <h3 class="mb-0">Mô tả :</h3>
           </div>
           <div class="col-sm-6 text-secondary">
                     <textarea class="form-control"  formControlName="description" readonly>
@@ -68,22 +68,18 @@
         <br>
         <div class="row">
           <div class="col-sm-3" align="right">
-            <h6 class="mb-0">nhân viên xử lý :</h6>
+            <h3 class="mb-0">nhân viên xử lý :</h3>
           </div>
           <div class="col-sm-6">
-            <select class="form-control" formControlName="account" >
-
-              <option value="1">a</option>
-              <option value="2">b </option>
-              <option value="3">c</option>
-
+            <select class="form-control" id="inputNV" formControlName="account">
+              <option *ngFor="let AccountType of account" [ngValue]="AccountType.id">{{AccountType.fullname}}</option>
             </select>
           </div>
         </div>
         <br>
         <div class="row">
           <div class="col-sm-3" align="right">
-            <h6 class="mb-0">Nội dung :</h6>
+            <h3 class="mb-0">Nội dung :</h3>
           </div>
           <div class="col-sm-6 text-secondary">
                     <textarea class="form-control"  formControlName="content" >
@@ -94,7 +90,7 @@
         <div class="row">
           <div class="col-sm-12" align="center" >
             <button class="btn btn-primary" type="submit">Xử lý phản hồi</button>
-            <button type="submit" class="btn btn-danger"  style="margin: 0 50px" routerLink="/list">Huỷ phản hồi</button>
+            <button type="submit" class="btn btn-danger"  style="margin: 0 50px" routerLink="/list-feedback-admin">Huỷ phản hồi</button>
           </div>
         </div>
 
@@ -105,4 +101,4 @@
 
   </div>
 </div>
-<router-outlet></router-outlet>
+

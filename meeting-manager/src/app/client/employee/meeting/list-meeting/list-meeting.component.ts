@@ -3,15 +3,12 @@ import {Component, OnInit} from '@angular/core';
 import {MeetingRoomService} from '../../../../service/meeting-room.service';
 import {MatDialog} from '@angular/material/dialog';
 
-import {AreaMeetingRoomService} from '../../../../service/area-meeting-room.service';
 import {Router} from '@angular/router';
 import {DeleteMeetingRoomComponent} from '../../../../admin/meeting-room/delete-meeting/delete-meeting-room.component';
 import {Area} from '../../../../model/entity/Area';
 import {TypeMeetingRoom} from '../../../../model/entity/TypeMeetingRoom';
 import {RoomStatus} from '../../../../model/entity/RoomStatus';
 import {MeetingRoom} from '../../../../model/entity/MeetingRoom';
-import {TypeMeetingRoomService} from '../../../../service/TypeMeetingRoomService';
-import {StatusRoomService} from '../../../../service/StatusRoomService';
 
 @Component({
   selector: 'app-list-meeting',
@@ -36,12 +33,8 @@ export class ListMeetingComponent implements OnInit {
 
   key: string = 'id';
   reverse: boolean = false;
-  private totalPage: any;
 
   constructor(
-    private typeMeetingRoomService: TypeMeetingRoomService,
-    private areaService: AreaMeetingRoomService,
-    private statusRoomService: StatusRoomService,
     private meetingRoomService: MeetingRoomService,
     private dialog: MatDialog,
     private router: Router
@@ -50,13 +43,13 @@ export class ListMeetingComponent implements OnInit {
 
   ngOnInit(): void {
     //danh sách khu vực
-    this.areaService.getAllArea().subscribe((data) => {
+    this.meetingRoomService.getArea().subscribe((data) => {
       this.areaList = data;
       //danh sách loại phòng
-      this.typeMeetingRoomService.getTypesMeetingRoom().subscribe((data) => {
+      this.meetingRoomService.getTypeMeetingRoom().subscribe((data) => {
         this.typeMeetingRoomList = data;
         // danh sách trạng thái
-        this.statusRoomService.getStatusRoom().subscribe((data) => {
+        this.meetingRoomService.getRoomStatus().subscribe((data) => {
           this.statusRoomList = data;
           //danh sách phòng họp
           this.meetingRoomService.getMeetingRoom().subscribe((data) => {
@@ -107,6 +100,6 @@ export class ListMeetingComponent implements OnInit {
   // }
 
   backToListMeeting():void {
-  window.location.reload();
-}
+     window.location.reload();
+  }
 }

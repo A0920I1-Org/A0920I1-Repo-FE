@@ -36,14 +36,14 @@
             <div class="col-md-9">
               <div class="card-user">
                 <div class="card-header card-background-color ">
-                  <h4><b>Tạo Mới phòng họp</b></h4>
+                  <h1><b>Tạo Mới Phòng Họp</b></h1>
                 </div>
                 <div class="card-body">
                     <div class="row">
                       <div class="col-md-12 pr-1">
                         <div class="form-group">
                           <label for="inputNameRoom">Tên phòng  <span class="infomation__required" style="color: red">*</span></label>
-                          <input id="inputNameRoom" type="text" class="form-control" placeholder="nhập tên phòng" maxlength="50" minlength="4" formControlName="name">
+                          <input id="inputNameRoom" type="text" class="form-control" placeholder="Nhập tên phòng" maxlength="50" minlength="4" formControlName="name">
                           <ng-container *ngFor="let validation of validation_messages.name">
                             <small class="form-text text-danger"
                                    *ngIf="createMeetingRoom.get('name').hasError(validation.type) && (createMeetingRoom.get('name').touched || createMeetingRoom.get('name').dirty)">
@@ -57,7 +57,7 @@
                       <div class="col-md-12 pr-1">
                         <div class="form-group">
                           <label for="inputFloors">Tầng  <span class="infomation__required" style="color: red">*</span></label>
-                          <input id="inputFloors" type="number" class="form-control" placeholder="nhập số tầng" maxlength="10" minlength="1" formControlName="floors">
+                          <input id="inputFloors" type="number" class="form-control" placeholder="Nhập số tầng" maxlength="10" minlength="1" formControlName="floors">
                           <ng-container *ngFor="let validation of validation_messages.floors">
                             <small class="form-text text-danger"
                                    *ngIf="createMeetingRoom.get('floors').hasError(validation.type)&&(createMeetingRoom.get('floors').dirty || createMeetingRoom.get('floors').touched)">
@@ -140,7 +140,6 @@
 <!--                          </small>-->
                         </ng-container>
                       </div>
-
                     </div>
                     <div class="row justify-content-between">
                       <div class="row">

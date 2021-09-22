@@ -10,6 +10,7 @@
   border: none;
   text-align: center;
   font-size: 14px;
+  top: 150px;
 }
 .modal-confirm .modal-header {
   border-bottom: none;
@@ -81,5 +82,17 @@
 .trigger-btn {
   display: inline-block;
 }
+
+.modal__custom{
+  display: flex;
+  justify-content: center;
+  top: 150px;
+}
+
+/* #deleteEmployeeModal{
+  display: flex;
+  justify-content: center;
+  top: 150px;
+} */
 
 /* Modal delete */
