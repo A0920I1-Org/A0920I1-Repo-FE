@@ -1,6 +1,6 @@
 <div id="wrap">
   <div id="result" class="row table-responsive">
-    <h2 id="title" style="text-align: center; margin-top: 50px;font-size: 40px; margin-bottom: 50px">Danh sách phản hồi</h2>
+    <h1 id="title" style="text-align: left; margin-top: 50px ; margin-bottom: 50px ;font-size: 50px"><b>Danh sách phản hồi</b></h1>
     <div class="table-responsive">
       <table class="table table-hover" style="text-align: center">
         <thead class="thead-dark">
@@ -26,16 +26,29 @@
           <th scope="row">{{feed.meetingRoom.name}}</th>
           <th scope="row">{{feed.description}}</th>
           <th scope="row">{{feed.feedBackType.name}}</th>
-          <th scope="row" *ngIf="feed.IsHandle ">{{feed.IsHandle}}</th>
-          <th scope="row" *ngIf="!feed.IsHandle "> {{feed.IsHandle}}</th>
-          <td>
-            <button class="btn btn-primary  m-md-3 " (click)="actionHandle(feed.feedBackType.id)">Xử lý </button>
-            <button (click)="openDialogDelete(feed.id)" class="btn btn-danger">Xóa</button>
+          <th scope="row" *ngIf="(feed.handle) ">Đã xử lý</th>
+          <th scope="row" *ngIf="!(feed.handle) "> Chưa xử lý</th>
+          <td class="text-center">
+            <!--  <a  [routerLink]="['/handle-feedback/' , feed.id]">
+                        <span class="material-icons">
+                          <i style="font-size: 20px; color: #17a2b8" class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                        </span>
+              </a>-->
+            <a  (click)="actionFeedbackType(feed.feedBackType.id, feed.id)">
+                  <span class="material-icons">
+                    <i style="font-size: 20px; color: #17a2b8" class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                  </span>
+            </a>
+
+            <a href="#myModal" class="trigger-btn" data-toggle="modal" data-target="#myModal">
+                      <span class="material-icons" (click)="openDialogDelete(feed.id)">
+                        <i style="font-size: 20px; color: red" class="fa fa-trash" aria-hidden="true"></i>
+                      </span>
+            </a>
           </td>
         </tr>
         </tbody>
       </table>
-
     </div>
     <div>
       <pagination-controls (pageChange)=" page = $event " style="text-align: center" previousLabel="Trước" nextLabel="Tiếp"></pagination-controls>

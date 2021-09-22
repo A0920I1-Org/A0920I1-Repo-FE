@@ -1,10 +1,10 @@
 <div id="wrap">
   <div class="container">
-    <h1 style="text-align: center; margin: 40px 0"><b>
+    <h1 style="text-align: center; font-size: 45px; margin: 40px 0 " ><b>
       Phản hồi phòng họp
     </b>
     </h1>
-    <form [formGroup]="formCreateFeedback" (ngSubmit)="save() " >
+    <form [formGroup]="formCreateFeedback" (ngSubmit)="save() " novalidate >
       <div class="card-body ">
         <div class="row">
 
@@ -14,9 +14,14 @@
           <div class="col-sm-6 text-secondary">
 
             <input type="text"  aria-describedby="button-addon1"
-                   class="form-control border-1 shadow-1" formControlName="title">
+                   class="form-control border-1 shadow-1" formControlName="title" placeholder="nhập Tiêu đề" maxlength="50" minlength="4">
+            <ng-container *ngFor="let validation of validation_messages.title">
+              <small class="form-text text-danger"
+                     *ngIf="formCreateFeedback.get('title').hasError(validation.type) && (formCreateFeedback.get('title').touched || formCreateFeedback.get('title').dirty)">
+                {{validation.message}}
+              </small>
 
-            <!--<div  *ngIf=" !title.valid &&( title.dirty || title.touched)"><p style="color: red">*vui lòng nhập,không để trống và trên 6 kí tự!</p></div>-->
+            </ng-container>
           </div>
         </div>
         <br>
@@ -26,29 +31,12 @@
             <h3 class="mb-0">Ngày phản hồi:</h3>
           </div>
           <div  class="col-sm-6 text-secondary">
-
-
-            <input   class="form-control border-1 shadow-1" value="{{maxDate| date: 'dd/MM/yyyy'}}" id="inputBirt"readonly>
-            <!-- <input   class="form-control border-1 shadow-1"  value="{{maxDate.getDate()}}/{{maxDate.getMonth()}}/{{maxDate.getFullYear()}}" id="inputBirt"readonly>-->
-            <!--  <input   class="form-control border-1 shadow-1"   [max]="maxDate" [min]="minDate" formControlName="dateFeedback" id="inputBirt" matInput [matDatepicker]="myDatepicker" >-->
-            <!-- <div *ngIf="formCreateFeedback.get('dateFeedback').invalid && formCreateFeedback.touched" class="text-danger">Vui lòng chon ngày !</div>-->
-            <!--    <small> <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle></small>
-                  <mat-datepicker #myDatepicker></mat-datepicker>
-      -->
-          </div>
-        </div>
-        <br>
-        <div class="row">
-
-          <div class="col-sm-3" align="right">
-            <h3 class="mb-0">Tên người dùng:</h3>
-          </div>
-          <div class="col-sm-6 text-secondary">
-            <input type="text"  aria-describedby="button-addon1" class="form-control border-1 shadow-1"  formControlName="account">
+            <input   class="form-control border-1 shadow-1" value="{{maxDate| date: 'dd/MM/yyyy'}}" readonly>
 
           </div>
 
         </div>
+
         <br>
 
         <div class="row">
@@ -60,7 +48,14 @@
 
               <option *ngFor="let meetingRoms of meetingRoom"  [value]="meetingRoms.id">{{meetingRoms.name}}</option>
             </select>
-            <!--   <div  *ngIf=" !meetingRoom.valid &&( meetingRoom.dirty || meetingRoom.touched)"><p style="color: red">*vui lòng nhập,không để trống!</p></div>-->
+            <ng-container *ngFor="let validation of validation_messages.meetingRoom">
+              <small class="form-text text-danger"
+                     *ngIf="formCreateFeedback.get('meetingRoom').hasError(validation.type) && (formCreateFeedback.get('meetingRoom').touched || formCreateFeedback.get('meetingRoom').dirty)">
+                {{validation.message}}
+              </small>
+
+            </ng-container>
+
           </div>
         </div>
         <br>
@@ -71,9 +66,15 @@
           <div class="col-sm-6">
             <select class="form-control" formControlName="feedBackType" >
 
-              <option *ngFor="let feedbackType of feedBackType"  [value]="feedbackType.id">{{feedbackType.name}}</option>
+              <option seleted *ngFor="let feedbackType of feedBackType"  [value]="feedbackType.id">{{feedbackType.name}}</option>
+
             </select>
-            <!-- <div  *ngIf=" !feedBackType.valid &&( feedBackType.dirty || feedBackType.touched)"><p style="color: red">*vui lòng nhập,không để trống!</p></div>-->
+            <ng-container *ngFor="let validation of validation_messages.feedBackType">
+              <small class="form-text text-danger"
+                     *ngIf="formCreateFeedback.get('feedBackType').hasError(validation.type) && (formCreateFeedback.get('feedBackType').touched || formCreateFeedback.get('feedBackType').dirty)">
+                {{validation.message}}
+              </small>
+            </ng-container>
           </div>
         </div>
 
@@ -85,21 +86,33 @@
             <h3 class="mb-0">Nội dung :</h3>
           </div>
           <div class="col-sm-6 text-secondary">
-                    <textarea class="form-control"  formControlName="description">
-                    </textarea>  <!--<div  *ngIf=" !description.valid &&( description.dirty || description.touched)"><p style="color: red">*vui lòng nhập,không để trống!</p></div>-->
+                    <textarea class="form-control " style="min-height: 100px;"  formControlName="description" >
+                    </textarea>
+            <ng-container *ngFor="let validation of validation_messages.description">
+              <small class="form-text text-danger"
+                     *ngIf="formCreateFeedback.get('description').hasError(validation.type) && (formCreateFeedback.get('description').touched || formCreateFeedback.get('description').dirty)">
+                {{validation.message}}
+              </small>
+
+            </ng-container>
+
           </div>
         </div>
         <br>
+        <div class="col-sm-6 text-secondary">
+          <input type="text"  aria-describedby="button-addon1" class="form-control border-1 shadow-1" value="{{idAccount}}" hidden >
+
+        </div>
         <div class="row">
           <div class="col-sm-12" align="center" >
             <!--          // toastr-->
-            <button  class="btn btn-primary" type="submit" [disabled]="formCreateFeedback.valid">Gửi phản hồi</button>
-            <button type="submit" class="btn btn-danger"  style="margin: 0 50px" routerLink="/list">Huỷ phản hồi</button>
+            <button  class="btn btn-primary" type="submit"  >Gửi phản hồi</button>
+            <button type="submit" class="btn btn-danger"  style="margin: 0 50px" routerLink="/list-feedback-user">Huỷ phản hồi</button>
           </div>
         </div>
       </div>
     </form>
-    <div class="col-sm-5" align="right"><p>Dấu(<span style="color: red">*</span>)Vui lòng nhập không được để trống!</p></div>
+    <div class="col-sm-5" align="right"><h3><b>Dấu(<span style="color: red">*</span>)Vui lòng nhập không được để trống!</b></h3></div>
 
   </div>
 </div>

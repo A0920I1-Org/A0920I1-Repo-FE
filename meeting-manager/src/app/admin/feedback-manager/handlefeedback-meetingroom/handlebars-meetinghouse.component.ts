@@ -1,9 +1,15 @@
 import {Component, OnInit} from '@angular/core';
 import {FeedbackService} from '../../../service/feedback.service';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {FeedBack} from '../../../model/entity/FeedBack';
+
+import {MeetingRoom} from "../../../model/entity/MeetingRoom";
 import {Account} from "../../../model/entity/Account";
+import {FeedBackType} from "../../../model/entity/FeedBackType";
+import {ToastrService} from "ngx-toastr";
+
+
 
 @Component({
   selector: 'app-handlefeedback-meetingroom',
@@ -11,34 +17,47 @@ import {Account} from "../../../model/entity/Account";
   styleUrls: ['./handlebars-meetinghouse.component.css']
 })
 export class HandlebarsMeetinghouseComponent implements OnInit {
-  handleFeedback: FormGroup;
+
   idFeedback: number;
   editFeedback: FeedBack;
-  account: Account[];
-
+  account:Account[];
+  handleFeedback: FormGroup
+  meetingRoom:MeetingRoom[];
+  feedbackType:FeedBackType[];
 
   constructor(private feedbackService: FeedbackService,
               private router: Router,
               private activatedRoute: ActivatedRoute,
-              private fb: FormBuilder) {
+              private fb: FormBuilder,
+              private  toastrService: ToastrService) {
   }
 
+
+
   ngOnInit(): void {
-    this.getAllAccountList();
+    this.getAllFeedbackType()
+    this.getAllMeetingroom()
+    this.getAllAccount();
     this.handleFeedback = this.fb.group({
       id: [('')],
       title: [('')],
       description: [('')],
       dateFeedback: [('')],
-      IsHandle: [('')],
+      handle: [('')],
       feedBackType: [('')],
-      account: [('')],
+      account: ['',[Validators.required]],
       meetingRoom: [('')],
-      content: [('')]
+      content: ['',[Validators.required, Validators.pattern('^[a-zA-Zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợở' +
+        'ỡùúụủũưừứựửữỳýỵỷỹđ]+(\\s[a-zA-Zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]+)*$'),
+        Validators.maxLength(250)]],
     });
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
-      // tslint:disable-next-line:radix
+
+      this.idFeedback = parseInt(paramMap.get('id'));
+
+
       this.idFeedback = parseInt(paramMap.get('idFeedback'));
+
       this.feedbackService.findById(this.idFeedback).subscribe((data) => {
         this.editFeedback = data;
         console.log(this.editFeedback);
@@ -47,28 +66,44 @@ export class HandlebarsMeetinghouseComponent implements OnInit {
           title: this.editFeedback.title,
           description: this.editFeedback.description,
           dateFeedback: this.editFeedback.dateFeedback,
-          IsHandle: this.editFeedback.IsHandle,
-          feedBackType: this.editFeedback.feedBackType.name,
+          handle: true,
+          feedBackType: this.editFeedback.feedBackType.id,
           account: this.editFeedback.account.fullname,
-          meetingRoom: this.editFeedback.meetingRoom.name,
+          meetingRoom: this.editFeedback.meetingRoom.id,
+          accounts: this.editFeedback.account.username,
           content: this.editFeedback.content,
 
         });
       });
     });
   }
+  getAllAccount(){
+    this.feedbackService.getAccount().subscribe((data) =>{
+      this.account =data;
 
-  handle() {
-    this.feedbackService.updateFeedback(this.handleFeedback.value).subscribe((data) => {
-      this.router.navigateByUrl('list-feedback-admin');
+    })
+  }
+  getAllFeedbackType(){
+    this.feedbackService.findAllFeedbackType().subscribe(data =>{
+
+      this.feedbackType = data;
     });
   }
+  getAllMeetingroom(){
+    this.feedbackService.getMeetingRoom().subscribe(data =>{
 
-  getAllAccountList() {
-    this.feedbackService.getAccount().subscribe((data) => {
-      // @ts-ignore
-      this.account = data;
+      this.meetingRoom= data;
+    })
+  }
+
+  handle() {
+    if (this.handleFeedback.invalid) {
+      this.toastrService.error('Bạn đã xử lý phản hồi không thành công!', 'Thông báo')
+      return;
+    }
+    this.feedbackService.updateFeedback(this.handleFeedback.value).subscribe((data) => {
+      this.toastrService.success('Bạn đã xử lý phản hồi  thành công!', 'Thông báo')
+      this.router.navigateByUrl('list-feedback-admin')
     });
   }
 }
-

@@ -6,22 +6,28 @@ import {FeedBackType} from '../model/entity/FeedBackType';
 import {MeetingRoom} from "../model/entity/MeetingRoom";
 import {Account} from "../model/entity/Account";
 
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class FeedbackService {
 
-  private baseURL = 'http://localhost:8081/api/feedback';
+  private baseURL = 'http://localhost:8081/api';
+
 
   constructor(private  httpClient: HttpClient) {
   }
 // VietNT Code lấy tất cả các feedback
   findAll(): Observable<FeedBack[]> {
-    return this.httpClient.get<FeedBack[]>(this.baseURL + '/feedback-list');
+
+    return this.httpClient.get<FeedBack[]>(this.baseURL + '/feedbacklist');
   }
 // VietNT Code Lấy id feedback
   findById(id: number): Observable<FeedBack>{
-    return this.httpClient.get<FeedBack>(this.baseURL + '/findById/' + id);
+
+    return this.httpClient.get<FeedBack>(this.baseURL + '/findFeedbackById/' + id);
+
   }
 //VietNT Code hiển thị danh sách  loại lỗi
 
@@ -35,7 +41,8 @@ export class FeedbackService {
 
   }
   updateFeedback(feedback: FeedBack): Observable<FeedBack>{
-    return this.httpClient.patch<FeedBack>(this.baseURL + '/update/' + feedback.id, feedback);
+
+    return this.httpClient.put<FeedBack>(this.baseURL + '/update/' + feedback.id, feedback);
   }
   //VietNT delete feedback
   deleteFeedback(id: number){

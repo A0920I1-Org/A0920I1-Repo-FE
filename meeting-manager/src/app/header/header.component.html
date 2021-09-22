@@ -22,14 +22,12 @@
               <li><a routerLink="/list-equipment">Tài Sản</a></li>
               <li><a routerLink="/emp-list">Người Dùng</a></li>
               <li><a routerLink="/statistic">Thống Kê</a></li>
-              <li >
-                <a routerLink="/list-feedback-admin" class="nav-link" *ngIf="authService.isUserLoggedIn()">Xem Phản Hồi</a>
-<!--                <ul class="dropdown arrow-top">-->
-<!--                  <li><a routerLink="/list-feedback-admin" class="nav-link">Phản Hồi Phòng Họp</a></li>-->
-<!--                  <li><a routerLink="/add-feed-technical" class="nav-link">Phản Hồi Hệ Thống</a></li>-->
-<!--                  <li><a routerLink="/list-feedback-admin"  class="nav-link">Danh Sách Phản Hồi</a></li>-->
-<!--                </ul>-->
-
+              <li class="has-children">
+                <a href="#" class="nav-link" >Xem Phản Hồi</a>
+                <ul class="dropdown arrow-top">
+                  <li><a routerLink="/add-feed-technical" class="nav-link">Phản Hồi Hệ Thống</a></li>
+                  <li><a routerLink="/list-feedback-admin"  class="nav-link">Danh Sách Phản Hồi</a></li>
+                </ul>
               </li>
             </ul>
             <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block"
@@ -44,22 +42,22 @@
                 </ul>
               </li>
               <li class="has-children">
-                <a class="nav-link">Phản hồi</a>
+                <a routerLink="/list-meeting" class="nav-link" *ngIf="authService.isUserLoggedIn()">Xem Phản Hồi</a>
                 <ul class="dropdown arrow-top">
-                  <li><a routerLink="/create-feedback-meeting-room" class="nav-link">Tạo phản hồi phòng họp</a></li>
-                  <li><a routerLink="/add-feed-technical" class="nav-link">Tạo phản Hồi Hệ Thống</a></li>
-                  <li><a routerLink="/list-feedback-user" class="nav-link">Danh Sách Phản Hồi</a></li>
+                  <li><a routerLink="/feedback-meeting-room" class="nav-link">Phản hồi phòng họp</a></li>
+                  <li><a routerLink="/add-feed-technical" class="nav-link">Phản hồi hệ thống</a></li>
+                  <li><a  routerLink="/list-feedback-user" class="nav-link">Danh sách phản hồi</a></li>
                 </ul>
               </li>
             </ul>
           </nav>
         </div>
-        <div class="col-2" style="padding: 0px">
+        <div class="col-2" style="padding: 0">
           <nav class="site-navigation text-right ml-auto " role="navigation">
             <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
               <li><a routerLink="/login" class="" *ngIf="!authService.isUserLoggedIn()">Đăng nhập</a></li>
               <li class="has-children" *ngIf="authService.isUserLoggedIn()">
-                <p style="margin: 0px">{{account.fullname}}</p>
+                <p style="margin: 0">{{username}}</p>
                 <ul class="dropdown arrow-top">
                   <li><a href="#" class="nav-link">Thông tin</a></li>
                   <li><a routerLink="/logout" class="nav-link">Đăng xuất</a></li>

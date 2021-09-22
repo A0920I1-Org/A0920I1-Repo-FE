@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthenticationService} from '../../service/authentication.service';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {Account} from '../../model/entity/Account';
 
 @Component({
   selector: 'app-login',
@@ -13,10 +14,7 @@ export class LoginComponent implements OnInit {
   submitted = false;
   showErrorMessage = false;
   loginForm: FormGroup;
-  // @Input('incomingmsg') newrandmsg: string;
-
-  message: string;
-  editedmsg: string;
+  account: Account;
 
   constructor(private router: Router, private authService: AuthenticationService, private fb: FormBuilder) {
   }
@@ -26,6 +24,10 @@ export class LoginComponent implements OnInit {
       username: this.fb.control('', [Validators.required, Validators.pattern('^[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){3,18}[a-zA-Z0-9]$')]),
       password: this.fb.control('', [Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,32}$')])
     });
+
+    this.authService.newUser.subscribe(data =>{
+      this.account = data;
+    })
   }
 
   get f() {
@@ -41,9 +43,13 @@ export class LoginComponent implements OnInit {
       //dung format du lieu, gui ve backend kiem tra username va password - [TuHC]
       this.authService.authenticate(this.loginForm.get('username').value, this.loginForm.get('password').value).subscribe(
         data => {
-          // this.authService.editMsg(this.loginForm.get('username').value);
-          this.router.navigateByUrl('/list-meeting');
-          this.invalidLogin = false;
+          if(this.authService.checkRoleAdmin()){
+            this.router.navigateByUrl('/list-meeting-admin');
+            this.invalidLogin = false;
+          }else {
+            this.router.navigateByUrl('/list-meeting');
+            this.invalidLogin = false;
+          }
         },
         error => {
           this.invalidLogin = true;

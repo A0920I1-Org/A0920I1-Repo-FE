@@ -29,7 +29,6 @@ export class ListEquipmentComponent implements OnInit {
   }
   openDialogDelete(equipmentId): void {
     this.equipmentManagerService.findById(equipmentId).subscribe(data => {
-      console.log(data);
       const dialogReg = this.dialog.open(DeleteEquipmentComponent, {
         width : '500px',
         data : {data1: data},
@@ -42,7 +41,6 @@ export class ListEquipmentComponent implements OnInit {
   }
   deleteEquipment(id: number){
     this.equipmentManagerService.deleteEquipment(id).subscribe((data) => {
-      console.log( 'xóa thành công' );
     });
   }
   searchName(): void {

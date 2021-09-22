@@ -57,7 +57,7 @@ export class FeedbackTechnicalUpdateComponent implements OnInit {
           title: this.feedBackTech.title,
           description: this.feedBackTech.description,
           dateFeedback: this.feedBackTech.dateFeedback,
-          IsHandle: this.feedBackTech.IsHandle,
+          IsHandle: this.feedBackTech.handle,
           feedBackType: this.feedBackTech.feedBackType.name,
           account: this.feedBackTech.account.fullname,
           meetingRoom: this.feedBackTech.meetingRoom.name,

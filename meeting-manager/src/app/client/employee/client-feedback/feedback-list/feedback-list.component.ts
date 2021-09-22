@@ -17,7 +17,7 @@ export class FeedbackListComponent implements OnInit {
 
   public feedback: FeedBack[];
   public feedbackType: FeedBackType[];
-  private page = 1;
+  page = 1;
   constructor(private  feedbackTypeService: FeedbackTypeService,
               private router: Router,
               private  feedbackService: FeedbackService) {
@@ -26,9 +26,11 @@ export class FeedbackListComponent implements OnInit {
   ngOnInit(): void {
     this.feedbackService.findAll().subscribe(data => {
       this.feedback = data;
-      console.log(data);
+
 
     });
+    this.feedbackService.findAllFeedbackType().subscribe(data => {
 
+    });
   }
 }
